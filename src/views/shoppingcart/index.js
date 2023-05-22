@@ -2,12 +2,15 @@
 import "./index.css";
 import ShoppingCartItem from "./components/shoppingcart_item";
 
+// 依赖
+import {Link} from 'react-router-dom'
+
 function Page() {
   return (
     // HTML结构
     <div className="shoppingcart_wrap">
       {/* &lt;代表< */}
-      <div className="sc_bread_crumb"> &lt;Continue Shopping </div>
+      <div className="sc_bread_crumb"> <Link to="/product">&lt;Continue Shopping</Link> </div>
       <div className="sc_content">
         <div className="sc_content_left">
           <ShoppingCartItem></ShoppingCartItem>

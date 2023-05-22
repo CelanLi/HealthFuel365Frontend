@@ -1,7 +1,8 @@
 // 引入样式文件
 import "./index.css";
+import ShoppingCartNutri from "../shoppingcart_nutri";
 
-function Page() {
+function ShoppingCartItem() {
   return (
     <div className="sc_item">
       <div className="sc_item_image">
@@ -17,7 +18,9 @@ function Page() {
           </div>
           <div className="sc_item_unitprice">Unit Price: 2,99€</div>
           <div className="sc_item_content_leftbottom">
-            <div className="sc_item_nutri">nutri</div>
+            <div className="sc_item_nutri">
+              <ShoppingCartNutri nutri='C'></ShoppingCartNutri>
+            </div>
             <div className="sc_item_count">count</div>
           </div>
         </div>
@@ -30,4 +33,4 @@ function Page() {
   );
 }
 
-export default Page;
+export default ShoppingCartItem;
