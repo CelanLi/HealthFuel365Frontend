@@ -1,0 +1,48 @@
+.category-text p{
+  float: left;
+  margin-top: 0.5%;
+  margin-right: 4%;
+  margin-left: 4%;
+  margin-bottom: 0.5%;
+  width: 12%;
+
+  text-align: center;
+  font-family: 'Kaisei Opti';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  color: #033D1F;
+}
+
+.category-icon a{
+  float: left;
+  border-radius: 50%;
+  width: 12%;
+  height: 9vw;
+  
+  margin-right: 4%;
+  margin-left: 4%;
+
+  text-align: center;
+  text-decoration: none;
+  font-family: 'Kaisei Opti';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 26px;
+  color: #033D1F;
+}
+
+.category-icon a.staple{
+  background: rgba(3, 61, 31, 0.06) url("../../../../assets/images/category_staple_icon.png") center no-repeat;
+  background-size: 70%;
+}
+
+.category-icon a.snacks{
+  background: rgba(3, 61, 31, 0.06) url("../../../../assets/images/category_snacks_icon.png") center no-repeat;
+  background-size: 70%;
+}
+.category-icon a.drinks{
+  background: rgba(3, 61, 31, 0.06) url("../../../../assets/images/category_drinks_icon.png") center no-repeat;
+  background-size: 70%;
+}
