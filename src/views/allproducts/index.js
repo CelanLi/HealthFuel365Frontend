@@ -1,8 +1,8 @@
 // 引入样式文件
 import './index.css';
-import Topnav from "./components/topnav";
-import Category from "./components/category"
-import Footer from "./components/footer"
+import Topnav from "../components/topnav";
+import Category from "../components/category"
+import Footer from "../components/footer"
 
 function Page() {
   return (
@@ -23,8 +23,6 @@ function Page() {
 
         </div>
       </div>
-
-
     </div>
   );
 }

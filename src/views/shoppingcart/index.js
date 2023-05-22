@@ -1,7 +1,7 @@
 // 引入样式文件
 import "./index.css";
 import ShoppingCartItem from "./components/shoppingcart_item";
-import TopNav from "../allproducts/components/topnav";
+import TopNav from "../components/topnav";
 
 // 依赖
 import {Link} from 'react-router-dom'

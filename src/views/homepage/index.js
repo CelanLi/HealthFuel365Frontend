@@ -1,7 +1,7 @@
 // 引入样式文件
 import './index.css';
-import Topnav from "../allproducts/components/topnav"
-import Footer from "../allproducts/components/footer"
+import Topnav from "../components/topnav"
+import Footer from "../components/footer"
 
 function Page() {
   return (

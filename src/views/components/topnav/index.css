@@ -60,7 +60,7 @@
   width: 200pt;
   height: 50pt;
   z-index: 1;
-  background: transparent url("../../../../assets/images/logo.png") center;
+  background: transparent url("../../../assets/images/logo.png") center;
   background-size: cover;
   background-repeat: no-repeat;
   float: left;
@@ -98,7 +98,7 @@
 
 /* input container里面的搜索键 */
 .topnav .search-container button[type="submit"] {
-  background: transparent url("../../../../assets/images/search_icon.png") center;
+  background: transparent url("../../../assets/images/search_icon.png") center;
   background-repeat: no-repeat;
   background-size: 65%;
   border: transparent;
@@ -131,12 +131,12 @@
 }
 /* 购物车跳转按键 */
 .topnav .right-icon-container a.shopping_cart {
-  background-image: url("../../../../assets/images/shopping_cart_icon.png");
+  background-image: url("../../../assets/images/shopping_cart_icon.png");
 }
 /* 用户跳转按键 */
 .topnav .right-icon-container a.user {
   background-size: 75%;
-  background-image: url("../../../../assets/images/user_icon.png");
+  background-image: url("../../../assets/images/user_icon.png");
 }
 
 /* When the screen is less than 600px wide, stack the links and the search field vertically instead of horizontally */

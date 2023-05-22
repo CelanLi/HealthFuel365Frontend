@@ -34,15 +34,15 @@
 }
 
 .category-icon a.staple{
-  background: rgba(3, 61, 31, 0.06) url("../../../../assets/images/category_staple_icon.png") center no-repeat;
+  background: rgba(3, 61, 31, 0.06) url("../../../assets/images/category_staple_icon.png") center no-repeat;
   background-size: 70%;
 }
 
 .category-icon a.snacks{
-  background: rgba(3, 61, 31, 0.06) url("../../../../assets/images/category_snacks_icon.png") center no-repeat;
+  background: rgba(3, 61, 31, 0.06) url("../../../assets/images/category_snacks_icon.png") center no-repeat;
   background-size: 70%;
 }
 .category-icon a.drinks{
-  background: rgba(3, 61, 31, 0.06) url("../../../../assets/images/category_drinks_icon.png") center no-repeat;
+  background: rgba(3, 61, 31, 0.06) url("../../../assets/images/category_drinks_icon.png") center no-repeat;
   background-size: 70%;
 }
