@@ -1,0 +1,101 @@
+.sc_item {
+  display: flex;
+
+  width: 850px;
+  height: 168px;
+  padding: 16px;
+
+  box-sizing: border-box;
+  background: rgba(3, 61, 31, 0.06);
+  box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.25);
+  border-radius: 11.25px;
+  margin-bottom: 14px;
+}
+
+.sc_item_image {
+  margin-right: 20px;
+}
+
+.sc_item_testimage {
+  width: 90px;
+  height: 130px;
+}
+
+.sc_item_content {
+  /* 横行布局，两端对齐 */
+  display: flex;
+  justify-content: space-between;
+  /* 布局充满整个容器 */
+  flex: 1;
+}
+
+.sc_item_content_left {
+}
+
+.sc_item_name {
+  font-family: "Kaisei Opti";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 21px;
+  line-height: 30px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #033d1f;
+
+  margin-bottom: 8px;
+}
+
+.sc_item_unitprice {
+  font-family: "Kaisei Opti";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 26px;
+  display: flex;
+  align-items: center;
+  color: #033d1f;
+
+  margin-bottom: 20px;
+}
+
+.sc_item_content_leftbottom {
+  display: flex;
+}
+
+.sc_item_nutri {
+  margin-right: 14px;
+}
+
+.sc_item_count {
+}
+
+.sc_item_content_right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.sc_item_remove {
+  font-family: "Kaisei Opti";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 21px;
+  line-height: 30px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  text-decoration-line: underline;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.sc_item_price {
+  font-family: "Kaisei Opti";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 21px;
+  line-height: 30px;
+  display: flex;
+  align-items: center;
+  color: #033d1f;
+}

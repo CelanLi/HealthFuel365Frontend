@@ -1,0 +1,171 @@
+/* 最外层容器 */
+.welcomepage_wrap {
+  background-image: url("../../assets/images/welcomepage_background.png");
+  background-size:cover;
+  /* background-attachment:fixed; */
+  background-position: center center;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100vh;
+
+  /* wel-left和right划分 */
+  display: flex;
+  /* wel-left和right主轴两端对齐 */
+  justify-content: space-between;
+
+}
+
+.wel_left {
+  /* 层级：1 */
+  z-index: 1;
+  margin-top: 200px; 
+  margin-left: 140px;
+}
+
+.wel_right {
+  /* 层级：1 */
+  z-index: 1;
+  margin-top: 80px; 
+  margin-right: 60px; 
+}
+
+.whiteboard { 
+  /* 层级：最下面 */
+  z-index: 0;
+  /* 绝对地位：固定坐标 */
+  position: absolute;
+  left: 38px;
+  right: 38px;
+  top: 38px;
+  bottom: 38px;
+
+  /* 宽高基于外容器 */
+  width: calc(100% - 76px);
+  height: calc(100vh - 76px);
+ 
+  background: rgba(255, 255, 255, 0.47);
+  border-radius: 30px;
+}
+
+/* 宽高要整数，最好是偶数 */
+.wel_feature { 
+  width: 662px;
+  /* wel_feature容器高度 */
+  height: 140px; 
+  /* 文字行高 */
+  line-height: 46px;
+  /* 盒模型方式：height和width包括pedding*/
+  box-sizing: border-box;
+  /* 下边距 */
+  margin-bottom: 32px;
+  
+  /* 水平垂直居中 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* 圆角 */
+  border-radius: 20px;
+  /* 文本距离容器边框距离 */
+  padding: 60px ;
+
+  /* 字体样式 */
+  font-family: 'Kaisei Opti';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 32px; 
+  text-align: center;
+  color: #FFFFFF; 
+
+} 
+
+/* feature四个块不同颜色 */
+.wel_feature:nth-of-type(1) {
+  background: rgba(16, 138, 75, 0.8);
+}
+.wel_feature:nth-of-type(2) {
+  background: rgba(116, 195, 51, 0.8);
+}
+.wel_feature:nth-of-type(3) {
+  background: rgba(250, 198, 7, 0.8);
+}
+.wel_feature:nth-of-type(4) {
+  background: rgba(243, 114, 22, 0.8);
+}
+
+/* buttom容器 */
+.wel_btn_wrap {
+  display: flex; 
+  justify-content: space-around; 
+  margin-top: 42px;
+
+}
+
+.login, .register { 
+  width: 188px;
+  height: 84px; 
+  line-height: 84px;
+
+  background-color: #FFFFFF;
+  text-align: center;
+  border-radius: 10px;
+
+  /* 字体样式 */
+  font-family: 'Kaisei Opti';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;  
+  text-transform: capitalize;
+  color: #033D1F;
+
+}
+
+/* .register {
+  width: 187px;
+  height: 83px; 
+  background-color: #FFFFFF;
+} */
+
+.guest { 
+  /* 右对齐 */
+  text-align: right;
+  margin-top: 16px;
+
+  height: 26px; 
+  font-family: 'Kaisei Opti';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 23px;
+  text-decoration-line: underline;
+  color: #033D1F;
+}
+
+/* 链接点击过的颜色 */
+.guest a:visited {
+  color: #033D1F;
+}
+
+/* HealthFuel365标题 */
+.wel_titel { 
+  font-family: 'Great Vibes';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 78px;
+  line-height: 120px;
+  color: rgba(3, 61, 31, 0.8);
+}
+
+/* HealthFuel365 slogan */
+.wel_slogan{ 
+  /* 右对齐 */
+  text-align: right;
+
+  font-family: 'Kaisei Opti';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 26px;
+  line-height: 35px;
+  color: rgba(3, 61, 31, 0.8);
+}
+ 
