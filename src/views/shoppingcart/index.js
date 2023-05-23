@@ -2,6 +2,8 @@
 import "./index.css";
 import ShoppingCartItem from "./components/shoppingcart_item";
 import TopNav from "../components/topnav";
+import Footer from "../components/footer"
+
 
 // 依赖
 import { Link } from "react-router-dom";
@@ -102,6 +104,11 @@ function Page() {
             </div>
           </div>
         </div>
+      </div>
+
+      {/*  */}
+      <div>
+        <Footer />
       </div>
     </div>
   );
