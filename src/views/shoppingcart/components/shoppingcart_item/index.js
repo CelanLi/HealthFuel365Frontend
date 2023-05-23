@@ -1,6 +1,7 @@
 // 引入样式文件
 import "./index.css";
 import ShoppingCartNutri from "../shoppingcart_nutri";
+import ScItemCounter from "../sc_item_counter";
 
 function ShoppingCartItem() {
   return (
@@ -21,7 +22,7 @@ function ShoppingCartItem() {
             <div className="sc_item_nutri">
               <ShoppingCartNutri nutri='C'></ShoppingCartNutri>
             </div>
-            <div className="sc_item_count">count</div>
+            <div className="sc_item_count"><ScItemCounter></ScItemCounter></div>
           </div>
         </div>
         <div className="sc_item_content_right">
