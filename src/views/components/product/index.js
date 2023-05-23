@@ -1,5 +1,6 @@
 // 引入样式文件
 import './index.css';
+import Nutri from '../../shoppingcart/components/shoppingcart_nutri'
 
 function Page() {
   return (
