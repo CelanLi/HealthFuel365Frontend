@@ -1,0 +1,45 @@
+.sc_item_count_wrap {
+  display: flex;
+  background-color: white;
+  border-radius: 15px;
+  width: 150px;
+  height: 28px;
+}
+
+.sc_item_count_minus,
+.sc_item_count_plus {
+  width: 50px; 
+  text-align: center;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  font-size: 24px;
+  line-height: 28px; 
+
+  /* 鼠标变成小手 */
+  cursor:pointer;
+  /* 文字不被选中 */
+  user-select: none;
+}
+
+.sc_item_count_minus {
+  border-right: 1px solid #d9d9d9;
+}
+
+.sc_item_count_plus {
+  border-left: 1px solid #d9d9d9;
+}
+
+.sc_item_count_wrap {
+}
+
+.sc_item_count {
+  width: 50px;
+  box-sizing: border-box;
+  border: 0;
+  padding: 0 10px;
+  font-size: 16px;
+}
+
+.sc_item_count:focus-visible {
+  outline: 0;
+}
