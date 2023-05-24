@@ -8,20 +8,22 @@ function Page() {
       <div className="topnav_slogan"> HealthFule365——Online gas station for your health </div>
       <div className="topnav_logo"/>
       <div className="product_topnav_wrap">
-        {/* 不知道怎么空出来*/}
-        <a/><a/><a/><a/><a/><a/><a/>
-        <a href="/homepage">HomePage</a>
-        <a className="active" href="/product">All Products</a>
-        <a href="/faqs">FAQs</a>
-        <div className="search-container">
-          <form>
-            <input type="text" placeholder=""/>
-            <button type="submit"></button>
-          </form>
-        </div>  
-        <div className="right-icon-container">
-          <a href="/shoppingcart" className="shopping_cart"></a>
-          <a href="/shoppingcart" className="user"></a>
+        <div className="left">
+          <a href="/homepage">HomePage</a>
+          <a className="active" href="/product">All Products</a>
+          <a href="/faqs">FAQs</a>
+        </div>
+        <div className="right">
+          <div className="search-container">
+            <form>
+              <input type="text" placeholder=""/>
+              <button type="submit"></button>
+            </form>
+          </div>  
+          <div className="right-icon-container">
+            <a href="/shoppingcart" className="shopping_cart"></a>
+            <a href="/shoppingcart" className="user"></a>
+          </div>
         </div>
       </div>
     </div>

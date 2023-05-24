@@ -2,21 +2,19 @@
 }
 
 .content-container{
-    /* 横行布局，两端对齐 */
     display: flex;
     justify-content: space-between;
-    /* 布局充满整个容器 */
     flex: 1;
     width: 100%;
+    margin-bottom: 3%;
+    margin-top: 3%;
 }
 
-/* 用于sort和filter*/
+/* sort and filter */
 .content-left{
-  position: absolute;
   width: 15%;
   height: 1200px;
   padding: 16px;
-  margin-top: 3%;
   margin-left: 3%;
   
   box-sizing: border-box;
@@ -25,7 +23,7 @@
   border-radius: 11.25px;
 }
 
-/* 用于category 和 product */
+/* category and product */
 .content-right{
   display: flex;
   flex-direction: column;
@@ -34,23 +32,16 @@
   width: 77%;
   height: 1200px;
   padding: 16px;
-  margin-top: 3%;
-  margin-left: 20%;
-
-  box-sizing: border-box;
-  background: rgba(3, 61, 31, 0.06);
-  box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.25);
-  border-radius: 11.25px;
+  margin-left: 18%;
 }
 
 .category-container{
 }
 
-.product-container{
-  margin-top: 2%;
-
-  box-sizing: border-box;
-  background: rgba(3, 61, 31, 0.06);
-  box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.25);
-  border-radius: 11.25px;
+.products-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 10px;
+  gap: 10px;
 }

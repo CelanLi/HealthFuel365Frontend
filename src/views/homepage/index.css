@@ -1,39 +1,200 @@
-.App {
-    text-align: center;
-  }
-  
-  .App-logo {
-    height: 40vmin;
-    pointer-events: none;
-  }
-  
-  @media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-      animation: App-logo-spin infinite 20s linear;
-    }
-  }
-  
-  .App-header {
-    background-color: #282c34;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
-  }
-  
-  .App-link {
-    color: #61dafb;
-  }
-  
-  @keyframes App-logo-spin {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
+/* homepage container */
+.homepage-wrap{
+  width: 100%;
+  background-color: #E7EBE9;
+}
+
+.homepage-body{
+  width: 96%;
+  display: flex;
+  flex-direction: column;
+  padding-top: 1%;
+  padding-left: 2%;
+  padding-right: 2%;
+}
+
+.homepage-carousel-ad{
+  display: flex;
+  justify-content: center;
+}
+
+.homepage-carousel-ads{
+  width: 100%;
+  max-height: 420px;
+  object-fit: cover;
+}
+
+.homepage-title{
+  display: flex;
+  flex-direction: row;
+  height: 40px;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.homepage-title-1{
+  font-family: 'Kaisei Opti';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  text-decoration: none;
+
+  color: #033D1F;
+}
+
+.homepage-title-2{
+  font-family: 'Kaisei Opti';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  text-decoration: none;
+
+  color: #4D4D4D;
+}
+
+.homepage-recommendation{
+  margin-top: 10px;
+  background-color: #C4D0CB;
+  height: 650px;
+}
+
+.homepage-product{
+  display: flex;
+  flex-direction: column;
+}
+
+.homepage-product-1{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 10px;
+  gap: 10px;
+}
+
+.homepage-supplier{
+  height: 300px;
+}
+
+.homepage-alternative{
+  height: 400px;
+  background-color: #C4D0CB;
+  display: flex;
+  flex-direction: column;
+}
+
+.homepage-alternative-block{
+  display: flex;
+  flex-direction: row;
+
+}
+
+.homepage-junkfood-icon{
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  width: 33%;
+}
+
+.homepage-junkfood-icon1{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.homepage-junk-food-icons{
+  margin: 10px;
+}
+
+.homepage-alternative-product{
+  width: 67%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 10px;
+  gap: 10px;
+}
+
+.homepage-nutri-score{
+  display: flex;
+  flex-direction: column;
+}
+
+.homepage-nutri-score-block{
+  display: flex;
+  flex-direction: row;
+  height: 300px;
+}
+
+.homepage-nutri-score-introduction{
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  margin-left: 30px;
+}
+
+.homepage-nutri-score-title{
+  font-family: 'Kaisei Opti';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 46px;
+
+  color: #033D1F;
+}
+
+.homepage-nutri-score-content{
+  font-family: 'Kaisei Opti';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 35px;
+  text-align: justify;
+
+  color: #033D1F;
+}
+
+.homepage-nutri-score-to-faqs{
+  display: flex;
+  width: 50%;
+  align-items: center;
+  justify-content: center;
+}
+
+.homepage-nutri-score-image{
+  position: relative;
+  width: 90%;
+  height: 250px;
+  object-fit: cover;
+}
+
+.homepage-learn-more{
+  /* position of button */
+  position: absolute;
+  width: 200px;
+  height: 80px;
+  left: 1100px;
+  top: 2300px;
+
+  /* style of button */
+  border: none;
+  background-color: rgba(255, 255, 255, 0.3);
+  padding: 35px;
+
+  /* font style */
+  font-family: 'Kaisei Opti';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 46px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  color: #FFFFFF;
+}
+
+.homepage-learn-more:hover{
+  cursor: pointer;
+}
+
   
