@@ -34,9 +34,7 @@ function ScItemCounter({ count = 1 }) {
           value={countValue}
           onChange={(e) => numberInput(e.target.value)}
           onBlur={(e) => !Number(countValue) && setCountValue(1)}
-        />
-        {/* test需删除 */}
-        {countValue}
+        /> 
       </div>
       <div className="sc_item_count_plus" onClick={() => changeNumber("+")}>
         +

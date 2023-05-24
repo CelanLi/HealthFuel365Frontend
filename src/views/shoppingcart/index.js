@@ -2,8 +2,7 @@
 import "./index.css";
 import ShoppingCartItem from "./components/shoppingcart_item";
 import TopNav from "../components/topnav";
-import Footer from "../components/footer"
-
+import Footer from "../components/footer";
 
 // 依赖
 import { Link } from "react-router-dom";
@@ -24,8 +23,7 @@ function Page() {
       {/* 面包屑 */}
       {/* &lt;代表< */}
       <div className="sc_bread_crumb">
-        {" "}
-        <Link to="/product">&lt;Continue Shopping</Link>{" "}
+        <Link to="/product">&lt;Continue Shopping</Link>
       </div>
 
       {/* 主内容 */}
@@ -73,16 +71,19 @@ function Page() {
               </div>
             </div>
             <div className="sc_content_right_bottom">
-              <div className="sc_content_right_bottom_attribute">
+              <div className="sc_content_right_bottom_total_saving">
                 <div className="sc_total_saving">Total Savings</div>
-                <div className="sc_subtotal">Subtotal</div>
-              </div>
-              <div className="sc_content_right_bottom_value">
                 <div className="sc_total_saving_value">-2€</div>
+              
+              </div>
+              <div className="sc_content_right_bottom_subtotal">
+              <div className="sc_subtotal">Subtotal</div>
                 <div className="sc_subtotal_value">9,96€</div>
               </div>
             </div>
-            <div className="sc_checkout">Go to Checkout</div>
+            <div className="sc_checkout">
+              <Link to="/order">Go to Checkout</Link>
+            </div>
           </div>
 
           {/* note */}

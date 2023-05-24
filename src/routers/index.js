@@ -5,6 +5,7 @@ import Product from '../views/allproducts/index'
 import Detail from '../views/productdetail/index'
 import Faqs from '../views/faqs/index'
 import ShoppingCart from '../views/shoppingcart/index'
+import Order from '../views/order/index'
 
 export const routers = [
   {
@@ -63,6 +64,12 @@ export const routers = [
     // 进入Shopping Cart Page
     path: '/shoppingCart', // http://www.healthfuel365.com/shoppingCart
     element: <ShoppingCart />, 
+  },
+
+  {
+    // 进入Order Page
+    path: '/order', // http://www.healthfuel365.com/order
+    element: <Order />, 
   },
 
 ]

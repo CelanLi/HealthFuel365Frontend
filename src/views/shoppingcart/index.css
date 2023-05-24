@@ -91,7 +91,7 @@
   font-family: "Kaisei Opti";
   font-style: normal;
   font-weight: 700;
-  font-size: 23.1px;
+  font-size: 20px;
   line-height: 33px;
   color: #033d1f;
 }
@@ -110,7 +110,7 @@
 }
 
 .sc_given_code_input {
-  background: #FFFFFF;
+  background: #ffffff;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 8.25px;
   width: 352px;
@@ -118,34 +118,32 @@
   border: 0;
   font-size: 18px;
   padding: 0 10px;
-
 }
 
 .sc_given_code_input:focus-visible {
   outline: 0;
 }
 
-.sc_given_code_buttom_wrap {  
+.sc_given_code_buttom_wrap {
   width: 40px;
-  height: 40px; 
+  height: 40px;
   margin-left: 20px;
 }
 
-.sc_given_code_buttom {  
+.sc_given_code_buttom {
   width: 100%;
-  height: 100%;  
+  height: 100%;
 }
 
 .sc_content_right_bottom {
-  display: flex;
-  justify-content: space-between;
+  display: block;
   margin-top: 36px;
 }
 
-.sc_content_right_bottom_attribute {
-}
-
-.sc_content_right_bottom_value {
+.sc_content_right_bottom_total_saving,
+.sc_content_right_bottom_subtotal {
+  display: flex;
+  justify-content: space-between;
 }
 
 .sc_checkout {
@@ -168,9 +166,16 @@
   margin: 0px auto;
 }
 
+/* 链接点击过的颜色 */
+.sc_checkout a,
+.sc_checkout a:visited {
+  color: #ffffff;
+  text-decoration: none;
+}
+
 .sc_note {
   display: flex;
-  justify-content:space-around;
+  justify-content: space-around;
   margin-top: 10px;
   margin-left: 10px;
   margin-right: 10px;
@@ -212,7 +217,7 @@
   height: 50px;
   background-position: center;
 }
- 
+
 .sc_note_service_image {
   background-image: url("../../assets/images/gift_service.png");
   background-size: contain;
