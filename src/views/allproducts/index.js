@@ -3,6 +3,7 @@ import './index.css';
 import Topnav from "../components/topnav";
 import Category from "../components/category"
 import Footer from "../components/footer"
+import Product from "../components/product"
 
 function Page() {
   return (
@@ -17,12 +18,20 @@ function Page() {
 
         <div className="content-right">  
           <Category/>
-          <div className="product-container">
-          product
+          <div className="products-container">
+            <Product/>
+            <Product/>
+            <Product/>
+            <Product/>
+            <Product/>
+            <Product/>
+
+           
           </div>
 
         </div>
       </div>
+    <Footer/>
     </div>
   );
 }

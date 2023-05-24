@@ -1,0 +1,86 @@
+.product{
+  display: flex;
+  flex-direction: column;
+
+  float: left;
+  margin-right: 2%;
+  margin-left: 2%;
+  margin-bottom: 2%;
+  width: 16%;
+
+  padding: 1%;
+
+  box-sizing: border-box;
+  background: rgba(3, 61, 31, 0.06);
+  box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.25);
+  border-radius: 11.25px;
+}
+.product a{
+  text-decoration: none;
+}
+.product-test-img{
+  background: transparent url(https://images.openfoodfacts.org/images/products/401/933/963/6107/front_de.22.400.jpg) center no-repeat;
+  background-size: cover;
+  width: 94%;
+  margin: 3%;
+  height: 9vw;
+}
+
+.product-name{
+  margin-left: 3%;
+  margin-right: 3%;
+  width: 94%;
+  /* assume the product name occupies maximal 4 rows */
+  height: 8vh;
+
+  text-align: left;
+  font-family: 'Kaisei Opti';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 2vh;
+  color: #033D1F;
+}
+
+.product-other-content{
+  display: flex;
+
+  flex: 1;
+  width: 94%;
+  margin-left: 3%;
+  margin-right: 3%;
+}
+
+.product-nutri{
+  float: left;
+  background: transparent url("../../../assets/images/nutri_score/nutriscoreC.jpeg") left no-repeat;
+  background-size: contain;
+  width: 50%;
+}
+
+.product-right-buttom{
+  margin-left: 5%;
+  display: flex;
+  float: right;
+  flex-direction: column;
+  width: 45%;
+}
+
+.product-unitprice{
+  text-align: right;
+  font-family: "Kaisei Opti";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.8vh;
+  align-items: center;
+  color: #033d1f;
+}
+
+.product button{
+  background: #033d1f url("../../../assets/images/add_to_shoppingcart.png") center no-repeat;
+  background-size: 60%;
+  padding-top: 0.8vw;
+  padding-bottom: 0.8vw;
+  width: 100%;
+  border: none;
+  border-radius: 11.9559px;
+}
