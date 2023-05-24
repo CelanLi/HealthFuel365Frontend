@@ -25,8 +25,6 @@ function Page() {
             <Product/>
             <Product/>
             <Product/>
-
-           
           </div>
 
         </div>

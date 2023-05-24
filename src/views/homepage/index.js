@@ -6,6 +6,7 @@ import {Link} from 'react-router-dom'
 import Topnav from "../components/topnav"
 import Footer from "../components/footer"
 import Category from "../components/category"
+import Product from "../components/product"
 
 //import carousel images
 import Carousel1 from '../../assets/images/homepage/Healthy-Snacks.jpg'
@@ -60,7 +61,22 @@ function Page() {
           {/* the recommended products */}
           {/* TODO */}
           <div className='homepage-product'>
-
+            <div className='homepage-product-1'>
+              <Product/>
+              <Product/>
+              <Product/>
+              <Product/>
+              <Product/>
+              <Product/>
+            </div>
+            <div className='homepage-product-1'>
+              <Product/>
+              <Product/>
+              <Product/>
+              <Product/>
+              <Product/>
+              <Product/>
+            </div>
           </div>
 
         </div>
@@ -118,7 +134,10 @@ function Page() {
 
             {/* TODO */}
             <div className='homepage-alternative-product'>
-
+              <Product/>
+              <Product/>
+              <Product/>
+              <Product/>
             </div>
 
           </div>
