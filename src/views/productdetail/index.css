@@ -1,0 +1,111 @@
+.productdetail-wrap {
+  font-family: "Kaisei Opti";
+  color: #033d1f;
+}
+
+.pd_bread_crumb {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 35px;
+  display: flex;
+  align-items: center;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  margin-left: 2%;
+  margin-top: 16px;
+}
+
+.pd_bread_crumb a:visited {
+  color: #033d1f;
+}
+
+.pd_content{
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  margin: 10pt auto; 
+  width: 94%;
+  gap: 10pt;
+}
+
+.pd_content_top{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  gap: 2%;
+}
+
+.pd_top_left{
+  width: 50%;
+  margin: auto 0;
+  background-color: rgba(3, 61, 31, 0.06);
+}
+
+.pd_top_left img{
+  display: block;
+  margin: auto;
+  object-fit: contain;
+}
+
+.pd_top_right{
+  min-width: 300px;
+  width: 50%;
+  float: left;
+}
+
+.pd_top_right .sc_nutri{
+  margin: 30px 0;
+  width: 25%;
+  height: auto;
+}
+
+.pd_top_right_bottom{
+  display: flex;
+  flex-direction: row;
+  margin-top: 2%;
+  gap: 2%;
+}
+
+.pd_top_right_bottom .left{
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+.pd_top_right_bottom .left .price{
+  font-size: 20px;
+}
+
+.pd_top_right_bottom .left .available{
+  font-size: 13px;
+}
+
+.pd_top_right_bottom .right{
+    width: 25%;
+    background: #033d1f;
+    border: none;
+    border-radius: 11.9559px;
+}
+
+.pd_top_right_bottom .right button{
+    margin: auto;
+    width: 90%;
+    height: 70%;
+    border: none;
+    background: transparent url("../../assets/images/add_to_shoppingcart.png") center no-repeat;
+    background-size: contain;
+    cursor: pointer;
+}
+
+.pd_content_bottom{
+  display: flex;
+  flex-direction: column;
+}
+
+.nutri_info{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  margin-bottom: 10px;
+}

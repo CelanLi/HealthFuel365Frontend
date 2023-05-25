@@ -18,6 +18,7 @@
 .product a{
   text-decoration: none;
 }
+
 .product-test-img{
   background: transparent url(https://images.openfoodfacts.org/images/products/401/933/963/6107/front_de.22.400.jpg) center no-repeat;
   background-size: cover;
@@ -39,6 +40,10 @@
   font-weight: 400;
   font-size: 2vh;
   color: #033D1F;
+}
+
+.product-name:hover, .product button:hover{
+  filter:brightness(2.5);
 }
 
 .product-other-content{
@@ -83,4 +88,5 @@
   width: 100%;
   border: none;
   border-radius: 11.9559px;
+  cursor: pointer;
 }
