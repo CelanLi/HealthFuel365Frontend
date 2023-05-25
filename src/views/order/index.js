@@ -9,6 +9,8 @@ import Footer from "../components/footer";
 import OrderAddress from "./components/or_address";
 import OrderAddAddress from "./components/or_add_address";
 import OrderSummary from "./components/or_summary";
+import OrderDelivery from "./components/or_delivery";
+import OrderAdditionService from "./components/or_additional_service";
 
 //ANTD components
 import { Popover, Collapse } from "antd";
@@ -42,11 +44,6 @@ function Page() {
     },
   ]);
 
-  const deliveryList = [
-    { desc: "Standard shipping via HERMES", choice: false, price: "4.95€" },
-    { desc: "Standard shipping via DHL", choice: false, price: "4.95€" },
-  ];
-
   const [orSummary, setorSummary] = useState({
     itemsCount: 4,
     itemsPrice: "11,96€",
@@ -56,41 +53,6 @@ function Page() {
     additionalService: "1,95€",
     totalPrice: "16,86€",
   });
-
-  //note componets from ANTD
-  const additionalServiceNote = (
-    <div
-      style={{
-        fontFamily: "Kaisei Opti",
-        fontStyle: "normal",
-        fontWeight: 400,
-        fontSize: "14px",
-        lineHeight: "29px",
-        color: "#033d1f",
-      }}
-    >
-      <div style={{ fontWeight: 900 }}>Send As a Gift</div>
-      <div>
-        We will cooperate with DHL to provide you with exquisite packaging.
-      </div>
-    </div>
-  );
-
-  const rapidShippingeNote = (
-    <div
-      style={{
-        fontFamily: "Kaisei Opti",
-        fontStyle: "normal",
-        fontWeight: 400,
-        fontSize: "14px",
-        lineHeight: "29px",
-        color: "#033d1f",
-      }}
-    >
-      <div style={{ fontWeight: 900 }}>Rapid Shipping</div>
-      <div>Supported by DHL Express</div>
-    </div>
-  );
 
   return (
     // HTML结构
@@ -130,7 +92,9 @@ function Page() {
                   );
                 })}
               </div>
-              <div><OrderAddAddress></OrderAddAddress></div>
+              <div>
+                <OrderAddAddress></OrderAddAddress>
+              </div>
             </Panel>
           </Collapse>
           <Collapse
@@ -139,97 +103,8 @@ function Page() {
             expandIconPosition="end"
           >
             <Panel header="Shipping Services" key="1">
-              <div className="or_delivery_content">
-                {deliveryList.map((deliveryItem) => {
-                  return (
-                    <div className="or_delivery_desc">
-                      <div className="or_standard_shipping_desc_left">
-                        <div className="or_choice">
-                          <input
-                            type="radio"
-                            value={deliveryItem.choice}
-                            name="choice"
-                          />
-                        </div>
-                        <div className="or_standard_shipping_name">
-                          {deliveryItem.desc}
-                        </div>
-                      </div>
-                      <div className="or_shipping_service_price">
-                        {deliveryItem.price}
-                      </div>
-                    </div>
-                  );
-                })}
-
-                <div className="or_delivery_desc">
-                  <div className="or_standard_shipping_desc_left">
-                    <div className="or_choice">
-                      <input type="radio" value="false" name="choice" />
-                    </div>
-                    <div className="or_standard_rapid_shipping_wrap">
-                      <div className="or_standard_shipping_name">
-                        Rapid packaging and shipping (1-2 Working days)
-                      </div>
-                      <span className="or_standard_shipping_rapid_icon">
-                        <img
-                          src={require("../../assets/images/rapid_service_icon.png")}
-                        />
-                      </span>
-                      <Popover
-                        overlayClassName="popover_rapid_shipping"
-                        content={rapidShippingeNote}
-                        trigger="hover"
-                        placement="right"
-                      >
-                        <span className="or_standard_shipping_rapid_note">
-                          <img
-                            src={require("../../assets/images/information_note.png")}
-                          />
-                        </span>
-                      </Popover>
-                    </div>
-                  </div>
-                  <div className="or_shipping_service_price">7.95€</div>
-                </div>
-              </div>
-
-              <div className="or_additional_service">
-                <div className="or_additional_service_title">
-                  Additional Service
-                </div>
-                <div className="or_additional_service_content">
-                  <div className="or_additional_service_desc">
-                    <div className="or_additional_service_choice">
-                      <input type="checkbox" />
-                    </div>
-                    <div className="or_additional_shipping_wrap">
-                      <div className="or_additional_shipping_name">
-                        I want to send as a gift
-                      </div>
-                      <span className="or_additional_shipping_icon">
-                        <img
-                          src={require("../../assets/images/gift_service.png")}
-                        />
-                      </span>
-                      <Popover
-                        overlayClassName="popover_additional_shipping"
-                        overlayInnerStyle={{ color: "red" }}
-                        content={additionalServiceNote}
-                        trigger="hover"
-                        placement="right"
-                      >
-                        <span className="or_additional_shipping_note">
-                          <img
-                            src={require("../../assets/images/information_note.png")}
-                          />
-                        </span>
-                      </Popover>
-                    </div>
-                  </div>
-                  <div className="or_additional_service_price">1.95€</div>
-                </div>
-              </div>
+              <OrderDelivery></OrderDelivery>
+              <OrderAdditionService></OrderAdditionService>
             </Panel>
           </Collapse>
         </div>
@@ -238,13 +113,13 @@ function Page() {
         <div className="or_content_right">
           {/* summary */}
           <OrderSummary
-          itemsCount = {orSummary.itemsCount}
-          itemsPrice = {orSummary.itemsPrice}
-          totalSavings = {orSummary.totalSavings}
-          subtotal = {orSummary.subtotal}
-          shipping = {orSummary.shipping}
-          additionalService = {orSummary.additionalService}
-          totalPrice = {orSummary.totalPrice}
+            itemsCount={orSummary.itemsCount}
+            itemsPrice={orSummary.itemsPrice}
+            totalSavings={orSummary.totalSavings}
+            subtotal={orSummary.subtotal}
+            shipping={orSummary.shipping}
+            additionalService={orSummary.additionalService}
+            totalPrice={orSummary.totalPrice}
           ></OrderSummary>
         </div>
       </div>

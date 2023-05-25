@@ -32,110 +32,6 @@
   display: block;
 }
 
-  
-
-.or_delivery_content {
-  margin-bottom: 20px;
-}
-
-/* 左侧titel格式 */
-.or_additional_service_title {
-  font-family: "Kaisei Opti";
-  font-style: normal;
-  font-weight: 700;
-  font-size: 20px;
-  line-height: 29px;
-  color: #033d1f;
-}
-
-/* 左侧正文格式 */ 
-.or_standard_shipping_name,
-.or_shipping_service_price,
-.or_additional_shipping_name,
-.or_additional_service_price {
-  font-family: "Kaisei Opti";
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 29px;
-  color: #033d1f;
-} 
-
-.or_additional_service {
-  /* 上下线 */
-  border: 2px solid #033d1f;
-  border-left: 0;
-  border-right: 0;
-  border-bottom: 0;
-  /* padding: 20px 0px; */ 
-  padding-top: 20px;
-}
-
-.or_delivery_desc {
-  display: flex;
-  justify-content: space-between;
-}
-
-.popover_additional_shipping,
-.popover_rapid_shipping {
-  width: 300px;
-}
-
-.or_standard_shipping_desc_left {
-  display: flex;
-  align-items: center;
-}
-
-.or_additional_service_content {
-  display: flex; 
-  justify-content: space-between;
-}
-
-.or_shipping_service_info,
-.or_additional_service_info {
-  display: flex;
-  justify-content: space-between;
-  margin-left: 20px;
-}
-
-.or_additional_shipping_wrap,
-.or_standard_rapid_shipping_wrap {
-  display: flex;
-  align-items: center;
-}
-
-.or_additional_service_desc {
-  display: flex;
-  align-items: center;
-}
-
-.or_additional_service_choice {
-  margin-right: 10px;
-}
-
-.or_standard_shipping_rapid_icon,
-.or_standard_shipping_rapid_note,
-.or_additional_shipping_icon,
-.or_additional_shipping_note {
-  display: inline-block;
-  width: 18px;
-  height: 18px;
-  margin-left: 5px;
-}
-
-.or_standard_shipping_rapid_note img,
-.or_standard_shipping_rapid_icon img,
-.or_additional_shipping_icon img,
-.or_additional_shipping_not img {
-  width: 100%;
-  height: 100%;
-}
-
-.or_information_note {
-  width: 100%;
-  height: 100%;
-}
-
 /* summary */
 .or_content_right {
   display: block;
@@ -178,8 +74,7 @@
 }
 
 .or_content_left .ant-collapse {
-    margin-bottom: 30px;
-
+  margin-bottom: 30px;
 }
 
 .or_content_left .ant-collapse-item {
@@ -188,7 +83,7 @@
   background: rgba(3, 61, 31, 0.06);
   box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.25);
   border-radius: 12px !important;
-} 
+}
 
 .or_content_left .ant-collapse-header {
   font-family: "Kaisei Opti";
