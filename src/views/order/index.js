@@ -7,10 +7,11 @@ import "./index.css";
 import TopNav from "../components/topnav";
 import Footer from "../components/footer";
 import OrderAddress from "./components/or_address";
+import OrderAddAddress from "./components/or_add_address";
 import OrderSummary from "./components/or_summary";
 
 //ANTD components
-import { Popover, Collapse, theme } from "antd";
+import { Popover, Collapse } from "antd";
 const { Panel } = Collapse;
 
 function Page() {
@@ -129,7 +130,7 @@ function Page() {
                   );
                 })}
               </div>
-              <div className="or_contact_information_add">Add Address</div>
+              <div><OrderAddAddress></OrderAddAddress></div>
             </Panel>
           </Collapse>
           <Collapse
