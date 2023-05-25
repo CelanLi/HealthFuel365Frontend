@@ -5,14 +5,14 @@ import ScItemCounter from "../sc_item_counter";
 
 import { Link } from "react-router-dom";
 
-function ShoppingCartItem({ productName, productUnitPrice }) {
+function ShoppingCartItem({ productName, productUnitPrice, productNutri, productPrice, productImage }) {
   return (
     <div className="sc_item">
       <div className="sc_item_image">
         <Link to="/product/detail">
           <img
             className="sc_item_testimage"
-            src="https://images.openfoodfacts.org/images/products/401/933/963/6107/front_de.22.400.jpg"
+            src={productImage} 
           ></img>
         </Link>
       </div>
@@ -28,7 +28,7 @@ function ShoppingCartItem({ productName, productUnitPrice }) {
           </div>
           <div className="sc_item_content_leftbottom">
             <div className="sc_item_nutri">
-              <ShoppingCartNutri nutri="C"></ShoppingCartNutri>
+              <ShoppingCartNutri nutri={productNutri}></ShoppingCartNutri>
             </div>
             <div className="sc_item_count">
               <ScItemCounter></ScItemCounter>
@@ -37,7 +37,7 @@ function ShoppingCartItem({ productName, productUnitPrice }) {
         </div>
         <div className="sc_item_content_right">
           <div className="sc_item_remove">Remove</div>
-          <div className="sc_item_price">2,99€</div>
+          <div className="sc_item_price">{productPrice}</div>
         </div>
       </div>
     </div>

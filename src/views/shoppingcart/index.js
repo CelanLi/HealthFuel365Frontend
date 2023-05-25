@@ -15,31 +15,42 @@ function Page() {
     {
       productName: "Hafer Porridge Cup Schokolade - Davert - 65 g",
       productUnitPrice: "Unit Price: 2,99€",
+      productNutri: "A",
+      productPrice: "2,99€",
+      productImage:
+        "https://images.openfoodfacts.org/images/products/401/933/963/6107/front_de.22.400.jpg",
     },
     {
       productName: "Hafer Porridge Cup Schokolade - Davert - 65 g",
-      productUnitPrice: "Unit Price: 2,99€",
+      productUnitPrice: "Unit Price: 10,99€",
+      productNutri: "B",
+      productPrice: "10,99€",
+      productImage:
+        "https://images.openfoodfacts.org/images/products/401/933/963/6107/front_de.22.400.jpg",
     },
     {
       productName: "Hafer Porridge Cup Schokolade - Davert - 65 g",
-      productUnitPrice: "Unit Price: 2,99€",
+      productUnitPrice: "Unit Price: 6,99€",
+      productNutri: "C",
+      productPrice: "6,99€",
+      productImage:
+        "https://images.openfoodfacts.org/images/products/401/933/963/6107/front_de.22.400.jpg",
     },
     {
       productName: "Hafer Porridge Cup Schokolade - Davert - 65 g",
-      productUnitPrice: "Unit Price: 2,99€",
-    },
-    {
-      productName: "Hafer Porridge Cup Schokolade - Davert - 65 g",
-      productUnitPrice: "Unit Price: 2,99€",
-    },
-    {
-      productName: "Hafer Porridge Cup Schokolade - Davert - 65 g",
-      productUnitPrice: "Unit Price: 2,99€",
+      productUnitPrice: "Unit Price: 3,99€",
+      productNutri: "D",
+      productPrice: "3,99€",
+      productImage:
+        "https://images.openfoodfacts.org/images/products/401/933/963/6107/front_de.22.400.jpg",
     },
   ]);
 
-  const [summary, setSummary] = useState({
+  const [scSummary, setscSummary] = useState({
     itemsCount: 4,
+    itemsPrice: "11,96€",
+    totalSavings: "-2€",
+    subtotal: "9,96€",
   });
 
   return (
@@ -65,6 +76,9 @@ function Page() {
               <ShoppingCartItem
                 productName={productItem.productName}
                 productUnitPrice={productItem.productUnitPrice}
+                productPrice={productItem.productPrice}
+                productImage={productItem.productImage}
+                productNutri={productItem.productNutri}
               ></ShoppingCartItem>
             );
           })}
@@ -74,7 +88,10 @@ function Page() {
         <div className="sc_content_right">
           {/* summary */}
           <ShoppingCartSummary
-            itemsCount={summary.itemsCount}
+            itemsCount={scSummary.itemsCount}
+            itemsPrice={scSummary.itemsPrice}
+            totalSavings={scSummary.totalSavings}
+            subtotal={scSummary.subtotal}
           ></ShoppingCartSummary>
 
           {/* note */}

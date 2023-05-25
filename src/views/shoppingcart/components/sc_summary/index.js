@@ -3,7 +3,7 @@ import "./index.css";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
-function ShoppingCartSummary({itemsCount}) {
+function ShoppingCartSummary({itemsCount, itemsPrice, totalSavings, subtotal}) {
   const [promoCode, setPromoCode] = useState("");
 
   return (
@@ -14,7 +14,7 @@ function ShoppingCartSummary({itemsCount}) {
         <div className="sc_content_right_middle">
           <div className="sc_items_count_price">
             <div className="sc_items_count">{itemsCount} Items</div>
-            <div className="sc_items_price">11,96€</div>
+            <div className="sc_items_price">{itemsPrice}</div>
           </div>
           <div className="sc_promo_code">
             <div className="sc_give_code">Give Code</div>
@@ -40,11 +40,11 @@ function ShoppingCartSummary({itemsCount}) {
         <div className="sc_content_right_bottom">
           <div className="sc_content_right_bottom_total_saving">
             <div className="sc_total_saving">Total Savings</div>
-            <div className="sc_total_saving_value">-2€</div>
+            <div className="sc_total_saving_value">{totalSavings}</div>
           </div>
           <div className="sc_content_right_bottom_subtotal">
             <div className="sc_subtotal">Subtotal</div>
-            <div className="sc_subtotal_value">9,96€</div>
+            <div className="sc_subtotal_value">{subtotal}</div>
           </div>
         </div>
         <div className="sc_checkout_wrap">
