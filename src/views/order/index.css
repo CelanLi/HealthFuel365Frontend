@@ -32,172 +32,6 @@
   display: block;
 }
 
-.or_contact_information_wrap,
-.or_delivery_wrap {
-  box-sizing: border-box;
-  padding: 20px;
-  width: 800px;
-  background: rgba(3, 61, 31, 0.06);
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 10px;
-}
-
-.or_address {
-  display: flex;
-}
-
-.or_address_content {
-  box-sizing: border-box;
-  width: 700px;
-  padding: 10px;
-  background: rgba(3, 61, 31, 0.09);
-  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
-  border-radius: 10px; 
-  margin-left: 20px;
-  margin-top: 20px;
-}
-
-.or_address_content_up,
-.or_address_content_middle,
-.or_address_content_bottom {
-    display: flex;
-    justify-content:baseline;
-}
-
-.or_contact_information_add {
-    width: 250px;
-    height: 36px;
-    background: rgba(3, 61, 31, 0.6); 
-    border-radius: 10px;
-    font-family: "Kaisei Opti";
-    font-style: normal;
-    font-weight: 700;
-    font-size: 20px;
-    color: #ffffff;
-    /* 文字水平垂直居中 */
-    text-align: center;
-    line-height: 36px;
-    /* buttom 水平居中 */
-    margin: 0px auto;
-    margin-top: 20px;
-  }
-
-.or_delivery_wrap {
-  margin-top: 20px;
-  height: 300px;
-}
-
-.or_delivery_content {
-  padding: 20px 0;
-}
-
-/* 左侧titel格式 */
-.or_contact_information_titel,
-.or_delivery_title,
-.or_additional_service_title {
-  font-family: "Kaisei Opti";
-  font-style: normal;
-  font-weight: 700;
-  font-size: 20px;
-  line-height: 29px;
-  color: #033d1f;
-}
-
-/* 左侧正文格式 */
-.or_address_receiver,
-.or_address_tel,
-.or_address_street,
-.or_address_additional,
-.or_address_postCode,
-.or_address_city,
-.or_standard_shipping_name,
-.or_shipping_service_price,
-.or_additional_shipping_name,
-.or_additional_service_price {
-  font-family: "Kaisei Opti";
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 29px;
-  color: #033d1f;
-}
-
-.or_address_tel,
-.or_address_additional,
-.or_address_city {
-    margin-left: 50px;
-}
-
-.or_additional_service {
-  /* 上下线 */
-  border: 2px solid #033d1f;
-  border-left: 0;
-  border-right: 0;
-  border-bottom: 0;
-  padding: 20px 0px;
-}
-
-.or_delivery_desc {
-  display: flex;
-  justify-content: space-between;
-}
-
-.or_standard_shipping_desc_left {
-  display: flex;
-}
-
-.or_additional_service_content {
-  display: flex;
-  margin-bottom: 20px;
-  justify-content: space-between;
-}
-
-.or_shipping_service_info,
-.or_additional_service_info {
-  display: flex;
-  justify-content: space-between;
-  margin-left: 20px;
-}
-
-.or_standard_shipping_rapid_wrap,
-.or_additional_shipping_wrap {
-  display: flex;
-  justify-content: baseline;
-}
-
-.or_additional_service_desc,
-.or_standard_rapid_shipping_wrap {
-  display: flex;
-}
-
-.or_additional_shipping_icon,
-.or_standard_shipping_rapid_icon {
-  background-image: url("../../assets/images/gift_service.png");
-  background-size: contain;
-  background-repeat: no-repeat;
-  width: 100%;
-  height: 16px;
-}
-
-.or_additional_shipping_icon {
-  background-image: url("../../assets/images/gift_service.png");
-}
-
-.or_standard_shipping_rapid_icon {
-  background-image: url("../../assets/images/rapid_service_icon.png");
-}
-
-.or_standard_shipping_rapid_note,
-.or_additional_shipping_note {
-  width: 20px;
-  height: 10px;
-}
-
-.or_information_note {
-  width: 100%;
-  height: 100%;
-}
-
 /* summary */
 .or_content_right {
   display: block;
@@ -214,100 +48,48 @@
   padding: 20px;
 }
 
-.or_summary {
-  font-family: "Kaisei Opti";
+.or_choice {
+  margin-right: 10px;
+}
+.or_choice label {
+  margin-left: 10px;
   font-style: normal;
-  font-weight: 700;
-  font-size: 30px;
-  line-height: 44px;
-  color: #033d1f;
-  margin-bottom: 4px;
+  font-weight: 500;
+  font-size: 18px;
 }
 
-.or_content_right_up,
-.or_content_right_middle {
-  display: block;
-  justify-content: space-between;
-
-  /* 上下线 */
-  border: 2px solid #033d1f;
-  border-left: 0;
-  border-right: 0;
-  padding: 26px 0px;
+.or_choice input[type="radio"] {
+  appearance: none;
+  border-radius: 50%;
+  border: none;
+  width: 16px;
+  height: 16px;
+  position: relative;
+  top: 2px;
+  background-color: rgba(3, 61, 31, 0.15);
 }
 
-.or_content_right_middle {
-  border-top: 0;
-  display: block;
+.or_choice input:checked {
+  border: 5px solid #033d1f;
 }
 
-.or_content_right_bottom {
-  display: flex;
-  justify-content: space-between;
-  padding: 26px 0px;
+.or_content_left .ant-collapse {
+  margin-bottom: 30px;
 }
 
-.or_content_right_up_item_price,
-.or_content_right_up_totalsaving,
-.or_content_right_middle_subtotal,
-.or_content_right_middle_shipping,
-.or_content_right_middle__additional_service {
-  display: flex;
-  justify-content: space-between;
+.or_content_left .ant-collapse-item {
+  width: 800px;
+  box-sizing: border-box;
+  background: rgba(3, 61, 31, 0.06);
+  box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.25);
+  border-radius: 12px !important;
 }
 
-.or_items_count,
-.or_total_saving,
-.or_items_price,
-.or_total_saving_value,
-.or_subtotal,
-.or_shipping,
-.or_summary_additional_service,
-.or_subtotal_value,
-.or_shippingl_value,
-.or_summary_additional_servicel_value,
-.or_totalprice_bottom {
+.or_content_left .ant-collapse-header {
   font-family: "Kaisei Opti";
   font-style: normal;
   font-weight: 700;
   font-size: 20px;
-  line-height: 33px;
-  color: #033d1f;
-}
-
-.or_totalprice_up,
-.or_totalprice_value {
-  font-family: "Kaisei Opti";
-  font-style: normal;
-  font-weight: 700;
-  font-size: 26px;
-  line-height: 33px;
-  color: #033d1f;
-}
-
-.or_pay {
-  width: 328px;
-  height: 66px;
-  background: #033d1f;
-  border-radius: 12px;
-
-  font-family: "Kaisei Opti";
-  font-style: normal;
-  font-weight: 700;
-  font-size: 24px;
-  color: #ffffff;
-
-  /* 文字水平垂直居中 */
-  text-align: center;
-  line-height: 66px;
-
-  /* buttom 水平居中 */
-  margin: 0px auto;
-}
-
-/* 链接点击过的颜色 */
-.or_pay a,
-.or_pay a:visited {
-  color: #ffffff;
-  text-decoration: none;
+  line-height: 29px;
+  color: #033d1f !important;
 }
