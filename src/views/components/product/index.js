@@ -7,7 +7,7 @@ function Page() {
     // HTML结构
     <div className="product">
       {/* should link to the corresponding product detail page*/}
-        <a href="#">
+        <a href="/product/detail">
           <div className="product-test-img"></div>
           <div className="product-name">
             Hafer Porridge Cup Schokolade - Davert - 65 g
