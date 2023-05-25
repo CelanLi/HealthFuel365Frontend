@@ -1,16 +1,46 @@
-// 引入样式文件
-import "./index.css";
-import ShoppingCartItem from "./components/shoppingcart_item";
-import TopNav from "../components/topnav";
-import Footer from "../components/footer";
-
 // 依赖
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
+// 引入样式文件
+import "./index.css";
+import ShoppingCartItem from "./components/shoppingcart_item";
+import ShoppingCartSummary from "./components/sc_summary";
+import TopNav from "../components/topnav";
+import Footer from "../components/footer";
+
 function Page() {
   // 定义input的value
-  const [promoCode, setPromoCode] = useState("");
+  const [productList, setProductList] = useState([
+    {
+      productName: "Hafer Porridge Cup Schokolade - Davert - 65 g",
+      productUnitPrice: "Unit Price: 2,99€",
+    },
+    {
+      productName: "Hafer Porridge Cup Schokolade - Davert - 65 g",
+      productUnitPrice: "Unit Price: 2,99€",
+    },
+    {
+      productName: "Hafer Porridge Cup Schokolade - Davert - 65 g",
+      productUnitPrice: "Unit Price: 2,99€",
+    },
+    {
+      productName: "Hafer Porridge Cup Schokolade - Davert - 65 g",
+      productUnitPrice: "Unit Price: 2,99€",
+    },
+    {
+      productName: "Hafer Porridge Cup Schokolade - Davert - 65 g",
+      productUnitPrice: "Unit Price: 2,99€",
+    },
+    {
+      productName: "Hafer Porridge Cup Schokolade - Davert - 65 g",
+      productUnitPrice: "Unit Price: 2,99€",
+    },
+  ]);
+
+  const [summary, setSummary] = useState({
+    itemsCount: 4,
+  });
 
   return (
     // HTML结构
@@ -30,61 +60,22 @@ function Page() {
       <div className="sc_content">
         {/* item详情 */}
         <div className="sc_content_left">
-          <ShoppingCartItem></ShoppingCartItem>
-          <ShoppingCartItem></ShoppingCartItem>
-          <ShoppingCartItem></ShoppingCartItem>
-          <ShoppingCartItem></ShoppingCartItem>
-          <ShoppingCartItem></ShoppingCartItem>
-          <ShoppingCartItem></ShoppingCartItem>
-          <ShoppingCartItem></ShoppingCartItem>
+          {productList.map((productItem) => {
+            return (
+              <ShoppingCartItem
+                productName={productItem.productName}
+                productUnitPrice={productItem.productUnitPrice}
+              ></ShoppingCartItem>
+            );
+          })}
         </div>
 
         {/* summary+note */}
         <div className="sc_content_right">
           {/* summary */}
-          <div className="sc_summary">
-            <div className="sc_content_right_up">Summary</div>
-            <div className="sc_content_right_middle">
-              <div className="sc_items_count_price">
-                <div className="sc_items_count">4 Items</div>
-                <div className="sc_items_price">11,96€</div>
-              </div>
-              <div className="sc_promo_code">
-                <div className="sc_give_code">Give Code</div>
-                <div className="sc_give_code_wrap">
-                  {/* 打折码input */}
-                  <div className="sc_given_code_input_wrap">
-                    <input
-                      className="sc_given_code_input"
-                      value={promoCode}
-                      onChange={(e) => setPromoCode(e.target.value)}
-                      placeholder="Promo Code"
-                    />
-                  </div>
-                  <div className="sc_given_code_buttom_wrap">
-                    <img
-                      className="sc_given_code_buttom"
-                      src={require("../../assets/images/give_code_buttom.png")}
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="sc_content_right_bottom">
-              <div className="sc_content_right_bottom_total_saving">
-                <div className="sc_total_saving">Total Savings</div>
-                <div className="sc_total_saving_value">-2€</div>
-              
-              </div>
-              <div className="sc_content_right_bottom_subtotal">
-              <div className="sc_subtotal">Subtotal</div>
-                <div className="sc_subtotal_value">9,96€</div>
-              </div>
-            </div>
-            <div className="sc_checkout">
-              <Link to="/order">Go to Checkout</Link>
-            </div>
-          </div>
+          <ShoppingCartSummary
+            itemsCount={summary.itemsCount}
+          ></ShoppingCartSummary>
 
           {/* note */}
           <div className="sc_note">

@@ -21,6 +21,10 @@
   height: 130px;
 }
 
+.sc_item_testimage:hover {
+  filter: brightness(1.2);
+}
+
 .sc_item_content {
   /* 横行布局，两端对齐 */
   display: flex;
@@ -44,6 +48,17 @@
   color: #033d1f;
 
   margin-bottom: 8px;
+}
+
+/* 链接点击过的颜色 */
+.sc_item_name a,
+.sc_item_name a:visited {
+  color: #033d1f;
+  text-decoration: none;
+}
+
+.sc_item_name a:hover {
+  filter: brightness(2.5);
 }
 
 .sc_item_unitprice {

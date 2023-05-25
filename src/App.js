@@ -2,6 +2,9 @@
 import { useRoutes } from "react-router-dom";
 import { routers } from "./routers/index";
 
+//Ant compoments
+import 'antd/dist/reset.css';
+
 function App(){
   // 返回与当前位置匹配的路由元素，参数：创建的路由对象
   return useRoutes( routers);

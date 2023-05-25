@@ -7,6 +7,10 @@ import Footer from "../components/footer";
 import { Link } from "react-router-dom";
 // import { useState } from "react";
 
+//ANTD components
+import { Popover, Collapse, theme } from "antd";
+const { Panel } = Collapse;
+
 function Page() {
   const addressList = [
     {
@@ -34,6 +38,42 @@ function Page() {
     { desc: "Standard shipping via DHL", choice: false, price: "4.95€" },
   ];
 
+  //note componets from ANTD
+  const additionalServiceNote = (
+    <div
+      style={{
+        fontFamily: "Kaisei Opti",
+        fontStyle: "normal",
+        fontWeight: 400,
+        fontSize: "14px",
+        lineHeight: "29px",
+        color: "#033d1f",
+      }}
+    >
+      <div style={{ fontWeight: 900 }}>Send As a Gift</div>
+      <div>
+        We will cooperate with DHL to provide you with exquisite packaging.
+      </div>
+    </div>
+  );
+
+  const rapidShippingeNote = (
+    <div
+      style={{
+        fontFamily: "Kaisei Opti",
+        fontStyle: "normal",
+        fontWeight: 400,
+        fontSize: "14px",
+        lineHeight: "29px",
+        color: "#033d1f",
+      }}
+    >
+      <div style={{ fontWeight: 900 }}>Rapid Shipping</div>
+      <div>Supported by DHL Express</div>
+    </div>
+  );
+ 
+
   return (
     // HTML结构
     <div className="shoppingcart_wrap">
@@ -41,7 +81,6 @@ function Page() {
       <div>
         <TopNav />
       </div>
-
       {/* 面包屑 */}
       {/* &lt;代表< */}
       <div className="or_bread_crumb">
@@ -53,114 +92,155 @@ function Page() {
       <div className="or_content">
         {/* item详情 */}
         <div className="or_content_left">
-          <div className="or_contact_information_wrap">
-            <div className="or_contact_information_titel">
-              Contact Information
-            </div>
-            <div className="or_contact_information_content">
-              {addressList.map((addressItem) => {
-                return (
-                  <div className="or_address">
-                    <div className="or_address_choice">
-                      <input
-                        type="radio"
-                        value={addressItem.choice}
-                        name="choice"
-                      />
-                    </div>
-                    <div className="or_address_content">
-                      <div className="or_address_content_up">
-                        <div className="or_address_receiver">{addressItem.receiver}</div>
-                        <div className="or_address_tel">{addressItem.tel}</div>
-                      </div>
-                      <div className="or_address_content_middle">
-                      <div className="or_address_street">{addressItem.street}</div>
-                        <div className="or_address_additional">{addressItem.additional}</div>
-                      </div>
-                      <div className="or_address_content_bottom">
-                      <div className="or_address_postCode">{addressItem.postCode}</div>
-                        <div className="or_address_city">{addressItem.city}</div>
-                      </div>
-                    </div> 
-                  </div>
-                );
-              })}
-            </div>
-            <div className="or_contact_information_add">Add Address</div>
-          </div>
-          <div className="or_delivery_wrap">
-            <div className="or_delivery_title">Shipping Services</div>
-            <div className="or_delivery_content">
-              {deliveryList.map((deliveryItem) => {
-                return (
-                  <div className="or_delivery_desc">
-                    <div className="or_standard_shipping_desc_left">
-                      <div className="or_shipping_service_choice">
+          <Collapse
+            bordered={false}
+            defaultActiveKey={["1"]}
+            expandIconPosition="end"
+          >
+            <Panel header="Contact Information" key="1">
+              <div className="or_contact_information_content">
+                {addressList.map((addressItem) => {
+                  return (
+                    <div className="or_address">
+                      <div className="or_choice">
                         <input
                           type="radio"
-                          value={deliveryItem.choice}
+                          value={addressItem.choice}
                           name="choice"
                         />
                       </div>
-                      <div className="or_standard_shipping_name">
-                        {deliveryItem.desc}
+                      <div className="or_address_content">
+                        <div className="or_address_content_up">
+                          <div className="or_address_receiver">
+                            {addressItem.receiver}
+                          </div>
+                          <div className="or_address_tel">
+                            {addressItem.tel}
+                          </div>
+                        </div>
+                        <div className="or_address_content_middle">
+                          <div className="or_address_street">
+                            {addressItem.street}
+                          </div>
+                          <div className="or_address_additional">
+                            {addressItem.additional}
+                          </div>
+                        </div>
+                        <div className="or_address_content_bottom">
+                          <div className="or_address_postCode">
+                            {addressItem.postCode}
+                          </div>
+                          <div className="or_address_city">
+                            {addressItem.city}
+                          </div>
+                        </div>
                       </div>
                     </div>
-                    <div className="or_shipping_service_price">
-                      {deliveryItem.price}
+                  );
+                })}
+              </div>
+              <div className="or_contact_information_add">Add Address</div>
+            </Panel>
+          </Collapse>
+          <Collapse
+            bordered={false}
+            defaultActiveKey={["1"]}
+            expandIconPosition="end"
+          >
+            <Panel header="Shipping Services" key="1">
+              <div className="or_delivery_content">
+                {deliveryList.map((deliveryItem) => {
+                  return (
+                    <div className="or_delivery_desc">
+                      <div className="or_standard_shipping_desc_left">
+                        <div className="or_choice">
+                          <input
+                            type="radio"
+                            value={deliveryItem.choice}
+                            name="choice"
+                          />
+                        </div>
+                        <div className="or_standard_shipping_name">
+                          {deliveryItem.desc}
+                        </div>
+                      </div>
+                      <div className="or_shipping_service_price">
+                        {deliveryItem.price}
+                      </div>
                     </div>
-                  </div>
-                );
-              })}
+                  );
+                })}
 
-              <div className="or_delivery_desc">
-                <div className="or_standard_shipping_desc_left">
-                  <div className="or_shipping_service_choice">
-                    <input type="radio" value="false" name="choice" />
-                  </div>
-                  <div className="or_standard_rapid_shipping_wrap">
-                    <div className="or_standard_shipping_name">
-                      Rapid packaging and shipping (1-2 Working days)
+                <div className="or_delivery_desc">
+                  <div className="or_standard_shipping_desc_left">
+                    <div className="or_choice">
+                      <input type="radio" value="false" name="choice" />
                     </div>
-                    <div className="or_standard_shipping_rapid_icon"></div>
-                    <div className="or_standard_shipping_rapid_note">
-                      <img
-                        className="or_information_note"
-                        src={require("../../assets/images/information_note.png")}
-                      />
+                    <div className="or_standard_rapid_shipping_wrap">
+                      <div className="or_standard_shipping_name">
+                        Rapid packaging and shipping (1-2 Working days)
+                      </div>
+                      <span className="or_standard_shipping_rapid_icon">
+                        <img
+                          src={require("../../assets/images/rapid_service_icon.png")}
+                        />
+                      </span>
+                      <Popover
+                        overlayClassName="popover_rapid_shipping"
+                        content={rapidShippingeNote}
+                        trigger="hover"
+                        placement="right"
+                      >
+                        <span className="or_standard_shipping_rapid_note">
+                          <img
+                            src={require("../../assets/images/information_note.png")}
+                          />
+                        </span>
+                      </Popover>
                     </div>
                   </div>
+                  <div className="or_shipping_service_price">7.95€</div>
                 </div>
-                <div className="or_shipping_service_price">7.95€</div>
               </div>
-            </div>
 
-            <div className="or_additional_service">
-              <div className="or_additional_service_title">
-                Additional Service
-              </div>
-              <div className="or_additional_service_content">
-                <div className="or_additional_service_desc">
-                  <div className="or_additional_service_choice">
-                    <input type="checkbox" />
-                  </div>
-                  <div className="or_additional_shipping_wrap">
-                    <div className="or_additional_shipping_name">
-                      I want to send as a gift
-                    </div>
-                    <div className="or_additional_shipping_icon"></div>
-                    <div className="or_additional_shipping_note">
-                      <img
-                        className="or_information_note"
-                        src={require("../../assets/images/information_note.png")}
-                      />
-                    </div>
-                  </div>
+              <div className="or_additional_service">
+                <div className="or_additional_service_title">
+                  Additional Service
                 </div>
-                <div className="or_additional_service_price">1.95€</div>
+                <div className="or_additional_service_content">
+                  <div className="or_additional_service_desc">
+                    <div className="or_additional_service_choice">
+                      <input type="checkbox" />
+                    </div>
+                    <div className="or_additional_shipping_wrap">
+                      <div className="or_additional_shipping_name">
+                        I want to send as a gift
+                      </div>
+                      <span className="or_additional_shipping_icon">
+                        <img
+                          src={require("../../assets/images/gift_service.png")}
+                        />
+                      </span>
+                      <Popover
+                        overlayClassName="popover_additional_shipping"
+                        overlayInnerStyle={{ color: "red" }}
+                        content={additionalServiceNote}
+                        trigger="hover"
+                        placement="right"
+                      >
+                        <span className="or_additional_shipping_note">
+                          <img
+                            src={require("../../assets/images/information_note.png")}
+                          />
+                        </span>
+                      </Popover>
+                    </div>
+                  </div>
+                  <div className="or_additional_service_price">1.95€</div>
+                </div>
               </div>
-            </div>
-          </div>
+            </Panel>
+          </Collapse>
         </div>
 
         {/* summary*/}
