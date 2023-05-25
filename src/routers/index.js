@@ -6,6 +6,8 @@ import Detail from '../views/productdetail/index'
 import Faqs from '../views/faqs/index'
 import ShoppingCart from '../views/shoppingcart/index'
 import Order from '../views/order/index'
+import MyAccount from '../views/me/myaccount'
+import MyOrder from '../views/me/myorders'
 
 export const routers = [
   {
@@ -70,6 +72,21 @@ export const routers = [
     // 进入Order Page
     path: '/order', // http://www.healthfuel365.com/order
     element: <Order />, 
+  },
+
+  {
+    //go to My Account Page
+    path:'/myaccount', //http://www.healthfuel365.com/myaccount
+    children: [
+      {
+        index: true,
+        element: <MyAccount />
+      },
+      {
+        path:'myorder', //http://www.healthfuel365.com/myaccount/myorder
+        element: <MyOrder/>
+      }
+    ]
   },
 
 ]

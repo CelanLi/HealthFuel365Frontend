@@ -7,9 +7,9 @@ import Topnav from "../components/topnav"
 import Footer from "../components/footer"
 import Category from "../components/category"
 import Product from "../components/product"
+import Carousel from "../components/carousel"
+import Alternative from "../components/alternatives"
 
-//import carousel images
-import Carousel1 from '../../assets/images/homepage/Healthy-Snacks.jpg'
 
 //import junkfood images
 import Chips from '../../assets/images/homepage/junkfood/chips.png'
@@ -31,7 +31,8 @@ function Page() {
         {/* The carousel ads block */}
         {/* TODO */}
         <div className='homepage-carousel-ad'>
-          <img className='homepage-carousel-ads' src={Carousel1}/>
+          {/* <img className='homepage-carousel-ads' src={Carousel1}/> */}
+          <Carousel/>
         </div>
 
         {/* categories */}
@@ -109,37 +110,7 @@ function Page() {
 
           {/* the alternatives area */}
           <div className='homepage-alternative-block'>
-
-            {/* two rows of icons */}
-            <div className='homepage-junkfood-icon'>
-
-              <div className='homepage-junkfood-icon1'>
-                {/* add hyperlinks on pictures */}
-                {/* add text of categories on pictures */}
-                <a href='/product'>
-                  <img className='homepage-junk-food-icons' src={Chips}/>
-                </a>
-                
-                <img className='homepage-junk-food-icons' src={Friedchicken}/>
-                <img className='homepage-junk-food-icons' src={Pommes}/>
-              </div>
-
-              <div className='homepage-junkfood-icon1'>
-                <img className='homepage-junk-food-icons' src={Chips}/>
-                <img className='homepage-junk-food-icons' src={Friedchicken}/>
-                <img className='homepage-junk-food-icons' src={Pommes}/>
-              </div>
-
-            </div>
-
-            {/* TODO */}
-            <div className='homepage-alternative-product'>
-              <Product/>
-              <Product/>
-              <Product/>
-              <Product/>
-            </div>
-
+            <Alternative/>
           </div>
 
         </div>

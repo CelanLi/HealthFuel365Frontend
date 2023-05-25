@@ -22,7 +22,7 @@ function Page() {
           </div>  
           <div className="right-icon-container">
             <a href="/shoppingcart" className="shopping_cart"></a>
-            <a href="/shoppingcart" className="user"></a>
+            <a href="/myaccount" className="user"></a>
           </div>
         </div>
       </div>
