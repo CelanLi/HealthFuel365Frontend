@@ -57,7 +57,7 @@
 
 .product-nutri{
   float: left;
-  background: transparent url("../../../assets/images/nutri_score/nutriscoreC.jpeg") left no-repeat;
+  background: transparent url("../../assets/images/nutri_score/nutriscoreC.jpeg") left no-repeat;
   background-size: contain;
   width: 50%;
 }
@@ -81,7 +81,7 @@
 }
 
 .product button{
-  background: #033d1f url("../../../assets/images/add_to_shoppingcart.png") center no-repeat;
+  background: #033d1f url("../../assets/images/add_to_shoppingcart.png") center no-repeat;
   background-size: 60%;
   padding-top: 0.8vw;
   padding-bottom: 0.8vw;

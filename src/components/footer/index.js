@@ -1,6 +1,6 @@
 // 引入样式文件
 import './index.css';
-import Logo from "../../../assets/images/logo.png"
+import Logo from "../../assets/images/logo.png"
 
 function index() {
   return (

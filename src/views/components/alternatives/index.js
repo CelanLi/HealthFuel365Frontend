@@ -1,7 +1,7 @@
 import { Radio, Space, Tabs } from 'antd';
 import { useState } from 'react';
 
-import Product from "../product"
+import Product from "../../../components/product"
 
 import Chips from '../../../assets/images/homepage/junkfood/chips.png'
 import Friedchicken from '../../../assets/images/homepage/junkfood/friedchicken.png'

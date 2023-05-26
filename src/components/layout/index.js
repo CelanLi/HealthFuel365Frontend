@@ -3,8 +3,8 @@ import "./index.css"
 import { Layout, Space } from "antd";
 import { Outlet } from "react-router-dom";
 
-import TopNav from "../../views/components/topnav";
-import FooterComponent from "../../views/components/footer";
+import TopNav from "../topnav";
+import FooterComponent from "../footer"
 
 const { Header, Footer, Content } = Layout;
 

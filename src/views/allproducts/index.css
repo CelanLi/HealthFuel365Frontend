@@ -15,21 +15,19 @@
   display: flex;
   flex-direction: column;
   width: 15%;
-  padding: 16px;
   margin-left: 3%;
   /* set min-width of the width of filter-sort container */
   min-width: 200px;
 }
 
-/* container */
-.sort, .filter{
+/* sort-container */
+.sort{
   width: 100%;
   box-sizing: border-box;
   background: rgba(3, 61, 31, 0.06);
   box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.25);
   border-radius: 11.25px;
   margin-bottom: 10%;
-
   padding: 20px 15px;
   text-align: left;
   font-family: 'Kaisei Opti';
@@ -38,11 +36,6 @@
   font-size: 18px;
   line-height: 26px;
   color: #033D1F;
-}
-
-.filter{
-  display: flex;
-  flex-direction: column;
 }
 
 /* customized select */
@@ -75,13 +68,37 @@
   color: #033D1F;
 }
 
+.filter{
+  display: block;
+  width: 100%;
+}
+
+.filter .ant-collapse-item {
+  width: 100%;
+  box-sizing: border-box;
+  background: rgba(3, 61, 31, 0.06);
+  box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.25);
+  border-radius: 11.25px !important;
+  margin-bottom: 10%;
+} 
+
+.filter .ant-collapse-header {
+  font-family: "Kaisei Opti";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 27px;
+  color: #033d1f !important;
+}
 
 .filter .filter-choice{
   margin-top: 5%;
   margin-bottom: -2%;
+  font-family: "Kaisei Opti";
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
+  color: #033d1f !important;
 }
 
 .filter .filter-choice label{

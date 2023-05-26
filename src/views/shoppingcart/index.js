@@ -6,8 +6,6 @@ import { useState } from "react";
 import "./index.css";
 import ShoppingCartItem from "./components/shoppingcart_item";
 import ShoppingCartSummary from "./components/sc_summary";
-import TopNav from "../components/topnav";
-import Footer from "../components/footer";
 
 function Page() {
   // 定义input的value

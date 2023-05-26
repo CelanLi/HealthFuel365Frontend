@@ -4,8 +4,6 @@ import { useState } from "react";
 
 // 引入样式文件
 import "./index.css";
-import TopNav from "../components/topnav";
-import Footer from "../components/footer";
 import OrderAddress from "./components/or_address";
 import OrderAddAddress from "./components/or_add_address";
 import OrderSummary from "./components/or_summary";
