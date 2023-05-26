@@ -83,19 +83,6 @@
 
 .pd_top_right_bottom .right{
     width: 25%;
-    background: #033d1f;
-    border: none;
-    border-radius: 11.9559px;
-}
-
-.pd_top_right_bottom .right button{
-    margin: auto;
-    width: 90%;
-    height: 70%;
-    border: none;
-    background: transparent url("../../assets/images/add_to_shoppingcart.png") center no-repeat;
-    background-size: contain;
-    cursor: pointer;
 }
 
 .pd_content_bottom{

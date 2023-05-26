@@ -1,7 +1,9 @@
 // 引入样式文件
 import './index.css';
+import Nutri from "../nutri"
+import AddToScButton from "../add_to_sc_button"
 
-function Page() {
+function ProductComponent({productName, productUnitPrice, productNutri, productPrice, productImage}) {
   return (
     // HTML结构
     <div className="product">
@@ -13,13 +15,13 @@ function Page() {
           </div>
         </a>
         <div className="product-other-content">
-            <div className="product-nutri"></div>
+            <Nutri nutri={productNutri}/>
             <div className="product-right-buttom">
               <div className="product-unitprice">2,99€</div>
-              <button/>
+              <AddToScButton/>
             </div>
         </div>
     </div>
   );
 }
-export default Page;
+export default ProductComponent;

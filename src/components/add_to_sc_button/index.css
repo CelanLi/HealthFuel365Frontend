@@ -1,0 +1,19 @@
+.add_container{
+    width: 100%;
+    min-height: 30px;
+    background: #033d1f;
+    border: none;
+    border-radius: 11.9559px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.add_container button{
+    width: 100%;
+    height: 70%;
+    border: none;
+    background: transparent url("../../assets/images/add_to_shoppingcart.png") center no-repeat;
+    background-size: contain;
+    cursor: pointer;
+}

@@ -3,7 +3,7 @@ import "./index.css";
 
 function ShoppingcartNutri({nutri}) {
   function getNutriLevelSrc(nutri = "A") {
-    return require(`../../../../assets/images/nutri_score/nutriscore${nutri}.jpeg`);
+    return require(`../../assets/images/nutri_score/nutriscore${nutri}.jpeg`);
   }
   return (
     <div className="sc_nutri">

@@ -106,12 +106,12 @@ function Page() {
         <div className="content-right">  
           <Category/>
           <div className="products-container">
-            <Product/>
-            <Product/>
-            <Product/>
-            <Product/>
-            <Product/>
-            <Product/>
+            <Product productNutri={"A"}/>
+            <Product productNutri={"A"}/>
+            <Product productNutri={"B"}/>
+            <Product productNutri={"B"}/>
+            <Product productNutri={"C"}/>
+            <Product productNutri={"D"}/>
           </div>
         </div>
       </div> 

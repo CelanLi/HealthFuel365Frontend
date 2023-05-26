@@ -1,8 +1,9 @@
 import './index.css';
 import { Link } from "react-router-dom";
 import { useState } from 'react';
-import Nutri from "../shoppingcart/components/shoppingcart_nutri";
+import Nutri from "../../components/nutri";
 import ContentLevel from "./components/content_level";
+import AddToScButton from "../../components/add_to_sc_button"
 
 function Page() {
    // mock data
@@ -64,7 +65,7 @@ function Page() {
               </div>
               <div className="right">
                 {/* add to shopping cart button */}
-                <button/>
+                <AddToScButton/>
               </div>
             </div>
           </div>

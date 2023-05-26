@@ -48,26 +48,23 @@
 
 .product-other-content{
   display: flex;
-
-  flex: 1;
+  flex-direction: row;
   width: 94%;
   margin-left: 3%;
   margin-right: 3%;
 }
 
-.product-nutri{
-  float: left;
-  background: transparent url("../../assets/images/nutri_score/nutriscoreC.jpeg") left no-repeat;
-  background-size: contain;
+.product-other-content .sc_nutri{
   width: 50%;
+  height: auto;
 }
 
 .product-right-buttom{
+  width: 45%;
   margin-left: 5%;
   display: flex;
   float: right;
   flex-direction: column;
-  width: 45%;
 }
 
 .product-unitprice{
@@ -78,15 +75,4 @@
   font-size: 1.8vh;
   align-items: center;
   color: #033d1f;
-}
-
-.product button{
-  background: #033d1f url("../../assets/images/add_to_shoppingcart.png") center no-repeat;
-  background-size: 60%;
-  padding-top: 0.8vw;
-  padding-bottom: 0.8vw;
-  width: 100%;
-  border: none;
-  border-radius: 11.9559px;
-  cursor: pointer;
 }

@@ -1,6 +1,6 @@
 // 引入样式文件
 import "./index.css";
-import ShoppingCartNutri from "../shoppingcart_nutri";
+import ShoppingCartNutri from "../../../../components/nutri";
 import ScItemCounter from "../sc_item_counter";
 
 import { Link } from "react-router-dom";
