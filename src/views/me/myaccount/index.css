@@ -12,11 +12,11 @@
     margin-top: 20px;
     margin-left: 10px;
     width: 250px;
-    height: 500px;
     border-radius: 20px;
     background-color: #033D1F;
     display: flex;
     flex-direction: column;
+    margin-bottom: 20px;
     
     align-items: center;
     justify-content: space-between;
@@ -233,7 +233,7 @@
 }
 
 .myaccount-profile-block-1{
-    margin-left: 30px;
+    margin-left: 60px;
     margin-top: 30px;
 
     display: flex;
@@ -242,7 +242,7 @@
 }
 
 .myaccount-profile-block-2{
-    margin-left: 30px;
+    margin-left: 60px;
     margin-top: 30px;
 
     display: flex;
@@ -264,10 +264,30 @@
     background-color: #C4D0CB;
     margin-bottom: 20px;
     border-radius: 20px;
-    height: 150px;
+    height: 200px;
     width: 1000px;
 
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.myaccount-order-title{
+    display: flex;
     flex-direction: row;
     align-items: center;
+    margin-top: 5px;
+    margin-left: 30px;
+}
+
+.myaccount-order-text{
+
+    
+    font-family: 'Kaisei Opti';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    text-decoration: none;
+  
+    color: #033D1F;
 }

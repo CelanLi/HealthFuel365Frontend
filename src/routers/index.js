@@ -8,6 +8,7 @@ import ShoppingCart from "../views/shoppingcart/index";
 import Order from "../views/order/index";
 import AppLayout from '../components/layout'; 
 import MyAccount from '../views/me/myaccount'
+import ProfileEdit from "../views/me/profileedit";
 
 export const routers = [
   {
@@ -82,16 +83,16 @@ export const routers = [
 
   {
     //go to My Account Page
-    path:'/myaccount', //http://www.healthfuel365.com/myaccount
+    path:'myaccount', //http://www.healthfuel365.com/myaccount
     children: [
       {
         index: true,
         element: <MyAccount />
       },
-      // {
-      //   path:'myorder', //http://www.healthfuel365.com/myaccount/myorder
-      //   element: <MyOrder/>
-      // }
+      {
+        path:'profileEdit', //http://www.healthfuel365.com/myaccount/profileEdit
+        element: <ProfileEdit />
+      }
     ]
   },
     ]

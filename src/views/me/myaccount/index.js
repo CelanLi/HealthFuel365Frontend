@@ -69,6 +69,12 @@ function App() {
       totalPrice: 50,
       status: "not delivered yet",
     },
+    {
+      id: "123457",
+      date: "2023-05-02",
+      totalPrice: 50,
+      status: "not delivered yet",
+    },
   ];
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -343,7 +349,10 @@ function App() {
           }))}
 
         </div>
-        <button className='myaccount-edit'>Edit</button>
+        <a href="/myaccount/profileEdit" className="shopping_cart">
+          <button className='myaccount-edit'>Edit</button>
+        </a>
+        
         </div>
       </div>}
 
@@ -357,21 +366,21 @@ function App() {
           {orderList.map(orderItem => {
             return(
               <div className="myaccount-order">
-                  <div className='myaccount-title'>
-                    <p className='myaccount-title-3'>Order ID:</p>
-                    <p className='myaccount-title-3'>{orderItem.id}</p>
+                  <div className='myaccount-order-title'>
+                    <p className='myaccount-order-text'>Order ID:</p>
+                    <p className='myaccount-order-text'>{orderItem.id}</p>
                   </div>
-                  <div className='myaccount-title'>
-                    <p className='myaccount-title-3'>Order Date:</p>
-                    <p className='myaccount-title-3'>{orderItem.date}</p>
+                  <div className='myaccount-order-title'>
+                    <p className='myaccount-order-text'>Order Date:</p>
+                    <p className='myaccount-order-text'>{orderItem.date}</p>
                   </div>
-                  <div className='myaccount-title'>
-                    <p className='myaccount-title-3'>Total Price:</p>
-                    <p className='myaccount-title-3'>{orderItem.totalPrice}</p>
+                  <div className='myaccount-order-title'>
+                    <p className='myaccount-order-text'>Total Price:</p>
+                    <p className='myaccount-order-text'>{orderItem.totalPrice}</p>
                   </div>
-                  <div className='myaccount-title'>
-                    <p className='myaccount-title-3'>Order Status:</p>
-                    <p className='myaccount-title-3'>{orderItem.status}</p>
+                  <div className='myaccount-order-title'>
+                    <p className='myaccount-order-text'>Order Status:</p>
+                    <p className='myaccount-order-text'>{orderItem.status}</p>
                   </div>
               </div>
             )})}
