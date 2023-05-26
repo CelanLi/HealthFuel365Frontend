@@ -7,7 +7,6 @@ import Faqs from '../views/faqs/index'
 import ShoppingCart from '../views/shoppingcart/index'
 import Order from '../views/order/index'
 import MyAccount from '../views/me/myaccount'
-import MyOrder from '../views/me/myorders'
 
 export const routers = [
   {
@@ -82,10 +81,10 @@ export const routers = [
         index: true,
         element: <MyAccount />
       },
-      {
-        path:'myorder', //http://www.healthfuel365.com/myaccount/myorder
-        element: <MyOrder/>
-      }
+      // {
+      //   path:'myorder', //http://www.healthfuel365.com/myaccount/myorder
+      //   element: <MyOrder/>
+      // }
     ]
   },
 
