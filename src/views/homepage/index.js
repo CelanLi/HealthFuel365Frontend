@@ -20,10 +20,7 @@ import Nutri from '../../assets/images/homepage/NutriScore-on-Package.jpg'
 function Page() {
   return (
     // HTML structure
-    <div className="homepage-wrap">
-
-      {/* navigation bar */}
-      <Topnav/>
+    <div className="homepage-wrap"> 
       
       {/* homepage body */}
       <div className='homepage-body'>
@@ -179,10 +176,7 @@ function Page() {
 
 
 
-      </div>
-
-      {/* footer */}
-      <Footer/>
+      </div> 
     </div>
   );
 }

@@ -7,9 +7,7 @@ import ContentLevel from "./components/content_level";
 
 function Page() {
   return (
-    <div className="productdetail-wrap"> 
-      <TopNav/>
-
+    <div className="productdetail-wrap">  
       {/* <back */}
       <div className="pd_bread_crumb">
         <Link to="/product">&lt;Back</Link>
@@ -57,8 +55,7 @@ function Page() {
 
           <h3>Other Product Description</h3>
         </div>
-      </div>
-      <Footer/>
+      </div> 
     </div>
   );
 }

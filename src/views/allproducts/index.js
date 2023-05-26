@@ -9,9 +9,7 @@ import React from 'react';
 
 function Page() {
   return (
-    <div className="allproductspage-wrap"> 
-      {/* navigation bar */}
-      <Topnav/>
+    <div className="allproductspage-wrap">  
       <div className="content-container">
         {/* sort and filter */}
         <div className="content-left">
@@ -105,8 +103,7 @@ function Page() {
             <Product/>
           </div>
         </div>
-      </div>
-    <Footer/>
+      </div> 
     </div>
   );
 }
