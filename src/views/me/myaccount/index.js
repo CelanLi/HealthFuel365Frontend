@@ -146,15 +146,11 @@ function App() {
               <p className="myaccount-nav-title">Log Out</p>
             </div>
           </div>
-        </div>
-
-      </div>
-
+      
     </div>
     <div className='myaccount-body'>
-
       <div className="tabpanels">
-      {value === 0 && <div className="tab-panel-item">
+        {value === 0 && <div className="tab-panel-item">
         <div className='myaccount-address'>
           {/* the title of block */}
           <div className='myaccount-title'>
@@ -348,7 +344,7 @@ function App() {
 
         </div>
         <button className='myaccount-edit'>Edit</button>
-      </div>
+        </div>
       </div>}
 
       {value === 2 && <div className="tab-panel-item">
@@ -378,12 +374,14 @@ function App() {
                     <p className='myaccount-title-3'>{orderItem.status}</p>
                   </div>
               </div>
-            )}
-          </div>
+            )})}
         </div>
-      </div> 
+      </div>}
+      
+      </div>
     </div>
-  );
+      </div>
+    </div>
+  )
 }
-
 export default App;
