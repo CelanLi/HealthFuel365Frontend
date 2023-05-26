@@ -3,9 +3,6 @@ import React from 'react'
 import { useState } from 'react';
 import { Button, Modal, Form, Input, List } from 'antd';
 
-import Topnav from "../../components/topnav";
-import Footer from "../../components/footer";
-
 import User from '../../../assets/images/myaccount/tax-inspector.png'
 import AddIcon from '../../../assets/images/myaccount/icon-address.png'
 import PhoneIcon from '../../../assets/images/myaccount/icon-phone.png'
