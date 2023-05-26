@@ -31,7 +31,7 @@
 
 /*  navigation bar上面的绿色标语*/
 .topnav_slogan {
-  padding: 10px 16px;
+  padding: 7px;
   background: #033D1F;
   font-family: 'Kaisei Opti';
   font-style: normal;
@@ -62,7 +62,7 @@
 .left{
   display: flex;
   justify-content: space-between;
-  margin-left: 220px;
+  margin-left: 190px;
 }
 
 .right{
