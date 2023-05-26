@@ -56,11 +56,7 @@ function Page() {
 
   return (
     // HTML结构
-    <div className="shoppingcart_wrap">
-      {/* 导航条 */}
-      <div>
-        <TopNav />
-      </div>
+    <div className="shoppingcart_wrap"> 
       {/* 面包屑 */}
       {/* &lt;代表< */}
       <div className="or_bread_crumb">
@@ -122,11 +118,6 @@ function Page() {
             totalPrice={orSummary.totalPrice}
           ></OrderSummary>
         </div>
-      </div>
-
-      {/* Footer*/}
-      <div>
-        <Footer />
       </div>
     </div>
   );

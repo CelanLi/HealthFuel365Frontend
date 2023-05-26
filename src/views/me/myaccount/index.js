@@ -3,8 +3,8 @@ import React from 'react'
 import { useState } from 'react';
 import { Button, Modal, Form, Input, List } from 'antd';
 
-import Topnav from "../../components/topnav"
-import Footer from "../../components/footer"
+import Topnav from "../../components/topnav";
+import Footer from "../../components/footer";
 
 import User from '../../../assets/images/myaccount/tax-inspector.png'
 import AddIcon from '../../../assets/images/myaccount/icon-address.png'
@@ -22,7 +22,7 @@ function App() {
       username: "Heinz",
       email: "Heinz1973@gmail.com",
     },
-  ]
+  ];
 
   const addressList = [
     {
@@ -49,9 +49,12 @@ function App() {
     {
       goal: "I want to keep a healthy diet.",
       typeOfEater: "Vegan",
-      dietaryPreference: ["low in fat", "I prefer foods with Nutri-Score no less than C", ],
-    }
-  ]
+      dietaryPreference: [
+        "low in fat",
+        "I prefer foods with Nutri-Score no less than C",
+      ],
+    },
+  ];
 
   const orderList = [
     {
@@ -65,8 +68,8 @@ function App() {
       date: "2023-05-02",
       totalPrice: 50,
       status: "not delivered yet",
-    }
-  ]
+    },
+  ];
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const showModal = () => {
@@ -79,36 +82,33 @@ function App() {
     setIsModalOpen(false);
   };
   const onFinish = (values) => {
-    console.log('Success:', values);
+    console.log("Success:", values);
   };
   const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo);
+    console.log("Failed:", errorInfo);
   };
 
   const [value, setValue] = useState(0);
-  const className = (baseName, isSelected) => 
-    (isSelected ? [baseName].concat('selected') : [baseName]).join(' ');
+  const className = (baseName, isSelected) =>
+    (isSelected ? [baseName].concat("selected") : [baseName]).join(" ");
 
-  return(
+  return (
     <div className="myaccount-page">
-    <Topnav/>
-    <div className="myaccount-wrap">
-
-    
-    <div className="myaccount-nav">
-      <div className='myaccount-information'>
-        {userAccount.map((user => {
-          return(
-            <div className='myaccount-information'>
-              <img src={User} className='myaccount-avatar'/>
-              <div className='myaccount-information-column'>
-                <p className='myaccount-userinfo'>{user.username}</p>
-                {/* <p className='myaccount-userinfo'>{user.email}</p> */}
-              </div>
-            </div>
-          )})
-        )}
-      </div>
+      <div className="myaccount-wrap">
+        <div className="myaccount-nav">
+          <div className="myaccount-information">
+            {userAccount.map((user) => {
+              return (
+                <div className="myaccount-information">
+                  <img src={User} className="myaccount-avatar" />
+                  <div className="myaccount-information-column">
+                    <p className="myaccount-userinfo">{user.username}</p>
+                    {/* <p className='myaccount-userinfo'>{user.email}</p> */}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
 
 
       <div className="myaccount-tablist">
@@ -118,26 +118,34 @@ function App() {
           </div>
         </div>
 
-        <hr className="line"/>
-          
-        <div className={className('tab-list-item', value === 1)} onClick={() => setValue(1)}>
-          <div className='myaccount-nav-tab'>
-            <p className='myaccount-nav-title'>My Profile</p>
-          </div>
-        </div>
-        
-        <hr className="line" />
-          
-        <div className={className('tab-list-item', value === 2)} onClick={() => setValue(2)}>
-          <div className='myaccount-nav-tab'>
-            <p className='myaccount-nav-title'>My Orders</p>
-          </div>
-        </div>
+            <hr className="line" />
 
-        <hr className="line" />
+            <div
+              className={className("tab-list-item", value === 1)}
+              onClick={() => setValue(1)}
+            >
+              <div className="myaccount-nav-tab">
+                <p className="myaccount-nav-title">My Profile</p>
+              </div>
+            </div>
 
-        <div className='myaccount-nav-tab'>
-          <p className='myaccount-nav-title'>Log Out</p>
+            <hr className="line" />
+
+            <div
+              className={className("tab-list-item", value === 2)}
+              onClick={() => setValue(2)}
+            >
+              <div className="myaccount-nav-tab">
+                <p className="myaccount-nav-title">My Orders</p>
+              </div>
+            </div>
+
+            <hr className="line" />
+
+            <div className="myaccount-nav-tab">
+              <p className="myaccount-nav-title">Log Out</p>
+            </div>
+          </div>
         </div>
 
       </div>
@@ -370,20 +378,12 @@ function App() {
                     <p className='myaccount-title-3'>{orderItem.status}</p>
                   </div>
               </div>
-            )
-          })}
+            )}
+          </div>
         </div>
-      </div>}
+      </div> 
     </div>
-
-    </div>
-
-    </div>
-    <Footer/>
-    </div>
-  )
-
+  );
 }
-
 
 export default App;

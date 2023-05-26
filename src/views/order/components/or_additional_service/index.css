@@ -75,3 +75,32 @@
   width: 100%;
   height: 100%;
 }
+
+
+.or_additional_service input[type="radio"]:checked{
+  border: 5px solid #033D1F;
+}
+
+/* customized checkbox */
+.or_additional_service input[type=checkbox]{
+  visibility: hidden;
+  cursor: pointer;
+  margin-left: 1pt;
+}
+
+.or_additional_service input[type=checkbox]:after{
+  display: block;
+  visibility: visible;
+  content: "";
+  width: 17px;
+  height: 17px;
+  background: rgba(3, 61, 31, 0.15);
+}
+
+.or_additional_service input[type=checkbox]:checked:after {
+  content: "x";
+  font-size: 16px;
+  text-align: center;
+  align-items: center;
+  background: rgba(3, 61, 31, 0.15);
+}
