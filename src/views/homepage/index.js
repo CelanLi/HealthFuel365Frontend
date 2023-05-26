@@ -3,10 +3,8 @@ import './index.css';
 import {Link} from 'react-router-dom'
 
 //import components
-import Topnav from "../components/topnav"
-import Footer from "../components/footer"
-import Category from "../components/category"
-import Product from "../components/product"
+import Category from "../../components/category"
+import Product from "../../components/product"
 import Carousel from "../components/carousel"
 import Alternative from "../components/alternatives"
 

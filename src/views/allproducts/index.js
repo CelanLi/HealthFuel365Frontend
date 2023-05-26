@@ -1,7 +1,7 @@
 // 引入样式文件
 import './index.css';
-import Category from "../components/category"
-import Product from "../components/product"
+import Category from "../../components/category"
+import Product from "../../components/product"
 
 import React from 'react';
 
