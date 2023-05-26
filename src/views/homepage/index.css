@@ -14,15 +14,20 @@
 }
 
 .homepage-carousel-ad{
-  display: flex;
-  justify-content: center;
+  /* display: flex;
+  justify-content: center; */
+  /* max-height: 420px; */
 }
 
-.homepage-carousel-ads{
+.homepage-carousel{
+  height: 200px;
+}
+
+/* .homepage-carousel-ads{
   width: 100%;
   max-height: 420px;
   object-fit: cover;
-}
+} */
 
 .homepage-title{
   display: flex;
@@ -82,11 +87,11 @@
   flex-direction: column;
 }
 
-.homepage-alternative-block{
+/* /* .homepage-alternative-block{
   display: flex;
   flex-direction: row;
 
-}
+} */
 
 .homepage-junkfood-icon{
   display: flex;
@@ -103,7 +108,7 @@
 
 .homepage-junk-food-icons{
   margin: 10px;
-}
+} */
 
 .homepage-alternative-product{
   width: 67%;

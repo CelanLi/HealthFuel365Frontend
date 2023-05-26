@@ -1,0 +1,91 @@
+.myaccount-page{
+    min-height: 100%;
+}
+
+.myaccount-wrap{
+    display: flex;
+    flex-direction: row;
+}
+
+.myaccount-nav{
+
+    margin-top: 20px;
+    margin-left: 10px;
+    width: 250px;
+    height: 500px;
+    border-radius: 20px;
+    background-color: #033D1F;
+    display: flex;
+    flex-direction: column;
+    
+    align-items: center;
+    justify-content: space-between;
+}
+
+.myaccount-body{
+
+    margin-top: 20px;
+    margin-left: 10px;
+
+}
+
+.myaccount-information{
+    display: flex;
+    flex-direction: column;
+    /* background-color: red; */
+    margin-top: 20px;
+    align-items: center;
+}
+
+.myaccount-avatar{
+    border-radius: 50%;
+    height: 160px;
+    width: 160px;
+    background-color: white;
+}
+
+.myaccount-information-column{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.myaccount-userinfo{
+    font-family: 'Kaisei Opti';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    text-decoration: none;
+    margin: 10px;
+  
+    color: white;
+}
+
+.tablist{
+    margin-bottom: 20px;
+
+}
+
+.myaccount-nav-title{
+    font-family: 'Kaisei Opti';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    text-decoration: none;
+    margin: 10px;
+  
+    color: white;
+}
+
+.myaccount-nav-tab:hover{
+    cursor: pointer;
+}
+
+.myaccount-title{
+    display: flex;
+    flex-direction: row;
+    height: 40px;
+    align-items: center;
+    margin-top: 15px;
+}
+
