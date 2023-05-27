@@ -20,54 +20,6 @@
   min-width: 200px;
 }
 
-/* sort-container */
-.sort{
-  width: 100%;
-  box-sizing: border-box;
-  background: rgba(3, 61, 31, 0.06);
-  box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.25);
-  border-radius: 11.25px;
-  margin-bottom: 10%;
-  padding: 20px 15px;
-  text-align: left;
-  font-family: 'Kaisei Opti';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 26px;
-  color: #033D1F;
-}
-
-/* customized select */
-.sort .select-box{
-  float: right;
-  width: 70%;
-  height: 30px;
-  margin-top: 10%;
-
-  box-sizing: border-box;
-  background: #FFFFFF;
-  border: 2px solid #033D1F;
-  border-radius: 15px;
-}
-
-.sort select{
-  /* 去掉边框样式 */
-  border: none;
-  outline: none;
-  /* 宽度和高度比box小 */
-  width: 95%;
-  height: 26px;
-  line-height: 26px;
-  background-color: transparent;
-  text-align: center;
-  font-family: 'Kaisei Opti';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 18px;
-  color: #033D1F;
-}
-
 .filter{
   display: block;
   width: 100%;

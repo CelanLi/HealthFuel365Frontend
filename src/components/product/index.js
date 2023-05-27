@@ -3,21 +3,24 @@ import './index.css';
 import Nutri from "../nutri"
 import AddToScButton from "../add_to_sc_button"
 
-function ProductComponent({productName, productUnitPrice, productNutri, productPrice, productImage}) {
+function ProductComponent({productID, productName="name", productPrice="price", productNutri, productImage}) {
+  const router_path = "/product/"+productID+"/detail"
   return (
     // HTML结构
     <div className="product">
       {/* should link to the corresponding product detail page*/}
-        <a href="/product/detail">
-          <div className="product-test-img"></div>
+        <a href={router_path}>
+          <div className="product-img">
+            <img src={productImage}/>
+          </div>
           <div className="product-name">
-            Hafer Porridge Cup Schokolade - Davert - 65 g
+            {productName}
           </div>
         </a>
         <div className="product-other-content">
             <Nutri nutri={productNutri}/>
             <div className="product-right-buttom">
-              <div className="product-unitprice">2,99€</div>
+              <div className="product-unitprice">{productPrice}</div>
               <AddToScButton/>
             </div>
         </div>

@@ -43,6 +43,7 @@
 }
 
 .pd_top_left img{
+  max-height: 300px;
   display: block;
   margin: auto;
   object-fit: contain;

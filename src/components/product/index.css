@@ -3,9 +3,6 @@
   flex-direction: column;
 
   float: left;
-  /* margin-right: 2%;
-  margin-left: 2%;
-  margin-bottom: 2%; */
   width: 200px;
 
   padding: 1%;
@@ -15,16 +12,21 @@
   box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.25);
   border-radius: 11.25px;
 }
+
 .product a{
   text-decoration: none;
 }
 
-.product-test-img{
-  background: transparent url(https://images.openfoodfacts.org/images/products/401/933/963/6107/front_de.22.400.jpg) center no-repeat;
-  background-size: cover;
-  width: 94%;
+.product-img img{
+  display: block;
   margin: 3%;
+  width: 94%;
   height: 9vw;
+  object-fit: cover;
+}
+
+.product-img img:hover{
+  filter:brightness(1.2);
 }
 
 .product-name{
@@ -55,8 +57,13 @@
 }
 
 .product-other-content .sc_nutri{
-  width: 50%;
+  width: 49%;
   height: auto;
+}
+
+.product-other-content .sc_nutri img{
+  display: block;
+  object-fit: contain;
 }
 
 .product-right-buttom{

@@ -2,29 +2,39 @@
 import './index.css';
 import Category from "../../components/category"
 import Product from "../../components/product"
+import SortProducts from './components/sort';
 
 import React from 'react';
+import { useState } from "react";
 
 //ANTD components
 import { Collapse } from "antd";
 const { Panel } = Collapse;
 
 function Page() {
+  const [productList, setProductList] = useState([
+    {
+      productID: "p1",
+      productName: "Hafer Porridge Cup Schokolade - Davert - 65 g",
+      productPrice: "2,99€",
+      productNutri: "C",
+      productImage: "https://images.openfoodfacts.org/images/products/401/933/963/6107/front_de.22.400.jpg",
+    },
+    {
+      productID: "p2",
+      productName: "Couscous Vollkorn - Davert - 500g",
+      productPrice: "12,99€",
+      productNutri: "A",
+      productImage: "https://images.openfoodfacts.org/images/products/401/933/930/6109/front_de.6.full.jpg",
+    }
+  ]);
+
   return (
     <div className="allproductspage-wrap">  
       <div className="content-container">
         {/* sort and filter */}
         <div className="content-left">
-          <div className="sort">
-            Sort By:
-            <div class="select-box">
-              <select>
-                <option>Nutri-score</option>
-                <option>Sort 2</option>
-                <option>Sort 3</option>
-              </select>
-            </div>
-          </div>
+          <SortProducts/>
           {/* filter 1: Nutri-score */}
           <div className="filter">
             <Collapse bordered={false} defaultActiveKey={["1"]} expandIconPosition="end">
@@ -106,12 +116,29 @@ function Page() {
         <div className="content-right">  
           <Category/>
           <div className="products-container">
-            <Product productNutri={"A"}/>
-            <Product productNutri={"A"}/>
-            <Product productNutri={"B"}/>
-            <Product productNutri={"B"}/>
-            <Product productNutri={"C"}/>
-            <Product productNutri={"D"}/>
+            {productList.map((productItem) => {
+              return (
+                <Product
+                  productID ={productItem.productID}
+                  productName={productItem.productName}
+                  productPrice={productItem.productPrice}
+                  productImage={productItem.productImage}
+                  productNutri={productItem.productNutri}
+                ></Product>
+              );
+            })}
+            <Product/>
+            <Product/>
+            <Product/>
+            <Product/>
+            <Product/>
+            <Product/>
+            <Product/>
+            <Product/>
+            <Product/>
+            <Product/>
+            <Product/>
+            <Product/>
           </div>
         </div>
       </div> 
