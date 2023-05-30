@@ -1,0 +1,116 @@
+.filter{
+    display: block;
+    width: 100%;
+  }
+  
+.filter .ant-collapse-item {
+    width: 100%;
+    box-sizing: border-box;
+    background: rgba(3, 61, 31, 0.06);
+    box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.25);
+    border-radius: 11.25px !important;
+    margin-bottom: 10%;
+} 
+  
+.filter .ant-collapse-header {
+    font-family: "Kaisei Opti";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 27px;
+    color: #033d1f !important;
+}
+  
+.filter .filter-choice{
+    margin-top: 5%;
+    margin-bottom: -2%;
+    font-family: "Kaisei Opti";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    color: #033d1f !important;
+}
+  
+.filter .filter-choice label{
+    margin-left: 5%;
+}
+  
+/* customized radio */
+.filter .filter-choice input[type="radio"]{
+    appearance: none;
+    border-radius: 50%;
+    border: none;
+    width: 16px;
+    height: 16px;
+    position: relative;
+    top: 2px;
+    margin-left: 1pt;
+    background-color: rgba(3, 61, 31, 0.15);
+}
+  
+.filter .filter-choice input[type="radio"]:checked{
+    border: 5px solid #033D1F;
+}
+  
+/* customized checkbox */
+.filter .filter-choice input[type=checkbox]{
+    visibility: hidden;
+    cursor: pointer;
+    margin-left: 1pt;
+}
+  
+.filter .filter-choice input[type=checkbox]:after{
+    display: block;
+    visibility: visible;
+    content: "";
+    width: 17px;
+    height: 17px;
+    background: rgba(3, 61, 31, 0.15);
+}
+  
+.filter .filter-choice input[type=checkbox]:checked:after {
+    content: "x";
+    font-size: 16px;
+    text-align: center;
+    align-items: center;
+    background: rgba(3, 61, 31, 0.15);
+}
+  
+  /* container for range-slider */
+.range-slider{
+    font-size: 10.5px;
+    text-align: center;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+  
+.range-slider input[type="range"]{
+    appearance: none; 
+    border-radius: 11px;
+    height: 14px;
+    margin: 3%;
+    border: 1.125px solid #033D1F;
+    box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.25);
+    background: rgba(3, 61, 31, 0.06);
+    /* range trick */
+    overflow: hidden;
+}
+  
+.range-slider input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 14px;
+    height: 14px;
+    background: #033D1F;
+    border-radius: 50%;
+    box-shadow: -407px 0 0 400px rgba(3, 61, 31, 0.15);
+}
+  
+.range-slider input[type="range"]::-moz-range-thumb {
+    width: 14px;
+    height: 14px;
+    background: #033D1F;
+    border-radius: 50%;
+    box-shadow: -407px 0 0 400px rgba(3, 61, 31, 0.15);
+}

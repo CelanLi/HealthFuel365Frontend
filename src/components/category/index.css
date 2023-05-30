@@ -14,7 +14,11 @@
   color: #033D1F;
 }
 
-.category-icon a{
+.category-icons{
+
+}
+
+.category-icon{
   float: left;
   border-radius: 50%;
   width: 12%;
@@ -34,16 +38,16 @@
   color: #033D1F;
 }
 
-.category-icon a.staple{
+.category-icon.staple{
   background: rgba(3, 61, 31, 0.06) url("../../assets/images/category_staple_icon.png") center no-repeat;
   background-size: 70%;
 }
 
-.category-icon a.snacks{
+.category-icon.snacks{
   background: rgba(3, 61, 31, 0.06) url("../../assets/images/category_snacks_icon.png") center no-repeat;
   background-size: 70%;
 }
-.category-icon a.drinks{
+.category-icon.drinks{
   background: rgba(3, 61, 31, 0.06) url("../../assets/images/category_drinks_icon.png") center no-repeat;
   background-size: 70%;
 }
