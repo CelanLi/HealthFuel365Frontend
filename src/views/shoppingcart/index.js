@@ -1,6 +1,6 @@
 // 依赖
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 // 引入样式文件
 import "./index.css";
@@ -9,40 +9,8 @@ import ShoppingCartSummary from "./components/sc_summary";
 
 function Page() {
   // 定义input的value
-  const [productList, setProductList] = useState([
-    {
-      productName: "Hafer Porridge Cup Schokolade - Davert - 65 g",
-      productUnitPrice: "Unit Price: 2,99€",
-      productNutri: "A",
-      productPrice: "2,99€",
-      productImage:
-        "https://images.openfoodfacts.org/images/products/401/933/963/6107/front_de.22.400.jpg",
-    },
-    {
-      productName: "Hafer Porridge Cup Schokolade - Davert - 65 g",
-      productUnitPrice: "Unit Price: 10,99€",
-      productNutri: "B",
-      productPrice: "10,99€",
-      productImage:
-        "https://images.openfoodfacts.org/images/products/401/933/963/6107/front_de.22.400.jpg",
-    },
-    {
-      productName: "Hafer Porridge Cup Schokolade - Davert - 65 g",
-      productUnitPrice: "Unit Price: 6,99€",
-      productNutri: "C",
-      productPrice: "6,99€",
-      productImage:
-        "https://images.openfoodfacts.org/images/products/401/933/963/6107/front_de.22.400.jpg",
-    },
-    {
-      productName: "Hafer Porridge Cup Schokolade - Davert - 65 g",
-      productUnitPrice: "Unit Price: 3,99€",
-      productNutri: "D",
-      productPrice: "3,99€",
-      productImage:
-        "https://images.openfoodfacts.org/images/products/401/933/963/6107/front_de.22.400.jpg",
-    },
-  ]);
+  const [productList, setProductList] = useState([]);
+  const [shoppingCartID, setShoppingCartID] = useState("");
 
   const [scSummary, setscSummary] = useState({
     itemsCount: 4,
@@ -51,10 +19,47 @@ function Page() {
     subtotal: "9,96€",
   });
 
+  function getProductID(value) {
+    console.log(value, shoppingCartID);
+     // 向后端发送请求传 shoppingCartID，和productId
+  }
+
+  useEffect(() => {
+    console.log("ymjj");
+
+    //假设是后端请求来的数据
+    const res = {
+      shoppingCartID: "1234",
+      productList: [
+        {
+          productID: "p1",
+          productName: "Hafer Porridge Cup Schokolade - Davert - 65 g",
+          productPrice: 2.99,
+          productNutri: "C",
+          productImage:
+            "https://images.openfoodfacts.org/images/products/401/933/963/6107/front_de.22.400.jpg",
+          productBrand: "Davert",
+          capacity: 3,
+        },
+        {
+          productID: "p2",
+          productName: "Couscous Vollkorn - Davert - 500g",
+          productPrice: 12.99,
+          productNutri: "A",
+          productImage:
+            "https://images.openfoodfacts.org/images/products/401/933/930/6109/front_de.6.full.jpg",
+          productBrand: "Davert",
+          capacity: 5,
+        },
+      ],
+    };
+    setProductList(res.productList);
+    setShoppingCartID(res.shoppingCartID);
+  }, []);
+
   return (
     // HTML结构
-    <div className="shoppingcart_wrap"> 
-
+    <div className="shoppingcart_wrap">
       {/* 面包屑 */}
       {/* &lt;代表< */}
       <div className="sc_bread_crumb">
@@ -68,11 +73,13 @@ function Page() {
           {productList.map((productItem) => {
             return (
               <ShoppingCartItem
+                getProductID={getProductID}
+                productID={productItem.productID}
                 productName={productItem.productName}
-                productUnitPrice={productItem.productUnitPrice}
-                productPrice={productItem.productPrice}
+                productUnitPrice={productItem.productPrice}
                 productImage={productItem.productImage}
                 productNutri={productItem.productNutri}
+                capacity={productItem.capacity}
               ></ShoppingCartItem>
             );
           })}
@@ -107,7 +114,7 @@ function Page() {
             </div>
           </div>
         </div>
-      </div> 
+      </div>
     </div>
   );
 }

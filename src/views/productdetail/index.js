@@ -37,7 +37,7 @@ function Page() {
     {
       productID: "p1",
       productName: "Hafer Porridge Cup Schokolade - Davert - 65 g",
-      productPrice: "2,99€",
+      productPrice: 2.99,
       productNutri: "C",
       productImage: "https://images.openfoodfacts.org/images/products/401/933/963/6107/front_de.22.400.jpg",
       productBrand: "Davert",
@@ -46,7 +46,7 @@ function Page() {
     {
       productID: "p2",
       productName: "Couscous Vollkorn - Davert - 500g",
-      productPrice: "12,99€",
+      productPrice: 12.99,
       productNutri: "A",
       productImage: "https://images.openfoodfacts.org/images/products/401/933/930/6109/front_de.6.full.jpg",
       productBrand: "Davert",

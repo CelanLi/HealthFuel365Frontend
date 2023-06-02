@@ -1,43 +1,63 @@
+import { Link } from "react-router-dom";
+import { useState } from "react";
+import BigNumber from "bignumber.js";
+
 // 引入样式文件
 import "./index.css";
 import ShoppingCartNutri from "../../../../components/nutri";
 import ScItemCounter from "../sc_item_counter";
 
-import { Link } from "react-router-dom";
+function ShoppingCartItem({
+  productID,
+  productName,
+  productUnitPrice,
+  productNutri,
+  productImage,
+  getProductID,
+}) {
+  const [countValue, setCountValue] = useState(1);
 
-function ShoppingCartItem({ productName, productUnitPrice, productNutri, productPrice, productImage }) {
+  function getItemCount(value) {
+    setCountValue(value);
+  }
+
+  function getTimesValue(num1, num2) {
+    return new BigNumber(num1).times(new BigNumber(num2)).toFixed();
+  }
+
+  function removeProduct() {
+    getProductID(productID);
+  }
+
   return (
     <div className="sc_item">
       <div className="sc_item_image">
-        <Link to="/product/detail">
-          <img
-            className="sc_item_testimage"
-            src={productImage} 
-          ></img>
+        <Link to={`/product/${productID}/detail`}>
+          <img className="sc_item_testimage" src={productImage}></img>
         </Link>
       </div>
       <div className="sc_item_content">
         <div className="sc_item_content_left">
           <div className="sc_item_name">
-            <Link to="/product/detail"> 
-              {productName}
-            </Link>
+            <Link to={`/product/${productID}/detail`}>{productName}</Link>
           </div>
-          <div className="sc_item_unitprice"> 
-            {productUnitPrice}
-          </div>
+          <div className="sc_item_unitprice">{productUnitPrice}€</div>
           <div className="sc_item_content_leftbottom">
             <div className="sc_item_nutri">
               <ShoppingCartNutri nutri={productNutri}></ShoppingCartNutri>
             </div>
             <div className="sc_item_count">
-              <ScItemCounter></ScItemCounter>
+              <ScItemCounter setCount={getItemCount}></ScItemCounter>
             </div>
           </div>
         </div>
         <div className="sc_item_content_right">
-          <div className="sc_item_remove">Remove</div>
-          <div className="sc_item_price">{productPrice}</div>
+          <div className="sc_item_remove" onClick={removeProduct}>
+            Remove
+          </div>
+          <div className="sc_item_price">
+            {getTimesValue(countValue, productUnitPrice)}€
+          </div>
         </div>
       </div>
     </div>
