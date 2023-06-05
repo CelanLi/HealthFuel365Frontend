@@ -32,7 +32,7 @@ export function NutriFilter(){
         <Panel header="Nutri-score" key="1">
           <div className="filter-choice">
             <input type="radio" id="nutri-choice-1" name="nutri" value="A" onClick={handleRadioChange}></input>
-            <label for="nutri-choice-1">A</label>
+            <label for="nutri-choice-1">A &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
           </div>
           <div className="filter-choice">
             <input type="radio" id="nutri-choice-2" name="nutri" value="B" onClick={handleRadioChange}></input>

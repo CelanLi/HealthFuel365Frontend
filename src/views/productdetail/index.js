@@ -51,10 +51,91 @@ function Page() {
       productImage: "https://images.openfoodfacts.org/images/products/401/933/930/6109/front_de.6.full.jpg",
       productBrand: "Davert",
       capacity: 5
-    }
+    },
+    {
+      productID: "p3",
+      productName: "Saltoos - Seitenbacher - 200 g",
+      productPrice: 4.84,
+      productNutri: "A",
+      productImage: "https://images.openfoodfacts.org/images/products/200/000/009/8459/front_de.3.400.jpg",
+      productBrand: "Seitenbacher",
+      capacity: 5
+    },
+    {
+      productID: "p4",
+      productName: "Seitenbacher all natural cereal musli strawberry delight",
+      productPrice: 12.99,
+      productNutri: "A",
+      productImage: "https://images.openfoodfacts.org/images/products/003/954/509/9095/front_en.3.400.jpg",
+      productBrand: "Seitenbacher",
+      capacity: 20
+    },
+    {
+      productID: "p5",
+      productName: "Milk & Cereal Biscuits - Belvita",
+      productPrice: 7.99,
+      productNutri: "B",
+      productImage: "https://images.openfoodfacts.org/images/products/762/221/074/0519/front_en.21.400.jpg",
+      productBrand: "Belvita",
+      capacity: 15
+    },
+    {
+      productID: "p6",
+      productName: "Biscuits Belvita Choco - 300g",
+      productPrice: 3.99,
+      productNutri: "D",
+      productImage: "https://images.openfoodfacts.org/images/products/762/230/044/3269/front_en.19.400.jpg",
+      productBrand: "Belvita",
+      capacity: 1
+    },
+    {
+      productID: "p7",
+      productName: "Hafer Porridge Cup Schokolade - Davert - 65 g",
+      productPrice: 2.99,
+      productNutri: "A",
+      productImage: "https://images.openfoodfacts.org/images/products/401/933/963/6107/front_de.22.400.jpg",
+      productBrand: "Davert",
+      capacity: 3
+    },
+    {
+      productID: "p8",
+      productName: "Hafer Porridge Cup Schokolade - Davert - 65 g",
+      productPrice: 2.99,
+      productNutri: "B",
+      productImage: "https://images.openfoodfacts.org/images/products/401/933/963/6107/front_de.22.400.jpg",
+      productBrand: "Davert",
+      capacity: 3
+    },
+    {
+      productID: "p9",
+      productName: "Hafer Porridge Cup Schokolade - Davert - 65 g",
+      productPrice: 2.99,
+      productNutri: "C",
+      productImage: "https://images.openfoodfacts.org/images/products/401/933/963/6107/front_de.22.400.jpg",
+      productBrand: "Davert",
+      capacity: 3
+    },
+    {
+      productID: "p10",
+      productName: "Hafer Porridge Cup Schokolade - Davert - 65 g",
+      productPrice: 2.99,
+      productNutri: "D",
+      productImage: "https://images.openfoodfacts.org/images/products/401/933/963/6107/front_de.22.400.jpg",
+      productBrand: "Davert",
+      capacity: 3
+    },
+    {
+      productID: "p11",
+      productName: "Hafer Porridge Cup Schokolade - Davert - 65 g",
+      productPrice: 2.99,
+      productNutri: "E",
+      productImage: "https://images.openfoodfacts.org/images/products/401/933/963/6107/front_de.22.400.jpg",
+      productBrand: "Davert",
+      capacity: 3
+    },
     ]);  
   
-  const [productDetailList, serProductDetail] = useState([
+  const [productDetailList, setProductDetail] = useState([
     {
       productID: "p1",
       fatLevel: "high",
@@ -73,7 +154,99 @@ function Page() {
       sugar: 2.2,
       saltLevel: "small",
       salt: 0.01,
-      productDescription:  ["D1: .....","D2: ....."]}
+      productDescription:  ["D1: .....","D2: ....."]
+    },
+    {
+      productID: "p3",
+      fatLevel: "small",
+      fat: 2,
+      sugarLevel: "small",
+      sugar: 4,
+      saltLevel: "small",
+      salt: 0,
+      productDescription:  ["D1: .....","D2: ....."]
+    },
+    {
+      productID: "p4",
+      fatLevel: "moderate",
+      fat: 15.6,
+      sugarLevel: "small",
+      sugar: 4.44,
+      saltLevel: "small",
+      salt: 0,
+      productDescription:  ["D1: .....","D2: ....."]
+    },
+    {
+      productID: "p5",
+      fatLevel: "small",
+      fat: 1.2,
+      sugarLevel: "moderate",
+      sugar: 6.1,
+      saltLevel: "moderate",
+      salt: 0.59,
+      productDescription:  ["D1: .....","D2: ....."]
+    },
+    {
+      productID: "p6",
+      fatLevel: "moderate",
+      fat: 14,
+      sugarLevel: "high",
+      sugar: 26,
+      saltLevel: "moderate",
+      salt: 0.51,
+      productDescription:  ["D1: .....","D2: ....."]
+    },
+    {
+      productID: "p7",
+      fatLevel: "high",
+      fat: 28,
+      sugarLevel: "moderate",
+      sugar: 12,
+      saltLevel: "small",
+      salt: 0.06,
+      productDescription:  ["D1: .....","D2: ....."]
+    },
+    {
+      productID: "p8",
+      fatLevel: "high",
+      fat: 28,
+      sugarLevel: "moderate",
+      sugar: 12,
+      saltLevel: "small",
+      salt: 0.06,
+      productDescription:  ["D1: .....","D2: ....."]
+    },
+    {
+      productID: "p9",
+      fatLevel: "high",
+      fat: 28,
+      sugarLevel: "moderate",
+      sugar: 12,
+      saltLevel: "small",
+      salt: 0.06,
+      productDescription:  ["D1: .....","D2: ....."]
+    },
+    {
+      productID: "p10",
+      fatLevel: "high",
+      fat: 28,
+      sugarLevel: "moderate",
+      sugar: 12,
+      saltLevel: "small",
+      salt: 0.06,
+      productDescription:  ["D1: .....","D2: ....."]
+    },
+    {
+      productID: "p11",
+      fatLevel: "high",
+      fat: 28,
+      sugarLevel: "moderate",
+      sugar: 12,
+      saltLevel: "small",
+      salt: 0.06,
+      productDescription:  ["D1: .....","D2: ....."]
+    },
+    
   ] 
   );
 
@@ -86,9 +259,10 @@ function Page() {
 
   // get corresponding product data by comparing the product id
   var pathname = window.location.pathname;
-  var id = pathname.split("\/")[2];
-  const product=productList.find(product => product.productID ==id);
-  const productDetail=productDetailList.find(product => product.productID ==id);
+  //const startIndex = 
+  var id = pathname.split("\/")[3];
+  const product=productList.find(product => product.productID ===id);
+  const productDetail=productDetailList.find(product => product.productID ===id);
 
   return (
     <div className="productdetail-wrap">  
@@ -112,7 +286,7 @@ function Page() {
             <Nutri nutri={product.productNutri}/>
             <div className="pd_top_right_bottom">
               <div className="left">
-                <div className="price">{product.productPrice}</div>
+                <div className="price">{product.productPrice}€</div>
                 <div className="available">{isAvailable(product.capacity)}</div>
               </div>
               <div className="right">

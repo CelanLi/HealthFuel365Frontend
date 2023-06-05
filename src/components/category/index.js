@@ -1,26 +1,63 @@
 // 引入样式文件
 import './index.css';
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 function Page() {
+  const [selectedCategory, setSelectedCategory] = useState(window.location.href.split("/")[3].split("#")[1]);
+  useEffect(() => {console.log(selectedCategory);},[selectedCategory]);
+  const handleCategoryChange = (event)=>{
+    const {className} = event.target;
+    const category = className.split(" ")[1].split("-")[0];
+    if (selectedCategory===category){
+      setSelectedCategory(() => "");
+    }
+    else{
+      setSelectedCategory(() => category);
+    }
+  };
+
   return (
     // HTML结构
-   <div className="category-container">
-    <div className="category-icons">
-      <Link to="#"  className="category-icon staple"/>
-      <Link to="#" className="category-icon snacks"/>
-      <Link to="#" className="category-icon drinks"/>
-      <Link to="#" className="category-icon snacks"/>
-      <Link to="#" className="category-icon snacks"/>
+    <div className="category-container">
+      <div className="category">
+        <div className="category-icon">
+          <Link to={(selectedCategory==="staple") ? "/product" : "/product#staple"}  
+          className={(selectedCategory==="staple") ? "category-icon staple-chosen" : "category-icon staple-non-chosen"} 
+          onClick={handleCategoryChange}/>
+        </div>
+        <p>Staple</p>
+      </div>
+      <div className="category">
+        <div className="category-icon">
+          <Link to={(selectedCategory==="snacks") ? "/product" : "/product#snacks"}  
+          className={(selectedCategory==="snacks") ? "category-icon snacks-chosen" : "category-icon snacks-non-chosen"} 
+          onClick={handleCategoryChange}/>
+        </div>
+        <p>Snacks</p>
+      </div>
+      <div className="category">
+        <div className="category-icon">
+          <Link to={(selectedCategory==="drinks") ? "/product" : "/product#drinks"}  
+          className={(selectedCategory==="drinks") ? "category-icon drinks-chosen" : "category-icon drinks-non-chosen"} 
+          onClick={handleCategoryChange}/>
+        </div>
+        <p>Drinks</p>
+      </div>
+      <div className="category">
+        <div className="category-icon">
+          <Link to="#" className="category-icon snacks-non-chosen" onClick={handleCategoryChange}/>
+        </div>
+        <p>Xxxx</p>
+      </div>
+      <div className="category">
+        <div className="category-icon">
+          <Link to="#" className="category-icon snacks-non-chosen" onClick={handleCategoryChange}/>
+        </div>
+        <p>Xxxx</p>
+      </div>
     </div>
-    <div className="category-text">
-      <p>Staple</p>
-      <p>Snacks</p>
-      <p>Drinks</p>
-      <p>Xxxx</p>
-      <p>Xxxx</p>
-    </div>
-  </div>
   );
 }
+
 export default Page;

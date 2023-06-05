@@ -58,7 +58,7 @@ export const routers = [
           },
           {
             // 进入Product Detail Page
-            path: ":id/detail", // http://www.healthfuel365.com/product/detail
+            path: "detail/:id", // http://www.healthfuel365.com/product/detail
             element: <Detail />,
           },
         ],

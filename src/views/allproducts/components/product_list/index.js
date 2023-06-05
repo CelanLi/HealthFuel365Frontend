@@ -6,7 +6,7 @@ function ProductList({productlist=[]}) {
   /* no corresponding product which may occurs when apply filters or input sth. wrong */
   if (productlist.length === 0){
     return (
-    <div className="products-wrap">
+    <div className="products-container">
       <h1>Sorry, there is no product...</h1>
     </div>
     );
@@ -24,7 +24,7 @@ function ProductList({productlist=[]}) {
           />
         );
       })}
-          </div>
+    </div>
   );
 }
 

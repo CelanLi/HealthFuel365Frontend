@@ -3,8 +3,8 @@ import './index.css';
 import Nutri from "../nutri"
 import AddToScButton from "../add_to_sc_button"
 
-function ProductComponent({productID, productName="name", productPrice="price", productNutri, productImage}) {
-  const router_path = "/product/"+productID+"/detail"
+function ProductComponent({productID, productName="name", productPrice, productNutri, productImage}) {
+  const router_path = "/product/detail/"+productID
   return (
     // HTML结构
     <div className="product">
@@ -20,7 +20,7 @@ function ProductComponent({productID, productName="name", productPrice="price", 
         <div className="product-other-content">
             <Nutri nutri={productNutri}/>
             <div className="product-right-buttom">
-              <div className="product-unitprice">{productPrice}</div>
+              <div className="product-unitprice">{productPrice}€</div>
               <AddToScButton/>
             </div>
         </div>

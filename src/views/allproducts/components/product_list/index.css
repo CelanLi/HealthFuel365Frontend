@@ -1,9 +1,11 @@
-.products-wrap{
+.products-container{
     margin-top: 3%;
     font-family: 'Kaisei Opti';
     font-style: normal;
     color: #033D1F;
     text-align: center;
+    display: flex;
+    flex-wrap: wrap;
 }
   
 .products-container .product{
@@ -11,4 +13,5 @@
     margin-left: 2%;
     margin-bottom: 2%;
     width: 16%;
+    min-width: 110px;
 }
