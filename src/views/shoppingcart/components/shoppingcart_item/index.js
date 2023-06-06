@@ -13,7 +13,7 @@ function ShoppingCartItem({
   productUnitPrice,
   productNutri,
   productImage,
-  getProductID,
+  deletedProductID,
 }) {
   const [countValue, setCountValue] = useState(1);
 
@@ -23,11 +23,7 @@ function ShoppingCartItem({
 
   function getTimesValue(num1, num2) {
     return new BigNumber(num1).times(new BigNumber(num2)).toFixed();
-  }
-
-  function removeProduct() {
-    getProductID(productID);
-  }
+  } 
 
   return (
     <div className="sc_item">
@@ -52,7 +48,7 @@ function ShoppingCartItem({
           </div>
         </div>
         <div className="sc_item_content_right">
-          <div className="sc_item_remove" onClick={removeProduct}>
+          <div className="sc_item_remove" onClick={()=>deletedProductID(productID)}>
             Remove
           </div>
           <div className="sc_item_price">

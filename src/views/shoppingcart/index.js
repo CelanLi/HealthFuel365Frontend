@@ -1,11 +1,12 @@
 // 依赖
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState } from "react"; 
 
 // 引入样式文件
 import "./index.css";
 import ShoppingCartItem from "./components/shoppingcart_item";
 import ShoppingCartSummary from "./components/sc_summary";
+import {deleteProductItem} from "./apis"
 
 function Page() {
   // 定义input的value
@@ -19,9 +20,10 @@ function Page() {
     subtotal: "9,96€",
   });
 
-  function getProductID(value) {
-    console.log(value, shoppingCartID);
-     // 向后端发送请求传 shoppingCartID，和productId
+  function deleteProductID(value) {
+    // console.log(value, shoppingCartID);
+    // 向后端发送请求传 shoppingCartID，和productId
+    deleteProductItem({ shoppingCartID: shoppingCartID, productID: value });
   }
 
   useEffect(() => {
@@ -73,7 +75,7 @@ function Page() {
           {productList.map((productItem) => {
             return (
               <ShoppingCartItem
-                getProductID={getProductID}
+                deletedProductID={deleteProductID}
                 productID={productItem.productID}
                 productName={productItem.productName}
                 productUnitPrice={productItem.productPrice}
