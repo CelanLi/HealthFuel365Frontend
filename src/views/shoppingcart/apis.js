@@ -8,4 +8,12 @@ export const deleteProductItem = (data) => {
     data,
   });
 };
- 
+
+
+export const changeProductCount = (data) => {
+    return serviceAxios({
+      url: "/api/changeProductCount",
+      method: "post",
+      data,
+    });
+  };
