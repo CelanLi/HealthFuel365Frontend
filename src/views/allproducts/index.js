@@ -9,11 +9,13 @@ import ProductList from './components/product_list';
 
 import React from 'react';
 import { useState, useCallback, useEffect } from "react";
+import { useLocation } from 'react-router-dom';
 
 //ANTD components
 import { Pagination } from 'antd';
 
-function Page(props) {
+function Page() {
+  // used to store all products
   const [productList, setProductList] = useState([
     {
       productID: "p1",
@@ -105,11 +107,48 @@ function Page(props) {
     },
   ]);
 
-  const [pageProductList, setPageProductList] = useState(productList.slice(0,10));
+  // used to get the selected sort value in all product page
+  const [sort, setSort] = useState("1");
+  function getSelectedSort(value){
+    setSort(value);
+  }
+  useEffect(() => {console.log( "all-product-page sort: "+sort)},[sort]);
+
+  // used to get the selected category in all product page
+  const [category, setCategory] = useState(window.location.href.split("/")[3].split("#")[1]);
+  function getSelectedCategory(value){
+    setCategory(value);
+  }
+  useEffect(() => {console.log( "all-product-page category: "+category)},[category]);
+
+  // displayed product list
+  const [filteredProductList,setfilteredProductList] = useState(productList.filter(product => {
+    if(category !== undefined){
+      return product.productCategory === category;
+    }
+    else{
+      return true;
+    }
+  }));
+  // displayed product list on page one
+  const [pageProductList, setPageProductList] = useState(filteredProductList.slice(0,10));
+
+  // reset filteredProductList if the selected category changed
+  const resetfilteredProductListbyCategory= () => {
+    setfilteredProductList(productList.filter(product => {
+      if(category !== undefined){
+        return product.productCategory === category;
+      }
+      else{
+        return true;
+      }
+    }));
+  };
+  useEffect(() => { resetfilteredProductListbyCategory(); console.log(category+"1111")},[category]);
+  useEffect(() => { setPageProductList(filteredProductList.slice(0,10))},[filteredProductList]);
 
   // default pagination states
   const [pageNumber, setPageNumber] = useState(1);
-
   // products displayed per page
   const arrSplit = (arr, pageIndex, size) => {
     const offset = (pageIndex - 1) * size;
@@ -118,15 +157,14 @@ function Page(props) {
       ? arr.slice(offset, arr.length)
       : arr.slice(offset, offset + size);
   };
-  
   const handlePaginationChange = useCallback(
     (pagination) => {
       setPageNumber(pagination);
       console.log(pagination);
-      const list = arrSplit(productList, pagination, 10);
+      const list = arrSplit(filteredProductList, pagination, 10);
       setPageProductList(list);
     },
-      [productList, pageNumber]
+      [filteredProductList, pageNumber]
   );
 
   return (
@@ -134,7 +172,7 @@ function Page(props) {
       <div className="content-container">
         {/* sort and filter */}
         <div className="content-left">
-          <SortProducts/>
+          <SortProducts setSort={getSelectedSort}/>
           {/* three filters: 1. Nutri-score 2. Dietary Preference 3. Brand*/}
           <NutriFilter/>
           <DietaryPreferencFilter/>
@@ -142,10 +180,10 @@ function Page(props) {
         </div>
         {/* categories and products*/}
         <div className="content-right">  
-          <Category/>
+          <Category setCategory={getSelectedCategory}/>
           <ProductList productlist={pageProductList}/>
           <div className="pagination-bar">
-            <Pagination defaultCurrent={pageNumber} total={productList.length} pageSize={10} onChange={handlePaginationChange}/>
+            <Pagination defaultCurrent={pageNumber} total={filteredProductList.length} pageSize={10} onChange={handlePaginationChange}/>
           </div>
         </div>
       </div> 

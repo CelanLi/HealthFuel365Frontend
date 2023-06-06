@@ -259,7 +259,6 @@ function Page() {
 
   // get corresponding product data by comparing the product id
   var pathname = window.location.pathname;
-  //const startIndex = 
   var id = pathname.split("\/")[3];
   const product=productList.find(product => product.productID ===id);
   const productDetail=productDetailList.find(product => product.productID ===id);

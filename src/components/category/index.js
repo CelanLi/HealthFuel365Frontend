@@ -3,16 +3,19 @@ import './index.css';
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 
-function Page() {
+function Page({setCategory}) {
   const [selectedCategory, setSelectedCategory] = useState(window.location.href.split("/")[3].split("#")[1]);
-  useEffect(() => {console.log(selectedCategory);},[selectedCategory]);
+  //const [selectedCategory, setSelectedCategory] = useState(window.location.href.split("/")[3].split("#")[1]);
+  useEffect(() => {console.log("category component: " + selectedCategory);},[selectedCategory]);
   const handleCategoryChange = (event)=>{
     const {className} = event.target;
     const category = className.split(" ")[1].split("-")[0];
     if (selectedCategory===category){
-      setSelectedCategory(() => "");
+      setCategory(() => undefined);
+      setSelectedCategory(() => undefined);
     }
     else{
+      setCategory(() => category);
       setSelectedCategory(() => category);
     }
   };

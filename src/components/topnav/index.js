@@ -1,5 +1,7 @@
 // 引入样式文件
 import './index.css';
+import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
 function Page() {
   return (
@@ -9,9 +11,9 @@ function Page() {
       <div className="topnav_logo"/>
       <div className="product_topnav_wrap">
         <div className="left">
-          <a href="/homepage">HomePage</a>
-          <a className="active" href="/product">All Products</a>
-          <a href="/faqs">FAQs</a>
+          <Link to="/homepage">HomePage</Link>
+          <Link to="/product" className="active">All Products</Link>
+          <Link to="/faqs">FAQs</Link>
         </div>
         <div className="right">
           <div className="search-container">

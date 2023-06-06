@@ -2,15 +2,16 @@
 import "./index.css";
 import React, {useEffect, useState } from "react";
 
-function SortProducts() {
- 
-  const [selectedSort, setSelectedSort] = useState("1");
+function SortProducts({sort="1", setSort }) {
+  //const [selectedSort, setSelectedSort] = useState("1");
+  const [selectedSort, setSelectedSort] = useState(sort);
   /* now used to test*/
-  useEffect(() => {console.log(selectedSort);}, [selectedSort]);
+  useEffect(() => {console.log("sort component: "+selectedSort);}, [selectedSort]);
 
   const handleSortChange = (event)=>{
     const {value} = event.target;
     setSelectedSort(() => value);
+    setSort(() => value);
   };
 
   return (
