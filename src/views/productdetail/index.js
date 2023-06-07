@@ -16,7 +16,6 @@ function Page() {
   useEffect(() => {
     const setData = async (id: string) => {
       try {
-        console.log("before get detail");
         const [product, productDetail] = await getDetail(id);
         setProduct(product);
         setProductDetail(productDetail);
