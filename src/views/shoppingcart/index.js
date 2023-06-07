@@ -6,65 +6,137 @@ import { useEffect, useState } from "react";
 import "./index.css";
 import ShoppingCartItem from "./components/shoppingcart_item";
 import ShoppingCartSummary from "./components/sc_summary";
-import { deleteProductItem, changeProductCount } from "./apis";
+import {
+  deleteProductItem,
+  changeProductCount,
+  getShoppingCartDetail,
+  validatePromoCode,
+} from "../../services/shoppingCartService";
 
 function Page() {
   // 定义input的value
-  const [productList, setProductList] = useState([]);
+  const [productItemList, setProductItemList] = useState([]);
   const [shoppingCartID, setShoppingCartID] = useState("");
+  const [scSummary, setscSummary] = useState({});
 
-  const [scSummary, setscSummary] = useState({
-    itemsCount: 4,
-    itemsPrice: "11,96€",
-    totalSavings: "-2€",
-    subtotal: "9,96€",
-  });
+  function getShoppingCartInfo() {
+    // then:sucess;catch:error
+    getShoppingCartDetail({ shoppingCartID: shoppingCartID })
+      .then((data) => {
+        //假设是后端请求来的数据
+        data = {
+          shoppingCartID: "1234",
+          productItemList: [
+            {
+              productID: "1413y8",
+              productName: "Hafer Porridge Cup Schokolade - Davert - 65 g",
+              productPrice: 2.99,
+              productNutri: "C",
+              productImage:
+                "https://images.openfoodfacts.org/images/products/401/933/963/6107/front_de.22.400.jpg",
+              productBrand: "Davert",
+              capacity: 3,
+            },
+            {
+              productID: "4383",
+              productName: "Couscous Vollkorn - Davert - 500g",
+              productPrice: 12.99,
+              productNutri: "A",
+              productImage:
+                "https://images.openfoodfacts.org/images/products/401/933/930/6109/front_de.6.full.jpg",
+              productBrand: "Davert",
+              capacity: 5,
+            },
+          ],
+          itemQuantity: 4,
+          itemsPrice: 11.96,
+          totalSaving: -2,
+          subtotal: 9.96,
+        };
 
-  function deleteProductID(value) {
-    // console.log(value, shoppingCartID);
-    // 向后端发送请求传 shoppingCartID，和productId
-    deleteProductItem({ shoppingCartID: shoppingCartID, productID: value });
+        setProductItemList(data.productItemList);
+        setscSummary({
+          itemQuantity: data.itemQuantity,
+          itemsPrice: data.itemsPrice,
+          totalSaving: data.totalSaving,
+          subtotal: data.subtotal,
+        });
+      })
+      .catch((error) => {
+        // 临时
+        let data = {
+          shoppingCartID: "1234",
+          productItemList: [
+            {
+              productID: "1413y8",
+              productName: "Hafer Porridge Cup Schokolade - Davert - 65 g",
+              productPrice: 2.99,
+              productNutri: "C",
+              productImage:
+                "https://images.openfoodfacts.org/images/products/401/933/963/6107/front_de.22.400.jpg",
+              productBrand: "Davert",
+              capacity: 3,
+            },
+            {
+              productID: "4383",
+              productName: "Couscous Vollkorn - Davert - 500g",
+              productPrice: 12.99,
+              productNutri: "A",
+              productImage:
+                "https://images.openfoodfacts.org/images/products/401/933/930/6109/front_de.6.full.jpg",
+              productBrand: "Davert",
+              capacity: 5,
+            },
+          ],
+          itemQuantity: 4,
+          itemsPrice: 11.96,
+          totalSaving: -2,
+          subtotal: 9.96,
+        };
+
+        setProductItemList(data.productItemList);
+        setscSummary({
+          itemQuantity: data.itemQuantity,
+          itemsPrice: data.itemsPrice,
+          totalSaving: data.totalSaving,
+          subtotal: data.subtotal,
+        });
+      });
   }
 
-  function changeProductQuantity({ productID, value:count }) {
-    changeProductCount({
+  async function deleteProductID(value) {
+    // console.log(value, shoppingCartID);
+    // 向后端发送请求传 shoppingCartID，和productId
+    await deleteProductItem({
+      shoppingCartID: shoppingCartID,
+      productID: value,
+    });
+    await getShoppingCartInfo();
+  }
+
+  async function changeProductQuantity({ productID, value: count }) {
+    await changeProductCount({
       shoppingCartID: shoppingCartID,
       productID: productID,
       quantity: count,
     });
+    await getShoppingCartInfo();
   }
 
-  useEffect(() => {
-    console.log("ymjj");
+  async function validatePromoCodeInput(givenCode) {
+    const res = await validatePromoCode({ code: givenCode });
+    // res = {isCanUse: truel, false; msg: "券已失效}
+    if (res.isCanUse) {
+      await getShoppingCartInfo();
+    } else {
+      console.log(res.message);
+    }
+  }
 
-    //假设是后端请求来的数据
-    const res = {
-      shoppingCartID: "1234",
-      productList: [
-        {
-          productID: "p1",
-          productName: "Hafer Porridge Cup Schokolade - Davert - 65 g",
-          productPrice: 2.99,
-          productNutri: "C",
-          productImage:
-            "https://images.openfoodfacts.org/images/products/401/933/963/6107/front_de.22.400.jpg",
-          productBrand: "Davert",
-          capacity: 3,
-        },
-        {
-          productID: "p2",
-          productName: "Couscous Vollkorn - Davert - 500g",
-          productPrice: 12.99,
-          productNutri: "A",
-          productImage:
-            "https://images.openfoodfacts.org/images/products/401/933/930/6109/front_de.6.full.jpg",
-          productBrand: "Davert",
-          capacity: 5,
-        },
-      ],
-    };
-    setProductList(res.productList);
-    setShoppingCartID(res.shoppingCartID);
+  // first visit the page
+  useEffect(() => {
+    // Todo: 需要获取购物车id
+    getShoppingCartInfo();
   }, []);
 
   return (
@@ -80,9 +152,10 @@ function Page() {
       <div className="sc_content">
         {/* item详情 */}
         <div className="sc_content_left">
-          {productList.map((productItem) => {
+          {productItemList.map((productItem) => {
             return (
               <ShoppingCartItem
+                key={productItem.productID}
                 deleteProductID={deleteProductID}
                 changeProductCount={changeProductQuantity}
                 productID={productItem.productID}
@@ -100,10 +173,11 @@ function Page() {
         <div className="sc_content_right">
           {/* summary */}
           <ShoppingCartSummary
-            itemsCount={scSummary.itemsCount}
+            itemQuantity={scSummary.itemQuantity}
             itemsPrice={scSummary.itemsPrice}
-            totalSavings={scSummary.totalSavings}
+            totalSaving={scSummary.totalSaving}
             subtotal={scSummary.subtotal}
+            validatePromoCodeInput={validatePromoCodeInput}
           ></ShoppingCartSummary>
 
           {/* note */}
