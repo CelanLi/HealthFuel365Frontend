@@ -1,24 +1,22 @@
-
 export interface ProductInterface {
-    ean: string;
-    categories: string[];
-    imageUrl: string | undefined;
-    ingredients?: IProductIngredient[];
-    ingredientsText?: string;
-    ingredientsTextDE?: string;//可能不需要
-    nutriments: INutriments;
-    nutriScore: string;
-    nutriScoreScore?: number;//用来计算nutriscore
-    nutriscoreData?: INutriscoreData;
-    quantity?: string;
-    nutrientLevels?: INutrientLevel;
-    brands?: string;
-    labels?: string;
-    categories_tags?: string[];
-    productName: string;
-    productNameDE: string;
-  }
-
+  ean: string;
+  categories: string[];
+  imageUrl: string | undefined;
+  ingredients?: IProductIngredient[];
+  ingredientsText?: string;
+  ingredientsTextDE?: string; //可能不需要
+  nutriments: INutriments;
+  nutriScore: string;
+  nutriScoreScore?: number; //用来计算nutriscore
+  nutriscoreData?: INutriscoreData;
+  quantity?: string;
+  nutrientLevels?: INutrientLevel;
+  brands?: string;
+  labels?: string;
+  categories_tags?: string[];
+  productName: string;
+  productNameDE: string;
+}
 
 export interface IProduct {
   name: string;
@@ -171,11 +169,11 @@ interface INutrientLevel {
   sugars?: Level;
 }
 
-enum Level {
-  HIGH = "high",
-  MODERATE = "moderate",
-  LOW = "low",
-}
+// enum Level {
+//   HIGH = "high",
+//   MODERATE = "moderate",
+//   LOW = "low",
+// }
 
 interface IProductIngredient {
   percent_estimate?: number;
@@ -213,7 +211,6 @@ interface INutriscoreData {
   sugars: number;
   sugars_points: number;
 }
-
 
 export interface IProfile {
   goal: string | undefined;
