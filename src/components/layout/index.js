@@ -1,10 +1,10 @@
 // 引入样式文件
-import "./index.css"
-import { Layout, Space } from "antd";
+import "./index.css";
+import { Layout } from "antd";
 import { Outlet } from "react-router-dom";
 
 import TopNav from "../topnav";
-import FooterComponent from "../footer"
+import FooterComponent from "../footer";
 
 const { Header, Footer, Content } = Layout;
 

@@ -3,8 +3,22 @@ import "./index.css";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
-function ShoppingCartSummary({itemsCount, itemsPrice, totalSavings, subtotal}) {
+function ShoppingCartSummary({
+  itemQuantity,
+  itemsPrice,
+  totalSaving,
+  subtotal,
+  validatePromoCodeInput,
+}) {
   const [promoCode, setPromoCode] = useState("");
+
+  function validateCode() {
+    if (!promoCode) {
+      console.log("code不能为空");
+    } else {
+      validatePromoCodeInput(promoCode);
+    }
+  }
 
   return (
     <>
@@ -13,8 +27,8 @@ function ShoppingCartSummary({itemsCount, itemsPrice, totalSavings, subtotal}) {
         <div className="sc_content_right_up">Summary</div>
         <div className="sc_content_right_middle">
           <div className="sc_items_count_price">
-            <div className="sc_items_count">{itemsCount} Items</div>
-            <div className="sc_items_price">{itemsPrice}</div>
+            <div className="sc_items_count">{itemQuantity} Items</div>
+            <div className="sc_items_price">{itemsPrice}€</div>
           </div>
           <div className="sc_promo_code">
             <div className="sc_give_code">Give Code</div>
@@ -28,7 +42,7 @@ function ShoppingCartSummary({itemsCount, itemsPrice, totalSavings, subtotal}) {
                   placeholder="Promo Code"
                 />
               </div>
-              <div className="sc_given_code_buttom_wrap">
+              <div className="sc_given_code_buttom_wrap" onClick={validateCode}>
                 <img
                   className="sc_given_code_buttom"
                   src={require("../../../../assets/images/give_code_buttom.png")}
@@ -40,11 +54,11 @@ function ShoppingCartSummary({itemsCount, itemsPrice, totalSavings, subtotal}) {
         <div className="sc_content_right_bottom">
           <div className="sc_content_right_bottom_total_saving">
             <div className="sc_total_saving">Total Savings</div>
-            <div className="sc_total_saving_value">{totalSavings}</div>
+            <div className="sc_total_saving_value">{totalSaving}€</div>
           </div>
           <div className="sc_content_right_bottom_subtotal">
             <div className="sc_subtotal">Subtotal</div>
-            <div className="sc_subtotal_value">{subtotal}</div>
+            <div className="sc_subtotal_value">{subtotal}€</div>
           </div>
         </div>
         <div className="sc_checkout_wrap">

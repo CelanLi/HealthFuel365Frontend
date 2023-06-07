@@ -36,10 +36,13 @@ serviceAxios.interceptors.request.use(
 // 创建响应拦截
 serviceAxios.interceptors.response.use(
   (res) => {
-    let data = res.data;
+    if (res.code == 0) {
+      return res.data;
+    } else {
+      return res;
+    }
     // 处理自己的业务逻辑，比如判断 token 是否过期等等
     // 代码块
-    return data;
   },
   (error) => {
     let message = "";
