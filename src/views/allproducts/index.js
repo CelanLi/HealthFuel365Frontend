@@ -1,19 +1,16 @@
 // 引入样式文件
-import './index.css';
+import "./index.css";
 import Category from "../../components/category";
-import SortProducts from './components/sort';
-import { BrandFilter }from './components/filter';
-import { NutriFilter } from './components/filter';
-import { DietaryPreferencFilter } from './components/filter';
-import ProductList from './components/product_list';
-import { getProducts } from "../../services/productService";
+import SortProducts from "./components/sort";
+import { BrandFilter } from "./components/filter";
+import { NutriFilter } from "./components/filter";
+import { DietaryPreferencFilter } from "./components/filter";
+import ProductList from "./components/product_list";
+import { getAllProducts } from "../../services/productService";
 
-import React from 'react';
+import React from "react";
 import { useState, useCallback, useEffect } from "react";
-
-//ANTD components
-import { Pagination } from 'antd';
-
+import { Pagination } from "antd";
 function Page() {
   // used to store all products
   /*
@@ -109,11 +106,10 @@ function Page() {
   ]);
   */
   const [productList, setProductList] = useState([]);
-  useEffect(() => { 
+  useEffect(() => {
     const setProducts = async () => {
       try {
-        console.log("iiiiiiiiiiiiiiiiiiiiiiiiiiii");
-        const list = Object.values(await getProducts());
+        const list = await getAllProducts();
         console.log(JSON.stringify(list) + "to test");
         setProductList(list);
       } catch (error) {
@@ -121,47 +117,62 @@ function Page() {
       }
     };
     setProducts();
-  },[])
+  }, []);
 
   // used to get the selected sort value in all product page
   const [sort, setSort] = useState("1");
-  function getSelectedSort(value){
+  function getSelectedSort(value) {
     setSort(value);
   }
-  useEffect(() => {console.log( "all-product-page sort: "+sort)},[sort]);
+  useEffect(() => {
+    console.log("all-product-page sort: " + sort);
+  }, [sort]);
 
   // used to get the selected category in all product page
-  const [category, setCategory] = useState(window.location.href.split("/")[3].split("#")[1]);
-  function getSelectedCategory(value){
+  const [category, setCategory] = useState(
+    window.location.href.split("/")[3].split("#")[1]
+  );
+  function getSelectedCategory(value) {
     setCategory(value);
   }
-  useEffect(() => {console.log( "all-product-page category: "+category)},[category]);
+  useEffect(() => {
+    console.log("all-product-page category: " + category);
+  }, [category]);
 
   // displayed product list
-  const [filteredProductList,setfilteredProductList] = useState(productList.filter(product => {
-    if(category !== undefined){
-      return product.productCategory === category;
-    }
-    else{
-      return true;
-    }
-  }));
-  // displayed product list on page one
-  const [pageProductList, setPageProductList] = useState(filteredProductList.slice(0,10));
-
-  // reset filteredProductList if the selected category changed
-  const resetfilteredProductListbyCategory= () => {
-    setfilteredProductList(productList.filter(product => {
-      if(category !== undefined){
-        return product.productCategory === category;
-      }
-      else{
+  const [filteredProductList, setfilteredProductList] = useState(
+    productList.filter((product) => {
+      if (category !== undefined) {
+        return product.category === category;
+      } else {
         return true;
       }
-    }));
+    })
+  );
+  // displayed product list on page one
+  const [pageProductList, setPageProductList] = useState(
+    filteredProductList.slice(0, 10)
+  );
+
+  // reset filteredProductList if the selected category changed
+  const resetfilteredProductListbyCategory = () => {
+    setfilteredProductList(
+      productList.filter((product) => {
+        if (category !== undefined) {
+          return product.category === category;
+        } else {
+          return true;
+        }
+      })
+    );
   };
-  useEffect(() => { resetfilteredProductListbyCategory(); console.log(category+"1111")},[category,productList]);
-  useEffect(() => { setPageProductList(filteredProductList.slice(0,10))},[filteredProductList]);
+  useEffect(() => {
+    resetfilteredProductListbyCategory();
+    console.log(category + "1111");
+  }, [category, productList]);
+  useEffect(() => {
+    setPageProductList(filteredProductList.slice(0, 10));
+  }, [filteredProductList]);
 
   // default pagination states
   const [pageNumber, setPageNumber] = useState(1);
@@ -180,29 +191,34 @@ function Page() {
       const list = arrSplit(filteredProductList, pagination, 10);
       setPageProductList(list);
     },
-      [filteredProductList, pageNumber]
+    [filteredProductList, pageNumber]
   );
 
   return (
-    <div className="allproductspage-wrap">  
+    <div className="allproductspage-wrap">
       <div className="content-container">
         {/* sort and filter */}
         <div className="content-left">
-          <SortProducts setSort={getSelectedSort}/>
+          <SortProducts setSort={getSelectedSort} />
           {/* three filters: 1. Nutri-score 2. Dietary Preference 3. Brand*/}
-          <NutriFilter/>
-          <DietaryPreferencFilter/>
-          <BrandFilter/>
+          <NutriFilter />
+          <DietaryPreferencFilter />
+          <BrandFilter />
         </div>
         {/* categories and products*/}
-        <div className="content-right">  
-          <Category setCategory={getSelectedCategory}/>
-          <ProductList productlist={pageProductList}/>
+        <div className="content-right">
+          <Category setCategory={getSelectedCategory} />
+          <ProductList productlist={pageProductList} />
           <div className="pagination-bar">
-            <Pagination defaultCurrent={pageNumber} total={filteredProductList.length} pageSize={10} onChange={handlePaginationChange}/>
+            <Pagination
+              defaultCurrent={pageNumber}
+              total={filteredProductList.length}
+              pageSize={10}
+              onChange={handlePaginationChange}
+            />
           </div>
         </div>
-      </div> 
+      </div>
     </div>
   );
 }

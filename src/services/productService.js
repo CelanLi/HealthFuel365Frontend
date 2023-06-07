@@ -2,7 +2,7 @@ import axios from "axios";
 import { IOpenFoodFactsData } from "../models/types";
 import { backendUrl, productRoute } from "../util/constants";
 
-export const getProducts = async () => {
+export const getAllProducts = async () => {
   try {
     console.log(backendUrl + productRoute);
     const result: Response = await axios.get(backendUrl + productRoute);
