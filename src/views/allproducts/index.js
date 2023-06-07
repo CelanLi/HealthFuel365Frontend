@@ -2,20 +2,21 @@
 import './index.css';
 import Category from "../../components/category";
 import SortProducts from './components/sort';
-import {BrandFilter}from './components/filter';
-import {NutriFilter} from './components/filter';
-import {DietaryPreferencFilter} from './components/filter';
+import { BrandFilter }from './components/filter';
+import { NutriFilter } from './components/filter';
+import { DietaryPreferencFilter } from './components/filter';
 import ProductList from './components/product_list';
+import { getProducts } from "../../services/productService";
 
 import React from 'react';
 import { useState, useCallback, useEffect } from "react";
-import { useLocation } from 'react-router-dom';
 
 //ANTD components
 import { Pagination } from 'antd';
 
 function Page() {
   // used to store all products
+  /*
   const [productList, setProductList] = useState([
     {
       productID: "p1",
@@ -106,6 +107,21 @@ function Page() {
       productCategory: "drinks"
     },
   ]);
+  */
+  const [productList, setProductList] = useState([]);
+  useEffect(() => { 
+    const setProducts = async () => {
+      try {
+        console.log("iiiiiiiiiiiiiiiiiiiiiiiiiiii");
+        const list = Object.values(await getProducts());
+        console.log(JSON.stringify(list) + "to test");
+        setProductList(list);
+      } catch (error) {
+        console.error("error set products:", error);
+      }
+    };
+    setProducts();
+  },[])
 
   // used to get the selected sort value in all product page
   const [sort, setSort] = useState("1");
@@ -144,7 +160,7 @@ function Page() {
       }
     }));
   };
-  useEffect(() => { resetfilteredProductListbyCategory(); console.log(category+"1111")},[category]);
+  useEffect(() => { resetfilteredProductListbyCategory(); console.log(category+"1111")},[category,productList]);
   useEffect(() => { setPageProductList(filteredProductList.slice(0,10))},[filteredProductList]);
 
   // default pagination states
