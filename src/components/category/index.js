@@ -5,7 +5,6 @@ import { useState, useEffect } from "react";
 
 function Page({setCategory}) {
   const [selectedCategory, setSelectedCategory] = useState(window.location.href.split("/")[3].split("#")[1]);
-  //const [selectedCategory, setSelectedCategory] = useState(window.location.href.split("/")[3].split("#")[1]);
   useEffect(() => {console.log("category component: " + selectedCategory);},[selectedCategory]);
   const handleCategoryChange = (event)=>{
     const {className} = event.target;
@@ -19,9 +18,17 @@ function Page({setCategory}) {
       setSelectedCategory(() => category);
     }
   };
+  /*
+  const resetCategory = () => {
+    if (window.location.href.split("/")[3]==="product") {
+      setCategory(() => undefined);
+      setSelectedCategory(() => undefined);
+    }
+  }
+  useEffect(() => {resetCategory()},[window.location.href]);
+  */
 
   return (
-    // HTML结构
     <div className="category-container">
       <div className="category">
         <div className="category-icon">
