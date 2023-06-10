@@ -68,7 +68,7 @@ function Page() {
           shoppingCartID: "1234",
           productItemList: [
             {
-              productID: "1413y8",
+              productID: "3",
               productName: "Hafer Porridge Cup Schokolade - Davert - 65 g",
               productPrice: 2.99,
               productNutri: "C",
@@ -78,7 +78,7 @@ function Page() {
               capacity: 3,
             },
             {
-              productID: "4383",
+              productID: "4",
               productName: "Couscous Vollkorn - Davert - 500g",
               productPrice: 12.99,
               productNutri: "A",

@@ -31,14 +31,14 @@ function ShoppingCartItem({
   return (
     <div className="sc_item">
       <div className="sc_item_image">
-        <Link to={`/product/${productID}/detail`}>
+        <Link to={`/product/detail/${productID}`}>
           <img className="sc_item_testimage" src={productImage}></img>
         </Link>
       </div>
       <div className="sc_item_content">
         <div className="sc_item_content_left">
           <div className="sc_item_name">
-            <Link to={`/product/${productID}/detail`}>{productName}</Link>
+            <Link to={`/product/detail/${productID}`}>{productName}</Link>
           </div>
           <div className="sc_item_unitprice">{productUnitPrice}€</div>
           <div className="sc_item_content_leftbottom">
