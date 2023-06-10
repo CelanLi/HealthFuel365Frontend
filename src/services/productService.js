@@ -17,3 +17,18 @@ export const getAllProducts = async (selectedSort: string) => {
     throw new Error(error);
   }
 };
+
+export const getProductsByName = async (name) => {
+  try {
+    console.log(backendUrl + productRoute + "?search=" + name);
+    const result: Response = await axios.get(backendUrl + productRoute + "?search=" + name);
+    const response = result.data;
+    console.log(response);
+    if (response.status >= 300) {
+      throw new Error(response.message);
+    }
+    return response;
+  } catch (error) {
+    throw new Error(error);
+  }
+};

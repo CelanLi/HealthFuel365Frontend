@@ -1,10 +1,3 @@
-// 引入样式文件
-import {
-  sortByName,
-  sortByNutriscore,
-  sortPriceAscending,
-  sortPriceDescending,
-} from "../../../../services/productService";
 import "./index.css";
 import React, { useEffect, useState } from "react";
 

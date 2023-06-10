@@ -112,11 +112,16 @@ function Page() {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const keyWords = searchParams.get("search");
+  // used to get the selected sort value in all product page
+  const [sort, setSort] = useState("1");
+  function getSelectedSort(value) {
+      setSort(value);
+  }
 
   const setProducts = async () => {
     try {
       const list = await (keyWords === null
-        ? getAllProducts()
+        ? getAllProducts(sort)
         : getProductsByName(keyWords));
       console.log(JSON.stringify(list) + "to test");
       setProductList(list);
@@ -124,6 +129,7 @@ function Page() {
       console.error("error set products:", error);
     }
   };
+
   // inintialize the product list
   useEffect(() => {
     setProducts();
@@ -133,27 +139,8 @@ function Page() {
     if (keyWords !== null) {
       setProducts();
     }
-  }, [keyWords]);
+  }, [keyWords, sort]);
 
-  // used to get the selected sort value in all product page
-  const [sort, setSort] = useState("1");
-  function getSelectedSort(value) {
-    setSort(value);
-  }
-  useEffect(() => {
-    console.log("all-product-page sort: " + sort);
-  }, [sort]);
-  useEffect(() => {
-    const setProducts = async () => {
-      try {
-        const list = await getAllProducts(sort);
-        setProductList(list);
-      } catch (error) {
-        console.error("error set products:", error);
-      }
-    };
-    setProducts();
-  }, [sort]);
   // used to get the selected category in all product page
   const [category, setCategory] = useState(
     window.location.href.split("/")[3].split("#")[1]
