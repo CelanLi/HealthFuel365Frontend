@@ -111,7 +111,13 @@ function Page() {
   // used to get the keywords in the search part
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
-  const keyWords = searchParams.get("search");
+  const [keyWords,setKeywords] = useState(searchParams.get("search"));
+  useEffect(() => {
+    const newKeyWords=searchParams.get("search");
+    if(searchParams.get("search")!==null){
+      setKeywords(newKeyWords);
+    }
+  }, [searchParams]);
   // used to get the selected sort value in all product page
   const [sort, setSort] = useState("1");
   function getSelectedSort(value) {
@@ -129,16 +135,13 @@ function Page() {
       console.error("error set products:", error);
     }
   };
-
   // inintialize the product list
   useEffect(() => {
     setProducts();
   }, []);
-
+  // change the product list when keywords/ sort method changed
   useEffect(() => {
-    if (keyWords !== null) {
-      setProducts();
-    }
+    setProducts();
   }, [keyWords, sort]);
 
   // used to get the selected category in all product page
