@@ -275,7 +275,7 @@ function Page() {
             {/* brand */}
             <p>Brand: {product?.productBrand}</p>
             {/* nutri-score */}
-            <Nutri nutri={product?.productNutri} />
+            <Nutri nutri={product?.nutriScore} />
             <div className="pd_top_right_bottom">
               <div className="left">
                 <div className="price">{product?.productPrice}€</div>
