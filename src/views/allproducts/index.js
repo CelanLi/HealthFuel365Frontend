@@ -6,7 +6,10 @@ import { BrandFilter } from "./components/filter";
 import { NutriFilter } from "./components/filter";
 import { DietaryPreferencFilter } from "./components/filter";
 import ProductList from "./components/product_list";
-import { getAllProducts } from "../../services/productService";
+import {
+  getAllProducts,
+  sortingMethodInvocation,
+} from "../../services/productService";
 
 import React from "react";
 import { useState, useCallback, useEffect } from "react";
@@ -106,18 +109,6 @@ function Page() {
   ]);
   */
   const [productList, setProductList] = useState([]);
-  useEffect(() => {
-    const setProducts = async () => {
-      try {
-        const list = await getAllProducts();
-        console.log(JSON.stringify(list) + "to test");
-        setProductList(list);
-      } catch (error) {
-        console.error("error set products:", error);
-      }
-    };
-    setProducts();
-  }, []);
 
   // used to get the selected sort value in all product page
   const [sort, setSort] = useState("1");
@@ -127,7 +118,17 @@ function Page() {
   useEffect(() => {
     console.log("all-product-page sort: " + sort);
   }, [sort]);
-
+  useEffect(() => {
+    const setProducts = async () => {
+      try {
+        const list = await getAllProducts(sort);
+        setProductList(list);
+      } catch (error) {
+        console.error("error set products:", error);
+      }
+    };
+    setProducts();
+  }, [sort]);
   // used to get the selected category in all product page
   const [category, setCategory] = useState(
     window.location.href.split("/")[3].split("#")[1]
