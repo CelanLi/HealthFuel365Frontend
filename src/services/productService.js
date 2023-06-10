@@ -18,10 +18,12 @@ export const getAllProducts = async (selectedSort: string) => {
   }
 };
 
-export const getProductsByName = async (name) => {
+export const getProductsByName = async (name, selectedSort) => {
   try {
     console.log(backendUrl + productRoute + "?search=" + name);
-    const result: Response = await axios.get(backendUrl + productRoute + "?search=" + name);
+    const result: Response = await axios.get(
+      backendUrl + productRoute + "?search=" + name
+    );
     const response = result.data;
     console.log(response);
     if (response.status >= 300) {

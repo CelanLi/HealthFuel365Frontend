@@ -115,14 +115,14 @@ function Page() {
   // used to get the selected sort value in all product page
   const [sort, setSort] = useState("1");
   function getSelectedSort(value) {
-      setSort(value);
+    setSort(value);
   }
 
   const setProducts = async () => {
     try {
       const list = await (keyWords === null
         ? getAllProducts(sort)
-        : getProductsByName(keyWords));
+        : getProductsByName(keyWords, sort));
       console.log(JSON.stringify(list) + "to test");
       setProductList(list);
     } catch (error) {
