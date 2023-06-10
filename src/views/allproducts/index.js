@@ -1,4 +1,3 @@
-// 引入样式文件
 import "./index.css";
 import Category from "../../components/category";
 import SortProducts from "./components/sort";
@@ -8,11 +7,11 @@ import { DietaryPreferencFilter } from "./components/filter";
 import ProductList from "./components/product_list";
 import {
   getAllProducts,
-  sortingMethodInvocation,
+  getProductsByName,
 } from "../../services/productService";
-
 import React from "react";
 import { useState, useCallback, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { Pagination } from "antd";
 function Page() {
   // used to store all products
@@ -109,6 +108,32 @@ function Page() {
   ]);
   */
   const [productList, setProductList] = useState([]);
+  // used to get the keywords in the search part
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const keyWords = searchParams.get("search");
+
+  const setProducts = async () => {
+    try {
+      const list = await (keyWords === null
+        ? getAllProducts()
+        : getProductsByName(keyWords));
+      console.log(JSON.stringify(list) + "to test");
+      setProductList(list);
+    } catch (error) {
+      console.error("error set products:", error);
+    }
+  };
+  // inintialize the product list
+  useEffect(() => {
+    setProducts();
+  }, []);
+
+  useEffect(() => {
+    if (keyWords !== null) {
+      setProducts();
+    }
+  }, [keyWords]);
 
   // used to get the selected sort value in all product page
   const [sort, setSort] = useState("1");
@@ -136,9 +161,6 @@ function Page() {
   function getSelectedCategory(value) {
     setCategory(value);
   }
-  useEffect(() => {
-    console.log("all-product-page category: " + category);
-  }, [category]);
 
   // displayed product list
   const [filteredProductList, setfilteredProductList] = useState(
@@ -169,7 +191,7 @@ function Page() {
   };
   useEffect(() => {
     resetfilteredProductListbyCategory();
-    console.log(category + "1111");
+    console.log("all-product-page category: " + category);
   }, [category, productList]);
   useEffect(() => {
     setPageProductList(filteredProductList.slice(0, 10));

@@ -9,9 +9,10 @@
 /*  navigation bar 里面按键的样式*/
 .topnav a {
   float:left;
-  display: block;
+  display: flex;
   color: #033D1F;
   text-align: center;
+  align-items: center;
   margin: auto;
   padding: 14px 16px;
   text-decoration: none;
@@ -22,6 +23,7 @@
   line-height: 29px;
   background: #FFFFFF;
   border-radius: 10px 10px 0px 0px;
+  height: 100%;
 }
 
 /* 当前页按键的样式*/
