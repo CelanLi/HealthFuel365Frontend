@@ -13,14 +13,13 @@ function Page() {
      navigate("/product?search="+keyWords);
     }
   };
-  /*
+  
   useEffect(() => {
     // redirecting from all product pages to other pages keywords are cleared
     if(location.pathname!="/product"){
       setKeyWords("");
     }
   }, [location.pathname]);
-  */
 
   return (
     <div className="topnav">
