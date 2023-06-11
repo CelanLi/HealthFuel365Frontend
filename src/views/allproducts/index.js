@@ -151,7 +151,16 @@ function Page() {
   function getSelectedCategory(value) {
     setCategory(value);
   }
-
+  // used to get the selected Nutri Filter
+  const [nutri, setNutri] = useState(null);
+  function getSelectedNutri(value){
+    setNutri(value);
+  }
+  // used to get the selected Brands
+  const [brands, setBrands] = useState([]);
+  function getSelectedBrands(value){
+    setBrands(value);
+  }
   // displayed product list
   const [filteredProductList, setfilteredProductList] = useState(
     productList.filter((product) => {
@@ -166,23 +175,32 @@ function Page() {
   const [pageProductList, setPageProductList] = useState(
     filteredProductList.slice(0, 10)
   );
-
-  // reset filteredProductList if the selected category changed
-  const resetfilteredProductListbyCategory = () => {
+  // reset filteredProductList if the selected category/ nutri-score/ dietray preference/ brands
+  const resetfilteredProductList= () => {
     setfilteredProductList(
       productList.filter((product) => {
+        const conditions = [];
         if (category !== undefined) {
-          return product.category === category;
-        } else {
-          return true;
+          conditions.push(product.category === category);
         }
-      })
-    );
-  };
+        if (nutri !== null) {
+          conditions.push(product.nutriScore <= nutri);
+        }
+        if (brands.length !== 0) {
+          conditions.push(brands.includes(product.productBrand));
+        }
+        // use every method to check if each conditional function returns true
+        return conditions.every((condition) => condition);
+      }
+      )
+    );  
+  }
   useEffect(() => {
-    resetfilteredProductListbyCategory();
+    resetfilteredProductList();
     console.log("all-product-page category: " + category);
-  }, [category, productList]);
+    console.log("all-product-page nutri: " + nutri);
+    console.log("all-product-page brands: " + brands);
+  }, [category, nutri, brands, productList]);
   useEffect(() => {
     setPageProductList(filteredProductList.slice(0, 10));
   }, [filteredProductList]);
@@ -214,9 +232,9 @@ function Page() {
         <div className="content-left">
           <SortProducts setSort={getSelectedSort} />
           {/* three filters: 1. Nutri-score 2. Dietary Preference 3. Brand*/}
-          <NutriFilter />
+          <NutriFilter setNutri={getSelectedNutri} />
           <DietaryPreferencFilter />
-          <BrandFilter />
+          <BrandFilter setBrands={getSelectedBrands} />
         </div>
         {/* categories and products*/}
         <div className="content-right">

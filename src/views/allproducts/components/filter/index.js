@@ -7,8 +7,9 @@ import React, {useEffect, useState } from "react";
 import { Collapse } from "antd";
 const { Panel } = Collapse;
 
-export function NutriFilter(){
-  const [selectedNutri, setSelectedNutri] = useState(null);
+export function NutriFilter({ nutri = null, setNutri }){
+  //const [selectedNutri, setSelectedNutri] = useState(null);
+  const [selectedNutri, setSelectedNutri] = useState(nutri);
   /* now used to test*/
   useEffect(() => {console.log(selectedNutri);}, [selectedNutri]);
  
@@ -17,10 +18,12 @@ export function NutriFilter(){
     if (checked) {
       if (selectedNutri==value){
         event.target.checked=false;  
-        setSelectedNutri(() => null);    
+        setSelectedNutri(() => null);
+        setNutri(() => null);    
       }
       else{
         setSelectedNutri(() => value);
+        setNutri(() => value);    
       }
     }
     
@@ -125,20 +128,22 @@ export function DietaryPreferencFilter(){
     );
 }
 
-export function BrandFilter() {
+export function BrandFilter({ brands = [], setBrands }) {
   /* default: no brand is selected */
-  const [selectedBrands, setSelectedBrands] = useState([]);
+  //const [selectedBrands, setSelectedBrands] = useState([]);
+  const [selectedBrands, setSelectedBrands] = useState(brands);
   /* now used to test*/
   useEffect(() => {console.log(selectedBrands);}, [selectedBrands]);
 
   const handleCheckboxChange = (event) => {
     const { value, checked } = event.target;
-
     if (checked) {
       setSelectedBrands((prevSelectedBrands) => [...prevSelectedBrands,value]);
+      setBrands((prevSelectedBrands) => [...prevSelectedBrands,value]);
     } 
     else {
       setSelectedBrands((prevSelectedBrands) => prevSelectedBrands.filter((brand) => brand !== value) );
+      setBrands((prevSelectedBrands) => prevSelectedBrands.filter((brand) => brand !== value) );
     }
   };
 
@@ -147,12 +152,12 @@ export function BrandFilter() {
       <Collapse bordered={false} defaultActiveKey={["1"]} expandIconPosition="end">
         <Panel header="Brands" key="1">
           <div className="filter-choice">
-            <input type="checkbox" id="b1" name="b" value="davert" onChange={handleCheckboxChange}/>
-            <label for="davert">Davert</label>
+            <input type="checkbox" id="b1" name="b" value="Davert" onChange={handleCheckboxChange}/>
+            <label for="Davert">Davert</label>
           </div>
           <div className="filter-choice">
-            <input type="checkbox" id="b2" name="b" value="Xxx" onChange={handleCheckboxChange}/>
-            <label for="xxx">Xxx</label>
+            <input type="checkbox" id="b2" name="b" value="Seitenbacher" onChange={handleCheckboxChange}/>
+            <label for="Seitenbacher">Seitenbacher</label>
           </div>
         </Panel>
       </Collapse>
