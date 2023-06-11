@@ -19,6 +19,7 @@ function Page() {
   const [productItemList, setProductItemList] = useState([]);
   const [shoppingCartID, setShoppingCartID] = useState("134134");
   const [scSummary, setscSummary] = useState({});
+  const [messageApi, contextHolder] = message.useMessage();
 
   function getShoppingCartInfo() {
     // then:sucess;catch:error
@@ -52,9 +53,6 @@ function Page() {
         });
       })
       .catch((error) => {
-        // 临时
-        const [messageApi] = message.useMessage();
-
         messageApi.open({
           type: "error",
           content: "System Error",
@@ -101,6 +99,7 @@ function Page() {
     // HTML结构
     <div className="shoppingcart_wrap">
       {/* 面包屑 */}
+      {contextHolder}
       {/* &lt;代表< */}
       <div className="sc_bread_crumb">
         <Link to="/product">&lt;Continue Shopping</Link>

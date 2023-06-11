@@ -36,7 +36,7 @@ function OrderDelivery() {
                   <input
                     type="radio"
                     value={deliveryItem.choice}
-                    name="choice"
+                    name="deliveryChoice"
                   />
                 </div>
                 <div className="or_standard_shipping_name">
@@ -53,7 +53,7 @@ function OrderDelivery() {
         <div className="or_delivery_desc">
           <div className="or_standard_shipping_desc_left">
             <div className="or_choice">
-              <input type="radio" value="false" name="choice" />
+              <input type="radio" value="false" name="deliveryChoice" />
             </div>
             <div className="or_standard_rapid_shipping_wrap">
               <div className="or_standard_shipping_name">

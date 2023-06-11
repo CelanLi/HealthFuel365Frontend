@@ -17,7 +17,7 @@ function ShoppingCartItem({
   changeProductCount,
   quantity,
 }) {
-  const [countValue, setCountValue] = useState(1); 
+  const [countValue, setCountValue] = useState(quantity); 
   function getItemCount(value) {
     setCountValue(value);
     changeProductCount({ productID, value });
