@@ -1,6 +1,7 @@
 // 依赖
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { message } from "antd";
 
 // 引入样式文件
 import "./index.css";
@@ -16,90 +17,47 @@ import {
 function Page() {
   // 定义input的value
   const [productItemList, setProductItemList] = useState([]);
-  const [shoppingCartID, setShoppingCartID] = useState("");
+  const [shoppingCartID, setShoppingCartID] = useState("134134");
   const [scSummary, setscSummary] = useState({});
 
   function getShoppingCartInfo() {
     // then:sucess;catch:error
     getShoppingCartDetail({ shoppingCartID: shoppingCartID })
       .then((data) => {
-        //假设是后端请求来的数据
-        data = {
-          shoppingCartID: "1234",
-          productItemList: [
-            {
-              productID: "1413y8",
-              productName: "Hafer Porridge Cup Schokolade - Davert - 65 g",
-              productPrice: 2.99,
-              productNutri: "C",
-              productImage:
-                "https://images.openfoodfacts.org/images/products/401/933/963/6107/front_de.22.400.jpg",
-              productBrand: "Davert",
-              capacity: 3,
-            },
-            {
-              productID: "4383",
-              productName: "Couscous Vollkorn - Davert - 500g",
-              productPrice: 12.99,
-              productNutri: "A",
-              productImage:
-                "https://images.openfoodfacts.org/images/products/401/933/930/6109/front_de.6.full.jpg",
-              productBrand: "Davert",
-              capacity: 5,
-            },
-          ],
-          itemQuantity: 4,
-          itemsPrice: 11.96,
-          totalSaving: -2,
-          subtotal: 9.96,
-        };
+        console.log(data);
+        // setProductItemList(data.productItemList);
+        setProductItemList(
+          data.productItems
+            .map((i) => ({ ...i.product[0], quantity: i.quantity }))
+            .map((i) => {
+              console.log(i);
+              return {
+                productID: i.productID,
+                productName: i.productName,
+                productPrice: i.productPrice,
+                productNutri: i.nutriScore,
+                productImage: i.imageUrl,
+                productBrand: i.productBrand,
+                capacity: i.capacity,
+                quantity: i.quantity,
+              };
+            })
+        );
 
-        setProductItemList(data.productItemList);
         setscSummary({
-          itemQuantity: data.itemQuantity,
-          itemsPrice: data.itemsPrice,
-          totalSaving: data.totalSaving,
-          subtotal: data.subtotal,
+          itemQuantity: data.shoppingCartItems.itemQuantity,
+          itemsPrice: data.shoppingCartItems.itemPrice,
+          totalSaving: data.shoppingCartItems.totalSaving,
+          subtotal: data.shoppingCartItems.subTotal,
         });
       })
       .catch((error) => {
         // 临时
-        let data = {
-          shoppingCartID: "1234",
-          productItemList: [
-            {
-              productID: "3",
-              productName: "Hafer Porridge Cup Schokolade - Davert - 65 g",
-              productPrice: 2.99,
-              productNutri: "C",
-              productImage:
-                "https://images.openfoodfacts.org/images/products/401/933/963/6107/front_de.22.400.jpg",
-              productBrand: "Davert",
-              capacity: 3,
-            },
-            {
-              productID: "4",
-              productName: "Couscous Vollkorn - Davert - 500g",
-              productPrice: 12.99,
-              productNutri: "A",
-              productImage:
-                "https://images.openfoodfacts.org/images/products/401/933/930/6109/front_de.6.full.jpg",
-              productBrand: "Davert",
-              capacity: 5,
-            },
-          ],
-          itemQuantity: 4,
-          itemsPrice: 11.96,
-          totalSaving: -2,
-          subtotal: 9.96,
-        };
+        const [messageApi] = message.useMessage();
 
-        setProductItemList(data.productItemList);
-        setscSummary({
-          itemQuantity: data.itemQuantity,
-          itemsPrice: data.itemsPrice,
-          totalSaving: data.totalSaving,
-          subtotal: data.subtotal,
+        messageApi.open({
+          type: "error",
+          content: "System Error",
         });
       });
   }
@@ -164,6 +122,7 @@ function Page() {
                 productImage={productItem.productImage}
                 productNutri={productItem.productNutri}
                 capacity={productItem.capacity}
+                quantity={productItem.quantity}
               ></ShoppingCartItem>
             );
           })}

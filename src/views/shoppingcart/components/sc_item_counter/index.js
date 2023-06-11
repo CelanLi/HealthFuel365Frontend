@@ -2,7 +2,7 @@
 import { useState } from "react";
 import "./index.css";
 
-function ScItemCounter({ count = 1, setCount }) {
+function ScItemCounter({ count=1, setCount }) {
   const [countValue, setCountValue] = useState(count);
 
   // input只接受库存量内的数字

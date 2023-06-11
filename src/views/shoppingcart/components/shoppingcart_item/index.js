@@ -15,12 +15,12 @@ function ShoppingCartItem({
   productImage,
   deleteProductID,
   changeProductCount,
+  quantity,
 }) {
-  const [countValue, setCountValue] = useState(1);
-
+  const [countValue, setCountValue] = useState(1); 
   function getItemCount(value) {
     setCountValue(value);
-    changeProductCount({productID, value});
+    changeProductCount({ productID, value });
     //Todo: getShoppingCartList
   }
 
@@ -46,7 +46,10 @@ function ShoppingCartItem({
               <ShoppingCartNutri nutri={productNutri}></ShoppingCartNutri>
             </div>
             <div className="sc_item_count">
-              <ScItemCounter setCount={getItemCount}></ScItemCounter>
+              <ScItemCounter
+                count={quantity}
+                setCount={getItemCount}
+              ></ScItemCounter>
             </div>
           </div>
         </div>

@@ -1,16 +1,16 @@
 import serviceAxios from "../util/request.js";
 
-export const getShoppingCartDetail = (data) => {
+export const getShoppingCartDetail = (params) => {
   return serviceAxios({
-    url: "/api/shoppingCartList",
+    url: "http://localhost:8081/shoppingcart/shoppingCartList",
     method: "get",
-    data,
+    params,
   });
 };
 
 export const deleteProductItem = (data) => {
   return serviceAxios({
-    url: "/api/deleteProductItem",
+    url: "http://localhost:8081/shoppingcart/deleteProductItem",
     method: "post",
     data,
   });
@@ -18,7 +18,7 @@ export const deleteProductItem = (data) => {
 
 export const changeProductCount = (data) => {
   return serviceAxios({
-    url: "/api/changeProductCount",
+    url: "http://localhost:8081/shoppingcart/changeProductCount",
     method: "post",
     data,
   });
@@ -26,7 +26,7 @@ export const changeProductCount = (data) => {
 
 export const validatePromoCode = (data) => {
   return serviceAxios({
-    url: "/api/validatePromoCode",
+    url: "http://localhost:8081/shoppingcart/validatePromoCode",
     method: "post",
     data,
   });
