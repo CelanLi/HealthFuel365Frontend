@@ -1,12 +1,19 @@
-import "./index.css";
+
+
+//dependencies
 import React from 'react'
 import { useState } from 'react';
 import { Button, Modal, Form, Input, List } from 'antd';
 
+//import style
+import "./index.css";
+import MyAddress from './components/me_address';
+import MyProfile from './components/me_profile';
+import OrderAddAddress from '../../order/components/or_add_address'
+import MyOrder from './components/me_order';
+
 import User from '../../../assets/images/myaccount/tax-inspector.png'
-import AddIcon from '../../../assets/images/myaccount/icon-address.png'
-import PhoneIcon from '../../../assets/images/myaccount/icon-phone.png'
-import Receiver from '../../../assets/images/myaccount/icon-receiver.png'
+
 import Plus from '../../../assets/images/myaccount/icon-plus.png'
 import HealthGoal from '../../../assets/images/myaccount/icon-health-goal.png'
 import DietType from '../../../assets/images/myaccount/icon-diet-type.png'
@@ -154,235 +161,109 @@ function App() {
     <div className='myaccount-body'>
       <div className="tabpanels">
         {value === 0 && <div className="tab-panel-item">
-        <div className='myaccount-address'>
-          {/* the title of block */}
-          <div className='myaccount-title'>
-            <p className='myaccount-title-1'>Address Management&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-            <p className='myaccount-title-2'>{">>>"}</p>
-          </div>
+          <div className='myaccount-address'>
+            {/* the title of block */}
+            <div className='myaccount-title'>
+              <p className='myaccount-title-1'>Address Management&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+              <p className='myaccount-title-2'>{">>>"}</p>
+            </div>
 
-          <div className='myaccount-current-address'>
-            {addressList.map((addressItem => {
-              return(
-                <div className="myaccount-content">
-                  <div className="myaccount-content-left">
-                    <div className="myaccount-content-up">
-                      <div className="myaccount-content-up-block">
-                        <img src={Receiver} className="myaccount-address-icon"/>
-                        <div className="myaccount-address-text-1">Receiver:&nbsp;{addressItem.receiver}</div>
-                      </div>
-                      <div className="myaccount-content-up-block">
-                        <img src={PhoneIcon} className="myaccount-address-icon"/>
-                        <div className="myaccount-address-text-1">Tel:&nbsp;{addressItem.tel}</div>
-                      </div>
-                      
-                    </div>
-                    <div className="myaccount-content-bottom">
-                      <img src={AddIcon} className="myaccount-address-icon" />
-                      <div className="myaccount-content-bottom-text">
-                        <div className="myaccount-address-text-1">Address:&nbsp;{addressItem.additional},&nbsp;{addressItem.street},&nbsp;{addressItem.postCode},&nbsp;{addressItem.city}</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div>
-                    <div  className="myaccount-button-block">
-                      <button className='myaccount-edit'>Edit</button>
-                    </div>
-                    <div  className="myaccount-button-block">
-                      <button className='myaccount-delete'>Delete</button>
-                    </div>
-                  </div>
-                </div>
-
-              )
-            }))}
-
+            <div className='myaccount-current-address'>
+              {addressList.map((addressItem => {
+                return(
+                  <MyAddress
+                    receiver={addressItem.receiver}
+                    street={addressItem.street}
+                    postCode={addressItem.postCode}
+                    city={addressItem.city}
+                    additional={addressItem.additional}
+                    tel={addressItem.tel}>
+                  </MyAddress>
+                )
+              }))}
+            </div>
             
+            <div className='myaccount-add-address'>
+              {/* <button onClick={showModal} className='myaccount-add-address-button'>
+                <img src={Plus} className="myaccount-address-icon" />
+                &nbsp;&nbsp;Add a new address
+              </button> */}
+              <OrderAddAddress></OrderAddAddress>
+            </div>
           </div>
+        </div>}
 
-          <div className='myaccount-add-address'>
-            <button onClick={showModal} className='myaccount-add-address-button'>
-              <img src={Plus} className="myaccount-address-icon" />
-              &nbsp;&nbsp;Add a new address
-            </button>
-            <Modal className='myaccount-add-address-panel' title="New Address" 
-            open={isModalOpen} onOk={handleOk} onCancel={handleCancel} footer={null}>
-              <Form className='myaccount-add-address-form'
-                labelCol={{span: 5,}}
-                wrapperCol={{span: 16,}}
-                style={{maxWidth: 600,marginTop: 50}}
-                initialValues={{remember: true,}}
-                onFinish={onFinish}
-                onFinishFailed={onFinishFailed}
-                autoComplete="off"
-              >
-                <Form.Item
-                  label="Receiver"
-                  name="receiver"
-                  rules={[
-                    {
-                      required: true,
-                      message: 'Please input receiver name!',
-                    },
-                  ]}
-                >
-                  <Input />
-                </Form.Item>
-                <Form.Item
-                  label="City"
-                  name="city"
-                  rules={[
-                    {
-                      required: true,
-                      message: 'Please input your city!',
-                    },
-                  ]}
-                >
-                  <Input />
-                </Form.Item>
-                <Form.Item
-                  label="Street"
-                  name="street"
-                  rules={[
-                    {
-                      required: true,
-                      message: 'Please input your street!',
-                    },
-                  ]}
-                >
-                  <Input />
-                </Form.Item>
-                <Form.Item
-                  label="Post Code"
-                  name="postCode"
-                  rules={[
-                    {
-                      required: true,
-                      message: 'Please input your postcode!',
-                    },
-                  ]}
-                >
-                  <Input />
-                </Form.Item>
-                <Form.Item
-                  label="Tel"
-                  name="tel"
-                  rules={[
-                    {
-                      required: true,
-                      message: 'Please input your tel number!',
-                    },
-                  ]}
-                >
-                  <Input />
-                </Form.Item>
-                <Form.Item
-                  label="other info"
-                  name="additional"
-                  rules={[
-                    {
-                      required: false,
-                    },
-                  ]}
-                >
-                  <Input />
-                </Form.Item>
-                <Form.Item
-                  wrapperCol={{
-                    offset: 10,
-                    span: 16,
-                  }}
-                >
-                  <Button htmlType="submit" className='myaccount-submit'>
-                    Submit
-                  </Button>
-                </Form.Item>
-              </Form>
-            </Modal>
-          </div>
-        </div>
-      </div>}
-
-      {value === 1 && <div className="tab-panel-item">
-        <div className='myaccount-profile'>
-        {/* the title of block */}
-        <div className='myaccount-title'>
-          <p className='myaccount-title-1'>My Profile&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-          <p className='myaccount-title-2'>{">>>"}</p>
-        </div>
-
-        <div className='myaccount-profile'>
-          {userProfile.map((profileItem => {
-            return(
-              <div className='myaccount-profile-block'>
-                <div className='myaccount-profile-block-1'>
-                  <img src={HealthGoal} className="myaccount-address-icon"/>
-                  <div className="myaccount-address-text-1">My Health Goal:&nbsp;{profileItem.goal}</div>
-                </div>
-                <div className='myaccount-profile-block-1'>
-                  <img src={DietType} className="myaccount-address-icon"/>
-                  <div className="myaccount-address-text-1">My Diet Type:&nbsp;{profileItem.typeOfEater}</div>
-                </div>
-                <div className='myaccount-profile-block-2'>
-                  <div className='myaccount-profile-block-3'>
-                    <img src={Preference} className="myaccount-address-icon"/>
-                    <div className="myaccount-address-text-1">My Dietary Preference:&nbsp;</div>
-                  </div>
-                  <div className="myaccount-preference-list">
-                    <List size="small"
-                      dataSource={profileItem.dietaryPreference}
-                      renderItem={(preference) => (
-                        <List.Item>
-                          <div className="myaccount-address-text-1">{preference}</div>
-                        </List.Item>
-                      )}
-                    />
-                  </div>
-
-                </div>
-              </div>
-
-            )
-          }))}
-
-        </div>
-        <a href="/myaccount/profileEdit" className="shopping_cart">
-          <button className='myaccount-edit'>Edit</button>
-        </a>
-        
-        </div>
-      </div>}
-
-      {value === 2 && <div className="tab-panel-item">
-        <div className='myaccount-orders'>
+        {value === 1 && <div className="tab-panel-item">
+          <div className='myaccount-profile'>
           {/* the title of block */}
-          <div className='myaccount-title'>
-            <p className='myaccount-title-1'>My Orders&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-            <p className='myaccount-title-2'>{">>>"}</p>
+            <div className='myaccount-title'>
+              <p className='myaccount-title-1'>My Profile&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+              <p className='myaccount-title-2'>{">>>"}</p>
+            </div>
+
+            <div className='myaccount-profile'>
+              {userProfile.map((profileItem => {
+                return(
+                  // <MyProfile 
+                  //   goal = {profileItem.goal}
+                  //   typeOfEater = {profileItem.typeOfEater}
+                  //   Preference = {profileItem.dietaryPreference}>
+                  // </MyProfile>
+                  
+                  <div className='myaccount-profile-block'>
+                    <div className='myaccount-profile-block-1'>
+                      <img src={HealthGoal} className="myaccount-address-icon"/>
+                      <div className="myaccount-address-text-1">My Health Goal:&nbsp;{profileItem.goal}</div>
+                    </div>
+                    <div className='myaccount-profile-block-1'>
+                      <img src={DietType} className="myaccount-address-icon"/>
+                      <div className="myaccount-address-text-1">My Diet Type:&nbsp;{profileItem.typeOfEater}</div>
+                    </div>
+                    <div className='myaccount-profile-block-2'>
+                      <div className='myaccount-profile-block-3'>
+                        <img src={Preference} className="myaccount-address-icon"/>
+                        <div className="myaccount-address-text-1">My Dietary Preference:&nbsp;</div>
+                      </div>
+                      <div className="myaccount-preference-list">
+                        <List size="small"
+                          dataSource={profileItem.dietaryPreference}
+                          renderItem={(preference) => (
+                            <List.Item>
+                              <div className="myaccount-address-text-1">{preference}</div>
+                            </List.Item>
+                          )}
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                )
+              }))}
+
+            </div>
+            <a href="/myaccount/profileEdit" className="shopping_cart">
+              <button className='myaccount-edit'>Edit</button>
+            </a>
           </div>
-          {orderList.map(orderItem => {
-            return(
-              <div className="myaccount-order">
-                  <div className='myaccount-order-title'>
-                    <p className='myaccount-order-text'>Order ID:</p>
-                    <p className='myaccount-order-text'>{orderItem.id}</p>
-                  </div>
-                  <div className='myaccount-order-title'>
-                    <p className='myaccount-order-text'>Order Date:</p>
-                    <p className='myaccount-order-text'>{orderItem.date}</p>
-                  </div>
-                  <div className='myaccount-order-title'>
-                    <p className='myaccount-order-text'>Total Price:</p>
-                    <p className='myaccount-order-text'>{orderItem.totalPrice}</p>
-                  </div>
-                  <div className='myaccount-order-title'>
-                    <p className='myaccount-order-text'>Order Status:</p>
-                    <p className='myaccount-order-text'>{orderItem.status}</p>
-                  </div>
-              </div>
-            )})}
-        </div>
-      </div>}
+        </div>}
+
+        {value === 2 && <div className="tab-panel-item">
+          <div className='myaccount-orders'>
+            {/* the title of block */}
+            <div className='myaccount-title'>
+              <p className='myaccount-title-1'>My Orders&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+              <p className='myaccount-title-2'>{">>>"}</p>
+            </div>
+            {orderList.map(orderItem => {
+              return(
+                <MyOrder
+                  id={orderItem.id}
+                  date={orderItem.date}
+                  totalPrice={orderItem.totalPrice}
+                  status={orderItem.status}></MyOrder>
+              )})}
+          </div>
+        </div>}
       
       </div>
     </div>

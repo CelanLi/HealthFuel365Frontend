@@ -1,0 +1,31 @@
+.myaccount-order{
+    background-color: #C4D0CB;
+    margin-bottom: 20px;
+    border-radius: 20px;
+    height: 200px;
+    width: 1000px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.myaccount-order-title{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 5px;
+    margin-left: 30px;
+}
+
+.myaccount-order-text{
+
+    
+    font-family: 'Kaisei Opti';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    text-decoration: none;
+  
+    color: #033D1F;
+}
