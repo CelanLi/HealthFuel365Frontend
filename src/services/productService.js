@@ -22,7 +22,7 @@ export const getProductsByName = async (name, selectedSort) => {
   try {
     console.log(backendUrl + productRoute + "?search=" + name);
     const result: Response = await axios.get(
-      backendUrl + productRoute + "?search=" + name
+      backendUrl + productRoute + "/" + selectedSort + "/?search=" + name
     );
     const response = result.data;
     console.log(response);
