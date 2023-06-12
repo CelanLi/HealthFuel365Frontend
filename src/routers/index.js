@@ -9,6 +9,8 @@ import Order from "../views/order/index";
 import AppLayout from '../components/layout'; 
 import MyAccount from '../views/me/myaccount'
 import ProfileEdit from "../views/me/profileedit";
+import Login from "../views/login/index"
+import Register from "../views/register/index"
 
 export const routers = [
   {
@@ -94,6 +96,16 @@ export const routers = [
         element: <ProfileEdit />
       }
     ]
+  },
+  {
+    // 进入log in Page
+    path: "/login", // http://www.healthfuel365.com/login
+    element: <Login />,
+  },
+  {
+    // 进入register Page
+    path: "/register", // http://www.healthfuel365.com/register
+    element: <Register />,
   },
     ]
   }

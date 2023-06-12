@@ -21,8 +21,8 @@ function Page() {
         <div className="wel_slogan"> ——Online gas station for your health </div>
 
         <div className="wel_btn_wrap">
-          <div className="login">Login</div>
-          <div className="register">Register</div>
+          <div className="login"><Link to={'/login'}>Login</Link></div>
+          <div className="register"><Link to={'/register'}>Register</Link></div>
         </div>
 
         <div className="guest"><Link to="/homepage">Visit as a guest</Link></div>

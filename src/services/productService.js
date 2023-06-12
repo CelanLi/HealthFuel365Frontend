@@ -3,8 +3,8 @@ import { IOpenFoodFactsData } from "../models/types";
 import { backendUrl, productRoute } from "../util/constants";
 
 export const getAllProducts = async (selectedSort: string) => {
+
   try {
-    console.log(backendUrl + productRoute);
     const result: Response = await axios.get(
       backendUrl + productRoute + "/" + selectedSort
     );
