@@ -9,6 +9,7 @@ import {
   getAllProducts,
   getProductsByName,
 } from "../../services/productService";
+import { getDetail } from "../../services/productDetailService";
 import React from "react";
 import { useState, useCallback, useEffect } from "react";
 import { useLocation } from "react-router-dom";
@@ -108,6 +109,8 @@ function Page() {
   ]);
   */
   const [productList, setProductList] = useState([]);
+  // the filter needs the product detail information
+  const [productDetailList, setProductDetailList] = useState([]);
   // used to get the keywords in the search part
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
@@ -129,8 +132,19 @@ function Page() {
       const list = await (keyWords === null
         ? getAllProducts(sort)
         : getProductsByName(keyWords, sort));
-      console.log(JSON.stringify(list) + "to test");
+      console.log(JSON.stringify(list) + "product to test");
       setProductList(list);
+      const detailList = async () => {
+        const dList = [];
+        for (const product of list) {
+          const detail = await (getDetail(product.productID));
+          dList.push(detail[1]);
+        }
+        return dList;
+      }
+      const productDetails = await detailList();
+      setProductDetailList(productDetails);
+      console.log(JSON.stringify(productDetails) + "detail to test")
     } catch (error) {
       console.error("error set products:", error);
     }
@@ -156,27 +170,38 @@ function Page() {
   function getSelectedNutri(value){
     setNutri(value);
   }
+  // used to get the selected preference
+  const [preference, setPreference] = useState([]);
+  function getSelectedPreference(value){
+    setPreference(value);
+  }
+  // used to get the selected fat content
+  const [fatContent, setFatContent] = useState(100);
+  function getSelectedFatContent(value){
+    setFatContent(value);
+  }
+  // used to get the selected sugar content
+  const [sugarContent, setSugarContent] = useState(100);
+  function getSelectedSugarContent(value){
+    setSugarContent(value);
+  }
+  // used to get the selected salt content
+  const [saltContent, setSaltContent] = useState(100);
+  function getSelectedSaltContent(value){
+    setSaltContent(value);
+  }
   // used to get the selected Brands
   const [brands, setBrands] = useState([]);
   function getSelectedBrands(value){
     setBrands(value);
   }
   // displayed product list
-  const [filteredProductList, setfilteredProductList] = useState(
-    productList.filter((product) => {
-      if (category !== undefined) {
-        return product.category === category;
-      } else {
-        return true;
-      }
-    })
-  );
+  const [filteredProductList, setfilteredProductList] = useState([]);
   // displayed product list on page one
-  const [pageProductList, setPageProductList] = useState(
-    filteredProductList.slice(0, 10)
-  );
+  const [pageProductList, setPageProductList] = useState([]);
   // reset filteredProductList if the selected category/ nutri-score/ dietray preference/ brands
   const resetfilteredProductList= () => {
+    var fatIDs, sugarIDs, saltIDs, veganIDs, vegetarianIDs = [];
     setfilteredProductList(
       productList.filter((product) => {
         const conditions = [];
@@ -185,6 +210,32 @@ function Page() {
         }
         if (nutri !== null) {
           conditions.push(product.nutriScore <= nutri);
+        }
+        if (fatContent != 100) {
+          const fat=productDetailList.filter((productDetail) => productDetail.fat<=fatContent);
+          fatIDs= fat.map((productDetail) => productDetail.productID);
+          console.log(fatContent+"fat..."+fat.map((productDetail) => productDetail.fat));
+          conditions.push(fatIDs.includes(product.productID));
+        }
+        if (sugarContent != 100) {
+          const sugar=productDetailList.filter((productDetail) => productDetail.sugar<=sugarContent);
+          sugarIDs= sugar.map((productDetail) => productDetail.productID);
+          conditions.push(sugarIDs.includes(product.productID));
+        }
+        if (saltContent !=100){
+          const salt=productDetailList.filter((productDetail) => productDetail.salt<=saltContent);
+          saltIDs= salt.map((productDetail) => productDetail.productID);
+          conditions.push(saltIDs.includes(product.productID));
+        }
+        if (preference.includes("vegan")){
+          const vegan=productDetailList.filter((productDetail) => productDetail.vegan);
+          veganIDs= vegan.map((productDetail) => productDetail.productID);
+          conditions.push(veganIDs.includes(product.productID));
+        }
+        if (preference.includes("vegetarian")){
+          const vegetarian=productDetailList.filter((productDetail) => productDetail.vegetarian);
+          vegetarianIDs= vegetarian.map((productDetail) => productDetail.productID);
+          conditions.push(vegetarianIDs.includes(product.productID));
         }
         if (brands.length !== 0) {
           conditions.push(brands.includes(product.productBrand));
@@ -199,8 +250,10 @@ function Page() {
     resetfilteredProductList();
     console.log("all-product-page category: " + category);
     console.log("all-product-page nutri: " + nutri);
+    console.log("all-product-page preference: " + preference);
+    console.log("all-product-page fat content: " + fatContent);
     console.log("all-product-page brands: " + brands);
-  }, [category, nutri, brands, productList]);
+  }, [category, nutri, preference, fatContent, sugarContent, saltContent, brands, productList]);
   useEffect(() => {
     setPageProductList(filteredProductList.slice(0, 10));
   }, [filteredProductList]);
@@ -233,7 +286,7 @@ function Page() {
           <SortProducts setSort={getSelectedSort} />
           {/* three filters: 1. Nutri-score 2. Dietary Preference 3. Brand*/}
           <NutriFilter setNutri={getSelectedNutri} />
-          <DietaryPreferencFilter />
+          <DietaryPreferencFilter setPreference={getSelectedPreference} setFatContent={getSelectedFatContent} setSugarContent={getSelectedSugarContent} setSaltContent={getSelectedSaltContent}/>
           <BrandFilter setBrands={getSelectedBrands} />
         </div>
         {/* categories and products*/}

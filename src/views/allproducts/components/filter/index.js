@@ -55,11 +55,11 @@ export function NutriFilter({ nutri = null, setNutri }){
   );
 }
 
-export function DietaryPreferencFilter(){
-  const [selectedPreference,setSelectedPreference] = useState([]);
-  const [selectedFatContent,setSelectedFatContent] = useState(100);
-  const [selectedSugarContent,setSelectedSugarContent] = useState(100);
-  const [selectedSaltContent,setSelectedSaltContent] = useState(100);
+export function DietaryPreferencFilter({ preference = [], setPreference, fatContent = 100, setFatContent, sugarContent = 100, setSugarContent, saltContent = 100, setSaltContent}){
+  const [selectedPreference,setSelectedPreference] = useState(preference);
+  const [selectedFatContent,setSelectedFatContent] = useState(fatContent);
+  const [selectedSugarContent,setSelectedSugarContent] = useState(sugarContent);
+  const [selectedSaltContent,setSelectedSaltContent] = useState(saltContent);
 
   useEffect(() => {console.log(selectedPreference);}, [selectedPreference]);
   useEffect(() => {console.log(selectedFatContent);}, [selectedFatContent]);
@@ -70,26 +70,33 @@ export function DietaryPreferencFilter(){
     const { value, checked } = event.target;
     if (checked) {
       setSelectedPreference((prevSelectedPreference) => [...prevSelectedPreference,value ]);
+      setPreference((prevSelectedPreference) => [...prevSelectedPreference,value]);
     } else {
       setSelectedPreference((prevSelectedPreference) =>
        prevSelectedPreference.filter((preference) => preference !== value)
       );
+      setPreference((prevSelectedPreference) =>
+      prevSelectedPreference.filter((preference) => preference !== value)
+     );
     }
   };
     
   const fatContentHandling = (event) => {
     const { value } = event.target;
     setSelectedFatContent(value);
+    setFatContent(value);
   };
     
   const sugarContentHandling = (event) => {
     const { value } = event.target;
     setSelectedSugarContent(value);
+    setSugarContent(value);
   };
     
   const saltContentHandling = (event) => {
     const { value } = event.target;
     setSelectedSaltContent(value);
+    setSaltContent(value);
   };
   
   return(
