@@ -17,6 +17,7 @@ export const routers = [
     // 进入welcomepage
     path: "/", // http://www.healthfuel365.com
     element: <Welcome />,
+    
 
     // 路由嵌套，子路由的元素需使用<Outlet />
     // children: [
@@ -33,6 +34,16 @@ export const routers = [
     //     element: (<Menu22 />)
     //   }
     // ]
+  },
+  {
+    // 进入log in Page
+    path: "/login", // http://www.healthfuel365.com/login
+    element: <Login />,
+  },
+  {
+    // 进入register Page
+    path: "/register", // http://www.healthfuel365.com/register
+    element: <Register />,
   },
 
   {
@@ -97,16 +108,7 @@ export const routers = [
       }
     ]
   },
-  {
-    // 进入log in Page
-    path: "/login", // http://www.healthfuel365.com/login
-    element: <Login />,
-  },
-  {
-    // 进入register Page
-    path: "/register", // http://www.healthfuel365.com/register
-    element: <Register />,
-  },
+
     ]
   }
 ]
