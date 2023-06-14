@@ -1,8 +1,11 @@
 import { Button, Checkbox, Form, Input } from 'antd';
 import React, { useState } from 'react';
 import {registerUser} from '../../../services/userService'
+import { useNavigate } from 'react-router-dom';
 
 function RegisterForm(){
+  const navigate = useNavigate();
+
       const handleSubmit = (e) => {
         e.preventDefault();
         console.log("222",username,email,password)
@@ -11,7 +14,7 @@ function RegisterForm(){
           email:email,
           password:password,});
         
-        
+        navigate('/myaccount/profileedit');
         // empty the form
         setUsername('');
         setEmail('');

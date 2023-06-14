@@ -1,12 +1,79 @@
 import { Button, Form, Input, Select,Radio,Checkbox } from 'antd';
+import React, { useState } from 'react';
 import "./index.css";
+import { profileEdit } from '../../../services/userService';
+import { useNavigate } from 'react-router-dom';
 
 import HealthGoal from '../../../assets/images/myaccount/icon-health-goal.png'
 import DietType from '../../../assets/images/myaccount/icon-diet-type.png'
 import Preference from '../../../assets/images/myaccount/icon-preference.png'
 
-const App = () => {
-  const [form] = Form.useForm();
+function Page() {
+    const [form] = Form.useForm();
+    const navigate = useNavigate();
+
+    const [healthGoal, setHealthGoal] = useState("notSure")
+    const [dietType, setDietType] = useState("notSure")
+    const [nutriScore, setNutriScore] = useState("notSure")
+    const [fat, setFat] = useState(false);
+    const [salt, setSalt] = useState(false);
+    const [sugar, setSugar] = useState(false);
+
+    //handle change of radios
+    const handleHealthGoalChange = (e) => {
+        setHealthGoal(e.target.value);
+      };
+
+    const handleDietTypeChange = (e) => {
+        setDietType(e.target.value);
+    };
+
+    const handleNutriScoreChange = (e) => {
+        setNutriScore(e.target.value);
+    };
+
+    const handleFatChange = (e) => {
+        setFat(e.target.checked);
+    };
+
+    const handleSaltChange = (e) => {
+        setSalt(e.target.checked);
+    };
+
+    const handleSugarChange = (e) => {
+        setSugar(e.target.checked);
+    };
+
+
+    const handleButtonClick = () => {
+        let losingWeightAsGoal = false;
+        if (healthGoal === "loseWeight")
+        {
+            losingWeightAsGoal = true;
+        }
+        else{
+            losingWeightAsGoal = false;
+        }
+        const nutriPreference = ['A','B','C','D','E']
+        if(nutriScore === 'A'){
+            nutriPreference.splice(1, 4);
+        }
+        if(nutriScore === 'B'){
+            nutriPreference.splice(2, 3);
+        }
+        if(nutriScore === 'C'){
+            nutriPreference.splice(3, 2);
+        }
+        profileEdit({
+            losingWeightAsGoal : losingWeightAsGoal,
+            typeOfEater : dietType,
+            nutriPreference: nutriPreference,
+            lowInFat : fat,
+            lowInSalt: salt,
+            lowInSugar: sugar,
+        })
+        navigate('/myaccount');
+      };
 
   return (
     <div className='profile-wrap'>
@@ -22,7 +89,7 @@ const App = () => {
                 </div>
 
                 <div className='profile-answer'>
-                    <Radio.Group  defaultValue="notSure">
+                    <Radio.Group  defaultValue="notSure" onChange={handleHealthGoalChange}>
                         <Radio value="loseWeight">
                             <div className='profile-answers'>I want to lose weight.</div>  
                         </Radio>
@@ -49,7 +116,7 @@ const App = () => {
                     </div>
                 </div>
                 <div className='profile-answer'>
-                    <Radio.Group  defaultValue="notSure">
+                    <Radio.Group  defaultValue="notSure" onChange={handleDietTypeChange}>
                         <Radio value="vegan">
                             <div className='profile-answers'>Vegan.</div>  
                         </Radio>
@@ -76,19 +143,19 @@ const App = () => {
                 </div>
                 <div>
                     <div className='profile-answer'>
-                        <Checkbox>
+                        <Checkbox onClick={handleFatChange}>
                             <div className='profile-answers'>Low in fat.</div>
                         </Checkbox>
-                        <Checkbox>
+                        <Checkbox onClick={handleSugarChange}>
                             <div className='profile-answers'>Low in sugar.</div>
                         </Checkbox>
-                        <Checkbox>
+                        <Checkbox onClick={handleSaltChange}>
                             <div className='profile-answers'>Low in salt.</div>
                         </Checkbox>
                     </div>
                     <div className='profile-answer'>
                         <div className='profile-answers'>I prefer foods with Nutri-Score no less than:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
-                        <Radio.Group defaultValue="notSure">
+                        <Radio.Group defaultValue="notSure" onChange={handleNutriScoreChange}>
                             <Radio value="A"> 
                                 <div className='profile-answers'>A</div>
                             </Radio>
@@ -107,7 +174,7 @@ const App = () => {
             </Form.Item>
 
             <Form.Item>
-                <button className='myaccount-edit' htmlType="submit"> 
+                <button className='myaccount-edit' htmlType="submit" onClick={handleButtonClick}> 
                     Submit
                 </button>
             </Form.Item>
@@ -116,4 +183,4 @@ const App = () => {
     
   );
 };
-export default App;
+export default Page;

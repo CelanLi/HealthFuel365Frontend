@@ -1,6 +1,10 @@
 import axios, { AxiosHeaders } from "axios";
+import {setCookie,getCookie, invalidateCookie, invalidateAllCookies} from "../util/cookie.js"
 import serviceAxios from "../util/request.js";
 import { message } from "antd";
+
+const expiryDate = new Date();
+expiryDate.setTime(expiryDate.getTime() + 24 * 60 * 60 * 1000);
 
 export const registerUser = async (data) => {
   //catch error
@@ -13,12 +17,13 @@ export const registerUser = async (data) => {
         email:data.email,
       }
     );
-      const response = result.data;
-      
-      if (response.status >= 300) {
-        throw new Error(response.message);
-      }
-      return response;
+    const response = result.data;
+    if (response.status >= 300) {
+      throw new Error(response.message);
+    }
+    document.cookie = response.token
+    console.log("22222",document.cookie)
+    return response;
   } catch (error){
     if(error.response){
       const responseData = error.response.data;
@@ -41,11 +46,18 @@ export const loginUser = async (data) => {
       }
     );
     const response = result.data;
-      
-      if (response.status >= 300) {
-        throw new Error(response.message);
-      }
-      return response;
+    if (response.status >= 300) {
+      throw new Error(response.message);
+    }
+    //when user log in successfully, a token will be stored in his browser.
+    setCookie(data.username,response.token)
+
+    const cookieName = data.username;
+
+    console.log("22222",document.cookie)
+    console.log("333",getCookie(cookieName))
+    window.location.href = '/homepage';
+    return response;
 
   } catch (error){
     if(error.response){
@@ -55,6 +67,46 @@ export const loginUser = async (data) => {
     else{
       alert("Login failed!")
     }
-  }
+  };
+};
 
+export const profileEdit = async (data) => {
+  console.log("bbb",data)
+  //catch error
+  try {
+    const result: Response = await axios.put(
+      'http://localhost:8081/user/profileedit',
+      {
+        losingWeightAsGoal: data.losingWeightAsGoal,
+        typeOfEater: data.typeOfEater,
+        nutriPreference: data.nutriPreference,
+        lowInFat: data.lowInFat,
+        lowInSalt: data.lowInSalt,
+        lowInSugar: data.lowInSugar,
+      },
+      {
+        headers: {
+          Authorization: document.cookie, //put cookie into header
+        },
+      }
+    );
+    const response = result.data;
+    if (response.status >= 300) {
+      throw new Error(response.message);
+    }
+    console.log(result.data)
+    return response;
+  } catch (error){
+    if(error.response){
+      const responseData = error.response.data;
+      alert('Profile edit failed:\n' + JSON.stringify(responseData.message));
+    }
+    else{
+      alert("Profile edit failed!")
+    }
+  }
+};
+
+export const logoutUser = async () => {
+  invalidateAllCookies();
 };

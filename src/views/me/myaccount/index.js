@@ -2,6 +2,10 @@
 import React from 'react'
 import { useState } from 'react';
 import { Button, Modal, Form, Input, List } from 'antd';
+import { useNavigate } from 'react-router-dom';
+
+//import functions
+import {logoutUser} from "../../../services/userService"
 
 //import style
 import "./index.css";
@@ -10,8 +14,9 @@ import MyProfile from './components/me_profile';
 import OrderAddAddress from '../../order/components/or_add_address'
 import MyOrder from './components/me_order';
 
-import User from '../../../assets/images/myaccount/tax-inspector.png'
 
+//import resourses
+import User from '../../../assets/images/myaccount/tax-inspector.png'
 import Plus from '../../../assets/images/myaccount/icon-plus.png'
 import HealthGoal from '../../../assets/images/myaccount/icon-health-goal.png'
 import DietType from '../../../assets/images/myaccount/icon-diet-type.png'
@@ -96,6 +101,14 @@ function App() {
     console.log("Failed:", errorInfo);
   };
 
+  const navigate = useNavigate();
+
+  const handleLogout = (e) => {
+    e.preventDefault();
+    logoutUser();
+    navigate('/homepage');
+  };
+
   const [value, setValue] = useState(0);
   const className = (baseName, isSelected) =>
     (isSelected ? [baseName].concat("selected") : [baseName]).join(" ");
@@ -150,7 +163,7 @@ function App() {
 
             <hr className="line" />
 
-            <div className="myaccount-nav-tab">
+            <div className="myaccount-nav-tab" onClick={handleLogout}>
               <p className="myaccount-nav-title">Log Out</p>
             </div>
           </div>
