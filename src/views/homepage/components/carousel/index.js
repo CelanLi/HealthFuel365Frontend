@@ -2,8 +2,8 @@ import { Carousel } from 'antd';
 
 
 // size of carousel images: 1450*500
-import Carousel1 from '../../../assets/images/homepage/Healthy-Snacks.jpg'
-import Carousel2 from '../../../assets/images/homepage/snacks2.jpg'
+import Carousel1 from '../../../../assets/images/homepage/Healthy-Snacks.jpg'
+import Carousel2 from '../../../../assets/images/homepage/snacks2.jpg'
 
 const contentStyle = {
   height: '200px',
