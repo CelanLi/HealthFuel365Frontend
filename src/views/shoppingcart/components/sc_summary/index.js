@@ -54,7 +54,7 @@ function ShoppingCartSummary({
         <div className="sc_content_right_bottom">
           <div className="sc_content_right_bottom_total_saving">
             <div className="sc_total_saving">Total Savings</div>
-            <div className="sc_total_saving_value">{totalSaving}€</div>
+            <div className="sc_total_saving_value">- {totalSaving}€</div>
           </div>
           <div className="sc_content_right_bottom_subtotal">
             <div className="sc_subtotal">Subtotal</div>

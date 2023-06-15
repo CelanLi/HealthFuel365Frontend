@@ -1,33 +1,25 @@
 import serviceAxios from "../util/request.js";
+import { backendUrl, shoppingCartRoute } from "../util/constants";
 
 export const getShoppingCartDetail = (params) => {
   return serviceAxios({
-    url: "http://localhost:8081/shoppingcart/shoppingCartList",
+    url: backendUrl + shoppingCartRoute + "/shoppingCartList",
     method: "get",
     params,
   });
 };
 
-export const deleteProductItem = (params) => {
-  let param = new URLSearchParams();
-  param.append("shoppingCartID", params.shoppingCardID);
-  param.append("productID", params.productID);
-
+export const deleteProductItem = (data) => {
   return serviceAxios({
-    url: "http://localhost:8081/shoppingcart/deleteProductItem",
+    url: backendUrl + shoppingCartRoute + "/deleteProductItem",
     method: "post",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    data: JSON.stringify({
-      a: 1
-    }),
+    data,
   });
 };
 
 export const changeProductCount = (data) => {
   return serviceAxios({
-    url: "http://localhost:8081/shoppingcart/changeProductCount",
+    url: backendUrl + shoppingCartRoute + "/changeProductCount",
     method: "post",
     data,
   });
@@ -35,7 +27,7 @@ export const changeProductCount = (data) => {
 
 export const validatePromoCode = (data) => {
   return serviceAxios({
-    url: "http://localhost:8081/shoppingcart/validatePromoCode",
+    url: backendUrl + shoppingCartRoute + "/validatePromoCode",
     method: "post",
     data,
   });

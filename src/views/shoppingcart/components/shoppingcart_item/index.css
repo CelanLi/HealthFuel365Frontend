@@ -99,6 +99,15 @@
   text-align: center;
   text-decoration-line: underline;
   color: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+
+.sc_item_remove:hover{
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.sc_item_remove:active{
+  color: rgba(0, 0, 0, 1);
 }
 
 .sc_item_price {

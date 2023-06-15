@@ -23,7 +23,7 @@ function Page() {
   function getShoppingCartInfo() {
     // then:sucess;catch:error
     getShoppingCartDetail({ shoppingCartID: shoppingCartID })
-      .then((data) => { 
+      .then((data) => {
         // setProductItemList(data.productItemList);
         setProductItemList(
           data.productItems
@@ -69,10 +69,13 @@ function Page() {
   }
 
   async function changeProductQuantity({ productID, value: count }) {
+    if (Number(count) === 0) {
+      return;
+    }
     await changeProductCount({
       shoppingCartID: shoppingCartID,
       productID: productID,
-      quantity: count,
+      quantity: Number(count),
     });
     await getShoppingCartInfo();
   }
@@ -95,7 +98,7 @@ function Page() {
 
   return (
     // HTML structer
-    <div className="shoppingcart_wrap"> 
+    <div className="shoppingcart_wrap">
       {contextHolder}
       {/* &lt;represent< */}
       <div className="sc_bread_crumb">

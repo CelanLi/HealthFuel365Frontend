@@ -23,7 +23,11 @@ function ShoppingCartItem({
   }
 
   function getTimesValue(num1, num2) {
-    return new BigNumber(num1).times(new BigNumber(num2)).toFixed();
+    const value = new BigNumber(num1).times(new BigNumber(num2)).toFixed();
+    if (isNaN(value)){
+      return 0;
+    }
+    return value;
   }
 
   return (
