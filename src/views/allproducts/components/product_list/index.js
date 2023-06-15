@@ -1,4 +1,3 @@
-// 引入样式文件
 import "./index.css";
 import Product from "../../../../components/product";
 

@@ -206,39 +206,39 @@ function Page() {
       productList.filter((product) => {
         const conditions = [];
         if (category !== undefined) {
-          conditions.push(product.category === category);
+          conditions.push(product?.category === category);
         }
         if (nutri !== null) {
-          conditions.push(product.nutriScore <= nutri);
+          conditions.push(product?.nutriScore <= nutri);
         }
         if (fatContent != 100) {
-          const fat=productDetailList.filter((productDetail) => productDetail.fat<=fatContent);
+          const fat=productDetailList.filter((productDetail) => productDetail?.fat<=fatContent);
           fatIDs= fat.map((productDetail) => productDetail.productID);
-          console.log(fatContent+"fat..."+fat.map((productDetail) => productDetail.fat));
+          console.log(fatContent+"fat..."+fat.map((productDetail) => productDetail?.fat));
           conditions.push(fatIDs.includes(product.productID));
         }
         if (sugarContent != 100) {
-          const sugar=productDetailList.filter((productDetail) => productDetail.sugar<=sugarContent);
+          const sugar=productDetailList.filter((productDetail) => productDetail?.sugar<=sugarContent);
           sugarIDs= sugar.map((productDetail) => productDetail.productID);
           conditions.push(sugarIDs.includes(product.productID));
         }
         if (saltContent !=100){
-          const salt=productDetailList.filter((productDetail) => productDetail.salt<=saltContent);
+          const salt=productDetailList.filter((productDetail) => productDetail?.salt<=saltContent);
           saltIDs= salt.map((productDetail) => productDetail.productID);
           conditions.push(saltIDs.includes(product.productID));
         }
         if (preference.includes("vegan")){
-          const vegan=productDetailList.filter((productDetail) => productDetail.vegan);
+          const vegan=productDetailList.filter((productDetail) => productDetail?.vegan);
           veganIDs= vegan.map((productDetail) => productDetail.productID);
           conditions.push(veganIDs.includes(product.productID));
         }
         if (preference.includes("vegetarian")){
-          const vegetarian=productDetailList.filter((productDetail) => productDetail.vegetarian);
+          const vegetarian=productDetailList.filter((productDetail) => productDetail?.vegetarian);
           vegetarianIDs= vegetarian.map((productDetail) => productDetail.productID);
           conditions.push(vegetarianIDs.includes(product.productID));
         }
         if (brands.length !== 0) {
-          conditions.push(brands.includes(product.productBrand));
+          conditions.push(brands.includes(product?.productBrand));
         }
         // use every method to check if each conditional function returns true
         return conditions.every((condition) => condition);
