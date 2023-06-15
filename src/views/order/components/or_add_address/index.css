@@ -7,11 +7,9 @@
   font-style: normal;
   font-weight: 700;
   font-size: 20px;
-  color: #ffffff;
-  /* 文字水平垂直居中 */
+  color: #ffffff; 
   text-align: center;
-  line-height: 36px;
-  /* buttom 水平居中 */
+  line-height: 36px; 
   margin: 0px auto;
   margin-top: 20px;
   cursor: pointer;

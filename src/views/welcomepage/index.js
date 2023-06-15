@@ -1,6 +1,6 @@
-// 引入样式文件
+// import
 import './index.css';
-// 依赖
+// Dependency
 import {Link} from 'react-router-dom'
 
 function Page() {
@@ -13,7 +13,7 @@ function Page() {
   ]
 
   return (
-    // HTML结构,！！左右划分
+    // Left & Right devided
     <div className="welcomepage_wrap"> 
       <div className="whiteboard"></div>
       <div className="wel_left">
@@ -29,7 +29,7 @@ function Page() {
       </div>
 
       <div className="wel_right">
-        {/* 遍历 */}
+        {/* Loop */}
         {featurelist.map(item => ((
           <>
             <div className="wel_feature"><div>{item}</div></div>

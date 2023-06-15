@@ -18,8 +18,7 @@
     display: flex;
     justify-content: baseline;
   }
-
-  /* 左侧正文格式 */
+ 
 .or_address_receiver,
 .or_address_tel,
 .or_address_street,

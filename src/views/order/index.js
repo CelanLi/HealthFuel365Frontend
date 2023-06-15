@@ -1,8 +1,7 @@
-// 依赖
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
-// 引入样式文件
+ 
 import "./index.css";
 import OrderAddress from "./components/or_address";
 import OrderAddAddress from "./components/or_add_address";
@@ -52,19 +51,17 @@ function Page() {
     totalPrice: "16,86€",
   });
 
-  return (
-    // HTML结构
-    <div className="shoppingcart_wrap"> 
-      {/* 面包屑 */}
-      {/* &lt;代表< */}
+  return ( 
+    <div className="shoppingcart_wrap">  
+      {/* &lt; represent< */}
       <div className="or_bread_crumb">
         {" "}
         <Link to="/shoppingCart">&lt;Back to Shopping Cart</Link>{" "}
       </div>
 
-      {/* 主内容 */}
+      {/* main content */}
       <div className="or_content">
-        {/* item详情 */}
+        {/* item content */}
         <div className="or_content_left">
           <Collapse
             bordered={false}

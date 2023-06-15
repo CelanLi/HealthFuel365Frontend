@@ -1,4 +1,3 @@
-// 引入样式文件
 import "./index.css"; 
 
 function OrderSummary({itemsCount, itemsPrice, totalSavings, subtotal, shipping, additionalService, totalPrice}) {

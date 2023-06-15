@@ -1,4 +1,4 @@
-/* 左侧titel格式 */
+
 .or_additional_service_title {
   font-family: "Kaisei Opti";
   font-style: normal;
@@ -18,8 +18,7 @@
   color: #033d1f;
 }
 
-.or_additional_service {
-  /* 上下线 */
+.or_additional_service { 
   border: 2px solid #033d1f;
   border-left: 0;
   border-right: 0;

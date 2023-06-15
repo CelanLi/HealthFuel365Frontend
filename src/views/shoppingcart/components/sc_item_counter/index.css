@@ -15,9 +15,9 @@
   font-size: 24px;
   line-height: 28px; 
 
-  /* 鼠标变成小手 */
+  /* mini hand */
   cursor:pointer;
-  /* 文字不被选中 */
+  /* front not be selected */
   user-select: none;
 }
 

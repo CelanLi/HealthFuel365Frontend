@@ -1,4 +1,4 @@
-// 新增
+// Add
 import Welcome from "../views/welcomepage/index";
 import Homepage from "../views/homepage/index";
 import Product from "../views/allproducts/index";
@@ -14,12 +14,12 @@ import Register from "../views/register/index"
 
 export const routers = [
   {
-    // 进入welcomepage
+    // go to welcomepage
     path: "/", // http://www.healthfuel365.com
     element: <Welcome />,
     
 
-    // 路由嵌套，子路由的元素需使用<Outlet />
+ 
     // children: [
     //   {
     //     index: true,
@@ -36,32 +36,31 @@ export const routers = [
     // ]
   },
   {
-    // 进入log in Page
+    // log in Page
     path: "/login", // http://www.healthfuel365.com/login
     element: <Login />,
   },
   {
-    // 进入register Page
+    // register Page
     path: "/register", // http://www.healthfuel365.com/register
     element: <Register />,
   },
 
   {
     path: "/",
-    element: <AppLayout />,
-    //路由嵌套，子路由的元素需使用<Outlet />
+    element: <AppLayout />, 
     children: [
       // {
       //   index: true,
       //   element: lazyLoad(<Home />),
       // },
       {
-        // 进入Homepage
+        // Homepage
         path: "/homepage", // http://www.healthfuel365.com/homepage
         element: <Homepage />,
       },
       {
-        // 进入All Products Page
+        // All Products Page
         path: "product", // http://www.healthfuel365.com/product
         // element: <Product />,
         children: [
@@ -70,20 +69,20 @@ export const routers = [
             element: <Product />,
           },
           {
-            // 进入Product Detail Page
+            // Product Detail Page
             path: "detail/:id", // http://www.healthfuel365.com/product/detail
             element: <Detail />,
           },
         ],
       },
       {
-        // 进入FAQs Page
+        // FAQs Page
         path: "/faqs", // http://www.healthfuel365.com/faqs
         element: <Faqs />,
       },
 
       {
-        // 进入Shopping Cart Page
+        // Shopping Cart Page
         path: "/shoppingCart", // http://www.healthfuel365.com/shoppingCart
         element: <ShoppingCart />,
       },

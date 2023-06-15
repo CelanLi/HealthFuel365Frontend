@@ -1,8 +1,6 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import BigNumber from "bignumber.js";
-
-// 引入样式文件
 import "./index.css";
 import ShoppingCartNutri from "../../../../components/nutri";
 import ScItemCounter from "../sc_item_counter";

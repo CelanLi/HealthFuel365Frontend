@@ -8,11 +8,20 @@ export const getShoppingCartDetail = (params) => {
   });
 };
 
-export const deleteProductItem = (data) => {
+export const deleteProductItem = (params) => {
+  let param = new URLSearchParams();
+  param.append("shoppingCartID", params.shoppingCardID);
+  param.append("productID", params.productID);
+
   return serviceAxios({
     url: "http://localhost:8081/shoppingcart/deleteProductItem",
     method: "post",
-    data,
+    headers: {
+      "Content-Type": "application/json",
+    },
+    data: JSON.stringify({
+      a: 1
+    }),
   });
 };
 
