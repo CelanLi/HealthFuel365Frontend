@@ -27,8 +27,17 @@ export const changeProductCount = (data) => {
 
 export const validatePromoCode = (data) => {
   return serviceAxios({
-    url: backendUrl + shoppingCartRoute + "/validatePromoCode",
+    url: backendUrl + shoppingCartRoute + "/validateCode",
     method: "post",
     data,
   });
 };
+
+
+export const deletePromoCode = (data) => {
+  return serviceAxios({
+    url: backendUrl + shoppingCartRoute + "/deletePromoCode",
+    method: "post",
+    data,
+  });
+}; 

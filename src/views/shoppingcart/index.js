@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { message } from "antd";
-
 // dependency
 import "./index.css";
 import ShoppingCartItem from "./components/shoppingcart_item";
@@ -11,6 +10,7 @@ import {
   changeProductCount,
   getShoppingCartDetail,
   validatePromoCode,
+  deletePromoCode,
 } from "../../services/shoppingCartService";
 
 function Page() {
@@ -48,6 +48,7 @@ function Page() {
           itemsPrice: data.shoppingCartItems.itemPrice,
           totalSaving: data.shoppingCartItems.totalSaving,
           subtotal: data.shoppingCartItems.subTotal,
+          codeValue: data.shoppingCartItems.codeValue,
         });
       })
       .catch((error) => {
@@ -81,13 +82,30 @@ function Page() {
   }
 
   async function validatePromoCodeInput(givenCode) {
-    const res = await validatePromoCode({ code: givenCode });
-    // res = {isCanUse: truel, false; msg: "券已失效}
-    if (res.isCanUse) {
+    const res = await validatePromoCode({
+      shoppingCartID: shoppingCartID,
+      code: givenCode,
+    });
+    console.log(res);
+    if (res.code === 0) {
       await getShoppingCartInfo();
     } else {
-      console.log(res.message);
+      messageApi.open({
+        type: "error",
+        content: res.message,
+      });
     }
+    // res = {isCanUse: truel, false; msg: "券已失效}
+    // if (res.isCanUse) {
+    //   await getShoppingCartInfo();
+    // } else {
+    //   console.log(res.message);
+    // }
+  }
+
+  async function removePromoCode() {
+    await deletePromoCode({shoppingCartID: shoppingCartID});
+    await getShoppingCartInfo();
   }
 
   // first visit the page
@@ -135,7 +153,9 @@ function Page() {
             itemsPrice={scSummary.itemsPrice}
             totalSaving={scSummary.totalSaving}
             subtotal={scSummary.subtotal}
+            codeValue={scSummary.codeValue}
             validatePromoCodeInput={validatePromoCodeInput}
+            removePromoCode={removePromoCode}
           ></ShoppingCartSummary>
 
           {/* note */}
