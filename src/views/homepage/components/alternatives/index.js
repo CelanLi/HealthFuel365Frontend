@@ -92,7 +92,7 @@ const Tab101 = () => {
             productID={productItem.productID}
             productName={productItem.productName}
             productPrice={productItem.productPrice}
-            productImage={productItem.productImage}
+            productImage={productItem.imageUrl}
             nutriScore={productItem.nutriScore}
           />
         );

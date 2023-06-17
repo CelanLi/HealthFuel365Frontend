@@ -6,7 +6,7 @@ function Page() {
     {
       question: "What is Nutri-score?",
       answer:
-        "Nutri-Score translates the nutritional quality of a product into a five-letter code (A, B, C, D, and E), while A represents the best nutritional quality, and E represents the worst nutritional quality (see Figure 1.2 right). It does not categorize food into healthy and unhealthy. However, it offers customers a possibility to compare the nutritional quality of foods in the same categories. The score is based on a continuous and discrete scale ranging from +40 (least healthy) to -15 (most healthy) (Romero Ferreiro, Lora Pablos, & Gómez de la Cámara, 2021). While energy, total sugar, saturate fat and sodium score lead to negative points, fruit and vegetables, nuts and legumes, protein and fibre score account for positive points.",
+        "Nutri-Score translates the nutritional quality of a product into a five-letter code (A, B, C, D, and E), while A represents the best nutritional quality, and E represents the worst nutritional quality. It does not categorize food into healthy and unhealthy. However, it offers customers a possibility to compare the nutritional quality of foods in the same categories. The score is based on a continuous and discrete scale ranging from +40 (least healthy) to -15 (most healthy). While energy, total sugar, saturate fat and sodium score lead to negative points, fruit and vegetables, nuts and legumes, protein and fibre score account for positive points.",
     },
     {
       question: "Why use Nutri-score as the indicator?",
