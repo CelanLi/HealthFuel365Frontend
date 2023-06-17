@@ -27,9 +27,8 @@ function Page() {
         // setProductItemList(data.productItemList);
         setProductItemList(
           data.productItems
-            .map((i) => ({ ...i.product[0], quantity: i.quantity }))
+            .map((i) => ({ ...i.product, quantity: i.quantity }))
             .map((i) => {
-              console.log(i);
               return {
                 productID: i.productID,
                 productName: i.productName,
@@ -95,22 +94,15 @@ function Page() {
         content: res.message,
       });
     }
-    // res = {isCanUse: truel, false; msg: "券已失效}
-    // if (res.isCanUse) {
-    //   await getShoppingCartInfo();
-    // } else {
-    //   console.log(res.message);
-    // }
   }
 
   async function removePromoCode() {
-    await deletePromoCode({shoppingCartID: shoppingCartID});
+    await deletePromoCode({ shoppingCartID: shoppingCartID });
     await getShoppingCartInfo();
   }
 
   // first visit the page
   useEffect(() => {
-    // Todo: shoppingcartid
     getShoppingCartInfo();
   }, []);
 
@@ -127,22 +119,29 @@ function Page() {
       <div className="sc_content">
         {/* item content */}
         <div className="sc_content_left">
-          {productItemList.map((productItem) => {
-            return (
-              <ShoppingCartItem
-                key={productItem.productID}
-                deleteProductID={deleteProductID}
-                changeProductCount={changeProductQuantity}
-                productID={productItem.productID}
-                productName={productItem.productName}
-                productUnitPrice={productItem.productPrice}
-                productImage={productItem.productImage}
-                productNutri={productItem.productNutri}
-                capacity={productItem.capacity}
-                quantity={productItem.quantity}
-              ></ShoppingCartItem>
-            );
-          })}
+          {productItemList.length > 0 ? (
+            productItemList.map((productItem) => {
+              return (
+                <ShoppingCartItem
+                  key={productItem.productID}
+                  deleteProductID={deleteProductID}
+                  changeProductCount={changeProductQuantity}
+                  productID={productItem.productID}
+                  productName={productItem.productName}
+                  productUnitPrice={productItem.productPrice}
+                  productImage={productItem.productImage}
+                  productNutri={productItem.productNutri}
+                  capacity={productItem.capacity}
+                  quantity={productItem.quantity}
+                ></ShoppingCartItem>
+              );
+            })
+          ) : (
+            <div className="sc_no_items_wrap">
+              Sorry, your shopping cart is empty. <br />
+              Please continue shopping.
+            </div>
+          )}
         </div>
 
         {/* summary+note */}
