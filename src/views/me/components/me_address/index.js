@@ -1,11 +1,11 @@
 import React from 'react'
 import "./index.css"; 
 
-import { addressDelete } from '../../../../../services/userService';
+import { addressDelete } from '../../../../services/userService';
 
-import AddIcon from '../../../../../assets/images/myaccount/icon-address.png'
-import PhoneIcon from '../../../../../assets/images/myaccount/icon-phone.png'
-import Receiver from '../../../../../assets/images/myaccount/icon-receiver.png'
+import AddIcon from '../../../../assets/images/myaccount/icon-address.png'
+import PhoneIcon from '../../../../assets/images/myaccount/icon-phone.png'
+import Receiver from '../../../../assets/images/myaccount/icon-receiver.png'
 
 function MyAddress({ addressList = [] }) {
     // const handleEdit = (e) => {

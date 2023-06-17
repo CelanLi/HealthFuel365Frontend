@@ -7,7 +7,7 @@ import { addressGet } from '../../../services/userService';
 //import style
 import "./index.css"
 import MyNav from "../components/me_nav"
-import MyAddress from '../myaccount/components/me_address';
+import MyAddress from '../components/me_address';
 import OrderAddAddress from '../../order/components/or_add_address';
 
 function App() {
