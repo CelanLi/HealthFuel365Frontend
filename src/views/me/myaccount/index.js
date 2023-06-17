@@ -1,11 +1,11 @@
 //dependencies
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react';
 import { Button, Modal, Form, Input, List } from 'antd';
 import { useNavigate } from 'react-router-dom';
 
 //import functions
-import {logoutUser} from "../../../services/userService"
+import {addressGet, logoutUser} from "../../../services/userService"
 
 //import style
 import "./index.css";
@@ -31,26 +31,26 @@ function App() {
     },
   ];
 
-  const addressList = [
-    {
-      choice: false,
-      receiver: "Camille Li",
-      street: "street 53",
-      postCode: 12345,
-      city: "Munich",
-      additional: "app. 254",
-      tel: "134678",
-    },
-    {
-      choice: false,
-      receiver: "Lily Y",
-      street: "street 443",
-      postCode: 73743,
-      city: "Munich",
-      additional: "app. 297",
-      tel: "107464292073",
-    },
-  ];
+  // const addressList = [
+  //   {
+  //     choice: false,
+  //     receiver: "Camille Li",
+  //     street: "street 53",
+  //     postCode: 12345,
+  //     city: "Munich",
+  //     additional: "app. 254",
+  //     tel: "134678",
+  //   },
+  //   {
+  //     choice: false,
+  //     receiver: "Lily Y",
+  //     street: "street 443",
+  //     postCode: 73743,
+  //     city: "Munich",
+  //     additional: "app. 297",
+  //     tel: "107464292073",
+  //   },
+  // ];
 
   const userProfile = [
     {
@@ -84,23 +84,6 @@ function App() {
     },
   ];
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const showModal = () => {
-    setIsModalOpen(true);
-  };
-  const handleOk = () => {
-    setIsModalOpen(false);
-  };
-  const handleCancel = () => {
-    setIsModalOpen(false);
-  };
-  const onFinish = (values) => {
-    console.log("Success:", values);
-  };
-  const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
-  };
-
   const navigate = useNavigate();
 
   const handleLogout = (e) => {
@@ -109,9 +92,34 @@ function App() {
     navigate('/homepage');
   };
 
+  //panel value
   const [value, setValue] = useState(0);
   const className = (baseName, isSelected) =>
     (isSelected ? [baseName].concat("selected") : [baseName]).join(" ");
+  
+  //set address list value
+  const [addressList,setAddressList] = useState([]);
+  //initial address list
+  useEffect(() => {
+    console.log('initialize')
+    setAddress();
+
+  },[])
+  //get address list value if address list changes
+  useEffect(() => {
+    setAddressList(addressList);
+  },[addressList])
+
+  //get address list from backend
+  const setAddress = async () => {
+    try{
+      const list = await (addressGet());
+      console.log(JSON.stringify(list) + "address to test");
+      setAddressList(list);
+    } catch (error) {
+      console.error("address get error:", error);
+    }
+  }
 
   return (
     <div className="myaccount-page">
@@ -180,18 +188,7 @@ function App() {
             </div>
 
             <div className='myaccount-current-address'>
-              {addressList.map((addressItem => {
-                return(
-                  <MyAddress
-                    receiver={addressItem.receiver}
-                    street={addressItem.street}
-                    postCode={addressItem.postCode}
-                    city={addressItem.city}
-                    additional={addressItem.additional}
-                    tel={addressItem.tel}>
-                  </MyAddress>
-                )
-              }))}
+              <MyAddress addressList={addressList} />
             </div>
             
             <div className='myaccount-add-address'>

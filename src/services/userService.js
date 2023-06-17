@@ -110,3 +110,60 @@ export const profileEdit = async (data) => {
 export const logoutUser = async () => {
   invalidateAllCookies();
 };
+
+export const addressAdd = async (data) => {
+  console.log("addressAdd",data)
+  //catch error
+  try {
+    const result: Response = await axios.post(
+      'http://localhost:8081/user/addressadd',
+      {
+        street: data.street,
+        postCode: data.postCode,
+        city: data.city,
+        additionalAddress: data.additionalAddress,
+        tel: data.tel,
+        receiver: data.receiver,
+      },
+      {
+        headers: {
+          Authorization: document.cookie, //put cookie into header
+        },
+      }
+    );
+    const response = result.data;
+    if (response.status >= 300) {
+      throw new Error(response.message);
+    }
+    console.log(result.data)
+    return response;
+  } catch (error){
+    if(error.response){
+      const responseData = error.response.data;
+      alert('Address addition failed:\n' + JSON.stringify(responseData.message));
+    }
+    else{
+      alert("Address addition failed!")
+    }
+  }
+};
+
+export const addressGet = async () => {
+  try {
+    const result: Response = await axios.get(
+      'http://localhost:8081/user/addressget',
+      {
+        headers: {
+          Authorization: document.cookie, //put cookie into header
+        },
+      },
+    );
+    const response = result.data;
+    if (response.status >= 300) {
+      throw new Error(response.message);
+    }
+    return response;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
