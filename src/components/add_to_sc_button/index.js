@@ -1,10 +1,9 @@
-// 引入样式文件
 import "./index.css"
 
-function AddToScButton() {
+function AddToScButton({ onClick }) {
   return (
     <div className="add_container">
-      <button/>
+      <button onClick={onClick}/>
     </div>
   );
 }

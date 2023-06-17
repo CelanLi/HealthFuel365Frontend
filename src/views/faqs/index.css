@@ -1,39 +1,36 @@
-.App {
-    text-align: center;
-  }
-  
-  .App-logo {
-    height: 40vmin;
-    pointer-events: none;
-  }
-  
-  @media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-      animation: App-logo-spin infinite 20s linear;
-    }
-  }
-  
-  .App-header {
-    background-color: #282c34;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
-  }
-  
-  .App-link {
-    color: #61dafb;
-  }
-  
-  @keyframes App-logo-spin {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
-  
+.faq {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.faq .ant-collapse {
+  margin-top: 3%;
+  margin-bottom: 3%;
+  background-color: transparent;
+}
+
+.faq .ant-collapse-item {
+  width: 100%;
+  box-sizing: border-box;
+  background: rgba(3, 61, 31, 0.06);
+  box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.25);
+  border-radius: 11.25px !important;
+  margin-bottom: 29px;
+}
+
+.faq .ant-collapse-header {
+  font-family: "Kaisei Opti";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 29px;
+  color: #033d1f !important;
+}
+
+.faq p {
+  font-family: "Kaisei Opti";
+  font-style: normal;
+  color: #033d1f !important;
+  font-size: 18px;
+  line-height: 25px;
+}
