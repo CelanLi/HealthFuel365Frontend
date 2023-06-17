@@ -1,10 +1,25 @@
 import React from 'react'
 import "./index.css"; 
+
+import { addressDelete } from '../../../../../services/userService';
+
 import AddIcon from '../../../../../assets/images/myaccount/icon-address.png'
 import PhoneIcon from '../../../../../assets/images/myaccount/icon-phone.png'
 import Receiver from '../../../../../assets/images/myaccount/icon-receiver.png'
 
 function MyAddress({ addressList = [] }) {
+    // const handleEdit = (e) => {
+    //     const addressId = e.target.value;
+    //     console.log(addressId)
+    //     addressDelete(addressId)
+    // }
+
+    const handelDelete = (e) => {
+        const addressId = e.target.value;
+        console.log(addressId)
+        addressDelete(addressId)
+    }
+
     return(
         <div>
             {addressList.map((addressItem) => {
@@ -29,11 +44,11 @@ function MyAddress({ addressList = [] }) {
                             </div>
                         </div>
                         <div>
+                            {/* <div  className="myaccount-button-block">
+                                <button className='myaccount-edit' onClick={handleEdit} value={addressItem._id}>Edit</button>
+                            </div> */}
                             <div  className="myaccount-button-block">
-                                <button className='myaccount-edit'>Edit</button>
-                            </div>
-                            <div  className="myaccount-button-block">
-                                <button className='myaccount-delete'>Delete</button>
+                                <button className='myaccount-delete' onClick={handelDelete} value={addressItem._id}>Delete</button>
                             </div>
                         </div>
                     </div>
