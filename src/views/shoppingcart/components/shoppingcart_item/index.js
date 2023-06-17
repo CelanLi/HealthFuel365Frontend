@@ -14,8 +14,9 @@ function ShoppingCartItem({
   deleteProductID,
   changeProductCount,
   quantity,
+  capacity,
 }) {
-  const [countValue, setCountValue] = useState(quantity); 
+  const [countValue, setCountValue] = useState(quantity);
   function getItemCount(value) {
     setCountValue(value);
     changeProductCount({ productID, value });
@@ -24,7 +25,7 @@ function ShoppingCartItem({
 
   function getTimesValue(num1, num2) {
     const value = new BigNumber(num1).times(new BigNumber(num2)).toFixed();
-    if (isNaN(value)){
+    if (isNaN(value)) {
       return 0;
     }
     return value;
@@ -47,10 +48,11 @@ function ShoppingCartItem({
             <div className="sc_item_nutri">
               <ShoppingCartNutri nutri={productNutri}></ShoppingCartNutri>
             </div>
-            <div className="sc_item_count">
+            <div className="sc_item_count"> 
               <ScItemCounter
                 count={quantity}
                 setCount={getItemCount}
+                maxCapacity={capacity}
               ></ScItemCounter>
             </div>
           </div>

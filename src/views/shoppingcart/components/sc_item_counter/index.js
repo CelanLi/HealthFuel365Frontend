@@ -1,22 +1,31 @@
- 
 import { useState } from "react";
 import "./index.css";
+import { message } from "antd";
 
-function ScItemCounter({ count=1, setCount }) {
+function ScItemCounter({ count = 1, setCount, maxCapacity }) {
   const [countValue, setCountValue] = useState(count);
+  const [capacity, setCapacity] = useState(maxCapacity);
+  const [messageApi, contextHolder] = message.useMessage();
 
   // input only accept the count below capacity
   function numberInput(inputValue) {
     // !number change to ""
     const availableValue = inputValue.replace(/[^\d]/g, "");
-    setCountValue(availableValue);
-    setCount(availableValue);
+    setCountValue(Math.min(availableValue, capacity));
+    setCount(Math.min(availableValue, capacity));
+    if (availableValue > capacity) {
+      capacityTipp(capacity);
+    } 
   }
 
   // manage count
   function changeNumber(type) {
     const realCount = Number(countValue);
-    if (type === "+") {
+    if (type === "+") { 
+      if (realCount + 1 > capacity) {
+        capacityTipp(capacity);
+        return;
+      }
       setCountValue(realCount + 1);
       setCount(realCount + 1);
     } else if (type === "-") {
@@ -27,8 +36,17 @@ function ScItemCounter({ count=1, setCount }) {
     }
   }
 
+  function capacityTipp(capacity) {
+    messageApi.open({
+      type: "error",
+      content: "Sorry, there are only " + capacity + " Items available.",
+      duration: 1,
+    });
+  }
+
   return (
     <div className="sc_item_count_wrap">
+      {contextHolder}
       <div className="sc_item_count_minus" onClick={() => changeNumber("-")}>
         -
       </div>

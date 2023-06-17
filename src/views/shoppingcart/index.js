@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { message } from "antd";
-
 // dependency
 import "./index.css";
 import ShoppingCartItem from "./components/shoppingcart_item";
@@ -11,6 +10,7 @@ import {
   changeProductCount,
   getShoppingCartDetail,
   validatePromoCode,
+  deletePromoCode,
 } from "../../services/shoppingCartService";
 
 function Page() {
@@ -27,9 +27,8 @@ function Page() {
         // setProductItemList(data.productItemList);
         setProductItemList(
           data.productItems
-            .map((i) => ({ ...i.product[0], quantity: i.quantity }))
+            .map((i) => ({ ...i.product, quantity: i.quantity }))
             .map((i) => {
-              console.log(i);
               return {
                 productID: i.productID,
                 productName: i.productName,
@@ -48,6 +47,7 @@ function Page() {
           itemsPrice: data.shoppingCartItems.itemPrice,
           totalSaving: data.shoppingCartItems.totalSaving,
           subtotal: data.shoppingCartItems.subTotal,
+          codeValue: data.shoppingCartItems.codeValue,
         });
       })
       .catch((error) => {
@@ -81,18 +81,28 @@ function Page() {
   }
 
   async function validatePromoCodeInput(givenCode) {
-    const res = await validatePromoCode({ code: givenCode });
-    // res = {isCanUse: truel, false; msg: "券已失效}
-    if (res.isCanUse) {
+    const res = await validatePromoCode({
+      shoppingCartID: shoppingCartID,
+      code: givenCode,
+    });
+    console.log(res);
+    if (res.code === 0) {
       await getShoppingCartInfo();
     } else {
-      console.log(res.message);
+      messageApi.open({
+        type: "error",
+        content: res.message,
+      });
     }
+  }
+
+  async function removePromoCode() {
+    await deletePromoCode({ shoppingCartID: shoppingCartID });
+    await getShoppingCartInfo();
   }
 
   // first visit the page
   useEffect(() => {
-    // Todo: shoppingcartid
     getShoppingCartInfo();
   }, []);
 
@@ -109,22 +119,29 @@ function Page() {
       <div className="sc_content">
         {/* item content */}
         <div className="sc_content_left">
-          {productItemList.map((productItem) => {
-            return (
-              <ShoppingCartItem
-                key={productItem.productID}
-                deleteProductID={deleteProductID}
-                changeProductCount={changeProductQuantity}
-                productID={productItem.productID}
-                productName={productItem.productName}
-                productUnitPrice={productItem.productPrice}
-                productImage={productItem.productImage}
-                productNutri={productItem.productNutri}
-                capacity={productItem.capacity}
-                quantity={productItem.quantity}
-              ></ShoppingCartItem>
-            );
-          })}
+          {productItemList.length > 0 ? (
+            productItemList.map((productItem) => {
+              return (
+                <ShoppingCartItem
+                  key={productItem.productID}
+                  deleteProductID={deleteProductID}
+                  changeProductCount={changeProductQuantity}
+                  productID={productItem.productID}
+                  productName={productItem.productName}
+                  productUnitPrice={productItem.productPrice}
+                  productImage={productItem.productImage}
+                  productNutri={productItem.productNutri}
+                  capacity={productItem.capacity}
+                  quantity={productItem.quantity}
+                ></ShoppingCartItem>
+              );
+            })
+          ) : (
+            <div className="sc_no_items_wrap">
+              Sorry, your shopping cart is empty. <br />
+              Please continue shopping.
+            </div>
+          )}
         </div>
 
         {/* summary+note */}
@@ -135,7 +152,9 @@ function Page() {
             itemsPrice={scSummary.itemsPrice}
             totalSaving={scSummary.totalSaving}
             subtotal={scSummary.subtotal}
+            codeValue={scSummary.codeValue}
             validatePromoCodeInput={validatePromoCodeInput}
+            removePromoCode={removePromoCode}
           ></ShoppingCartSummary>
 
           {/* note */}

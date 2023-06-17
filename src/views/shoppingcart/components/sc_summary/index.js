@@ -1,29 +1,42 @@
- 
 import "./index.css";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-
+import { message, Tag } from "antd";
 function ShoppingCartSummary({
   itemQuantity,
   itemsPrice,
   totalSaving,
   subtotal,
+  codeValue,
   validatePromoCodeInput,
+  removePromoCode,
 }) {
   const [promoCode, setPromoCode] = useState("");
+  const [messageApi, contextHolder] = message.useMessage();
 
   function validateCode() {
-    if (!promoCode) {
-      console.log("code不能为空");
+    if (!promoCode) { 
+      messageApi.open({
+        type: "error",
+        content: "code can not be empty",
+        duration: 1,
+      });
     } else {
       validatePromoCodeInput(promoCode);
+      setPromoCode("");
     }
   }
+
+  function deletePromoCode() {
+    removePromoCode();
+  }
+ 
 
   return (
     <>
       {/* summary */}
       <div className="sc_summary">
+      {contextHolder}
         <div className="sc_content_right_up">Summary</div>
         <div className="sc_content_right_middle">
           <div className="sc_items_count_price">
@@ -48,6 +61,13 @@ function ShoppingCartSummary({
                   src={require("../../../../assets/images/give_code_buttom.png")}
                 />
               </div>
+            </div>
+            <div className="sc_promo_code_wrap">
+              {codeValue ? (
+                <Tag closable onClose={deletePromoCode} color="green">
+                  {codeValue}
+                </Tag>
+              ) : null}
             </div>
           </div>
         </div>

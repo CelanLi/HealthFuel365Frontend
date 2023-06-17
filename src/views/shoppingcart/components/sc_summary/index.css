@@ -1,7 +1,6 @@
 .sc_summary {
   display: block;
   width: 522px;
-  height: 534px;
 
   box-sizing: border-box;
   background: rgba(3, 61, 31, 0.15);
@@ -23,7 +22,7 @@
 
 .sc_content_right_middle {
   display: block;
- 
+
   border: 2px solid #033d1f;
   border-left: 0;
   border-right: 0;
@@ -66,7 +65,8 @@
 }
 
 /* promo code input */
-.sc_given_code_input_warp {
+.sc_give_code_wrap {
+  margin-bottom: 20px;
 }
 
 .sc_given_code_input {
@@ -95,6 +95,9 @@
   height: 100%;
 }
 
+.sc_promo_code_wrap {
+  height: 5px;
+}
 .sc_content_right_bottom {
   display: block;
   margin-top: 36px;
@@ -125,7 +128,7 @@
   font-weight: 700;
   font-size: 24px;
   color: #ffffff;
- 
+
   text-align: center;
   line-height: 66px;
 }
