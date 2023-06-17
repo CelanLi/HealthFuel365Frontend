@@ -1,8 +1,12 @@
 //ANTD components
 import React, { useState } from "react";
 import { Modal, Input, Space, message } from "antd";
- 
+
+// import css file
 import "./index.css";
+
+//import service
+import { addressAdd } from "../../../../services/userService";
 
 function OrderAddAddress() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -40,6 +44,14 @@ function OrderAddAddress() {
       });
       return;
     } 
+    addressAdd({
+        street: streetValue + streetNoValue,
+        postCode: postCodeValue,
+        city: cityValue,
+        additionalAddress: additionalAddressValue,
+        tel: telValue,
+        receiver: firstNameValue + lastNameValue,
+    })
     console.log(firstNameValue);
     console.log(lastNameValue);
     console.log(telStateValue);
@@ -49,6 +61,7 @@ function OrderAddAddress() {
     console.log(additionalAddressValue);
     console.log(postCodeValue);
     console.log(cityValue);
+
     // setIsModalOpen(false);
   };
 
