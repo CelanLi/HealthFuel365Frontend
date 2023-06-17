@@ -147,3 +147,23 @@ export const addressAdd = async (data) => {
     }
   }
 };
+
+export const addressGet = async () => {
+  try {
+    const result: Response = await axios.get(
+      'http://localhost:8081/user/addressget',
+      {
+        headers: {
+          Authorization: document.cookie, //put cookie into header
+        },
+      },
+    );
+    const response = result.data;
+    if (response.status >= 300) {
+      throw new Error(response.message);
+    }
+    return response;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
