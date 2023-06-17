@@ -18,7 +18,7 @@ function ProductList({ productlist = [] }) {
               productID={productItem.productID}
               productName={productItem.productName}
               productPrice={productItem.productPrice}
-              productImage={productItem.productImage}
+              imageUrl={productItem.imageUrl}
               nutriScore={productItem.nutriScore}
             />
           );
