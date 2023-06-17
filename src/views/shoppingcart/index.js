@@ -1,9 +1,8 @@
-// 依赖
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { message } from "antd";
 
-// 引入样式文件
+// dependency
 import "./index.css";
 import ShoppingCartItem from "./components/shoppingcart_item";
 import ShoppingCartSummary from "./components/sc_summary";
@@ -15,7 +14,7 @@ import {
 } from "../../services/shoppingCartService";
 
 function Page() {
-  // 定义input的value
+  // definite value input
   const [productItemList, setProductItemList] = useState([]);
   const [shoppingCartID, setShoppingCartID] = useState("134134");
   const [scSummary, setscSummary] = useState({});
@@ -25,7 +24,6 @@ function Page() {
     // then:sucess;catch:error
     getShoppingCartDetail({ shoppingCartID: shoppingCartID })
       .then((data) => {
-        console.log(data);
         // setProductItemList(data.productItemList);
         setProductItemList(
           data.productItems
@@ -62,7 +60,7 @@ function Page() {
 
   async function deleteProductID(value) {
     // console.log(value, shoppingCartID);
-    // 向后端发送请求传 shoppingCartID，和productId
+    // give shoppingCartID，and productId to backend
     await deleteProductItem({
       shoppingCartID: shoppingCartID,
       productID: value,
@@ -71,10 +69,13 @@ function Page() {
   }
 
   async function changeProductQuantity({ productID, value: count }) {
+    if (Number(count) === 0) {
+      return;
+    }
     await changeProductCount({
       shoppingCartID: shoppingCartID,
       productID: productID,
-      quantity: count,
+      quantity: Number(count),
     });
     await getShoppingCartInfo();
   }
@@ -91,23 +92,22 @@ function Page() {
 
   // first visit the page
   useEffect(() => {
-    // Todo: 需要获取购物车id
+    // Todo: shoppingcartid
     getShoppingCartInfo();
   }, []);
 
   return (
-    // HTML结构
+    // HTML structer
     <div className="shoppingcart_wrap">
-      {/* 面包屑 */}
       {contextHolder}
-      {/* &lt;代表< */}
+      {/* &lt;represent< */}
       <div className="sc_bread_crumb">
         <Link to="/product">&lt;Continue Shopping</Link>
       </div>
 
-      {/* 主内容 */}
+      {/* main content */}
       <div className="sc_content">
-        {/* item详情 */}
+        {/* item content */}
         <div className="sc_content_left">
           {productItemList.map((productItem) => {
             return (

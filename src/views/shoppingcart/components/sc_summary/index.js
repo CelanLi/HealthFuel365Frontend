@@ -1,4 +1,4 @@
-// 引入样式文件
+ 
 import "./index.css";
 import { Link } from "react-router-dom";
 import { useState } from "react";
@@ -33,7 +33,7 @@ function ShoppingCartSummary({
           <div className="sc_promo_code">
             <div className="sc_give_code">Give Code</div>
             <div className="sc_give_code_wrap">
-              {/* 打折码input */}
+              {/* promo code input */}
               <div className="sc_given_code_input_wrap">
                 <input
                   className="sc_given_code_input"
@@ -54,7 +54,7 @@ function ShoppingCartSummary({
         <div className="sc_content_right_bottom">
           <div className="sc_content_right_bottom_total_saving">
             <div className="sc_total_saving">Total Savings</div>
-            <div className="sc_total_saving_value">{totalSaving}€</div>
+            <div className="sc_total_saving_value">- {totalSaving}€</div>
           </div>
           <div className="sc_content_right_bottom_subtotal">
             <div className="sc_subtotal">Subtotal</div>

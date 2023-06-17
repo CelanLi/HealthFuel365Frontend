@@ -23,8 +23,7 @@
 
 .sc_content_right_middle {
   display: block;
-
-  /* 上下线 */
+ 
   border: 2px solid #033d1f;
   border-left: 0;
   border-right: 0;
@@ -66,7 +65,7 @@
   align-items: center;
 }
 
-/* 打折码input */
+/* promo code input */
 .sc_given_code_input_warp {
 }
 
@@ -126,8 +125,7 @@
   font-weight: 700;
   font-size: 24px;
   color: #ffffff;
-
-  /* 文字水平垂直居中 */
+ 
   text-align: center;
   line-height: 66px;
 }

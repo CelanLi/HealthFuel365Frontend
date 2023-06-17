@@ -1,4 +1,4 @@
-// 引入样式文件
+
 import "./index.css"; 
 
 function OrderAddress({receiver, tel, street, additional, postCode, city}) {

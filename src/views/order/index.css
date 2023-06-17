@@ -15,8 +15,7 @@
   margin-top: 16px;
   margin-left: 34px;
 }
-
-/* 链接点击过的颜色 */
+ 
 .or_bread_crumb a:visited {
   color: #033d1f;
 }

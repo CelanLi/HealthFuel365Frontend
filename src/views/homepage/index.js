@@ -1,13 +1,12 @@
 // import css file
 import './index.css';
-import {Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
 
 //import components
 import Category from "../../components/category"
 import Product from "../../components/product"
-import Carousel from "../components/carousel"
-import Alternative from "../components/alternatives"
-
+import Carousel from "./components/carousel"
+import Alternative from "./components/alternatives"
 
 //import junkfood images
 import Chips from '../../assets/images/homepage/junkfood/chips.png'
@@ -135,9 +134,11 @@ function Page() {
             {/* images */}
             <div className='homepage-nutri-score-to-faqs'>
               <img className='homepage-nutri-score-image' src={Nutri}></img>
-              <a href='/faqs'>
+              {/*<a href='/faqs'>*/}
+              <Link to='/faqs'>
                 <button className='homepage-learn-more'>Learn More {">>>"}</button>
-              </a>
+              </Link>
+              {/*</a>*/}
             </div>
           </div>
 

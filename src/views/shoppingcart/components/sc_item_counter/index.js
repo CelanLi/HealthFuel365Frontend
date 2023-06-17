@@ -1,19 +1,19 @@
-// 引入样式文件
+ 
 import { useState } from "react";
 import "./index.css";
 
 function ScItemCounter({ count=1, setCount }) {
   const [countValue, setCountValue] = useState(count);
 
-  // input只接受库存量内的数字
+  // input only accept the count below capacity
   function numberInput(inputValue) {
-    // 所有非数字替换成空字符
+    // !number change to ""
     const availableValue = inputValue.replace(/[^\d]/g, "");
     setCountValue(availableValue);
     setCount(availableValue);
   }
 
-  // 加减数量
+  // manage count
   function changeNumber(type) {
     const realCount = Number(countValue);
     if (type === "+") {
@@ -37,7 +37,7 @@ function ScItemCounter({ count=1, setCount }) {
           className="sc_item_count"
           value={countValue}
           onChange={(e) => numberInput(e.target.value)}
-          onBlur={(e) => !Number(countValue) && setCountValue(1)}
+          onBlur={(e) => !Number(countValue) && numberInput("1")}
         />
       </div>
       <div className="sc_item_count_plus" onClick={() => changeNumber("+")}>

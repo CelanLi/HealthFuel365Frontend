@@ -1,12 +1,11 @@
-import { Radio, Space, Tabs } from 'antd';
 import { useState } from 'react';
 import './index.css'
 
-import Product from "../../../components/product"
+import Product from "../../../../components/product"
 
-import Chips from '../../../assets/images/homepage/junkfood/chips.png'
-import Friedchicken from '../../../assets/images/homepage/junkfood/friedchicken.png'
-import Pommes from '../../../assets/images/homepage/junkfood/pommes.png'
+import Chips from '../../../../assets/images/homepage/junkfood/chips.png'
+import Friedchicken from '../../../../assets/images/homepage/junkfood/friedchicken.png'
+import Pommes from '../../../../assets/images/homepage/junkfood/pommes.png'
 
 const alternative0 = (
     <div className='alternative-product'>
@@ -54,7 +53,7 @@ const Tab101 = () => {
             <div className="alternative-nav">
                 <div className="alternative-nav-tabs">
                     <div className='alternative-nav-row'>
-                        <div className={className('alternative-tab-item', value === 0)} onClick={() => setValue(0)}>
+                        <div className={className('alternative-tab-item', value === 0)} onClick={() => setValue(0)} >
                             <img src={Chips} className='alternative-tab-icon'/>
                         </div>
                         <div className={className('alternative-tab-item', value === 1)} onClick={() => setValue(1)}>

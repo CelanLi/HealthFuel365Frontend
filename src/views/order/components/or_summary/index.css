@@ -12,8 +12,7 @@
   .or_content_right_middle {
     display: block;
     justify-content: space-between;
-  
-    /* 上下线 */
+   
     border: 2px solid #033d1f;
     border-left: 0;
     border-right: 0;
@@ -80,16 +79,13 @@
     font-weight: 700;
     font-size: 24px;
     color: #ffffff;
-  
-    /* 文字水平垂直居中 */
+   
     text-align: center;
     line-height: 66px;
-  
-    /* buttom 水平居中 */
+   
     margin: 0px auto;
   }
-  
-  /* 链接点击过的颜色 */
+   
   .or_pay a,
   .or_pay a:visited {
     color: #ffffff;
