@@ -1,13 +1,37 @@
-// 引入样式文件
-import './index.css';
-
+import "./index.css";
+import { Collapse } from "antd";
+const { Panel } = Collapse;
 function Page() {
+  const faqs = [
+    {
+      question: "What is Nutri-score?",
+      answer:
+        "Nutri-Score translates the nutritional quality of a product into a five-letter code (A, B, C, D, and E), while A represents the best nutritional quality, and E represents the worst nutritional quality (see Figure 1.2 right). It does not categorize food into healthy and unhealthy. However, it offers customers a possibility to compare the nutritional quality of foods in the same categories. The score is based on a continuous and discrete scale ranging from +40 (least healthy) to -15 (most healthy) (Romero Ferreiro, Lora Pablos, & Gómez de la Cámara, 2021). While energy, total sugar, saturate fat and sodium score lead to negative points, fruit and vegetables, nuts and legumes, protein and fibre score account for positive points.",
+    },
+    {
+      question: "Why use Nutri-score as the indicator?",
+      answer:
+        "Its purpose is to offer consumers transparency on the overall nutritional quality of prepackaged foods, allowing them, within a few seconds of the purchase act, to recognize and compare the nutritional quality of foods and guide their choices towards better alternatives.",
+    },
+    {
+      question: "Can I only pay with paypal?",
+      answer: "Yes, currently, paypal is the only payment method.",
+    },
+  ];
   return (
-    // HTML结构
-    <div className="homepage"> 
-      <div> FAQs! </div>
+    <div className="faq">
+      <Collapse
+        bordered={false}
+        defaultActiveKey={["1"]}
+        expandIconPosition="end"
+      >
+        {faqs.map((faq, index) => (
+          <Panel header={faq.question} key={index + 1}>
+            <p>{faq.answer}</p>
+          </Panel>
+        ))}
+      </Collapse>
     </div>
   );
 }
-
 export default Page;
