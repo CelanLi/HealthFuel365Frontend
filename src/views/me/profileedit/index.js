@@ -81,7 +81,7 @@ function Page() {
             lowInSalt: salt,
             lowInSugar: sugar,
         })
-        navigate('/myaccount/addressmanagement');
+        navigate('/myaccount/myprofile');
       };
 
   return (
