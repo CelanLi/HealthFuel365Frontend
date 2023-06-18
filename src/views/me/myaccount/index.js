@@ -8,7 +8,7 @@
 
 // //import style
 // import "./index.css";
-// import MyAddress from './components/me_address';
+// import MyAddress from '../components/me_address';
 // import MyProfile from '../components/me_profile';
 // import OrderAddAddress from '../../order/components/or_add_address'
 // import MyOrder from '../components/me_order';

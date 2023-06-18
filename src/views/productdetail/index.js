@@ -2,6 +2,7 @@ import "./index.css";
 import React from "react";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { message } from "antd"; 
 import Nutri from "../../components/nutri";
 import ContentLevel from "./components/content_level";
 import AddToScButton from "../../components/add_to_sc_button";
@@ -252,8 +253,8 @@ function Page() {
   // ]);
 
   var isAvailable = (capacity) => {
-    if (capacity > 0) return "Avaiable";
-    else return "Not Avaiable";
+    if (capacity > 0) return "Available";
+    else return "Not Available";
   };
 
   const [shoppingCartID, setShoppingCartID] = useState("134134");
@@ -261,8 +262,14 @@ function Page() {
     // wait for shoppingCartID
     await addShoppingCart(shoppingCartID, id);
   }; 
+  // if the item is not avialable, it cannot be added to the cart.
   const handleClick = () => {
-    clickShoppingCart(id);
+    if (product?.capacity === 0){
+      message.error("Sorry, this item is not available.");
+    }
+    else{
+      clickShoppingCart(id);
+    }
   };
 
   return (

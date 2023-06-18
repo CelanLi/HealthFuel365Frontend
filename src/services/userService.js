@@ -60,7 +60,7 @@ export const loginUser = async (data) => {
       message.error(`Login failed: ${responseData.message}`);
     }
     else{
-      message.error('Registration failed!');
+      message.error('Login failed!');
     }
   };
 };
@@ -117,10 +117,10 @@ export const profileEdit = async (data) => {
   } catch (error){
     if(error.response){
       const responseData = error.response.data;
-      alert('Profile edit failed:\n' + JSON.stringify(responseData.message));
+      message.error(`Profile edit failed: ${responseData.message}`);
     }
     else{
-      alert("Profile edit failed!")
+      message.error(`Profile edit failed!`);
     }
   }
 };
@@ -180,10 +180,10 @@ export const addressAdd = async (data) => {
   } catch (error){
     if(error.response){
       const responseData = error.response.data;
-      alert('Address addition failed:\n' + JSON.stringify(responseData.message));
+      message.error(`Address addition failed: ${responseData.message}`);
     }
     else{
-      alert("Address addition failed!")
+      message.error(`Address addition failed!`);
     }
   }
 };

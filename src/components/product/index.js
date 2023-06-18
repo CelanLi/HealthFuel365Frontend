@@ -4,6 +4,7 @@ import AddToScButton from "../add_to_sc_button";
 import { addShoppingCart } from "../../services/productService";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { message } from "antd";
 
 function ProductComponent({
   productID,
@@ -14,15 +15,20 @@ function ProductComponent({
   capacity,
 }) {
   const [shoppingCartID, setShoppingCartID] = useState("134134");
+  const router_path = "/product/detail/" + productID;
+  const notAvailable = capacity === 0;
   const clickShoppingCart = async (productID) => {
     // wait for shoppingCartID
     await addShoppingCart(shoppingCartID, productID);
   }; 
   const handleClick = () => {
-    clickShoppingCart(productID);
+    if (notAvailable){
+      message.error("Sorry, there are no items available.");
+    }
+    else{
+      clickShoppingCart(productID);
+    }
   };
-  const router_path = "/product/detail/" + productID;
-  const availability = capacity === 0;
   return (
     <div className="product">
       {/* should link to the corresponding product detail page*/}
@@ -36,7 +42,7 @@ function ProductComponent({
         <Nutri nutri={nutriScore} />
         <div className="product-right-buttom">
           <div className="product-unitprice">{productPrice}€</div>
-          <AddToScButton onClick={handleClick} disabled={availability}/>
+          <AddToScButton onClick={handleClick} disabled={notAvailable}/>
         </div>
       </div>
     </div>
