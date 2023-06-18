@@ -4,7 +4,6 @@ import './index.css';
 // dependencies
 import {Link} from 'react-router-dom'
 import React, { useState } from 'react';
-import {loginUser} from '../../services/userService'
 import LoginForm from "./components"
 
 

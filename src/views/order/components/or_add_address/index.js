@@ -52,17 +52,20 @@ function OrderAddAddress() {
         tel: telValue,
         receiver: firstNameValue + lastNameValue,
     })
-    console.log(firstNameValue);
-    console.log(lastNameValue);
-    console.log(telStateValue);
-    console.log(telValue);
-    console.log(streetValue);
-    console.log(streetNoValue);
-    console.log(additionalAddressValue);
-    console.log(postCodeValue);
-    console.log(cityValue);
+    // console.log(firstNameValue);
+    // console.log(lastNameValue);
+    // console.log(telStateValue);
+    // console.log(telValue);
+    // console.log(streetValue);
+    // console.log(streetNoValue);
+    // console.log(additionalAddressValue);
+    // console.log(postCodeValue);
+    // console.log(cityValue);
 
-    // setIsModalOpen(false);
+    setIsModalOpen(false);
+
+    //refresh page after add address
+    window.location.reload();
   };
 
   const handleCancel = () => {
