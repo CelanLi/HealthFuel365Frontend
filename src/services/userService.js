@@ -21,16 +21,17 @@ export const registerUser = async (data) => {
     if (response.status >= 300) {
       throw new Error(response.message);
     }
-    document.cookie = response.token
-    console.log("22222",document.cookie)
-    return response;
+    setCookie(data.username,response.token)
+    return true;
   } catch (error){
     if(error.response){
       const responseData = error.response.data;
-      alert('Register failed:\n' + JSON.stringify(responseData.message));
+      message.error(`Registration failed: ${responseData.message}`);
+      return false;
     }
     else{
-      alert("Registration failed!")
+      message.error('Registration failed!');
+      return false;
     }
   }
 };
@@ -51,21 +52,15 @@ export const loginUser = async (data) => {
     }
     //when user log in successfully, a token will be stored in his browser.
     setCookie(data.username,response.token)
-
-    const cookieName = data.username;
-
-    console.log("22222",document.cookie)
-    console.log("333",getCookie(cookieName))
-    window.location.href = '/homepage';
     return response;
 
   } catch (error){
     if(error.response){
       const responseData = error.response.data;
-      alert('Login failed:\n' + JSON.stringify(responseData.message));
+      message.error(`Login failed: ${responseData.message}`);
     }
     else{
-      alert("Login failed!")
+      message.error('Registration failed!');
     }
   };
 };

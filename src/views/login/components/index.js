@@ -1,45 +1,65 @@
-import { Button, Checkbox, Form, Input } from 'antd';
+import { Button, Checkbox, Form, Input, List, message } from 'antd';
 import React, { useState } from 'react';
 import {loginUser} from '../../../services/userService'
+import { useNavigate } from 'react-router-dom';
+
+import "./index.css"
 
 function LoginForm(){
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
+  const navigate = useNavigate();
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
-    const handleUsernameChange = (e) => {
-        setUsername(e.target.value);
-      };
+  const handleUsernameChange = (e) => {
+      setUsername(e.target.value);
+    };
+  
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const successFlag = await loginUser({
+        username:username,
+        password:password,});
+
+      if (successFlag) {
+        navigate('/homepage');
+      }
+      // empty the form
+      setUsername('');
+      setPassword('');
+    } catch (error) {
+      message.error(`Login failed: ${error.response.data.message}`);
+    }
+
     
-      const handlePasswordChange = (e) => {
-        setPassword(e.target.value);
-      };
+    //empty the form
+    setUsername('');
+    setPassword('');
+  };
 
-      const handleSubmit = (e) => {
-        e.preventDefault();
-        loginUser({
-          username:username,
-          password:password,});
-        
-        //empty the form
-        setUsername('');
-        setPassword('');
-      };
-
-    return(
-        <form onSubmit={handleSubmit}>
-        <label>
-            username:
-            <input type="text" value={username} onChange={handleUsernameChange} />
-        </label>
-        <br />
-        <label>
-            password:
-            <input type="password" value={password} onChange={handlePasswordChange} />
-        </label>
-        <br />
-        <button type="submit">Login</button>
-        </form>
-    );
+  return(
+    <div className='login-form'>
+      <List 
+      itemLayout="vertical"
+      size="large"
+      bordered={false}
+      split={false}>
+        <List.Item className='login-form-item'>
+          <Input className='login-form-input' placeholder="Username" type="text" value={username} onChange={handleUsernameChange} />
+        </List.Item>
+        <List.Item className='login-form-item'>
+          <Input.Password className='login-form-input' placeholder="Password" value={password} onChange={handlePasswordChange} />
+        </List.Item>
+        <List.Item className='login-form-item'>
+          <Button className='login-form-button' onClick={handleSubmit}>Login</Button>
+        </List.Item>
+      </List>
+    </div>
+  );
 }
 
 export default LoginForm;
