@@ -253,7 +253,7 @@ function Page() {
 
   var isAvailable = (capacity) => {
     if (capacity > 0) return "Avaiable";
-    else return "Not Abaiable";
+    else return "Not Avaiable";
   };
 
   const [shoppingCartID, setShoppingCartID] = useState("134134");
@@ -294,7 +294,7 @@ function Page() {
               </div>
               <div className="right">
                 {/* add to shopping cart button */}
-                <AddToScButton  onClick={handleClick}/>
+                <AddToScButton  onClick={handleClick} disabled={product?.capacity === 0}/>
               </div>
             </div>
           </div>

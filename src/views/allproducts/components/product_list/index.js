@@ -12,14 +12,15 @@ function ProductList({ productlist = [] }) {
   } else
     return (
       <div className="products-container">
-        {productlist.map((productItem) => {
+        {productlist.map((product) => {
           return (
             <Product
-              productID={productItem.productID}
-              productName={productItem.productName}
-              productPrice={productItem.productPrice}
-              imageUrl={productItem.imageUrl}
-              nutriScore={productItem.nutriScore}
+              productID={product.productID}
+              productName={product.productName}
+              productPrice={product.productPrice}
+              imageUrl={product.imageUrl}
+              nutriScore={product.nutriScore}
+              capacity={product.capacity}
             />
           );
         })}
