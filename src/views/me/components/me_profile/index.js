@@ -1,10 +1,10 @@
 import "./index.css"; 
 
-import HealthGoal from '../../../../../assets/images/myaccount/icon-health-goal.png'
-import DietType from '../../../../../assets/images/myaccount/icon-diet-type.png'
-import Preference from '../../../../../assets/images/myaccount/icon-preference.png'
-import Checked from '../../../../../assets/images/myaccount/icon-checked.png'
-import Unchecked from '../../../../../assets/images/myaccount/icon-unchecked.png'
+import HealthGoal from '../../../../assets/images/myaccount/icon-health-goal.png'
+import DietType from '../../../../assets/images/myaccount/icon-diet-type.png'
+import Preference from '../../../../assets/images/myaccount/icon-preference.png'
+import Checked from '../../../../assets/images/myaccount/icon-checked.png'
+import Unchecked from '../../../../assets/images/myaccount/icon-unchecked.png'
 
 function MyProfile({ userProfile }){
   //convert the health goal

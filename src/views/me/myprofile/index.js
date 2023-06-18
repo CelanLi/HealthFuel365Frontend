@@ -7,7 +7,7 @@ import { profileGet } from '../../../services/userService';
 //import style
 import "./index.css"
 import MyNav from "../components/me_nav"
-import MyProfile from '../myaccount/components/me_profile';
+import MyProfile from "../components/me_profile"
 
 function App() {
 
