@@ -1,8 +1,10 @@
 import { Popover } from "antd";
- 
+import { useEffect, useState } from "react";
+
 import "./index.css";
 
-function OrderAdditionService() {
+function OrderAdditionService({additionServiceChoice}) {
+  
   //note componets from ANTD
   const additionalServiceNote = (
     <div
@@ -22,6 +24,13 @@ function OrderAdditionService() {
     </div>
   );
 
+  const [isChecked, setIsChecked] = useState(false);
+
+  const handleCheckboxChange = (event) => {
+    setIsChecked(event.target.checked);
+    additionServiceChoice(event.target.checked);
+  };
+
   return (
     <>
       <div className="or_additional_service">
@@ -29,14 +38,20 @@ function OrderAdditionService() {
         <div className="or_additional_service_content">
           <div className="or_additional_service_desc">
             <div className="or_additional_service_choice">
-              <input type="checkbox" />
+              <input
+                type="checkbox"
+                checked={isChecked}
+                onChange={handleCheckboxChange}
+              />
             </div>
             <div className="or_additional_shipping_wrap">
               <div className="or_additional_shipping_name">
                 I want to send as a gift
               </div>
               <span className="or_additional_shipping_icon">
-                <img src={require("../../../../assets/images/gift_service.png")} />
+                <img
+                  src={require("../../../../assets/images/gift_service.png")}
+                />
               </span>
               <Popover
                 overlayClassName="popover_additional_shipping"

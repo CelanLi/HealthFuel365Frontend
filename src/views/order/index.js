@@ -1,19 +1,23 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { message } from "antd";
+import BigNumber from "bignumber.js";
 
- 
 import "./index.css";
 import OrderAddress from "./components/or_address";
 import OrderAddAddress from "./components/or_add_address";
 import OrderSummary from "./components/or_summary";
 import OrderDelivery from "./components/or_delivery";
 import OrderAdditionService from "./components/or_additional_service";
+import { getShoppingCartDetail } from "../../services/shoppingCartService";
 
 //ANTD components
 import { Popover, Collapse } from "antd";
 const { Panel } = Collapse;
 
 function Page() {
+  const [shoppingCartID, setShoppingCartID] = useState("134134");
+
   const [addressList, setaddressList] = useState([
     {
       receiver: "Camille Li",
@@ -41,18 +45,78 @@ function Page() {
     },
   ]);
 
-  const [orSummary, setorSummary] = useState({
-    itemsCount: 4,
-    itemsPrice: "11,96€",
-    totalSavings: "-2€",
-    subtotal: "9,96€",
-    shipping: "4,95€",
-    additionalService: "1,95€",
-    totalPrice: "16,86€",
-  });
+  const [orSummary, setorSummary] = useState({});
 
-  return ( 
-    <div className="shoppingcart_wrap">  
+  const [orTotalPrice, setTotalPrice] = useState("0");
+
+  const [orDelivery, setorDelivery] = useState("HERMES");
+
+  const [orService, setorService] = useState(false);
+
+  const [orDeliveryPrice, setorDeliveryPrice] = useState(4.95);
+
+  const [orServicePrice, setorServicePrice] = useState(0);
+
+  const [messageApi, contextHolder] = message.useMessage();
+ 
+  function calculateTotalPrice() {
+    console.log(orDeliveryPrice, orServicePrice);
+    const value = new BigNumber(orSummary.subtotal)
+      .plus(new BigNumber(orDeliveryPrice))
+      .plus(new BigNumber(orServicePrice))
+      .toFixed();
+    if (isNaN(value)) {
+      return 0;
+    }
+    setTotalPrice(value);
+  }
+
+  function getDeliveryChoice(value) {
+    setorDelivery(value);
+    setorDeliveryPrice(value === "Rapid" ? 7.95 : 4.95);
+    console.log(111, orDeliveryPrice, orServicePrice);
+  }
+
+  function getAdditionServiceChoice(value) {
+    setorService(value);
+
+    setorServicePrice(value ? 1.95 : 0);
+    console.log(222, orDeliveryPrice, orServicePrice);
+  }
+
+  // get: itemquantity,itemprice,total savings, subtotal
+  function getOrderSummaryInfo() {
+    // then:sucess;catch:error
+    getShoppingCartDetail({ shoppingCartID: shoppingCartID })
+      .then((data) => {
+        // setProductItemList(data.productItemList);
+        setorSummary({
+          itemsCount: data.shoppingCartItems.itemQuantity,
+          itemsPrice: data.shoppingCartItems.itemPrice,
+          totalSavings: data.shoppingCartItems.totalSaving,
+          subtotal: data.shoppingCartItems.subTotal,
+        }); 
+      })
+      .catch((error) => {
+        messageApi.open({
+          type: "error",
+          content: "System Error",
+        });
+      });
+  }
+
+  // first visit the page
+  useEffect(() => {
+    getOrderSummaryInfo();
+  }, []);
+
+  useEffect(() => {
+    calculateTotalPrice(); 
+  }, [orSummary,orDelivery, orService]);
+
+  return (
+    <div className="shoppingcart_wrap">
+      {contextHolder}
       {/* &lt; represent< */}
       <div className="or_bread_crumb">
         {" "}
@@ -94,12 +158,13 @@ function Page() {
             expandIconPosition="end"
           >
             <Panel header="Shipping Services" key="1">
-              <OrderDelivery></OrderDelivery>
-              <OrderAdditionService></OrderAdditionService>
+              <OrderDelivery deliveryChoice={getDeliveryChoice}></OrderDelivery>
+              <OrderAdditionService
+                additionServiceChoice={getAdditionServiceChoice}
+              ></OrderAdditionService>
             </Panel>
           </Collapse>
         </div>
-
         {/* summary*/}
         <div className="or_content_right">
           {/* summary */}
@@ -108,9 +173,9 @@ function Page() {
             itemsPrice={orSummary.itemsPrice}
             totalSavings={orSummary.totalSavings}
             subtotal={orSummary.subtotal}
-            shipping={orSummary.shipping}
-            additionalService={orSummary.additionalService}
-            totalPrice={orSummary.totalPrice}
+            shipping={orDeliveryPrice}
+            additionalService={orServicePrice}
+            totalPrice={orTotalPrice}
           ></OrderSummary>
         </div>
       </div>
