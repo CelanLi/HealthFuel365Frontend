@@ -17,3 +17,15 @@
     background-size: contain;
     cursor: pointer;
 }
+
+.add_container.disabled{
+    opacity: 0.6;
+}
+
+.add_container.disabled button{
+    cursor: not-allowed;
+}
+
+.add_container:hover{
+    filter:brightness(1.4);
+}

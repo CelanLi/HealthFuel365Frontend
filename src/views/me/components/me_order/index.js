@@ -1,5 +1,5 @@
 import React from 'react'
-import "./index.css"; 
+import "./index.css";
 
 function MyOrder({id,date,totalPrice,status}) {
     return(

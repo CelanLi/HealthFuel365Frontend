@@ -1,0 +1,14 @@
+.myaccount-profile-wrap{
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+}
+
+.myaccount-profile-page{
+    margin: 20px;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+}

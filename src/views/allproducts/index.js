@@ -277,6 +277,14 @@ function Page() {
     },
     [filteredProductList, pageNumber]
   );
+  // no pagination when there is no product or the product is loading
+  const [isLoading, setIsLoading] = useState(true);
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+  }, []);
+  const showPagination = filteredProductList.length > 0 & !isLoading;
 
   return (
     <div className="allproductspage-wrap">
@@ -292,15 +300,18 @@ function Page() {
         {/* categories and products*/}
         <div className="content-right">
           <Category setCategory={getSelectedCategory} />
-          <ProductList productlist={pageProductList} />
-          <div className="pagination-bar">
-            <Pagination
-              defaultCurrent={pageNumber}
-              total={filteredProductList.length}
-              pageSize={10}
-              onChange={handlePaginationChange}
-            />
-          </div>
+          <ProductList productlist={pageProductList} isLoading={isLoading} />
+          {showPagination ? (
+            <div className="pagination-bar">
+              <Pagination
+                defaultCurrent={pageNumber}
+                total={filteredProductList.length}
+                pageSize={10}
+                onChange={handlePaginationChange}
+              />
+            </div>
+            ): null
+          }
         </div>
       </div>
     </div>

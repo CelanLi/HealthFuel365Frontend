@@ -40,7 +40,7 @@ function Page() {
           </div>  
           <div className="right-icon-container">
             <Link to="/shoppingcart" className="shopping_cart"></Link>
-            <Link to="/myaccount" className="user"></Link>
+            <Link to="/myaccount/addressmanagement" className="user"></Link>
           </div>
         </div>
       </div>

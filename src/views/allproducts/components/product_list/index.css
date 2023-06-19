@@ -7,6 +7,10 @@
     display: flex;
     flex-wrap: wrap;
 }
+
+.products-container .center{
+    margin: auto;
+}
   
 .products-container .product{
     margin-right: 2%;

@@ -47,12 +47,20 @@ function Page() {
 
     const handleButtonClick = () => {
         let losingWeightAsGoal = false;
+        let keepGoodDietAsGoal = false;
         if (healthGoal === "loseWeight")
         {
             losingWeightAsGoal = true;
+            keepGoodDietAsGoal = false;
+        }
+        if (healthGoal === "goodDiet")
+        {
+            losingWeightAsGoal = false;
+            keepGoodDietAsGoal = true;
         }
         else{
             losingWeightAsGoal = false;
+            keepGoodDietAsGoal = false;
         }
         const nutriPreference = ['A','B','C','D','E']
         if(nutriScore === 'A'){
@@ -66,13 +74,14 @@ function Page() {
         }
         profileEdit({
             losingWeightAsGoal : losingWeightAsGoal,
+            keepGoodDietAsGoal: keepGoodDietAsGoal,
             typeOfEater : dietType,
             nutriPreference: nutriPreference,
             lowInFat : fat,
             lowInSalt: salt,
             lowInSugar: sugar,
         })
-        navigate('/myaccount');
+        navigate('/myaccount/myprofile');
       };
 
   return (
