@@ -1,8 +1,17 @@
-import axios from "axios";
+import axios, { AxiosHeaders } from "axios";
 import { IOpenFoodFactsData } from "../models/types";
 import { backendUrl, productRoute } from "../util/constants";
-import { message } from 'antd';
+import { Modal, Input, Space, message } from "antd";
 
+const showLoginReminder = () => {
+  Modal.error({
+    title: "please log in",
+    content: "Before adding items to your shopping cart, log in is reuired",
+    onOk: () => {
+      window.location.href = "http://localhost:3000";
+    },
+  });
+};
 export const getAllProducts = async (selectedSort: string) => {
   try {
     const result: Response = await axios.get(
@@ -36,7 +45,18 @@ export const getProductsByName = async (name, selectedSort) => {
 export const addShoppingCart = async (shoppingCartID, productID) => {
   try {
     const result: Response = await axios.post(
-      backendUrl + productRoute + "/addToSc/" + shoppingCartID + "/" + productID
+      backendUrl +
+        productRoute +
+        "/addToSc/" +
+        shoppingCartID +
+        "/" +
+        productID,
+      null,
+      {
+        headers: {
+          Authorization: document.cookie, //put cookie into header
+        },
+      }
     );
     const response = result.data;
     if (response.status >= 300) {
@@ -45,6 +65,11 @@ export const addShoppingCart = async (shoppingCartID, productID) => {
     message.success("1 item added to shopping cart.");
     return response;
   } catch (error) {
-    throw new Error(error);
+    console.error(error);
+    if (error.response && error.response.status === 401) {
+      showLoginReminder();
+    } else {
+      throw new Error(error);
+    }
   }
 };

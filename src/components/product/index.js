@@ -20,12 +20,11 @@ function ProductComponent({
   const clickShoppingCart = async (productID) => {
     // wait for shoppingCartID
     await addShoppingCart(shoppingCartID, productID);
-  }; 
+  };
   const handleClick = () => {
-    if (notAvailable){
+    if (notAvailable) {
       message.error("Sorry, there are no items available.");
-    }
-    else{
+    } else {
       clickShoppingCart(productID);
     }
   };
@@ -42,7 +41,7 @@ function ProductComponent({
         <Nutri nutri={nutriScore} />
         <div className="product-right-buttom">
           <div className="product-unitprice">{productPrice}€</div>
-          <AddToScButton onClick={handleClick} disabled={notAvailable}/>
+          <AddToScButton onClick={handleClick} disabled={notAvailable} />
         </div>
       </div>
     </div>
