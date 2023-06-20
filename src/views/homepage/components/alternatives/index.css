@@ -33,6 +33,7 @@
 
 .alternative-panels{
     margin-left: 20px;
+    width: 100%;
 }
 
 .alternative-product{
@@ -43,9 +44,10 @@
     margin-top: 5px;
 
     flex-wrap: wrap;
+    width: 100%;
 }
 
 .alternative-product .product{
-    width: 22%;
+    width: 19%;
     min-width: 120px;
 }

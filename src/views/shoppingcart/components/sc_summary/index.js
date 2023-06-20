@@ -15,7 +15,7 @@ function ShoppingCartSummary({
   const [messageApi, contextHolder] = message.useMessage();
 
   function validateCode() {
-    if (!promoCode) { 
+    if (!promoCode) {
       messageApi.open({
         type: "error",
         content: "code can not be empty",
@@ -30,13 +30,27 @@ function ShoppingCartSummary({
   function deletePromoCode() {
     removePromoCode();
   }
- 
+
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      if (!promoCode) {
+        messageApi.open({
+          type: "error",
+          content: "code can not be empty",
+          duration: 1,
+        });
+      } else {
+        validatePromoCodeInput(promoCode);
+        setPromoCode("");
+      }
+    }
+  };
 
   return (
     <>
       {/* summary */}
       <div className="sc_summary">
-      {contextHolder}
+        {contextHolder}
         <div className="sc_content_right_up">Summary</div>
         <div className="sc_content_right_middle">
           <div className="sc_items_count_price">
@@ -53,6 +67,7 @@ function ShoppingCartSummary({
                   value={promoCode}
                   onChange={(e) => setPromoCode(e.target.value)}
                   placeholder="Promo Code"
+                  onKeyDown={handleKeyPress}
                 />
               </div>
               <div className="sc_given_code_buttom_wrap" onClick={validateCode}>

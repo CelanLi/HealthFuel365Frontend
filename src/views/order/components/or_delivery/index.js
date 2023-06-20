@@ -1,13 +1,9 @@
 import { Popover } from "antd";
- 
+import { useEffect, useState } from "react";
 import "./index.css";
 
-function OrderDelivery() {
-  const deliveryList = [
-    { desc: "Standard shipping via HERMES", choice: false, price: "4.95€" },
-    { desc: "Standard shipping via DHL", choice: false, price: "4.95€" },
-  ];
-
+function OrderDelivery({deliveryChoice}) { 
+ 
   const rapidShippingeNote = (
     <div
       style={{
@@ -23,7 +19,56 @@ function OrderDelivery() {
       <div>Supported by DHL Express</div>
     </div>
   );
-  
+
+  const deliveryList = [
+    {
+      value: "HERMES",
+      desc: "Standard shipping via HERMES",
+      choice: true,
+      price: "4.95€",
+    },
+    {
+      value: "DHL",
+      desc: "Standard shipping via DHL",
+      choice: false,
+      price: "4.95€",
+    },
+    {
+      value: "Rapid",
+      desc: "Rapid packaging and shipping (1-2 Working days)",
+      choice: false,
+      price: "7.95€",
+      icon: (
+        <>
+          <span className="or_standard_shipping_rapid_icon">
+            <img
+              src={require("../../../../assets/images/rapid_service_icon.png")}
+            />
+          </span>
+          <Popover
+            overlayClassName="popover_rapid_shipping"
+            content={rapidShippingeNote}
+            trigger="hover"
+            placement="right"
+          >
+            <span className="or_standard_shipping_rapid_note">
+              <img
+                src={require("../../../../assets/images/information_note.png")}
+              />
+            </span>
+          </Popover>
+        </>
+      ),
+    },
+  ];
+
+  const [selectedOption, setSelectedOption] = useState("HERMES");
+
+  const handleRadioChange = (event) => {
+    setSelectedOption(event.target.value);
+    deliveryChoice(event.target.value);
+  };
+
   return (
     <>
       <div className="or_delivery_content">
@@ -34,13 +79,16 @@ function OrderDelivery() {
                 <div className="or_choice">
                   <input
                     type="radio"
-                    value={deliveryItem.choice}
+                    value={deliveryItem.value}
+                    checked={selectedOption === deliveryItem.value}
+                    onChange={handleRadioChange}
                     name="deliveryChoice"
                   />
                 </div>
                 <div className="or_standard_shipping_name">
                   {deliveryItem.desc}
                 </div>
+                {deliveryItem.icon ? deliveryItem.icon : null}
               </div>
               <div className="or_shipping_service_price">
                 {deliveryItem.price}
@@ -48,37 +96,6 @@ function OrderDelivery() {
             </div>
           );
         })}
-
-        <div className="or_delivery_desc">
-          <div className="or_standard_shipping_desc_left">
-            <div className="or_choice">
-              <input type="radio" value="false" name="deliveryChoice" />
-            </div>
-            <div className="or_standard_rapid_shipping_wrap">
-              <div className="or_standard_shipping_name">
-                Rapid packaging and shipping (1-2 Working days)
-              </div>
-              <span className="or_standard_shipping_rapid_icon">
-                <img
-                  src={require("../../../../assets/images/rapid_service_icon.png")}
-                />
-              </span>
-              <Popover
-                overlayClassName="popover_rapid_shipping"
-                content={rapidShippingeNote}
-                trigger="hover"
-                placement="right"
-              >
-                <span className="or_standard_shipping_rapid_note">
-                  <img
-                    src={require("../../../../assets/images/information_note.png")}
-                  />
-                </span>
-              </Popover>
-            </div>
-          </div>
-          <div className="or_shipping_service_price">7.95€</div>
-        </div>
       </div>
     </>
   );

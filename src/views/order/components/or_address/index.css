@@ -1,66 +1,38 @@
-.or_address {
-    display: flex;
-    margin-bottom: 20px;
-  }
-  
-  .or_address_content {
-    box-sizing: border-box;
-    width: 700px;
-    padding: 10px;
-    background: rgba(3, 61, 31, 0.09);
-    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
-    border-radius: 10px;
-  }
-  
-  .or_address_content_up,
-  .or_address_content_middle,
-  .or_address_content_bottom {
-    display: flex;
-    justify-content: baseline;
-  }
- 
-.or_address_receiver,
-.or_address_tel,
-.or_address_street,
-.or_address_additional,
-.or_address_postCode,
-.or_address_city {
-  font-family: "Kaisei Opti";
-  font-style: normal;
+.or_address_info {
+  display: flex;
+}
+
+.or_address_info .myaccount-content {
+  background-color: #c4d0cb;
+  padding: 10px 0 ;
+  border-radius: 20px;
+  height: initial;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.or_address_info .myaccount-address-text-1 {
+  margin-left: 5px;
   font-weight: 500;
-  font-size: 16px;
-  line-height: 29px;
-  color: #033d1f;
+  font-size: 18px;
 }
 
-.or_address_tel,
-.or_address_additional,
-.or_address_city {
-  margin-left: 50px;
+.or_address_info .myaccount-address-icon {
+  width: 22px;
+  height: 22px;
 }
+.or_address_info .myaccount-content-up-block {
+  padding: 0;
+  margin-right: 10px;
+}
+.or_address_info .myaccount-content-left{
 
-.or_choice {
-    margin-right: 10px;
-  }
-  .or_choice label {
-    margin-left: 10px;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 18px;
-  }
-  
-  .or_choice input[type="radio"] {
-    appearance: none;
-    border-radius: 50%;
-    border: none;
-    width: 16px;
-    height: 16px;
-    position: relative;
-    top: 2px;
-    background-color: rgba(3, 61, 31, 0.15);
-  }
-  
-  .or_choice input:checked {
-    border: 5px solid #033d1f;
-  }
-  
+}
+.or_address_info .myaccount-content-up,
+.or_address_info .myaccount-content-bottom {
+  margin: 5px;
+  margin-left: 40px;
+}
+ 
