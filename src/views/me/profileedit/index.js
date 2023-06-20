@@ -1,7 +1,7 @@
 import { Button, Form, Input, Select,Radio,Checkbox } from 'antd';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import "./index.css";
-import { profileEdit } from '../../../services/userService';
+import { profileEdit, profileGet } from '../../../services/userService';
 import { useNavigate } from 'react-router-dom';
 
 import HealthGoal from '../../../assets/images/myaccount/icon-health-goal.png'
@@ -19,10 +19,10 @@ function Page() {
     const [salt, setSalt] = useState(false);
     const [sugar, setSugar] = useState(false);
 
-    //handle change of radios
+    // handle change of health goal
     const handleHealthGoalChange = (e) => {
         setHealthGoal(e.target.value);
-      };
+    };
 
     const handleDietTypeChange = (e) => {
         setDietType(e.target.value);
@@ -44,24 +44,29 @@ function Page() {
         setSugar(e.target.checked);
     };
 
-
+    // handle submit
     const handleButtonClick = () => {
+        // convert the healthGoal
         let losingWeightAsGoal = false;
-        let keepGoodDietAsGoal = false;
+        let keepGoodDietAsGoal = true;
         if (healthGoal === "loseWeight")
         {
-            losingWeightAsGoal = true;
-            keepGoodDietAsGoal = false;
+          console.log("111")
+          losingWeightAsGoal = true;
+          keepGoodDietAsGoal = false;
         }
         if (healthGoal === "goodDiet")
         {
-            losingWeightAsGoal = false;
-            keepGoodDietAsGoal = true;
+          console.log("222")
+          losingWeightAsGoal = false;
+          keepGoodDietAsGoal = true;
         }
-        else{
-            losingWeightAsGoal = false;
-            keepGoodDietAsGoal = false;
+        if (healthGoal === "notSure"){
+          console.log("333")
+          losingWeightAsGoal = false;
+          keepGoodDietAsGoal = false;
         }
+
         const nutriPreference = ['A','B','C','D','E']
         if(nutriScore === 'A'){
             nutriPreference.splice(1, 4);
@@ -75,6 +80,7 @@ function Page() {
         profileEdit({
             losingWeightAsGoal : losingWeightAsGoal,
             keepGoodDietAsGoal: keepGoodDietAsGoal,
+            healthGoal: healthGoal,
             typeOfEater : dietType,
             nutriPreference: nutriPreference,
             lowInFat : fat,
@@ -83,6 +89,46 @@ function Page() {
         })
         navigate('/myaccount/myprofile');
       };
+
+    const handleTestClick = () => {
+        console.log("userProfile.typeofeater:",userProfile.typeOfEater)
+        console.log(dietType)
+    };
+    // initialize the profile edit page
+    // all data on this page should be the same as in database at the beginning
+    const [userProfile,setUserProfile] = useState(null)
+
+    //initial user profile
+    useEffect(() => {
+        setUserProfile();
+    },[])
+
+    //get profile from backend
+    useEffect(() => {
+        // 模拟从后端获取用户profile信息
+        const fetchUserProfile = () => {
+          // 假设通过某种方式获取到用户profile
+          const userProfile = {
+            "_id": "64872a4ed2c673dd7bba2b3c",
+            "losingWeightAsGoal": false,
+            "lowInFat": true,
+            "lowInSugar": true,
+            "typeOfEater": "vegetarian",
+            "lowInSalt": false,
+            "nutriPreference": ["A", "B"],
+            "__v": 0,
+            "userID": "64872a4ed2c673dd7bba2b39",
+            "keepGoodDietAsGoal": false,
+            "id": "64872a4ed2c673dd7bba2b3c"
+          };
+    
+          setUserProfile(userProfile);
+          setDietType(userProfile.typeOfEater);
+        };
+    
+        // 调用函数获取用户profile信息
+        fetchUserProfile();
+      }, []);
 
   return (
     <div className='profile-wrap'>
@@ -125,7 +171,7 @@ function Page() {
                     </div>
                 </div>
                 <div className='profile-answer'>
-                    <Radio.Group  defaultValue="notSure" onChange={handleDietTypeChange}>
+                    <Radio.Group  defaultValue={dietType} onChange={handleDietTypeChange}>
                         <Radio value="vegan">
                             <div className='profile-answers'>Vegan.</div>  
                         </Radio>
@@ -185,6 +231,9 @@ function Page() {
             <Form.Item>
                 <button className='myaccount-edit' htmlType="submit" onClick={handleButtonClick}> 
                     Submit
+                </button>
+                <button className='myaccount-edit' htmlType="submit" onClick={handleTestClick}> 
+                    test
                 </button>
             </Form.Item>
             </Form>

@@ -77,7 +77,7 @@ export const getUser = async () => {
       },
     );
     const response = result.data;
-    console.log("fdafa",response)
+
     if (response.status >= 300) {
       throw new Error(response.message);
     }
@@ -137,7 +137,7 @@ export const profileGet = async () => {
       },
     );
     const response = result.data;
-    console.log("fdafa",response)
+
     if (response.status >= 300) {
       throw new Error(response.message);
     }
@@ -220,10 +220,10 @@ export const addressDelete = async (addressID) => {
       },
     );
     const response = result.data;
-    console.log(response)
     if (response.status >= 300) {
       throw new Error(response.message);
     }
+    console.log("deleteResponse",response)
     return response;
   } catch (error) {
     throw new Error(error);

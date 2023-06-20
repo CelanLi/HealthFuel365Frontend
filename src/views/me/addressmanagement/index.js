@@ -11,18 +11,18 @@ import MyAddress from '../components/me_address';
 import OrderAddAddress from '../../order/components/or_add_address';
 
 function App() {
-    //set address list value
+    // set address list value
     const [addressList,setAddressList] = useState([]);
-    //initial address list
+    // initial address list
     useEffect(() => {
       setAddress();
     },[])
-    //get address list value if address list changes
+    // get address list value if address list changes
     useEffect(() => {
       setAddressList(addressList);
     },[addressList])
   
-    //get address list from backend
+    // get address list from backend
     const setAddress = async () => {
       try{
         const list = await (addressGet());

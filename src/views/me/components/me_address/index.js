@@ -1,5 +1,7 @@
 import React from 'react'
+import { message } from 'antd';
 import "./index.css"; 
+import { useNavigate } from 'react-router-dom';
 
 import { addressDelete } from '../../../../services/userService';
 
@@ -13,10 +15,20 @@ function MyAddress({ addressList = [] }) {
     //     console.log(addressId)
     //     addressDelete(addressId)
     // }
-
     const handelDelete = (e) => {
         const addressId = e.target.value;
         console.log(addressId)
+        try {
+            const successFlag = addressDelete(addressId);
+            console.log("successFlag",successFlag)
+            
+            if (successFlag) {
+                // reload the page
+                window.location.reload();
+            }
+        } catch (error) {
+            message.error(`Delete Address failed: ${error.response.data.message}`);
+        }
         addressDelete(addressId)
     }
 
