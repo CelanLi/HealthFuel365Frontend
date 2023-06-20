@@ -68,6 +68,8 @@ export const addShoppingCart = async (shoppingCartID, productID) => {
     console.error(error);
     if (error.response && error.response.status === 401) {
       showLoginReminder();
+    } else if (error.response && error.response.status === 500) {
+      message.error("Sorry, chosen item reach the maximum quantity");
     } else {
       throw new Error(error);
     }
