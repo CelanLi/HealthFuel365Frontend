@@ -14,12 +14,13 @@ function OrderAddress({ addressList = [], addressChoice }) {
     setSelectedOption(event.target.value);
     addressChoice(event.target.value);
   };
-
-  useEffect(() => {
+ 
+  useEffect(() => { 
     if (addressList.length > 0) {
-      setSelectedOption(addressList[0].id);
+      setSelectedOption(addressList[0].id); 
+      addressChoice(addressList[0].id);
     }
-  }, []);
+  }, [addressList]);
 
   return (
     <div>

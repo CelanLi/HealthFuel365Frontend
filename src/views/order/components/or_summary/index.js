@@ -1,6 +1,6 @@
 import "./index.css"; 
 
-function OrderSummary({itemsCount, itemsPrice, totalSavings, subtotal, shipping, additionalService, totalPrice}) {
+function OrderSummary({itemsCount, itemsPrice, totalSavings, subtotal, shipping, additionalService, totalPrice, createOrder}) {
   return (
     <>
       <div className="or_summary">Summary</div>
@@ -41,7 +41,7 @@ function OrderSummary({itemsCount, itemsPrice, totalSavings, subtotal, shipping,
           <div className="or_totalprice_value">{totalPrice}€</div>
         </div>
       </div>
-      <div className="or_pay">Pay with PayPal</div>
+      <div className="or_pay" onClick={createOrder}>Pay with PayPal</div>
     </>
   );
 }

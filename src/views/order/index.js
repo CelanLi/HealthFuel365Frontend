@@ -11,6 +11,7 @@ import OrderDelivery from "./components/or_delivery";
 import OrderAdditionService from "./components/or_additional_service";
 import { getShoppingCartDetail } from "../../services/shoppingCartService";
 import { addressGet } from "../../services/userService";
+import { createOrder } from "../../services/orderService";
 
 //ANTD components
 import { Popover, Collapse } from "antd";
@@ -23,11 +24,12 @@ function Page() {
   const [orTotalPrice, setTotalPrice] = useState("0");
   const [orDelivery, setorDelivery] = useState("HERMES");
   const [orService, setorService] = useState(false);
+  const [orAddressID, setorAddressID] = useState("");
   const [orDeliveryPrice, setorDeliveryPrice] = useState(4.95);
   const [orServicePrice, setorServicePrice] = useState(0);
   const [messageApi, contextHolder] = message.useMessage();
 
-  function calculateTotalPrice() { 
+  function calculateTotalPrice() {
     const value = new BigNumber(orSummary.subtotal)
       .plus(new BigNumber(orDeliveryPrice))
       .plus(new BigNumber(orServicePrice))
@@ -40,19 +42,16 @@ function Page() {
 
   function getDeliveryChoice(value) {
     setorDelivery(value);
-    setorDeliveryPrice(value === "Rapid" ? 7.95 : 4.95); 
+    setorDeliveryPrice(value === "Rapid" ? 7.95 : 4.95);
   }
 
   function getAddressChoice(value) {
-    console.log(value);
+    setorAddressID(value);
   }
- 
 
   function getAdditionServiceChoice(value) {
     setorService(value);
-
     setorServicePrice(value ? 1.95 : 0);
-    console.log(222, orDeliveryPrice, orServicePrice);
   }
 
   // get: itemquantity,itemprice,total savings, subtotal
@@ -87,9 +86,21 @@ function Page() {
     }
   };
 
-  // function getAddressList() {
-  //   setAddress();
-  // }
+  //create order
+  function addOrder() {
+    createOrder({ shoppingCartID, orDelivery, orService, orAddressID }).then(
+      (res) => {
+        if (res.code === 0) {
+          window.location.href = "http://localhost:3000/myaccount/myorder";
+        } else {
+          messageApi.open({
+            type: "error",
+            content: res.message,
+          });
+        }
+      }
+    );
+  }
 
   // first visit the page
   useEffect(() => {
@@ -160,6 +171,7 @@ function Page() {
             shipping={orDeliveryPrice}
             additionalService={orServicePrice}
             totalPrice={orTotalPrice}
+            createOrder={addOrder}
           ></OrderSummary>
         </div>
       </div>
