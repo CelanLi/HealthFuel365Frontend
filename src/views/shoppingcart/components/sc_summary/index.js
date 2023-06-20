@@ -46,6 +46,18 @@ function ShoppingCartSummary({
     }
   };
 
+  function goToOrder() {
+    if (itemQuantity === 0) {
+      messageApi.open({
+        type: "error",
+        content: "Sorry, your shopping cart is empty.",
+        duration: 1,
+      });
+      return;
+    }
+    window.location.href = "/order";
+  }
+
   return (
     <>
       {/* summary */}
@@ -97,9 +109,9 @@ function ShoppingCartSummary({
           </div>
         </div>
         <div className="sc_checkout_wrap">
-          <Link className="sc_checkout" to="/order">
+          <div className="sc_checkout" onClick={goToOrder}>
             Go to Checkout
-          </Link>
+          </div>
         </div>
       </div>
     </>

@@ -84,7 +84,10 @@
     line-height: 66px;
    
     margin: 0px auto;
+    cursor: pointer;
   }
+
+
    
   .or_pay a,
   .or_pay a:visited {

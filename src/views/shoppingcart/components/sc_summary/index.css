@@ -131,6 +131,7 @@
 
   text-align: center;
   line-height: 66px;
+  cursor: pointer;
 }
 
 .sc_checkout:hover {
