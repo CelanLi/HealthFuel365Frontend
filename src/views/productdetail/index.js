@@ -2,12 +2,13 @@ import "./index.css";
 import React from "react";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { message } from "antd"; 
+import { message } from "antd";
 import Nutri from "../../components/nutri";
 import ContentLevel from "./components/content_level";
 import AddToScButton from "../../components/add_to_sc_button";
 import { getDetail } from "../../services/productDetailService";
 import { addShoppingCart } from "../../services/productService";
+import { getCookie } from "../../util/cookie";
 
 function Page() {
   // get corresponding product data by comparing the product id
@@ -261,13 +262,12 @@ function Page() {
   const clickShoppingCart = async (id) => {
     // wait for shoppingCartID
     await addShoppingCart(shoppingCartID, id);
-  }; 
+  };
   // if the item is not avialable, it cannot be added to the cart.
   const handleClick = () => {
-    if (product?.capacity === 0){
+    if (product?.capacity === 0) {
       message.error("Sorry, this item is not available.");
-    }
-    else{
+    } else {
       clickShoppingCart(id);
     }
   };
@@ -301,7 +301,10 @@ function Page() {
               </div>
               <div className="right">
                 {/* add to shopping cart button */}
-                <AddToScButton  onClick={handleClick} disabled={product?.capacity === 0}/>
+                <AddToScButton
+                  onClick={handleClick}
+                  disabled={product?.capacity === 0}
+                />
               </div>
             </div>
           </div>
