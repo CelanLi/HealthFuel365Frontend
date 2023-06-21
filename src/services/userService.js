@@ -69,6 +69,11 @@ export const getUser = async () => {
   try {
     console.log("fjdalk")
     console.log(document.cookie)
+
+    if (!document.cookie) {
+      throw new Error("Cookie is empty");
+    }
+
     const result: Response = await axios.get(
       'http://localhost:8081/user/getuser',
       {
@@ -192,6 +197,9 @@ export const addressAdd = async (data) => {
 
 export const addressGet = async () => {
   try {
+    if (!document.cookie) {
+      throw new Error("Cookie is empty");
+    }
     const result: Response = await axios.get(
       'http://localhost:8081/user/addressget',
       {

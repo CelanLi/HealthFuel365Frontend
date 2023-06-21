@@ -27,10 +27,20 @@ function MyNav() {
     //get account from backend
     const setAccount = async () => {
       try{
-        console.log("getaccount")
-        const userAccount = await (getUser());
-        console.log(JSON.stringify(userAccount) + "userAccount to test");
-        setUserAccount(userAccount);
+        if (document.cookie) {
+          console.log("getaccount")
+          const userAccount = await (getUser());
+          console.log(userAccount + "userAccount to test");
+          setUserAccount(userAccount);
+        }
+        else{
+          const userAccount = {
+            username: "guest",
+            email:"guest@gmail.com"
+          }
+          setUserAccount(userAccount);
+        }
+        
       } catch (error) {
         console.error("userAccount get error:", error);
       }
@@ -52,7 +62,6 @@ function MyNav() {
         {userAccount && (
             <MyInfo userAccount={userAccount}/>
         )}
-        
 
         <div className='myaccount-nav-tab'>
             <Link to="/myaccount/addressmanagement" className='myaccount-nav-title'>My Address</Link>

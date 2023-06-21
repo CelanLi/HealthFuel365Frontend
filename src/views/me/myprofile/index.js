@@ -37,7 +37,7 @@ function App() {
           console.log(JSON.stringify(profile) + "profile to test");
           
           setUserProfile(profile);
-        }, 500);
+        }, 300);
       } catch (error) {
         console.error("profile get error:", error);
       }

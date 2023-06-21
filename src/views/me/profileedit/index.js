@@ -79,7 +79,7 @@ function Page() {
         setTimeout(async () => {
             setUserProfile(profile);
             setIsDataLoaded(true);
-          }, 500);
+          }, 300);
       } catch (error) {
         console.error("profile get error:", error);
       }

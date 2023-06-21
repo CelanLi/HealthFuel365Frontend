@@ -10,7 +10,7 @@ import OrderSummary from "./components/or_summary";
 import OrderDelivery from "./components/or_delivery";
 import OrderAdditionService from "./components/or_additional_service";
 import { getShoppingCartDetail } from "../../services/shoppingCartService";
-import { addressGet } from "../../services/userService";
+import { addressGet,getUser } from "../../services/userService";
 import { createOrder } from "../../services/orderService";
 
 //ANTD components
@@ -75,6 +75,25 @@ function Page() {
       });
   }
 
+  //get user from backend
+  const setShoppingCart = async () => {
+    try {
+      if (document.cookie) {
+        const userAccount = await (getUser());
+        console.log(userAccount,"userAccount to test");
+
+        const userID = userAccount.id
+        console.log(userID)
+        setShoppingCartID(userID)
+      }
+      else{
+        console.error("please log in!")
+      }
+    } catch (error) {
+      console.error("shoppingcart set error:", error);
+    }
+  };
+
   //get address list from backend
   const setAddress = async () => {
     try {
@@ -106,6 +125,7 @@ function Page() {
   useEffect(() => {
     getOrderSummaryInfo();
     setAddress();
+    setShoppingCart();
   }, []);
 
   useEffect(() => {

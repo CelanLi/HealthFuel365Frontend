@@ -31,7 +31,7 @@
     color: #033D1F;
 }
   
-  .myaccount-title-2{
+.myaccount-title-2{
     font-family: 'Kaisei Opti';
     font-style: normal;
     font-weight: 700;
@@ -39,4 +39,9 @@
     text-decoration: none;
   
     color: #4D4D4D;
+}
+
+.myaccount-error-message{
+    margin: 60px;
+    height: 500px;
 }
