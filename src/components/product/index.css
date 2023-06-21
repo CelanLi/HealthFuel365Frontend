@@ -42,13 +42,15 @@
   margin-left: 3%;
   margin-right: 3%;
   width: 94%;
-  height: 9vh;
+  /*height: 9vh;*/
+  height: 85px;
   overflow: hidden;
   text-align: left;
   font-family: 'Kaisei Opti';
   font-style: normal;
   font-weight: 400;
-  font-size: 2vh;
+  /*font-size: 2vh;*/
+  font-size: 18px;
   color: #033D1F;
 }
 
@@ -88,7 +90,8 @@
   font-family: "Kaisei Opti";
   font-style: normal;
   font-weight: 400;
-  font-size: 1.8vh;
+  /*font-size: 1.8vh;*/
+  font-size: 16px;
   align-items: center;
   color: #033d1f;
 }

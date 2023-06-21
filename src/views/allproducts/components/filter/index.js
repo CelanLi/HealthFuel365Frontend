@@ -1,5 +1,5 @@
 import "./index.css";
-
+import { getAllBrands } from "../../../../services/productService";
 import React, {useEffect, useState } from "react";
 
 //ANTD components
@@ -140,6 +140,19 @@ export function BrandFilter({ brands = [], setBrands }) {
   const [selectedBrands, setSelectedBrands] = useState(brands);
   /* now used to test*/
   useEffect(() => {console.log(selectedBrands);}, [selectedBrands]);
+  // get all brand names
+  const [allBrands, setAllBrands] = useState([]);
+  const setAllBrandsName = async () => {
+    try {
+      const brandNames = await getAllBrands();
+      setAllBrands(brandNames);
+    } catch (error) {
+      console.error("error: get all Brands", error);
+    }
+  };
+  useEffect(() => {
+    setAllBrandsName();
+  }, []);
 
   const handleCheckboxChange = (event) => {
     const { value, checked } = event.target;
@@ -157,6 +170,17 @@ export function BrandFilter({ brands = [], setBrands }) {
     <div className="filter">
       <Collapse bordered={false} defaultActiveKey={["1"]} expandIconPosition="end">
         <Panel header="Brands" key="1">
+          {
+            allBrands.map((brand) => {
+              return (
+                <div className="filter-choice">
+                  <input type="checkbox" id={brand} name="b" value={brand} onChange={handleCheckboxChange}/>
+                  <label for={brand}>{brand}</label>
+                </div>
+              );
+            })
+          }
+          {/*
           <div className="filter-choice">
             <input type="checkbox" id="b1" name="b" value="Davert" onChange={handleCheckboxChange}/>
             <label for="Davert">Davert</label>
@@ -165,6 +189,7 @@ export function BrandFilter({ brands = [], setBrands }) {
             <input type="checkbox" id="b2" name="b" value="Seitenbacher" onChange={handleCheckboxChange}/>
             <label for="Seitenbacher">Seitenbacher</label>
           </div>
+          */}
         </Panel>
       </Collapse>
     </div>
