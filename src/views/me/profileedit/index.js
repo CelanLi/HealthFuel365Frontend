@@ -74,6 +74,8 @@ function Page() {
         }
 
         //others are the same as in profile
+
+        //delay get profile
         setTimeout(async () => {
             setUserProfile(profile);
             setIsDataLoaded(true);

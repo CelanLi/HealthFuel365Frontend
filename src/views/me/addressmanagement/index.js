@@ -25,9 +25,13 @@ function App() {
     // get address list from backend
     const setAddress = async () => {
       try{
-        const list = await (addressGet());
-        console.log(JSON.stringify(list) + "address to test");
-        setAddressList(list);
+        // delay get address list
+        setTimeout(async () => {
+          const list = await (addressGet());
+          console.log(JSON.stringify(list) + "address to test");
+          setAddressList(list);
+        }, 500);
+        
       } catch (error) {
         console.error("address get error:", error);
       }
