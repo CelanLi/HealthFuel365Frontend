@@ -68,6 +68,7 @@ export const loginUser = async (data) => {
 export const getUser = async () => {
   try {
     console.log("fjdalk")
+    console.log(document.cookie)
     const result: Response = await axios.get(
       'http://localhost:8081/user/getuser',
       {
@@ -128,6 +129,7 @@ export const profileEdit = async (data) => {
 export const profileGet = async () => {
   try {
     console.log("fjdalk")
+    console.log(document.cookie)
     const result: Response = await axios.get(
       'http://localhost:8081/user/profileget',
       {

@@ -24,13 +24,31 @@ function App() {
     //get profile from backend
     const setProfile = async () => {
       try{
-        console.log("ddd")
-        const profile = await (profileGet());
-        console.log(JSON.stringify(profile) + "profile to test");
-        setUserProfile(profile);
+        // console.log("ddd")
+        // const profile = await (profileGet());
+        // console.log(JSON.stringify(profile) + "profile to test");
+      
+        // console.log('Inside setTimeout callback');
+        // setUserProfile(profile);
+
+        //delay reading data
+        setTimeout(async () => {
+          const profile = await profileGet();
+          console.log(JSON.stringify(profile) + "profile to test");
+          
+          setUserProfile(profile);
+        }, 500);
       } catch (error) {
         console.error("profile get error:", error);
       }
+    }
+
+    if (!userProfile) {
+      return(
+        <div>
+          loading...
+        </div>
+      )
     }
   return (
     <div className='myaccount-profile-wrap'>

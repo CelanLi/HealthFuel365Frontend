@@ -11,18 +11,10 @@ function Page() {
     // all data on this page should be the same as in database at the beginning
     const [userProfile,setUserProfile] = useState(null)
     const [isDataLoaded, setIsDataLoaded] = useState(false);
-    // let goal = "notSure";
-    // let type = "notSure";
-    // let nutri = "notSure";
-    // let fatContent = false;
-    // let saltContent = false;
-    // let sugarContent = false;
+
     const [healthGoal, setHealthGoal] = useState("notSure")
     const [dietType, setDietType] = useState("notSure")
     const [nutriScore, setNutriScore] = useState("notSure")
-    const [fat, setFat] = useState(false);
-    const [salt, setSalt] = useState(false);
-    const [sugar, setSugar] = useState(false);
 
     //initial user profile
     useEffect(() => {
@@ -82,18 +74,17 @@ function Page() {
         }
 
         //others are the same as in profile
-        setUserProfile(profile);
-
-        setIsDataLoaded(true);
-
+        setTimeout(async () => {
+            setUserProfile(profile);
+            setIsDataLoaded(true);
+          }, 500);
       } catch (error) {
         console.error("profile get error:", error);
       }
     }
 
-
     if (!isDataLoaded) {
-        return <div>Loading...</div>; // 或者显示其他的加载中状态
+        return <div>Loading...</div>; // wait for data loading
         }
 
   return (
