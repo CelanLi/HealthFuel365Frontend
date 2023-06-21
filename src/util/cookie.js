@@ -8,7 +8,7 @@ export function setCookie(cname, cvalue) {
     console.log("888",document.expires)
 };
 
-//get cookie by name
+// get cookie by name
 export function getCookie(cname)
 {
   var name = cname + "=";
@@ -21,7 +21,7 @@ export function getCookie(cname)
   return "";
 };
 
-//get cookie by cookie name
+// check cookie
 export function checkCookie()
 {
   var username=getCookie("username");
