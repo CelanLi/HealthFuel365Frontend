@@ -32,8 +32,21 @@
 }
 
 .alternative-panels{
+    display: flex;
     margin-left: 20px;
     width: 100%;
+}
+
+.alternative-panel-text{
+   text-align: center;
+   align-items: center;
+   margin: auto;
+   font-family: 'Kaisei Opti';
+   font-style: normal;
+   color: #033D1F;
+   text-align: center;
+   font-weight: 600;
+   font-size: 20px;
 }
 
 .alternative-product{

@@ -8,6 +8,9 @@ import Friedchicken from "../../../../assets/images/homepage/junkfood/friedchick
 import Pommes from "../../../../assets/images/homepage/junkfood/pommes.png";
 import WhiteChocolate from "../../../../assets/images/homepage/junkfood/whiteChocolate.png";
 import GummiBears from "../../../../assets/images/homepage/junkfood/gummyBears.png";
+import Cola from "../../../../assets/images/homepage/junkfood/cola.png";
+import Cookies from "../../../../assets/images/homepage/junkfood/cookies.png";
+import Salami from "../../../../assets/images/homepage/junkfood/salami.png";
 
 import { getAlternative } from "../../../../services/alternativeService";
 // const alternative0 = (
@@ -54,14 +57,21 @@ const Tab101 = () => {
   const [alternative3, setAlternative3] = useState([]);
   const [alternative4, setAlternative4] = useState([]);
   const [alternative5, setAlternative5] = useState([]);
+  const [showText, setShowText] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
+  const junkFoodNames = ["chips", "white chocolate", "unhealthy carbonated beverages", "gummi bears", "unhealthy sugary and fatty cookies", "highly processed salami"];
+  const junkFoodName = junkFoodNames[value];
 
   const className = (baseName, isSelected) =>
     (isSelected ? [baseName].concat("selected") : [baseName]).join(" ");
 
-  const handleAlternativeClick = (value) => {
+  const handleAlternativeClick = async (value) => {
+    setIsLoading(true);
+    setShowText(false);
     setValue(value);
     console.log("alternativeitem: " + value);
-    setAlternative(value);
+    await setAlternative(value);
+    setIsLoading(false);
   };
 
   const setAlternative = async (value) => {
@@ -122,7 +132,7 @@ const Tab101 = () => {
               className={className("alternative-tab-item", value === 2)}
               onClick={() => handleAlternativeClick(2)}
             >
-              <img src={Pommes} className="alternative-tab-icon" />
+              <img src={Cola} className="alternative-tab-icon" />
             </div>
           </div>
           <div className="alternative-nav-row">
@@ -136,54 +146,64 @@ const Tab101 = () => {
               className={className("alternative-tab-item", value === 4)}
               onClick={() => handleAlternativeClick(4)}
             >
-              <img src={Friedchicken} className="alternative-tab-icon" />
+              <img src={Cookies} className="alternative-tab-icon" />
             </div>
             <div
               className={className("alternative-tab-item", value === 5)}
               onClick={() => handleAlternativeClick(5)}
             >
-              <img src={Pommes} className="alternative-tab-icon" />
+              <img src={Salami} className="alternative-tab-icon" />
             </div>
           </div>
         </div>
 
         <div className="alternative-panels">
-          {value === 0 && (
+          {showText && (
+            <div className="alternative-panel-text">
+              Please click the icon on the left to get corresponding healthier alternatives
+            </div>
+          )}
+          {isLoading && (
+            <div className="alternative-panel-text">
+              Loading alternatives for {junkFoodNames[value]}...
+            </div>
+          )}
+          {(!isLoading) && value === 0 && (
             <div className="alternative-panel-item">
               <div className="alternative-product">
                 {alternativeMap(alternative0)}
               </div>
             </div>
           )}
-          {value === 1 && (
+          {(!isLoading) && value === 1 && (
             <div className="alternative-panel-item">
               <div className="alternative-product">
                 {alternativeMap(alternative1)}
               </div>
             </div>
           )}
-          {value === 2 && (
+          {(!isLoading) && value === 2 && (
             <div className="alternative-panel-item">
               <div className="alternative-product">
                 {alternativeMap(alternative2)}
               </div>
             </div>
           )}
-          {value === 3 && (
+          {(!isLoading) && value === 3 && (
             <div className="alternative-panel-item">
               <div className="alternative-product">
                 {alternativeMap(alternative3)}
               </div>
             </div>
           )}
-          {value === 4 && (
+          {(!isLoading) && value === 4 && (
             <div className="alternative-panel-item">
               <div className="alternative-product">
                 {alternativeMap(alternative4)}
               </div>
             </div>
           )}
-          {value === 5 && (
+          {(!isLoading) && value === 5 && (
             <div className="alternative-panel-item">
               <div className="alternative-product">
                 {alternativeMap(alternative5)}

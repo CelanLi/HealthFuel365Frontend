@@ -77,23 +77,29 @@ function Page({ setCategory = () => undefined }) {
       </div>
       <div className="category">
         <div className="category-icon">
-          <Link
-            to="#"
-            className="category-icon snacks-non-chosen"
+          <Link to={selectedCategory === "flavorings" ? "/product" : "/product#flavorings"}
+            className={
+              selectedCategory === "flavorings"
+                ? "category-icon flavorings-chosen"
+                : "category-icon flavorings-non-chosen"
+            }
             onClick={handleCategoryChange}
           />
         </div>
-        <p>Xxxx</p>
+        <p>Flavorings</p>
       </div>
       <div className="category">
         <div className="category-icon">
-          <Link
-            to="#"
-            className="category-icon snacks-non-chosen"
+          <Link to={selectedCategory === "supplements" ? "/product" : "/product#supplements"}
+            className={
+              selectedCategory === "supplements"
+                ? "category-icon supplements-chosen"
+                : "category-icon supplements-non-chosen"
+            }
             onClick={handleCategoryChange}
           />
         </div>
-        <p>Xxxx</p>
+        <p>Supplements</p>
       </div>
     </div>
   );
