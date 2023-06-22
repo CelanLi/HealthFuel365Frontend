@@ -5,6 +5,8 @@ import { message } from "antd";
 import "./index.css";
 import ShoppingCartItem from "./components/shoppingcart_item";
 import ShoppingCartSummary from "./components/sc_summary";
+import { addressGet,getUser } from "../../services/userService";
+
 import {
   deleteProductItem,
   changeProductCount,
@@ -16,7 +18,7 @@ import {
 function Page() {
   // definite value input
   const [productItemList, setProductItemList] = useState([]);
-  const [shoppingCartID, setShoppingCartID] = useState("134134");
+  const [shoppingCartID, setShoppingCartID] = useState("");
   const [scSummary, setscSummary] = useState({});
   const [messageApi, contextHolder] = message.useMessage();
 
@@ -103,8 +105,19 @@ function Page() {
 
   // first visit the page
   useEffect(() => {
-    getShoppingCartInfo();
+    (async () => {
+      const userAccount = await getUser();
+      const userID = userAccount.id;
+      setShoppingCartID(userID);
+    })()
   }, []);
+
+  useEffect(() => {
+    if (shoppingCartID) {
+      getShoppingCartInfo();
+    }
+  }, [shoppingCartID]);
+
 
   return (
     // HTML structer

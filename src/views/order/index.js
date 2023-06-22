@@ -18,7 +18,7 @@ import { Popover, Collapse } from "antd";
 const { Panel } = Collapse;
 
 function Page() {
-  const [shoppingCartID, setShoppingCartID] = useState("134134");
+  const [shoppingCartID, setShoppingCartID] = useState("");
   const [addressList, setAddressList] = useState([]);
   const [orSummary, setorSummary] = useState({});
   const [orTotalPrice, setTotalPrice] = useState("0");
@@ -123,7 +123,11 @@ function Page() {
 
   // first visit the page
   useEffect(() => {
-    getOrderSummaryInfo();
+    (async () => {
+      const userAccount = await getUser();
+      const userID = userAccount.id;
+      setShoppingCartID(userID);
+    })()
     setAddress();
     setShoppingCart();
   }, []);
@@ -136,6 +140,12 @@ function Page() {
   useEffect(() => {
     setAddressList(addressList);
   }, [addressList]);
+
+  useEffect(() => {
+    if (shoppingCartID) {
+      getOrderSummaryInfo();
+    }
+  }, [shoppingCartID]);
 
   return (
     <div className="shoppingcart_wrap">

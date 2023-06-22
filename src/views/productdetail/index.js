@@ -9,6 +9,7 @@ import AddToScButton from "../../components/add_to_sc_button";
 import { getDetail } from "../../services/productDetailService";
 import { addShoppingCart } from "../../services/productService";
 import { getCookie } from "../../util/cookie";
+import { getUser } from "../../services/userService";
 
 function Page() {
   // get corresponding product data by comparing the product id
@@ -17,6 +18,7 @@ function Page() {
   console.log(id);
   const [product, setProduct] = useState([]);
   const [productDetail, setProductDetail] = useState([]);
+  const [shoppingCartID, setShoppingCartID] = useState("");
   useEffect(() => {
     const setData = async (id: string) => {
       try {
@@ -28,6 +30,11 @@ function Page() {
       }
     };
     setData(id);
+    (async () => {
+      const userAccount = await getUser();
+      const userID = userAccount.id;
+      setShoppingCartID(userID);
+    })()
   }, []);
   // {
   //   productID: "p1",
@@ -258,7 +265,6 @@ function Page() {
     else return "Not Available";
   };
 
-  const [shoppingCartID, setShoppingCartID] = useState("134134");
   const clickShoppingCart = async (id) => {
     // wait for shoppingCartID
     await addShoppingCart(shoppingCartID, id);

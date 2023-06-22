@@ -2,9 +2,10 @@ import "./index.css";
 import Nutri from "../nutri";
 import AddToScButton from "../add_to_sc_button";
 import { addShoppingCart } from "../../services/productService";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { message } from "antd";
+import { getUser } from "../../services/userService";
 
 function ProductComponent({
   productID,
@@ -14,7 +15,7 @@ function ProductComponent({
   imageUrl,
   capacity,
 }) {
-  const [shoppingCartID, setShoppingCartID] = useState("134134");
+  const [shoppingCartID, setShoppingCartID] = useState("");
   const router_path = "/product/detail/" + productID;
   const notAvailable = capacity === 0;
   const clickShoppingCart = async (productID) => {
@@ -28,6 +29,13 @@ function ProductComponent({
       clickShoppingCart(productID);
     }
   };
+  useEffect(() => {
+    (async () => {
+      const userAccount = await getUser();
+      const userID = userAccount.id;
+      setShoppingCartID(userID);
+    })();
+  }, []);
   return (
     <div className="product">
       {/* should link to the corresponding product detail page*/}
