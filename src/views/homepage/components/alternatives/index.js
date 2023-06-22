@@ -6,6 +6,8 @@ import Product from "../../../../components/product";
 import Chips from "../../../../assets/images/homepage/junkfood/chips.png";
 import Friedchicken from "../../../../assets/images/homepage/junkfood/friedchicken.png";
 import Pommes from "../../../../assets/images/homepage/junkfood/pommes.png";
+import WhiteChocolate from "../../../../assets/images/homepage/junkfood/whiteChocolate.png";
+import GummiBears from "../../../../assets/images/homepage/junkfood/gummyBears.png";
 
 import { getAlternative } from "../../../../services/alternativeService";
 // const alternative0 = (
@@ -114,7 +116,7 @@ const Tab101 = () => {
               className={className("alternative-tab-item", value === 1)}
               onClick={() => handleAlternativeClick(1)}
             >
-              <img src={Friedchicken} className="alternative-tab-icon" />
+              <img src={WhiteChocolate} className="alternative-tab-icon" />
             </div>
             <div
               className={className("alternative-tab-item", value === 2)}
@@ -128,7 +130,7 @@ const Tab101 = () => {
               className={className("alternative-tab-item", value === 3)}
               onClick={() => handleAlternativeClick(3)}
             >
-              <img src={Chips} className="alternative-tab-icon" />
+              <img src={GummiBears} className="alternative-tab-icon" />
             </div>
             <div
               className={className("alternative-tab-item", value === 4)}

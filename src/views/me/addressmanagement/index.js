@@ -1,6 +1,8 @@
 //dependencies
 import React, { useEffect } from 'react'
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Modal } from "antd";
 
 import { addressGet } from '../../../services/userService';
 
@@ -11,26 +13,57 @@ import MyAddress from '../components/me_address';
 import OrderAddAddress from '../../order/components/or_add_address';
 
 function App() {
-    //set address list value
+    // set address list value
     const [addressList,setAddressList] = useState([]);
-    //initial address list
+    //navigation
+    const navigate = useNavigate();
+    // initial address list
     useEffect(() => {
       setAddress();
     },[])
-    //get address list value if address list changes
+    // get address list value if address list changes
     useEffect(() => {
       setAddressList(addressList);
     },[addressList])
   
-    //get address list from backend
+    // get address list from backend
     const setAddress = async () => {
       try{
-        const list = await (addressGet());
-        console.log(JSON.stringify(list) + "address to test");
-        setAddressList(list);
+        if (document.cookie) {
+          // delay get address list
+          setTimeout(async () => {
+            const list = await (addressGet());
+            console.log(list + "address to test");
+            setAddressList(list);
+          }, 300);
+        } 
+        // else {
+        //   const list = {};
+        //   setTimeout(async () => {
+        //     navigate('/');
+        //   }, 3000);
+        // }
       } catch (error) {
         console.error("address get error:", error);
       }
+    }
+
+    const handleOk = () => {
+      navigate('/');
+    };
+
+    if (!document.cookie) {
+      return(
+        <div className='myaccount-error-message'>
+          <Modal
+            open={true}
+            title="please log in"
+            onOk={handleOk}
+          >
+            <p>When you visit my account page, you should log in first!</p>
+          </Modal>
+        </div>
+      )
     }
   return (
     <div className='myaccount-address-wrap'>

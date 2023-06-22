@@ -1,195 +1,103 @@
-import { Button, Form, Input, Select,Radio,Checkbox } from 'antd';
-import React, { useState } from 'react';
-import "./index.css";
-import { profileEdit } from '../../../services/userService';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 
-import HealthGoal from '../../../assets/images/myaccount/icon-health-goal.png'
-import DietType from '../../../assets/images/myaccount/icon-diet-type.png'
-import Preference from '../../../assets/images/myaccount/icon-preference.png'
+import EditProfile from './component/index.js';
+
+import "./component/index.js";
+
+import { profileGet } from '../../../services/userService.js';
 
 function Page() {
-    const [form] = Form.useForm();
-    const navigate = useNavigate();
+    // initialize the profile edit page
+    // all data on this page should be the same as in database at the beginning
+    const [userProfile,setUserProfile] = useState(null)
+    const [isDataLoaded, setIsDataLoaded] = useState(false);
 
     const [healthGoal, setHealthGoal] = useState("notSure")
     const [dietType, setDietType] = useState("notSure")
     const [nutriScore, setNutriScore] = useState("notSure")
-    const [fat, setFat] = useState(false);
-    const [salt, setSalt] = useState(false);
-    const [sugar, setSugar] = useState(false);
 
-    //handle change of radios
-    const handleHealthGoalChange = (e) => {
-        setHealthGoal(e.target.value);
-      };
+    //initial user profile
+    useEffect(() => {
+      setProfile();
+    },[])
 
-    const handleDietTypeChange = (e) => {
-        setDietType(e.target.value);
-    };
+    //get profile if profile changes
+    useEffect(() => {
+      setUserProfile(userProfile);
+    },[userProfile])
+  
+    //get profile from backend
+    const setProfile = async () => {
+      try{
+        console.log("ddd")
+        const profile = await (profileGet());
+        console.log(JSON.stringify(profile) + "profile to test");
 
-    const handleNutriScoreChange = (e) => {
-        setNutriScore(e.target.value);
-    };
-
-    const handleFatChange = (e) => {
-        setFat(e.target.checked);
-    };
-
-    const handleSaltChange = (e) => {
-        setSalt(e.target.checked);
-    };
-
-    const handleSugarChange = (e) => {
-        setSugar(e.target.checked);
-    };
-
-
-    const handleButtonClick = () => {
-        let losingWeightAsGoal = false;
-        let keepGoodDietAsGoal = false;
-        if (healthGoal === "loseWeight")
-        {
-            losingWeightAsGoal = true;
-            keepGoodDietAsGoal = false;
+        //convert health goal
+        if (profile.losingWeightAsGoal) {
+            setHealthGoal("loseWeight")
         }
-        if (healthGoal === "goodDiet")
-        {
-            losingWeightAsGoal = false;
-            keepGoodDietAsGoal = true;
+        if (profile.keepGoodDietAsGoal) {
+            setHealthGoal("goodDiet")
         }
-        else{
-            losingWeightAsGoal = false;
-            keepGoodDietAsGoal = false;
+        if (!profile.losingWeightAsGoal && !profile.keepGoodDietAsGoal) {
+            setHealthGoal("notSure")
         }
-        const nutriPreference = ['A','B','C','D','E']
-        if(nutriScore === 'A'){
-            nutriPreference.splice(1, 4);
+
+        //convert diet type
+        if (profile.typeOfEater==='vegan') {
+            setDietType('vegan')
         }
-        if(nutriScore === 'B'){
-            nutriPreference.splice(2, 3);
+        if (profile.typeOfEater==='vegetarian') {
+            setDietType('vegetarian')
         }
-        if(nutriScore === 'C'){
-            nutriPreference.splice(3, 2);
+        if (profile.typeOfEater==='omnivore') {
+            setDietType('omnivore')
         }
-        profileEdit({
-            losingWeightAsGoal : losingWeightAsGoal,
-            keepGoodDietAsGoal: keepGoodDietAsGoal,
-            typeOfEater : dietType,
-            nutriPreference: nutriPreference,
-            lowInFat : fat,
-            lowInSalt: salt,
-            lowInSugar: sugar,
-        })
-        navigate('/myaccount/myprofile');
-      };
+        if (profile.typeOfEater==='notSure') {
+            setDietType('notSure')
+        }
+
+        //convert nutri-score
+        const nutri_score = profile.nutriPreference.pop();
+        if (nutri_score==='A') {
+            setNutriScore('A')
+        }
+        if (nutri_score==='B') {
+            setNutriScore('B')
+        }
+        if (nutri_score==='C') {
+            setNutriScore('C')
+        }
+        if (nutri_score==='E') {
+            setNutriScore("notSure")
+        }
+
+        //others are the same as in profile
+
+        //delay get profile
+        setTimeout(async () => {
+            setUserProfile(profile);
+            setIsDataLoaded(true);
+          }, 300);
+      } catch (error) {
+        console.error("profile get error:", error);
+      }
+    }
+
+    if (!isDataLoaded) {
+        return <div>Loading...</div>; // wait for data loading
+        }
 
   return (
-    <div className='profile-wrap'>
-        <Form  form={form} name="control-hooks" style={{maxWidth: 1200}} className='profile-form'>
-            <Form.Item className='profile-block'>
-                <div className='profile-block-top'>
-                    <div className='profile-questions'>
-                        What's Your Health Goal?
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    </div>
-                </div>
+    <EditProfile 
+        goal = {healthGoal}
+        type = {dietType}
+        nutri = {nutriScore}
+        fatContent = {userProfile.lowInFat}
+        saltContent = {userProfile.lowInSalt}
+        sugarContent = {userProfile.lowInSugar}/>
+  )
+}
 
-                <div className='profile-answer'>
-                    <Radio.Group  defaultValue="notSure" onChange={handleHealthGoalChange}>
-                        <Radio value="loseWeight">
-                            <div className='profile-answers'>I want to lose weight.</div>  
-                        </Radio>
-                        <Radio value="goodDiet">
-                            <div className='profile-answers'>I want to keep a good diet.</div>  
-                        </Radio>
-                        <Radio value="notSure">
-                            <div className='profile-answers'>I'm not sure.</div> 
-                        </Radio>
-                    </Radio.Group>
-                </div>
-
-                
-            </Form.Item>
-
-            <Form.Item className='profile-block'>
-                <div className='profile-block-top'>
-                    <div className='profile-questions'>
-                        What's Your Diet Type?
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        &nbsp;&nbsp;&nbsp;
-                    </div>
-                </div>
-                <div className='profile-answer'>
-                    <Radio.Group  defaultValue="notSure" onChange={handleDietTypeChange}>
-                        <Radio value="vegan">
-                            <div className='profile-answers'>Vegan.</div>  
-                        </Radio>
-                        <Radio value="vegetarian">
-                            <div className='profile-answers'>Vegetarian.</div>  
-                        </Radio>
-                        <Radio value="omnivore">
-                            <div className='profile-answers'>Omnivore.</div> 
-                        </Radio>
-                        <Radio value="notSure">
-                            <div className='profile-answers'>I'm not sure.</div> 
-                        </Radio>
-                    </Radio.Group>
-                </div>
-            </Form.Item>
-
-            <Form.Item className='profile-block-wider'>
-                <div className='profile-block-top'>
-                    <div className='profile-questions'>
-                        Your Dietary Preference (optional):
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    </div>
-                </div>
-                <div>
-                    <div className='profile-answer'>
-                        <Checkbox onClick={handleFatChange}>
-                            <div className='profile-answers'>Low in fat.</div>
-                        </Checkbox>
-                        <Checkbox onClick={handleSugarChange}>
-                            <div className='profile-answers'>Low in sugar.</div>
-                        </Checkbox>
-                        <Checkbox onClick={handleSaltChange}>
-                            <div className='profile-answers'>Low in salt.</div>
-                        </Checkbox>
-                    </div>
-                    <div className='profile-answer'>
-                        <div className='profile-answers'>I prefer foods with Nutri-Score no less than:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
-                        <Radio.Group defaultValue="notSure" onChange={handleNutriScoreChange}>
-                            <Radio value="A"> 
-                                <div className='profile-answers'>A</div>
-                            </Radio>
-                            <Radio value="B"> 
-                                <div className='profile-answers'>B</div>
-                            </Radio>
-                            <Radio value="C"> 
-                                <div className='profile-answers'>C</div>
-                            </Radio>
-                            <Radio value="notSure">
-                                <div className='profile-answers'>I'm not sure.</div> 
-                            </Radio>
-                        </Radio.Group>
-                    </div>
-                </div>
-            </Form.Item>
-
-            <Form.Item>
-                <button className='myaccount-edit' htmlType="submit" onClick={handleButtonClick}> 
-                    Submit
-                </button>
-            </Form.Item>
-            </Form>
-    </div>
-    
-  );
-};
-export default Page;
+export default Page

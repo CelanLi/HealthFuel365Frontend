@@ -75,3 +75,18 @@ export const addShoppingCart = async (shoppingCartID, productID) => {
     }
   }
 };
+
+export const getAllBrands = async () => {
+  try {
+    const result: Response = await axios.get(
+      backendUrl + productRoute + "/filter/brands"
+    );
+    const response = result.data;
+    if (response.status >= 300) {
+      throw new Error(response.message);
+    }
+    return response;
+  } catch (error) {
+    throw new Error(error);
+  }
+};

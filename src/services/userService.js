@@ -68,6 +68,12 @@ export const loginUser = async (data) => {
 export const getUser = async () => {
   try {
     console.log("fjdalk")
+    console.log(document.cookie)
+
+    if (!document.cookie) {
+      throw new Error("Cookie is empty");
+    }
+
     const result: Response = await axios.get(
       'http://localhost:8081/user/getuser',
       {
@@ -77,7 +83,7 @@ export const getUser = async () => {
       },
     );
     const response = result.data;
-    console.log("fdafa",response)
+
     if (response.status >= 300) {
       throw new Error(response.message);
     }
@@ -128,6 +134,7 @@ export const profileEdit = async (data) => {
 export const profileGet = async () => {
   try {
     console.log("fjdalk")
+    console.log(document.cookie)
     const result: Response = await axios.get(
       'http://localhost:8081/user/profileget',
       {
@@ -137,7 +144,7 @@ export const profileGet = async () => {
       },
     );
     const response = result.data;
-    console.log("fdafa",response)
+
     if (response.status >= 300) {
       throw new Error(response.message);
     }
@@ -190,6 +197,9 @@ export const addressAdd = async (data) => {
 
 export const addressGet = async () => {
   try {
+    if (!document.cookie) {
+      throw new Error("Cookie is empty");
+    }
     const result: Response = await axios.get(
       'http://localhost:8081/user/addressget',
       {
@@ -220,10 +230,10 @@ export const addressDelete = async (addressID) => {
       },
     );
     const response = result.data;
-    console.log(response)
     if (response.status >= 300) {
       throw new Error(response.message);
     }
+    console.log("deleteResponse",response)
     return response;
   } catch (error) {
     throw new Error(error);

@@ -2,12 +2,13 @@
 export function setCookie(cname, cvalue) {
     const expireDate = new Date();
     expireDate.setTime(expireDate.getTime() + 86400000);
-    document.cookie = `${cname}=${cvalue}; expires=${expireDate.toUTCString()}; path=/`;
+    // document.cookie = `${cname}=${cvalue}; expires=${expireDate.toUTCString()}; path=/`;
+    document.cookie = `login=${cvalue}; expires=${expireDate.toUTCString()}; path=/`;
     console.log("777",document.cookie)
     console.log("888",document.expires)
 };
 
-//get cookie by name
+// get cookie by name
 export function getCookie(cname)
 {
   var name = cname + "=";
@@ -20,7 +21,7 @@ export function getCookie(cname)
   return "";
 };
 
-//get cookie by cookie name
+// check cookie
 export function checkCookie()
 {
   var username=getCookie("username");
