@@ -30,33 +30,53 @@
 }
 
 .category-icon.staple-non-chosen{
-  background: rgba(3, 61, 31, 0.06) url("../../assets/images/category_staple_icon.png") center no-repeat;
+  background: rgba(3, 61, 31, 0.06) url("../../assets/images/category/staple_icon.png") center no-repeat;
   background-size: 70%;
 }
 
 .category-icon.staple-chosen{
   transition: 0.2s;
-  background: rgba(3, 61, 31, 0.06) url("../../assets/images/staple_hover.png") center no-repeat;
+  background: rgba(3, 61, 31, 0.06) url("../../assets/images/category/staple_hover.png") center no-repeat;
   background-size: 70%;
 }
 
 .category-icon.snacks-non-chosen{
-  background: rgba(3, 61, 31, 0.06) url("../../assets/images/category_snacks_icon.png") center no-repeat;
+  background: rgba(3, 61, 31, 0.06) url("../../assets/images/category/snacks_icon.png") center no-repeat;
   background-size: 70%;
 }
 .category-icon.snacks-chosen{
   transition: 0.2s;
-  background: rgba(3, 61, 31, 0.06) url("../../assets/images/snacks_hover.png") center no-repeat;
+  background: rgba(3, 61, 31, 0.06) url("../../assets/images/category/snacks_hover.png") center no-repeat;
   background-size: 70%;
 }
 
 .category-icon.drinks-non-chosen{
-  background: rgba(3, 61, 31, 0.06) url("../../assets/images/category_drinks_icon.png") center no-repeat;
+  background: rgba(3, 61, 31, 0.06) url("../../assets/images/category/drinks_icon.png") center no-repeat;
   background-size: 70%;
 }
 .category-icon.drinks-chosen{
   transition: 0.2s;
-  background: rgba(3, 61, 31, 0.06) url("../../assets/images/drinks_hover.png") center no-repeat;
+  background: rgba(3, 61, 31, 0.06) url("../../assets/images/category/drinks_hover.png") center no-repeat;
+  background-size: 70%;
+}
+
+.category-icon.flavorings-non-chosen{
+  background: rgba(3, 61, 31, 0.06) url("../../assets/images/category/flavorings_icon.png") center no-repeat;
+  background-size: 70%;
+}
+.category-icon.flavorings-chosen{
+  transition: 0.2s;
+  background: rgba(3, 61, 31, 0.06) url("../../assets/images/category/flavorings_hover.png") center no-repeat;
+  background-size: 70%;
+}
+
+.category-icon.supplements-non-chosen{
+  background: rgba(3, 61, 31, 0.06) url("../../assets/images/category/supplements_icon.png") center no-repeat;
+  background-size: 70%;
+}
+.category-icon.supplements-chosen{
+  transition: 0.2s;
+  background: rgba(3, 61, 31, 0.06) url("../../assets/images/category/supplements_hover.png") center no-repeat;
   background-size: 70%;
 }
 
