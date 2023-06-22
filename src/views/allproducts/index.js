@@ -114,10 +114,10 @@ function Page() {
   // used to get the keywords in the search part
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
-  const [keyWords,setKeywords] = useState(searchParams.get("search"));
+  const [keyWords, setKeywords] = useState(searchParams.get("search"));
   useEffect(() => {
-    const newKeyWords=searchParams.get("search");
-    if(searchParams.get("search")!==null){
+    const newKeyWords = searchParams.get("search");
+    if (searchParams.get("search") !== null) {
       setKeywords(newKeyWords);
     }
   }, [searchParams]);
@@ -129,6 +129,7 @@ function Page() {
 
   const setProducts = async () => {
     try {
+      setIsLoading(true);
       const list = await (keyWords === null
         ? getAllProducts(sort)
         : getProductsByName(keyWords, sort));
@@ -137,14 +138,15 @@ function Page() {
       const detailList = async () => {
         const dList = [];
         for (const product of list) {
-          const detail = await (getDetail(product.productID));
+          const detail = await getDetail(product.productID);
           dList.push(detail[1]);
         }
         return dList;
-      }
+      };
       const productDetails = await detailList();
       setProductDetailList(productDetails);
-      console.log(JSON.stringify(productDetails) + "detail to test")
+      setIsLoading(false);
+      console.log(JSON.stringify(productDetails) + "detail to test");
     } catch (error) {
       console.error("error set products:", error);
     }
@@ -167,32 +169,32 @@ function Page() {
   }
   // used to get the selected Nutri Filter
   const [nutri, setNutri] = useState(null);
-  function getSelectedNutri(value){
+  function getSelectedNutri(value) {
     setNutri(value);
   }
   // used to get the selected preference
   const [preference, setPreference] = useState([]);
-  function getSelectedPreference(value){
+  function getSelectedPreference(value) {
     setPreference(value);
   }
   // used to get the selected fat content
   const [fatContent, setFatContent] = useState(100);
-  function getSelectedFatContent(value){
+  function getSelectedFatContent(value) {
     setFatContent(value);
   }
   // used to get the selected sugar content
   const [sugarContent, setSugarContent] = useState(100);
-  function getSelectedSugarContent(value){
+  function getSelectedSugarContent(value) {
     setSugarContent(value);
   }
   // used to get the selected salt content
   const [saltContent, setSaltContent] = useState(100);
-  function getSelectedSaltContent(value){
+  function getSelectedSaltContent(value) {
     setSaltContent(value);
   }
   // used to get the selected Brands
   const [brands, setBrands] = useState([]);
-  function getSelectedBrands(value){
+  function getSelectedBrands(value) {
     setBrands(value);
   }
   // displayed product list
@@ -200,8 +202,12 @@ function Page() {
   // displayed product list on page one
   const [pageProductList, setPageProductList] = useState([]);
   // reset filteredProductList if the selected category/ nutri-score/ dietray preference/ brands
-  const resetfilteredProductList= () => {
-    var fatIDs, sugarIDs, saltIDs, veganIDs, vegetarianIDs = [];
+  const resetfilteredProductList = () => {
+    var fatIDs,
+      sugarIDs,
+      saltIDs,
+      veganIDs,
+      vegetarianIDs = [];
     setfilteredProductList(
       productList.filter((product) => {
         const conditions = [];
@@ -212,29 +218,45 @@ function Page() {
           conditions.push(product?.nutriScore <= nutri);
         }
         if (fatContent != 100) {
-          const fat=productDetailList.filter((productDetail) => productDetail?.fat<=fatContent);
-          fatIDs= fat.map((productDetail) => productDetail.productID);
-          console.log(fatContent+"fat..."+fat.map((productDetail) => productDetail?.fat));
+          const fat = productDetailList.filter(
+            (productDetail) => productDetail?.fat <= fatContent
+          );
+          fatIDs = fat.map((productDetail) => productDetail.productID);
+          console.log(
+            fatContent +
+              "fat..." +
+              fat.map((productDetail) => productDetail?.fat)
+          );
           conditions.push(fatIDs.includes(product.productID));
         }
         if (sugarContent != 100) {
-          const sugar=productDetailList.filter((productDetail) => productDetail?.sugar<=sugarContent);
-          sugarIDs= sugar.map((productDetail) => productDetail.productID);
+          const sugar = productDetailList.filter(
+            (productDetail) => productDetail?.sugar <= sugarContent
+          );
+          sugarIDs = sugar.map((productDetail) => productDetail.productID);
           conditions.push(sugarIDs.includes(product.productID));
         }
-        if (saltContent !=100){
-          const salt=productDetailList.filter((productDetail) => productDetail?.salt<=saltContent);
-          saltIDs= salt.map((productDetail) => productDetail.productID);
+        if (saltContent != 100) {
+          const salt = productDetailList.filter(
+            (productDetail) => productDetail?.salt <= saltContent
+          );
+          saltIDs = salt.map((productDetail) => productDetail.productID);
           conditions.push(saltIDs.includes(product.productID));
         }
-        if (preference.includes("vegan")){
-          const vegan=productDetailList.filter((productDetail) => productDetail?.vegan);
-          veganIDs= vegan.map((productDetail) => productDetail.productID);
+        if (preference.includes("vegan")) {
+          const vegan = productDetailList.filter(
+            (productDetail) => productDetail?.vegan
+          );
+          veganIDs = vegan.map((productDetail) => productDetail.productID);
           conditions.push(veganIDs.includes(product.productID));
         }
-        if (preference.includes("vegetarian")){
-          const vegetarian=productDetailList.filter((productDetail) => productDetail?.vegetarian);
-          vegetarianIDs= vegetarian.map((productDetail) => productDetail.productID);
+        if (preference.includes("vegetarian")) {
+          const vegetarian = productDetailList.filter(
+            (productDetail) => productDetail?.vegetarian
+          );
+          vegetarianIDs = vegetarian.map(
+            (productDetail) => productDetail.productID
+          );
           conditions.push(vegetarianIDs.includes(product.productID));
         }
         if (brands.length !== 0) {
@@ -242,10 +264,10 @@ function Page() {
         }
         // use every method to check if each conditional function returns true
         return conditions.every((condition) => condition);
-      }
-      )
-    );  
-  }
+      })
+    );
+  };
+  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     resetfilteredProductList();
     console.log("all-product-page category: " + category);
@@ -253,7 +275,17 @@ function Page() {
     console.log("all-product-page preference: " + preference);
     console.log("all-product-page fat content: " + fatContent);
     console.log("all-product-page brands: " + brands);
-  }, [category, nutri, preference, fatContent, sugarContent, saltContent, brands, productList]);
+  }, [
+    category,
+    nutri,
+    preference,
+    fatContent,
+    sugarContent,
+    saltContent,
+    brands,
+    productList,
+    isLoading,
+  ]);
   useEffect(() => {
     setPageProductList(filteredProductList.slice(0, 10));
   }, [filteredProductList]);
@@ -278,13 +310,12 @@ function Page() {
     [filteredProductList, pageNumber]
   );
   // no pagination when there is no product or the product is loading
-  const [isLoading, setIsLoading] = useState(true);
-  useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 1000);
-  }, []);
-  const showPagination = filteredProductList.length > 0 & !isLoading;
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setIsLoading(false);
+  //   }, 1000);
+  // }, []);
+  const showPagination = (filteredProductList.length > 0) & !isLoading;
 
   return (
     <div className="allproductspage-wrap">
@@ -294,7 +325,12 @@ function Page() {
           <SortProducts setSort={getSelectedSort} />
           {/* three filters: 1. Nutri-score 2. Dietary Preference 3. Brand*/}
           <NutriFilter setNutri={getSelectedNutri} />
-          <DietaryPreferencFilter setPreference={getSelectedPreference} setFatContent={getSelectedFatContent} setSugarContent={getSelectedSugarContent} setSaltContent={getSelectedSaltContent}/>
+          <DietaryPreferencFilter
+            setPreference={getSelectedPreference}
+            setFatContent={getSelectedFatContent}
+            setSugarContent={getSelectedSugarContent}
+            setSaltContent={getSelectedSaltContent}
+          />
           <BrandFilter setBrands={getSelectedBrands} />
         </div>
         {/* categories and products*/}
@@ -310,8 +346,7 @@ function Page() {
                 onChange={handlePaginationChange}
               />
             </div>
-            ): null
-          }
+          ) : null}
         </div>
       </div>
     </div>
