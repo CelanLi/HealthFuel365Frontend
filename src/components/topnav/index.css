@@ -1,4 +1,3 @@
-/* top navigation bar样式: 有弧度 阴影 且是白色*/
 .topnav {
   overflow: hidden;
   background-color: #FFFFFF;
@@ -6,7 +5,6 @@
   border-radius: 0px 0px 10px 10px;
 }
 
-/*  navigation bar 里面按键的样式*/
 .topnav a {
   float:left;
   display: flex;
@@ -26,12 +24,10 @@
   height: 100%;
 }
 
-/* 当前页按键的样式*/
 .topnav a.active {
   background: rgba(3, 61, 31, 0.15);
 }
 
-/*  navigation bar上面的绿色标语*/
 .topnav_slogan {
   padding: 7px;
   background: #033D1F;
@@ -54,6 +50,11 @@
   background-size: cover;
   background-repeat: no-repeat;
   float: left;
+}
+
+.topnav_logo a{
+  width: 100%;
+  background: transparent;
 }
 
 .product_topnav_wrap{
@@ -111,14 +112,13 @@
   cursor: pointer;
 }
 
-/* 最右侧两个跳转按键的容器 */
 .right-icon-container{
   display: flex;
   justify-content: space-between;
   margin-left: 10px;
 }
 
-/* 最右侧两个跳转按键样式 */
+/* The rightmost two jump button style */
 .right-icon-container a {
   float:left;
   display: block;
@@ -128,11 +128,11 @@
   background-repeat: no-repeat;
   background-size: 85%;
 }
-/* 购物车跳转按键 */
+
 .right-icon-container a.shopping_cart {
   background-image: url("../../assets/images/shopping_cart_icon.png");
 }
-/* 用户跳转按键 */
+
 .right-icon-container a.user {
   background-size: 75%;
   background-image: url("../../assets/images/user_icon.png");

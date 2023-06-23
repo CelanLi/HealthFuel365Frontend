@@ -23,8 +23,10 @@ function Page() {
 
   return (
     <div className="topnav">
-      <div className="topnav_slogan"> HealthFule365——Online gas station for your health </div>
-      <div className="topnav_logo"/>
+      <div className="topnav_slogan"> HealthFuel365——Online gas station for your health </div>
+      <div className="topnav_logo">
+        <Link to="/homepage"/>
+      </div>
       <div className="product_topnav_wrap">
         <div className="left">
           <Link to="/homepage" className={(location.pathname==="/homepage")? "active" : ""}>HomePage</Link>

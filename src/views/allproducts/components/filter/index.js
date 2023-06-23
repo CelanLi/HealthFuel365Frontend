@@ -97,7 +97,7 @@ export function DietaryPreferencFilter({ preference = [], setPreference, fatCont
     setSelectedSaltContent(value);
     setSaltContent(value);
   };
-  
+
   return(
     <div className="filter">
       <Collapse bordered={false} defaultActiveKey={["1"]} expandIconPosition="end">
@@ -105,19 +105,19 @@ export function DietaryPreferencFilter({ preference = [], setPreference, fatCont
           <div className="filter-choice">
             Fat Content Range
             <div className="range-slider">
-              0 <input type="range" min="0" max="100" name="fat" defaultValue="100" id="fat" onChange={fatContentHandling}/> 100
+              0 <input type="range" min="0" max="100" step="20" name="fat" defaultValue="100" id="fat" onChange={fatContentHandling}/> 100
             </div>
           </div>
           <div className="filter-choice">
             Sugar Content Range
             <div class="range-slider">
-              0 <input type="range" min="0" max="100" name="sugar" defaultValue="100" id="sugar" onChange={sugarContentHandling}/> 100
+              0 <input type="range" min="0" max="100" step="20" name="sugar" defaultValue="100" id="sugar" onChange={sugarContentHandling}/> 100
             </div>
           </div>
           <div className="filter-choice">
             Salt Content Range
             <div class="range-slider">
-              0 <input type="range" min="0" max="100" name="salt" defaultValue="100" id="salt" onChange={saltContentHandling}/> 100
+              0 <input type="range" min="0" max="100" step="20" name="salt" defaultValue="100" id="salt" onChange={saltContentHandling}/> 100
             </div>
           </div>
           <div className="filter-choice">
