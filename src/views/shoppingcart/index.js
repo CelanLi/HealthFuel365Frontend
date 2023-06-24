@@ -6,6 +6,7 @@ import "./index.css";
 import ShoppingCartItem from "./components/shoppingcart_item";
 import ShoppingCartSummary from "./components/sc_summary";
 import { addressGet,getUser } from "../../services/userService";
+import { getCookie } from "../../util/cookie";
 
 import {
   deleteProductItem,
@@ -106,9 +107,18 @@ function Page() {
   // first visit the page
   useEffect(() => {
     (async () => {
-      const userAccount = await getUser();
-      const userID = userAccount.id;
-      setShoppingCartID(userID);
+      const cookie = getCookie("login")
+      if (cookie) {
+        const userAccount = await getUser();
+        const userID = userAccount.id;
+        setShoppingCartID(userID);
+      }
+      else {
+        messageApi.open({
+          type: "error",
+          content: "Please log in!",
+        });
+      }
     })()
   }, []);
 

@@ -2,12 +2,14 @@
     background-color: #C4D0CB;
     margin-bottom: 20px;
     border-radius: 20px;
-    height: 200px;
-    width: 1000px;
+    height: 250px;
+    width: 100%;
+
+    padding: 20px;
 
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
 }
 
 .myaccount-order-title{
@@ -19,8 +21,6 @@
 }
 
 .myaccount-order-text{
-
-    
     font-family: 'Kaisei Opti';
     font-style: normal;
     font-weight: 500;
@@ -28,4 +28,17 @@
     text-decoration: none;
   
     color: #033D1F;
+}
+
+.myaccount-order-row{
+    display: flex;
+    flex-direction: row;
+}
+
+.myaccount-order-center{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    align-items: center;
 }

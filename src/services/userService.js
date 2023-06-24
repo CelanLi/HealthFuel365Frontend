@@ -71,7 +71,7 @@ export const getUser = async () => {
     console.log(document.cookie)
 
     if (!document.cookie) {
-      throw new Error("Cookie is empty");
+      throw new Error("Cookie is empty,get user");
     }
 
     const result: Response = await axios.get(

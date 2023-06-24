@@ -2,9 +2,10 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Modal } from "antd";
+import { Modal, Button } from "antd";
 
 import { addressGet } from '../../../services/userService';
+import { getCookie } from '../../../util/cookie';
 
 //import style
 import "./index.css"
@@ -29,7 +30,8 @@ function App() {
     // get address list from backend
     const setAddress = async () => {
       try{
-        if (document.cookie) {
+        const cookie = getCookie("login")
+        if (cookie) {
           // delay get address list
           setTimeout(async () => {
             const list = await (addressGet());
@@ -57,8 +59,13 @@ function App() {
         <div className='myaccount-error-message'>
           <Modal
             open={true}
-            title="please log in"
-            onOk={handleOk}
+            title="Please Log In"
+            closable={false}
+            footer={[
+              <Button key="ok" type="primary" onClick={() => handleOk()} style={{ backgroundColor: '#033D1F', color: 'white' }}>
+                OK
+              </Button>,
+            ]}
           >
             <p>When you visit my account page, you should log in first!</p>
           </Modal>
