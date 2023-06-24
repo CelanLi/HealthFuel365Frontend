@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { message } from "antd";
 import BigNumber from "bignumber.js";
+import { Modal } from "antd";
 
 import "./index.css";
 import OrderAddress from "./components/or_address";
@@ -10,7 +11,7 @@ import OrderSummary from "./components/or_summary";
 import OrderDelivery from "./components/or_delivery";
 import OrderAdditionService from "./components/or_additional_service";
 import { getShoppingCartDetail } from "../../services/shoppingCartService";
-import { addressGet,getUser } from "../../services/userService";
+import { addressGet, getUser } from "../../services/userService";
 import { createOrder } from "../../services/orderService";
 import { getCookie } from "../../util/cookie";
 
@@ -79,17 +80,16 @@ function Page() {
   //get user from backend
   const setShoppingCart = async () => {
     try {
-      const cookie = getCookie("login")
+      const cookie = getCookie("login");
       if (cookie) {
-        const userAccount = await (getUser());
-        console.log(userAccount,"userAccount to test");
+        const userAccount = await getUser();
+        console.log(userAccount, "userAccount to test");
 
-        const userID = userAccount.id
-        console.log(userID)
-        setShoppingCartID(userID)
-      }
-      else{
-        console.error("please log in!")
+        const userID = userAccount.id;
+        console.log(userID);
+        setShoppingCartID(userID);
+      } else {
+        console.error("please log in!");
       }
     } catch (error) {
       console.error("shoppingcart set error:", error);
@@ -126,10 +126,21 @@ function Page() {
   // first visit the page
   useEffect(() => {
     (async () => {
-      const userAccount = await getUser();
-      const userID = userAccount.id;
-      setShoppingCartID(userID);
-    })()
+      const cookie = getCookie("login");
+      if (cookie) {
+        const userAccount = await getUser();
+        const userID = userAccount.id;
+        setShoppingCartID(userID);
+      } else {
+        Modal.error({
+          title: "please log in",
+          content: "Sorry, log in is reuired",
+          onOk: () => {
+            window.location.href = "http://localhost:3000";
+          },
+        });
+      }
+    })();
     setAddress();
     setShoppingCart();
   }, []);
