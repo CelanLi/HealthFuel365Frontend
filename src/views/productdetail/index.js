@@ -19,6 +19,7 @@ function Page() {
   const [product, setProduct] = useState([]);
   const [productDetail, setProductDetail] = useState([]);
   const [shoppingCartID, setShoppingCartID] = useState("");
+  const [messageApi, contextHolder] = message.useMessage();
   useEffect(() => {
     const setData = async (id: string) => {
       try {
@@ -31,9 +32,19 @@ function Page() {
     };
     setData(id);
     (async () => {
-      const userAccount = await getUser();
-      const userID = userAccount.id;
-      setShoppingCartID(userID);
+      const cookie = getCookie("login")
+      if (cookie) {
+        const userAccount = await getUser();
+        const userID = userAccount.id;
+        setShoppingCartID(userID);
+      }
+      else{
+        messageApi.open({
+          type: "error",
+          content: "Please log in!",
+        });
+      }
+      
     })()
   }, []);
   // {

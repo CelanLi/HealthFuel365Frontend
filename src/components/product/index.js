@@ -26,7 +26,12 @@ function ProductComponent({
   const handleClick = () => {
     if (notAvailable) {
       message.error("Sorry, there are no items available.");
-    } else {
+    }
+    const cookie = getCookie("login")
+    if (!cookie) {
+      message.error("Please log in!");
+    }
+    else {
       clickShoppingCart(productID);
     }
   };
