@@ -10,6 +10,7 @@ import MyInfo from '../me_info'
 //import functions
 import { logoutUser } from '../../../../services/userService';
 import { getUser } from '../../../../services/userService';
+import { getCookie } from '../../../../util/cookie';
 
 
 function MyNav() {
@@ -27,10 +28,11 @@ function MyNav() {
     //get account from backend
     const setAccount = async () => {
       try{
-        if (document.cookie) {
+        const cookie = getCookie("login")
+        if (cookie) {
           console.log("getaccount")
           const userAccount = await (getUser());
-          console.log(userAccount + "userAccount to test");
+          console.log(userAccount + "userAccount to test1");
           setUserAccount(userAccount);
         }
         else{
@@ -53,8 +55,8 @@ function MyNav() {
     //log out handle
     const handleLogout = (e) => {
         e.preventDefault();
-        logoutUser();
         navigate('/homepage');
+        logoutUser();
     };
 
   return (

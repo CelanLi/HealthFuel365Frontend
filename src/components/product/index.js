@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { message } from "antd";
 import { getUser } from "../../services/userService";
+import { getCookie } from "../../util/cookie";
 
 function ProductComponent({
   productID,
@@ -31,9 +32,13 @@ function ProductComponent({
   };
   useEffect(() => {
     (async () => {
-      const userAccount = await getUser();
-      const userID = userAccount.id;
-      setShoppingCartID(userID);
+      // only get user when document.cookie is not empty
+      const cookie = getCookie("login")
+      if (cookie) {
+        const userAccount = await getUser();
+        const userID = userAccount.id;
+        setShoppingCartID(userID);
+      }
     })();
   }, []);
   return (

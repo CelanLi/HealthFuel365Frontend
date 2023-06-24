@@ -1,0 +1,37 @@
+.order-product-wrap{
+    margin-left: 25px;
+    margin-bottom: 15px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.order-product-img{
+    background-color: white;
+    width: 120px;
+    height: 120px;
+
+    margin-left: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.order-product-img img{
+    max-height: 120px;
+    max-width: 120px;
+}
+
+.order-product-more{
+    font-family: 'Kaisei Opti';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    text-decoration: none;
+  
+    color: #033D1F;
+
+    margin-left: 30px;
+}

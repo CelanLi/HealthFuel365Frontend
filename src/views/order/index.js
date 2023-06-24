@@ -12,6 +12,7 @@ import OrderAdditionService from "./components/or_additional_service";
 import { getShoppingCartDetail } from "../../services/shoppingCartService";
 import { addressGet,getUser } from "../../services/userService";
 import { createOrder } from "../../services/orderService";
+import { getCookie } from "../../util/cookie";
 
 //ANTD components
 import { Popover, Collapse } from "antd";
@@ -78,7 +79,8 @@ function Page() {
   //get user from backend
   const setShoppingCart = async () => {
     try {
-      if (document.cookie) {
+      const cookie = getCookie("login")
+      if (cookie) {
         const userAccount = await (getUser());
         console.log(userAccount,"userAccount to test");
 
