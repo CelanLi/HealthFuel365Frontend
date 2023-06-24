@@ -284,7 +284,12 @@ function Page() {
   const handleClick = () => {
     if (product?.capacity === 0) {
       message.error("Sorry, this item is not available.");
-    } else {
+    }
+    const cookie = getCookie("login")
+    if (!cookie) {
+      message.error("Please log in!");
+    }
+    else {
       clickShoppingCart(id);
     }
   };
