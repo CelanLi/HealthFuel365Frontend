@@ -1,0 +1,13 @@
+.nova {
+  display: flex;
+  gap: 10px;
+}
+
+.nova-img{
+  width: 4%;
+}
+
+.nova-img img {
+  width: 100%;
+  height: 100%;
+}

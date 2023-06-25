@@ -4,12 +4,17 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { message, Modal } from "antd";
 import Nutri from "../../components/nutri";
+import Nova from "./components/nova";
 import ContentLevel from "./components/content_level";
 import AddToScButton from "../../components/add_to_sc_button";
+import Vegetarian from "../../assets/images/vegetarian.png";
+import Vegan from "../../assets/images/vegan.png";
 import { getDetail } from "../../services/productDetailService";
 import { addShoppingCart } from "../../services/productService";
 import { getCookie } from "../../util/cookie";
 import { getUser } from "../../services/userService";
+import { Collapse, Table } from "antd";
+const { Panel } = Collapse;
 
 function Page() {
   // get corresponding product data by comparing the product id
@@ -77,6 +82,43 @@ function Page() {
     }
   };
 
+  const getDetailDict = () => {
+    const detail = productDetail?.productDescription;
+    const dict = {}
+    const descriptions = detail.split(";");
+    descriptions.forEach(description => {
+        const keyValue = description.split(":");
+        if (keyValue.length === 2) {
+            const key = keyValue[0].trim();
+            const value = keyValue[1].trim();
+            dict[key] = value;
+      }
+    });
+    return dict;
+  }
+  const detailDict = (productDetail?.productDescription) ? getDetailDict() : {};
+  
+  // data for nutrition facts table
+  const columns = [
+    {
+      title: "Nutrition facts",
+      dataIndex: "nutri",
+    },
+    {
+      title: "As sold for 100 g / 100 ml",
+      dataIndex: 'content',
+    },
+  ];
+  const data = Object.keys(detailDict).map(key => {
+      if (!["Ingredients","Allergens", "Nova"].includes(key)) {
+        return {
+          nutri: key,
+          content: detailDict[key]
+        };
+      } 
+      return null;
+    }).filter(nutriFact=> nutriFact !=null);
+
   return (
     <div className="productdetail-wrap">
       {/* <back */}
@@ -115,29 +157,63 @@ function Page() {
           </div>
         </div>
         <div className="pd_content_bottom">
-          <h3>Nutritional Information</h3>
-          <div class="nutri_info">
-            <ContentLevel degree={productDetail?.fatLevel} />
-            Fat in {productDetail?.fatLevel} amounts ({productDetail?.fat}%)
-          </div>
-          <div class="nutri_info">
-            <ContentLevel degree={productDetail?.sugarLevel} />
-            Sugar in {productDetail?.sugarLevel} amounts ({productDetail?.sugar}
-            %)
-          </div>
-          <div class="nutri_info">
-            <ContentLevel degree={productDetail?.saltLevel} />
-            Salt in {productDetail?.saltLevel} amounts ({productDetail?.salt}%)
-          </div>
-
-          <h3>Other Product Description</h3>
-          {productDetail?.productDescription?.map((descriptionItem) => {
-            return (
-              <div>
-                <p>{descriptionItem}</p>
+          <Collapse bordered={false} defaultActiveKey={["1"]}  expandIconPosition="end">
+              <Panel header="Nutritional Information" key="1">
+                {/* nutritional information including fat/ sugar/ salz */}
+                <div class="info">
+                  <ContentLevel degree={productDetail?.fatLevel} />
+                  <p> Fat in {productDetail?.fatLevel} amounts ({productDetail?.fat}%) </p>
+                </div>
+                <div class="info">
+                  <ContentLevel degree={productDetail?.sugarLevel} />
+                  <p> Sugar in {productDetail?.sugarLevel} amounts ({productDetail?.sugar}%) </p>
+                </div>
+                <div class="info">
+                  <ContentLevel degree={productDetail?.saltLevel} />
+                  <p> Salt in {productDetail?.saltLevel} amounts ({productDetail?.salt}%) </p>
+                </div>
+                {/* nutritional table */}
+                { data.length>0 && 
+                  <Table columns={columns} dataSource={data} pagination={false}  className="table"/>
+                }
+              </Panel>
+          </Collapse>
+          {/* ingredients including ingredients, allergens, vegan, vegetarian */}
+          <Collapse bordered={false} expandIconPosition="end">
+            { "Ingredients"|"Allergens" in detailDict | productDetail.vegetarian | productDetail.vegan ? (
+              <Panel header="Ingredients">
+                <p>{detailDict["Ingredients"]}</p>
+                { "Allergens" in detailDict && (
+                  <p>Allergens: {detailDict["Allergens"]}</p>
+                )}
+                <div className="row">
+                { productDetail.vegan ? (
+                  <div class="info">
+                    <img src={Vegan} className="icon"/>
+                    <p> Vegan </p>
+                  </div>
+                ): null
+                }
+                { productDetail.vegetarian ? (
+                  <div class="info">
+                    <img src={Vegetarian} className="icon"/>
+                    <p> Vegetarian </p>
+                  </div>
+                ): null
+                }
               </div>
-            );
-          })}
+              </Panel>
+            ): null
+            }
+          </Collapse>
+          {/* food processing */}
+          <Collapse bordered = {false} expandIconPosition = "end">
+            {"Nova" in detailDict && detailDict["Nova"]!=="nan" && (
+            <Panel header = "Food Processing">
+              <Nova nova = {detailDict["Nova"]}/>
+            </Panel>
+            )}
+          </Collapse>
         </div>
       </div>
     </div>
