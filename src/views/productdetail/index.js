@@ -163,15 +163,15 @@ function Page() {
                 {/* nutritional information including fat/ sugar/ salz */}
                 <div class="info">
                   <ContentLevel degree={productDetail?.fatLevel} />
-                  <p> Fat in {productDetail?.fatLevel} amounts ({productDetail?.fat}%) </p>
+                  <p> Fat in {productDetail?.fatLevel} amount ({productDetail?.fat}%) </p>
                 </div>
                 <div class="info">
                   <ContentLevel degree={productDetail?.sugarLevel} />
-                  <p> Sugar in {productDetail?.sugarLevel} amounts ({productDetail?.sugar}%) </p>
+                  <p> Sugar in {productDetail?.sugarLevel} amount ({productDetail?.sugar}%) </p>
                 </div>
                 <div class="info">
                   <ContentLevel degree={productDetail?.saltLevel} />
-                  <p> Salt in {productDetail?.saltLevel} amounts ({productDetail?.salt}%) </p>
+                  <p> Salt in {productDetail?.saltLevel} amount ({productDetail?.salt}%) </p>
                 </div>
                 {/* nutritional table */}
                 { data.length>0 && 
