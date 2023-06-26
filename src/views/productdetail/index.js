@@ -71,13 +71,14 @@ function Page() {
   };
   // if the item is not avialable, it cannot be added to the cart.
   const handleClick = () => {
-    if (product?.capacity === 0) {
-      message.error("Sorry, this item is not available.");
-    }
     const cookie = getCookie("login");
     if (!cookie) {
       showLoginReminder();
-    } else {
+    } 
+    else if (product?.capacity === 0) {
+      message.error("Sorry, this item is not available.");
+    } 
+    else{
       clickShoppingCart(id);
     }
   };

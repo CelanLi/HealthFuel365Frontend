@@ -33,13 +33,14 @@ function ProductComponent({
     await addShoppingCart(shoppingCartID, productID);
   };
   const handleClick = () => {
-    if (notAvailable) {
-      message.error("Sorry, there are no items available.");
-    }
     const cookie = getCookie("login");
     if (!cookie) {
       showLoginReminder();
-    } else {
+    } 
+    else if (capacity === 0) {
+      message.error("Sorry, this item is not available.");
+    } 
+    else{
       clickShoppingCart(productID);
     }
   };
