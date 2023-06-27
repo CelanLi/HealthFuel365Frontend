@@ -10,6 +10,22 @@ export const createOrder = (data) => {
   });
 };
 
+export const cancelPayment = (data) => {
+  return serviceAxios({
+    url: backendUrl + orderRoute + "/cancelPayment",
+    method: "post",
+    data,
+  });
+};
+
+export const successPayment = (data) => {
+  return serviceAxios({
+    url: backendUrl + orderRoute + "/successPayment",
+    method: "post",
+    data,
+  });
+};
+
 export const getOrder = async () => {
   try {
     if (!document.cookie) {

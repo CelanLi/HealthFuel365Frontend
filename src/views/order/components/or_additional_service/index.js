@@ -1,10 +1,8 @@
 import { Popover } from "antd";
-import { useEffect, useState } from "react";
-
+import { useState } from "react";
 import "./index.css";
 
-function OrderAdditionService({additionServiceChoice}) {
-  
+function OrderAdditionService({setorService}) {
   //note componets from ANTD
   const additionalServiceNote = (
     <div
@@ -28,7 +26,7 @@ function OrderAdditionService({additionServiceChoice}) {
 
   const handleCheckboxChange = (event) => {
     setIsChecked(event.target.checked);
-    additionServiceChoice(event.target.checked);
+    setorService(event.target.checked);
   };
 
   return (

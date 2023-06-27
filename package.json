@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@paypal/react-paypal-js": "^8.0.0",
     "antd": "^5.5.1",
     "axios": "^1.4.0",
     "bignumber.js": "^9.1.1",

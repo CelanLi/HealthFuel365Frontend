@@ -1,8 +1,8 @@
 import { Popover } from "antd";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./index.css";
 
-function OrderDelivery({deliveryChoice}) { 
+function OrderDelivery({setorDelivery}) { 
  
   const rapidShippingeNote = (
     <div
@@ -66,7 +66,7 @@ function OrderDelivery({deliveryChoice}) {
 
   const handleRadioChange = (event) => {
     setSelectedOption(event.target.value);
-    deliveryChoice(event.target.value);
+    setorDelivery(event.target.value);
   };
 
   return (

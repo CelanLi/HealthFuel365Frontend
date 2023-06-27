@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { message } from "antd";
 import BigNumber from "bignumber.js";
 import { Modal } from "antd";
@@ -30,6 +30,9 @@ function Page() {
   const [orDeliveryPrice, setorDeliveryPrice] = useState(4.95);
   const [orServicePrice, setorServicePrice] = useState(0);
   const [messageApi, contextHolder] = message.useMessage();
+  const orDeliveryRef = useRef(orDelivery);
+  const orServiceRef = useRef(orService);
+  const orTotalPriceRef = useRef(orTotalPrice);
 
   function calculateTotalPrice() {
     const value = new BigNumber(orSummary.subtotal)
@@ -40,20 +43,11 @@ function Page() {
       return 0;
     }
     setTotalPrice(value);
-  }
-
-  function getDeliveryChoice(value) {
-    setorDelivery(value);
-    setorDeliveryPrice(value === "Rapid" ? 7.95 : 4.95);
+    orTotalPriceRef.current=value;
   }
 
   function getAddressChoice(value) {
     setorAddressID(value);
-  }
-
-  function getAdditionServiceChoice(value) {
-    setorService(value);
-    setorServicePrice(value ? 1.95 : 0);
   }
 
   // get: itemquantity,itemprice,total savings, subtotal
@@ -107,21 +101,22 @@ function Page() {
     }
   };
 
-  //create order
-  function addOrder() {
-    createOrder({ shoppingCartID, orDelivery, orService, orAddressID }).then(
-      (res) => {
-        if (res.code === 0) {
-          window.location.href = "http://localhost:3000/myaccount/myorder";
-        } else {
-          messageApi.open({
-            type: "error",
-            content: res.message,
-          });
-        }
+  const addOrder = (paymentID) => {
+    createOrder({
+      shoppingCartID,
+      orDelivery: orDeliveryRef.current,
+      orService: orServiceRef.current,
+      orAddressID,
+      paymentID,
+    }).then((res) => {
+      if (res.code !== 0) {
+        messageApi.open({
+          type: "error",
+          content: res.message,
+        });
       }
-    );
-  }
+    });
+  };
 
   // first visit the page
   useEffect(() => {
@@ -145,10 +140,6 @@ function Page() {
     setShoppingCart();
   }, []);
 
-  useEffect(() => {
-    calculateTotalPrice();
-  }, [orSummary, orDelivery, orService]);
-
   //get address list value if address list changes
   useEffect(() => {
     setAddressList(addressList);
@@ -159,6 +150,22 @@ function Page() {
       getOrderSummaryInfo();
     }
   }, [shoppingCartID]);
+
+  useEffect(() => {
+    orDeliveryRef.current = orDelivery;
+    setorDelivery(orDelivery);
+    setorDeliveryPrice(orDelivery === "Rapid" ? 7.95 : 4.95);
+  }, [orDelivery]);
+
+  useEffect(() => {
+    orServiceRef.current = orService;
+    setorService(orService);
+    setorServicePrice(orService ? 1.95 : 0);
+  }, [orService]);
+
+  useEffect(() => {
+    calculateTotalPrice();
+  }, [orSummary, orDelivery, orService, orServicePrice, orDeliveryPrice]);
 
   return (
     <div className="shoppingcart_wrap">
@@ -196,9 +203,9 @@ function Page() {
             expandIconPosition="end"
           >
             <Panel header="Shipping Services" key="1">
-              <OrderDelivery deliveryChoice={getDeliveryChoice}></OrderDelivery>
+              <OrderDelivery setorDelivery={setorDelivery}></OrderDelivery>
               <OrderAdditionService
-                additionServiceChoice={getAdditionServiceChoice}
+                setorService={setorService}
               ></OrderAdditionService>
             </Panel>
           </Collapse>
@@ -213,8 +220,8 @@ function Page() {
             subtotal={orSummary.subtotal}
             shipping={orDeliveryPrice}
             additionalService={orServicePrice}
-            totalPrice={orTotalPrice}
-            createOrder={addOrder}
+            totalPrice={orTotalPriceRef}
+            submitOrder={addOrder}
           ></OrderSummary>
         </div>
       </div>
