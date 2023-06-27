@@ -3,11 +3,10 @@ import { Layout } from "antd";
 import { Outlet } from "react-router-dom";
 
 import TopNav from "../topnav";
-import FooterComponent from "../footer";
 
-const { Header, Footer, Content } = Layout;
+const { Header, Content } = Layout;
 
-function LayoutComponent() {
+function AdminLayoutComponent() {
   return (
     <>
       <Layout>
@@ -17,12 +16,9 @@ function LayoutComponent() {
         <Content>
           <Outlet />
         </Content>
-        <Footer className="page_footer">
-          <FooterComponent />
-        </Footer>
       </Layout>
     </>
   );
 }
 
-export default LayoutComponent;
+export default AdminLayoutComponent;
