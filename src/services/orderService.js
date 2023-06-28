@@ -60,4 +60,29 @@ export const getOrderById = async (orderID) => {
     throw new Error(error);
   }
 };
+
+// get package and shipping services by order id
+export const getServiceByOrderId = async (orderID) => {
+  try {
+    if (!document.cookie) {
+      throw new Error("Cookie is empty");
+    }
+    const result: Response = await axios.get(
+      'http://localhost:8081/user/getServiceByOrderId',
+      {
+        headers: {
+          Authorization: document.cookie, //put cookie into header
+        },
+        params: {orderID : orderID},
+      },
+    );
+    const response = result.data;
+    if (response.status >= 300) {
+      throw new Error(response.message);
+    }
+    return response;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
  

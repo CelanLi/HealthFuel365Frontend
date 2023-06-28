@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from "react-router-dom";
 import './index.css'
 
-import ShoppingCartNutri from '../../../../components/nutri';
+import ShoppingCartNutri from '../../../../../components/nutri';
 
 function OrderDetailProduct( {orderDetailProduct} ) {
   return (
