@@ -11,6 +11,7 @@ import MyAccount from '../views/me/myaccount'
 import AddressManagement from "../views/me/addressmanagement"
 import MyProfile from "../views/me/myprofile"
 import MyOrder from "../views/me/myorder"
+import OrderDetail from "../views/me/orderdetail"
 import ProfileEdit from "../views/me/profileedit";
 import Login from "../views/login/index"
 import Register from "../views/register/index"
@@ -118,7 +119,16 @@ export const routers = [
       },
       {
         path:'myorder',
-        element: <MyOrder />
+        children: [
+          {
+            path:'',
+            element: <MyOrder />,
+          },
+          {
+            path:'orderdetail/:orderId',
+            element: <OrderDetail />
+          }
+        ]
       },
     ]
   },

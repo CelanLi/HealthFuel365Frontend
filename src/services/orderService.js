@@ -10,6 +10,7 @@ export const createOrder = (data) => {
   });
 };
 
+// get order list of user
 export const getOrder = async () => {
   try {
     if (!document.cookie) {
@@ -29,6 +30,32 @@ export const getOrder = async () => {
       throw new Error(response.message);
     }
     return response;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
+// get order by order id
+export const getOrderById = async (orderID) => {
+  try {
+    if (!document.cookie) {
+      throw new Error("Cookie is empty");
+    }
+    const result: Response = await axios.get(
+      'http://localhost:8081/user/getorderbyid',
+      {
+        headers: {
+          Authorization: document.cookie, //put cookie into header
+        },
+        params: {orderID : orderID},
+      },
+    );
+    const response = result.data;
+    if (response.status >= 300) {
+      throw new Error(response.message);
+    }
+    console.log(response[0])
+    return response[0];
   } catch (error) {
     throw new Error(error);
   }
