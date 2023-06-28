@@ -1,9 +1,16 @@
 import React from 'react'
 import "./index.css";
+import { message } from 'antd';
 
 import OrderProduct from '../me_order_product';
+import Link from 'antd/es/typography/Link';
 
 function MyOrder({id,date,totalPrice,status,orderProducts}) {
+    const handleDetail = (orderID) => {
+        console.log("orderId",orderID)
+        window.location.href = `myorder/orderdetail/orderId=${orderID}`;
+    }
+
     return(
         <div className="myaccount-order">
             <div className='myaccount-order-row'>
@@ -21,7 +28,8 @@ function MyOrder({id,date,totalPrice,status,orderProducts}) {
                     <OrderProduct orderProducts={orderProducts}/>
                 </div>
                 <div>
-                <button className='myaccount-edit'>Detail</button>
+                    <Link to={'myorder/orderdetail/${id}'}></Link>
+                    <button className='myaccount-edit' onClick={() => handleDetail(id)} value={id}>Detail</button>
                 </div>
             </div>
             <div className='myaccount-order-row'>

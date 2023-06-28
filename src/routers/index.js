@@ -7,10 +7,11 @@ import Faqs from "../views/faqs/index";
 import ShoppingCart from "../views/shoppingcart/index";
 import Order from "../views/order/index";
 import AppLayout from '../components/layout'; 
-import MyAccount from '../views/me/myaccount';
-import AddressManagement from "../views/me/addressmanagement";
-import MyProfile from "../views/me/myprofile";
-import MyOrder from "../views/me/myorder";
+import MyAccount from '../views/me/myaccount'
+import AddressManagement from "../views/me/addressmanagement"
+import MyProfile from "../views/me/myprofile"
+import MyOrder from "../views/me/myorder"
+import OrderDetail from "../views/me/orderdetail"
 import ProfileEdit from "../views/me/profileedit";
 import Login from "../views/login/index";
 import Register from "../views/register/index";
@@ -126,32 +127,43 @@ export const routers = [
         path: "/order", // http://www.healthfuel365.com/order
         element: <Order />,
       },
-    {
-      //go to My Account Page
-      path:'myaccount', //http://www.healthfuel365.com/myaccount
-      children: [
-        {
-          index: true,
-          element: <MyAccount />
-        },
-        {
-          path:'profileEdit', //http://www.healthfuel365.com/myaccount/profileEdit
-          element: <ProfileEdit />
-        },
-        {
-          path:'addressManagement',
-          element: <AddressManagement />
-        },
-        {
-          path:'myprofile',
-          element: <MyProfile />
-        },
-        {
-          path:'myorder',
-          element: <MyOrder />
-        },
-      ]
-    }
+
+  {
+    //go to My Account Page
+    path:'myaccount', //http://www.healthfuel365.com/myaccount
+    children: [
+      {
+        index: true,
+        element: <MyAccount />
+      },
+      {
+        path:'profileEdit', //http://www.healthfuel365.com/myaccount/profileEdit
+        element: <ProfileEdit />
+      },
+      {
+        path:'addressManagement',
+        element: <AddressManagement />
+      },
+      {
+        path:'myprofile',
+        element: <MyProfile />
+      },
+      {
+        path:'myorder',
+        children: [
+          {
+            path:'',
+            element: <MyOrder />,
+          },
+          {
+            path:'orderdetail/:orderId',
+            element: <OrderDetail />
+          }
+        ]
+      },
+    ]
+  },
+
     ]
   }
 ]
