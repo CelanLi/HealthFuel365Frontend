@@ -12,5 +12,13 @@
     flex-direction: row;
     margin: 10px;
 
+    width: 100%;
+
     justify-content: space-between;
+}
+
+.order-service-block{
+    display: flex;
+    flex-direction: row;
+    margin: 5px;
 }
