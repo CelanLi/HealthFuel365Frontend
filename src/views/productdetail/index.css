@@ -131,14 +131,14 @@
   border: none;
 }
 
-.table .ant-table-cell {
+.ant-table-cell {
   font-family: "Kaisei Opti";
   font-style: normal;
   font-size: 16px;
   color: #033d1f !important;
 }
 
-.table .ant-table-tbody > tr > td {
+.ant-table-tbody > tr > td {
   border-color: rgba(3, 61, 31, 0.15);
 }
 
