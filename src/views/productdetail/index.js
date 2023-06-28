@@ -2,14 +2,19 @@ import "./index.css";
 import React from "react";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { message } from "antd";
+import { message, Modal } from "antd";
 import Nutri from "../../components/nutri";
+import Nova from "./components/nova";
 import ContentLevel from "./components/content_level";
 import AddToScButton from "../../components/add_to_sc_button";
+import Vegetarian from "../../assets/images/vegetarian.png";
+import Vegan from "../../assets/images/vegan.png";
 import { getDetail } from "../../services/productDetailService";
 import { addShoppingCart } from "../../services/productService";
 import { getCookie } from "../../util/cookie";
 import { getUser } from "../../services/userService";
+import { Collapse, Table } from "antd";
+const { Panel } = Collapse;
 
 function Page() {
   // get corresponding product data by comparing the product id
@@ -32,248 +37,32 @@ function Page() {
     };
     setData(id);
     (async () => {
-      const cookie = getCookie("login")
+      const cookie = getCookie("login");
       if (cookie) {
         const userAccount = await getUser();
         const userID = userAccount.id;
         setShoppingCartID(userID);
-      }
-      else{
+      } else {
         messageApi.open({
           type: "error",
           content: "Please log in!",
         });
       }
-      
-    })()
+    })();
   }, []);
-  // {
-  //   productID: "p1",
-  //   productName: "Hafer Porridge Cup Schokolade - Davert - 65 g",
-  //   productPrice: 2.99,
-  //   productNutri: "C",
-  //   imageUrl:
-  //     "https://images.openfoodfacts.org/images/products/401/933/963/6107/front_de.22.400.jpg",
-  //   productBrand: "Davert",
-  //   capacity: 3,
-  // },
-  // {
-  //   productID: "p2",
-  //   productName: "Couscous Vollkorn - Davert - 500g",
-  //   productPrice: 12.99,
-  //   productNutri: "A",
-  //   imageUrl:
-  //     "https://images.openfoodfacts.org/images/products/401/933/930/6109/front_de.6.full.jpg",
-  //   productBrand: "Davert",
-  //   capacity: 5,
-  // },
-  // {
-  //   productID: "p3",
-  //   productName: "Saltoos - Seitenbacher - 200 g",
-  //   productPrice: 4.84,
-  //   productNutri: "A",
-  //   imageUrl:
-  //     "https://images.openfoodfacts.org/images/products/200/000/009/8459/front_de.3.400.jpg",
-  //   productBrand: "Seitenbacher",
-  //   capacity: 5,
-  // },
-  // {
-  //   productID: "p4",
-  //   productName: "Seitenbacher all natural cereal musli strawberry delight",
-  //   productPrice: 12.99,
-  //   productNutri: "A",
-  //   imageUrl:
-  //     "https://images.openfoodfacts.org/images/products/003/954/509/9095/front_en.3.400.jpg",
-  //   productBrand: "Seitenbacher",
-  //   capacity: 20,
-  // },
-  // {
-  //   productID: "p5",
-  //   productName: "Milk & Cereal Biscuits - Belvita",
-  //   productPrice: 7.99,
-  //   productNutri: "B",
-  //   imageUrl:
-  //     "https://images.openfoodfacts.org/images/products/762/221/074/0519/front_en.21.400.jpg",
-  //   productBrand: "Belvita",
-  //   capacity: 15,
-  // },
-  // {
-  //   productID: "p6",
-  //   productName: "Biscuits Belvita Choco - 300g",
-  //   productPrice: 3.99,
-  //   productNutri: "D",
-  //   imageUrl:
-  //     "https://images.openfoodfacts.org/images/products/762/230/044/3269/front_en.19.400.jpg",
-  //   productBrand: "Belvita",
-  //   capacity: 1,
-  // },
-  // {
-  //   productID: "p7",
-  //   productName: "Hafer Porridge Cup Schokolade - Davert - 65 g",
-  //   productPrice: 2.99,
-  //   productNutri: "A",
-  //   imageUrl:
-  //     "https://images.openfoodfacts.org/images/products/401/933/963/6107/front_de.22.400.jpg",
-  //   productBrand: "Davert",
-  //   capacity: 3,
-  // },
-  // {
-  //   productID: "p8",
-  //   productName: "Hafer Porridge Cup Schokolade - Davert - 65 g",
-  //   productPrice: 2.99,
-  //   productNutri: "B",
-  //   imageUrl:
-  //     "https://images.openfoodfacts.org/images/products/401/933/963/6107/front_de.22.400.jpg",
-  //   productBrand: "Davert",
-  //   capacity: 3,
-  // },
-  // {
-  //   productID: "p9",
-  //   productName: "Hafer Porridge Cup Schokolade - Davert - 65 g",
-  //   productPrice: 2.99,
-  //   productNutri: "C",
-  //   imageUrl:
-  //     "https://images.openfoodfacts.org/images/products/401/933/963/6107/front_de.22.400.jpg",
-  //   productBrand: "Davert",
-  //   capacity: 3,
-  // },
-  // {
-  //   productID: "p10",
-  //   productName: "Hafer Porridge Cup Schokolade - Davert - 65 g",
-  //   productPrice: 2.99,
-  //   productNutri: "D",
-  //   imageUrl:
-  //     "https://images.openfoodfacts.org/images/products/401/933/963/6107/front_de.22.400.jpg",
-  //   productBrand: "Davert",
-  //   capacity: 3,
-  // },
-  // {
-  //   productID: "p11",
-  //   productName: "Hafer Porridge Cup Schokolade - Davert - 65 g",
-  //   productPrice: 2.99,
-  //   productNutri: "E",
-  //   imageUrl:
-  //     "https://images.openfoodfacts.org/images/products/401/933/963/6107/front_de.22.400.jpg",
-  //   productBrand: "Davert",
-  //   capacity: 3,
-  // },
-
-  // const [productDetailList, setProductDetail] = useState([
-  //   {
-  //     productID: "1",
-  //     fatLevel: "high",
-  //     fat: 28,
-  //     sugarLevel: "moderate",
-  //     sugar: 12,
-  //     saltLevel: "small",
-  //     salt: 0.06,
-  //     productDescription: ["D1: .....", "D2: ....."],
-  //   },
-  //   {
-  //     productID: "2",
-  //     fatLevel: "small",
-  //     fat: 1.8,
-  //     sugarLevel: "small",
-  //     sugar: 2.2,
-  //     saltLevel: "small",
-  //     salt: 0.01,
-  //     productDescription: ["D1: .....", "D2: ....."],
-  //   },
-  //   {
-  //     productID: "p3",
-  //     fatLevel: "small",
-  //     fat: 2,
-  //     sugarLevel: "small",
-  //     sugar: 4,
-  //     saltLevel: "small",
-  //     salt: 0,
-  //     productDescription: ["D1: .....", "D2: ....."],
-  //   },
-  //   {
-  //     productID: "p4",
-  //     fatLevel: "moderate",
-  //     fat: 15.6,
-  //     sugarLevel: "small",
-  //     sugar: 4.44,
-  //     saltLevel: "small",
-  //     salt: 0,
-  //     productDescription: ["D1: .....", "D2: ....."],
-  //   },
-  //   {
-  //     productID: "p5",
-  //     fatLevel: "small",
-  //     fat: 1.2,
-  //     sugarLevel: "moderate",
-  //     sugar: 6.1,
-  //     saltLevel: "moderate",
-  //     salt: 0.59,
-  //     productDescription: ["D1: .....", "D2: ....."],
-  //   },
-  //   {
-  //     productID: "p6",
-  //     fatLevel: "moderate",
-  //     fat: 14,
-  //     sugarLevel: "high",
-  //     sugar: 26,
-  //     saltLevel: "moderate",
-  //     salt: 0.51,
-  //     productDescription: ["D1: .....", "D2: ....."],
-  //   },
-  //   {
-  //     productID: "p7",
-  //     fatLevel: "high",
-  //     fat: 28,
-  //     sugarLevel: "moderate",
-  //     sugar: 12,
-  //     saltLevel: "small",
-  //     salt: 0.06,
-  //     productDescription: ["D1: .....", "D2: ....."],
-  //   },
-  //   {
-  //     productID: "p8",
-  //     fatLevel: "high",
-  //     fat: 28,
-  //     sugarLevel: "moderate",
-  //     sugar: 12,
-  //     saltLevel: "small",
-  //     salt: 0.06,
-  //     productDescription: ["D1: .....", "D2: ....."],
-  //   },
-  //   {
-  //     productID: "p9",
-  //     fatLevel: "high",
-  //     fat: 28,
-  //     sugarLevel: "moderate",
-  //     sugar: 12,
-  //     saltLevel: "small",
-  //     salt: 0.06,
-  //     productDescription: ["D1: .....", "D2: ....."],
-  //   },
-  //   {
-  //     productID: "p10",
-  //     fatLevel: "high",
-  //     fat: 28,
-  //     sugarLevel: "moderate",
-  //     sugar: 12,
-  //     saltLevel: "small",
-  //     salt: 0.06,
-  //     productDescription: ["D1: .....", "D2: ....."],
-  //   },
-  //   {
-  //     productID: "p11",
-  //     fatLevel: "high",
-  //     fat: 28,
-  //     sugarLevel: "moderate",
-  //     sugar: 12,
-  //     saltLevel: "small",
-  //     salt: 0.06,
-  //     productDescription: ["D1: .....", "D2: ....."],
-  //   },
-  // ]);
 
   var isAvailable = (capacity) => {
     if (capacity > 0) return "Available";
     else return "Not Available";
+  };
+  const showLoginReminder = () => {
+    Modal.error({
+      title: "please log in",
+      content: "Before adding items to your shopping cart, log in is reuired",
+      onOk: () => {
+        window.location.href = "http://localhost:3000";
+      },
+    });
   };
 
   const clickShoppingCart = async (id) => {
@@ -282,17 +71,54 @@ function Page() {
   };
   // if the item is not avialable, it cannot be added to the cart.
   const handleClick = () => {
-    if (product?.capacity === 0) {
-      message.error("Sorry, this item is not available.");
-    }
-    const cookie = getCookie("login")
+    const cookie = getCookie("login");
     if (!cookie) {
-      message.error("Please log in!");
-    }
-    else {
+      showLoginReminder();
+    } 
+    else if (product?.capacity === 0) {
+      message.error("Sorry, this item is not available.");
+    } 
+    else{
       clickShoppingCart(id);
     }
   };
+
+  const getDetailDict = () => {
+    const detail = productDetail?.productDescription;
+    const dict = {}
+    const descriptions = detail.split(";");
+    descriptions.forEach(description => {
+        const keyValue = description.split(":");
+        if (keyValue.length === 2) {
+            const key = keyValue[0].trim();
+            const value = keyValue[1].trim();
+            dict[key] = value;
+      }
+    });
+    return dict;
+  }
+  const detailDict = (productDetail?.productDescription) ? getDetailDict() : {};
+  
+  // data for nutrition facts table
+  const columns = [
+    {
+      title: "Nutrition facts",
+      dataIndex: "nutri",
+    },
+    {
+      title: "As sold for 100 g / 100 ml",
+      dataIndex: 'content',
+    },
+  ];
+  const data = Object.keys(detailDict).map(key => {
+      if (!["Ingredients","Allergens", "Nova"].includes(key)) {
+        return {
+          nutri: key,
+          content: detailDict[key]
+        };
+      } 
+      return null;
+    }).filter(nutriFact=> nutriFact !=null);
 
   return (
     <div className="productdetail-wrap">
@@ -332,29 +158,63 @@ function Page() {
           </div>
         </div>
         <div className="pd_content_bottom">
-          <h3>Nutritional Information</h3>
-          <div class="nutri_info">
-            <ContentLevel degree={productDetail?.fatLevel} />
-            Fat in {productDetail?.fatLevel} amounts ({productDetail?.fat}%)
-          </div>
-          <div class="nutri_info">
-            <ContentLevel degree={productDetail?.sugarLevel} />
-            Sugar in {productDetail?.sugarLevel} amounts ({productDetail?.sugar}
-            %)
-          </div>
-          <div class="nutri_info">
-            <ContentLevel degree={productDetail?.saltLevel} />
-            Salt in {productDetail?.saltLevel} amounts ({productDetail?.salt}%)
-          </div>
-
-          <h3>Other Product Description</h3>
-          {productDetail?.productDescription?.map((descriptionItem) => {
-            return (
-              <div>
-                <p>{descriptionItem}</p>
+          <Collapse bordered={false} defaultActiveKey={["1"]}  expandIconPosition="end">
+              <Panel header="Nutritional Information" key="1">
+                {/* nutritional information including fat/ sugar/ salz */}
+                <div class="info">
+                  <ContentLevel degree={productDetail?.fatLevel} />
+                  <p> Fat in {productDetail?.fatLevel} amount ({productDetail?.fat}%) </p>
+                </div>
+                <div class="info">
+                  <ContentLevel degree={productDetail?.sugarLevel} />
+                  <p> Sugar in {productDetail?.sugarLevel} amount ({productDetail?.sugar}%) </p>
+                </div>
+                <div class="info">
+                  <ContentLevel degree={productDetail?.saltLevel} />
+                  <p> Salt in {productDetail?.saltLevel} amount ({productDetail?.salt}%) </p>
+                </div>
+                {/* nutritional table */}
+                { data.length>0 && 
+                  <Table columns={columns} dataSource={data} pagination={false}  className="table"/>
+                }
+              </Panel>
+          </Collapse>
+          {/* ingredients including ingredients, allergens, vegan, vegetarian */}
+          <Collapse bordered={false} expandIconPosition="end">
+            { "Ingredients"|"Allergens" in detailDict | productDetail.vegetarian | productDetail.vegan ? (
+              <Panel header="Ingredients">
+                <p>{detailDict["Ingredients"]}</p>
+                { "Allergens" in detailDict && (
+                  <p>Allergens: {detailDict["Allergens"]}</p>
+                )}
+                <div className="row">
+                { productDetail.vegan ? (
+                  <div class="info">
+                    <img src={Vegan} className="icon"/>
+                    <p> Vegan </p>
+                  </div>
+                ): null
+                }
+                { productDetail.vegetarian ? (
+                  <div class="info">
+                    <img src={Vegetarian} className="icon"/>
+                    <p> Vegetarian </p>
+                  </div>
+                ): null
+                }
               </div>
-            );
-          })}
+              </Panel>
+            ): null
+            }
+          </Collapse>
+          {/* food processing */}
+          <Collapse bordered = {false} expandIconPosition = "end">
+            {"Nova" in detailDict && detailDict["Nova"]!=="nan" && (
+            <Panel header = "Food Processing">
+              <Nova nova = {detailDict["Nova"]}/>
+            </Panel>
+            )}
+          </Collapse>
         </div>
       </div>
     </div>

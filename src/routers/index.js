@@ -13,8 +13,13 @@ import MyProfile from "../views/me/myprofile"
 import MyOrder from "../views/me/myorder"
 import OrderDetail from "../views/me/orderdetail"
 import ProfileEdit from "../views/me/profileedit";
-import Login from "../views/login/index"
-import Register from "../views/register/index"
+import Login from "../views/login/index";
+import Register from "../views/register/index";
+import AdminLayout from "../views/admin/component/layout";
+import ProductManagement from "../views/admin/productManagement";
+import UserManagement from "../views/admin/userManagement";
+import PromoCodeManagement from "../views/admin/promoCodeManagement";
+import OrderManagement from "../views/admin/orderManagement";
 
 export const routers = [
   {
@@ -49,7 +54,33 @@ export const routers = [
     path: "/register", // http://www.healthfuel365.com/register
     element: <Register />,
   },
-
+  {
+    // Admin Page
+    path:'admin', //http://www.healthfuel365.com/admin
+    element: <AdminLayout />, 
+    children: [
+      {
+        index: true,
+        element: <UserManagement />,
+      },
+      {
+        path:'productManagement', //http://www.healthfuel365.com/admin/productManagement
+        element: <ProductManagement />
+      },
+      {
+        path:'userManagement', //http://www.healthfuel365.com/admin/productManagement
+        element: <UserManagement />
+      },
+      {
+        path:'promoCodeManagement', //http://www.healthfuel365.com/admin/promoCodeManagement
+        element: <PromoCodeManagement />
+      },
+      {
+        path:'orderManagement', //http://www.healthfuel365.com/admin/orderManagement
+        element: <OrderManagement />
+      },
+    ]
+  },
   {
     path: "/",
     element: <AppLayout />, 
@@ -92,7 +123,7 @@ export const routers = [
       },
 
       {
-        // 进入Order Page
+        // Order Page
         path: "/order", // http://www.healthfuel365.com/order
         element: <Order />,
       },

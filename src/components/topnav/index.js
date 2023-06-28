@@ -16,7 +16,7 @@ function Page() {
   
   useEffect(() => {
     // redirecting from all product pages to other pages keywords are cleared
-    if(location.pathname!="/product"){
+    if(location.pathname!=="/product"){
       setKeyWords("");
     }
   }, [location.pathname]);
@@ -27,7 +27,7 @@ function Page() {
       <div className="topnav_logo">
         <Link to="/homepage"/>
       </div>
-      <div className="product_topnav_wrap">
+      <div className="topnav_wrap">
         <div className="left">
           <Link to="/homepage" className={(location.pathname==="/homepage")? "active" : ""}>HomePage</Link>
           <Link to="/product"className={(location.pathname==="/product")? "active" : ""} onClick={() => window.location.href="/product"}>All Products</Link>

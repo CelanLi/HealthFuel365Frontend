@@ -7,6 +7,7 @@ import ShoppingCartItem from "./components/shoppingcart_item";
 import ShoppingCartSummary from "./components/sc_summary";
 import { addressGet,getUser } from "../../services/userService";
 import { getCookie } from "../../util/cookie";
+import { Modal } from "antd";
 
 import {
   deleteProductItem,
@@ -114,9 +115,12 @@ function Page() {
         setShoppingCartID(userID);
       }
       else {
-        messageApi.open({
-          type: "error",
-          content: "Please log in!",
+        Modal.error({
+          title: "please log in",
+          content: "Sorry, log in is reuired",
+          onOk: () => {
+            window.location.href = "http://localhost:3000";
+          },
         });
       }
     })()

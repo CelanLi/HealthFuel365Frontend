@@ -344,6 +344,7 @@ function Page() {
                 total={filteredProductList.length}
                 pageSize={10}
                 onChange={handlePaginationChange}
+                showSizeChanger={false}
               />
             </div>
           ) : null}
