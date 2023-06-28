@@ -11,27 +11,6 @@ import MyOrder from '../components/me_order';
 import MyNav from '../components/me_nav';
 
 function App() {
-    // const orderList = [
-    // {
-    //     id: "123456",
-    //     date: "2023-05-01",
-    //     totalPrice: 25,
-    //     status: "delivered",
-    // },
-    // {
-    //     id: "123457",
-    //     date: "2023-05-02",
-    //     totalPrice: 50,
-    //     status: "not delivered yet",
-    // },
-    // {
-    //     id: "123457",
-    //     date: "2023-05-02",
-    //     totalPrice: 50,
-    //     status: "not delivered yet",
-    // },
-    // ];
-
   // set order list value
   const [orderList,setOrderList] = useState([]);
   //navigation

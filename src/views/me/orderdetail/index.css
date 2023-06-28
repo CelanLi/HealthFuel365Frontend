@@ -1,0 +1,122 @@
+.order-detail-wrap{
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.order-detail-back{
+    width: 6%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.order-detail-back-text1{
+    font-family: "Kaisei Opti";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 35px;
+    display: flex;
+    align-items: center;
+    color: black;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.order-detail-back-text2 {
+    font-family: "Kaisei Opti";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 35px;
+    display: flex;
+    align-items: center;
+    color: #033d1f;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  }
+
+  .order-detail-row{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    margin-left: 7%;
+    margin-right: 10%;
+  }
+
+  .order-detail-address{
+    background-color: #C4D0CB;
+    border-radius: 20px;
+    height: 200px;
+
+    margin-left: 2%;
+    margin-right: 2%;
+    
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 2%;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.order-detail-address-up{
+    display: flex;
+    flex-direction: row;
+    height: 50px;
+
+    align-items: center;
+}
+
+.order-detail-address-bottom{
+  display: flex;
+  flex-direction: row;
+  height: 100px;
+}
+
+.order-detail-address-left{
+  width: 50%;
+}
+
+.order-detail-address-right{
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+
+.detail-product-text{
+    font-family: "Kaisei Opti";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 30px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #033d1f;
+
+    margin-left: 10px;
+  }
+
+.order-detail-address-up-block{
+    display: flex;
+    flex-direction: row;
+    margin-right: 10%;
+}
+
+.order-detail-name {
+    font-family: "Kaisei Opti";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 22px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #033d1f;
+  }

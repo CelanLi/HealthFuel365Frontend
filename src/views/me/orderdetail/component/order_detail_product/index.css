@@ -1,0 +1,85 @@
+.detail-product-wrap{
+    background-color: #C4D0CB;
+    border-radius: 20px;
+
+    margin-left: 2%;
+    margin-right: 2%;
+    
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 2%;
+
+    display: flex;
+    flex-direction: row;
+}
+
+.detail-product-image {
+    width: 110px;
+    height: 150px;
+  }
+
+.detail-product-name {
+    font-family: "Kaisei Opti";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 30px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #033d1f;
+
+  }
+
+  .detail-product-text{
+    font-family: "Kaisei Opti";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 30px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #033d1f;
+  }
+   
+  .detail-product-name a,
+  .detail-product-name a:visited {
+    color: #033d1f;
+    text-decoration: none;
+  }
+  
+  .detail-product-name a:hover {
+    filter: brightness(2.5);
+  }
+
+  .detail-product-middle{
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    justify-content: space-between;
+  }
+
+  .detail-product-right{
+    display: flex;
+    flex-direction: column;
+
+    justify-content: space-between;
+  }
+
+  .detail-product-price{
+    display: flex;
+    flex-direction: row;
+  }
+
+  .detail-product-total{
+    font-family: "Kaisei Opti";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 30px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #033d1f;
+  }
