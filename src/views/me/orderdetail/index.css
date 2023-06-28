@@ -53,6 +53,7 @@
   .order-detail-address{
     background-color: #C4D0CB;
     border-radius: 20px;
+    height: 200px;
 
     margin-left: 2%;
     margin-right: 2%;
@@ -71,6 +72,22 @@
     height: 50px;
 
     align-items: center;
+}
+
+.order-detail-address-bottom{
+  display: flex;
+  flex-direction: row;
+  height: 100px;
+}
+
+.order-detail-address-left{
+  width: 50%;
+}
+
+.order-detail-address-right{
+  display: flex;
+  flex-direction: column;
+  width: 50%;
 }
 
 .detail-product-text{

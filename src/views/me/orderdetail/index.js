@@ -3,14 +3,14 @@ import './index.css'
 import { useParams } from 'react-router-dom';
 import { Link } from "react-router-dom";
 
-import { getOrderById } from '../../../services/orderService';
-import OrderDetailProduct from './component';
-import Receiver from '../../../assets/images/myaccount/icon-receiver.png'
-import PhoneIcon from '../../../assets/images/myaccount/icon-phone.png'
-import AddIcon from '../../../assets/images/myaccount/icon-address.png'
+import { getOrderById, getServiceByOrderId } from '../../../services/orderService';
+import OrderDetailProduct from './component/order_detail_product';
+import OrderAddress from './component/order_detail_address';
+import OrderServices from './component/order_detail_service';
+
 
 function Index() {
-    const { orderId } = useParams(); // 使用 useParams 钩子来获取 URL 中的 orderId 参数
+    const { orderId } = useParams(); // use useParams hook to get userid from url
     const [order, setOrder] = useState(null);
   
     useEffect(() => {
@@ -44,7 +44,7 @@ function Index() {
       <div className='order-detail-row'>
         <div className='myaccount-order-title'>
             <p className='myaccount-order-text'>Order ID:&nbsp;</p>
-            <p className='myaccount-order-text'>{order.id}</p>
+            <p className='myaccount-order-text'>{order.orderID}</p>
         </div>
         <div className='myaccount-order-title'>
             <p className='myaccount-order-text'>Order Date:&nbsp;</p>
@@ -63,30 +63,25 @@ function Index() {
       </div>
 
       <div className="order-detail-address">
-        <div className="order-detail-address-up">
-          <p className='order-detail-name'>Delivery Information</p>
-        </div>
-        <div>
-          <div>
+
+        <div className="order-detail-address-bottom">
+          <div className="order-detail-address-left">
             <div className="order-detail-address-up">
-              <div className="order-detail-address-up-block">
-                  <img src={Receiver} className="myaccount-address-icon"/>
-                <div className="detail-product-text">Receiver: {order.shipTo.receiver}</div>
-              </div>
-              <div className="order-detail-address-up-block">
-                <img src={PhoneIcon} className="myaccount-address-icon"/>
-                <div className="detail-product-text">Tel: {order.shipTo.tel}</div>
-              </div>
+              <p className='order-detail-name'>Delivery Information</p>
             </div>
-            <div className="order-detail-address-up">
-                <img src={AddIcon} className="myaccount-address-icon" />
-                <div className="myaccount-content-bottom-text">
-                    <div className="detail-product-text">Address: {order.shipTo.additionalAddress}, {order.shipTo.street}, {order.shipTo.postCode}, {order.shipTo.city}</div>
-                </div>
-            </div>
+            <OrderAddress receiver = {order.shipTo.receiver}
+                          tel = {order.shipTo.tel}
+                          additionalAddress = {order.shipTo.additionalAddress}
+                          street = {order.shipTo.street}
+                          postCode = {order.shipTo.postCode}
+                          city = {order.shipTo.city}/>
           </div>
-          <div>
-            
+          
+          <div className="order-detail-address-right">
+            <div className="order-detail-address-up">
+              <p className='order-detail-name'>Packaging and Shipping Services</p>
+            </div>
+            <OrderServices orderID={order.orderID}></OrderServices>
           </div>
         </div>
 

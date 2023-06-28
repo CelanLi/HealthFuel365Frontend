@@ -7,7 +7,6 @@ import Link from 'antd/es/typography/Link';
 
 function MyOrder({id,date,totalPrice,status,orderProducts}) {
     const handleDetail = (orderID) => {
-        console.log("orderId",orderID)
         window.location.href = `myorder/orderdetail/orderId=${orderID}`;
     }
 
