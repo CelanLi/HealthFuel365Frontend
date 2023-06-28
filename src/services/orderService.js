@@ -85,4 +85,21 @@ export const getServiceByOrderId = async (orderID) => {
     throw new Error(error);
   }
 };
+
+// convert date string to timestamp
+export const getOrderTimestamp = (order) => {
+  if (!order || !order.orderDate) {
+    return 0; // Return 0 or any default value if the order or date is missing
+  }
+  if (order.orderDate.includes(',')) {
+    const [dateString, timeString] = order.orderDate.split(', ');
+    const [day, month, year] = dateString.split('.');
+    const [hour, minute, second] = timeString.split(':');
+    const timestamp = new Date(year, month - 1, day, hour, minute, second).getTime();
+    return timestamp;
+  }
+  else{
+    return 0;
+  }
+};
  

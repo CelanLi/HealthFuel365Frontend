@@ -3,7 +3,7 @@ import React, { useEffect } from 'react'
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { getOrder } from '../../../services/orderService';
+import { getOrder,getOrderTimestamp } from '../../../services/orderService';
 
 //import style
 import "./index.css"
@@ -31,8 +31,16 @@ function App() {
         // delay get order list
         setTimeout(async () => {
           const list = await (getOrder());
-          console.log(list + "order to test");
-          setOrderList(list);
+
+          const sortedOrders = list.sort((a, b) => {
+            const timestampA = getOrderTimestamp(a);
+            const timestampB = getOrderTimestamp(b);
+            return timestampB - timestampA;
+          });
+
+          // list.sort((a, b) => new Date(b.orderDate) - new Date(a.orderDate));
+          console.log(sortedOrders + "order to test");
+          setOrderList(sortedOrders);
         }, 300);
       } 
       // else {
