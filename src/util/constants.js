@@ -7,3 +7,4 @@ export const homeRoute: string = "/home";
 export const profileRoute: string = "/profile";
 export const shoppingCartRoute: string = "/shoppingcart";
 export const adminRoutes: string = "/admin";
+export const recommendationRoutes: string = "/recommendation";

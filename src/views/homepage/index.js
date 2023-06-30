@@ -7,6 +7,7 @@ import Category from "../../components/category"
 import Product from "../../components/product"
 import Carousel from "./components/carousel"
 import Alternative from "./components/alternatives"
+import Recommendation from './components/recommendation';
 
 //import junkfood images
 import Chips from '../../assets/images/homepage/junkfood/chips.png'
@@ -56,7 +57,8 @@ function Page() {
           {/* the recommended products */}
           {/* TODO */}
           <div className='homepage-product'>
-            <div className='homepage-product-1'>
+            <Recommendation />
+            {/* <div className='homepage-product-1'>
               <Product/>
               <Product/>
               <Product/>
@@ -71,7 +73,7 @@ function Page() {
               <Product/>
               <Product/>
               <Product/>
-            </div>
+            </div> */}
           </div>
 
         </div>

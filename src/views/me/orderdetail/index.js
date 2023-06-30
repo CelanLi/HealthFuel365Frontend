@@ -89,9 +89,9 @@ function Index() {
 
       <div>
         {order.orderProducts.map(orderDetailProduct => ((
-          <>
+          <div key={orderDetailProduct.product.productID}>
             <OrderDetailProduct orderDetailProduct = {orderDetailProduct}/>
-          </>
+          </div>
         )
         ))}
       </div>
