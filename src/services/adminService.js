@@ -50,8 +50,7 @@ export const updateUserEmail = async (userID, email) => {
   }
 };
 
-export const getAllPromoCode = (params) => {
-  console.log(params);
+export const getAllPromoCode = (params) => { 
   return serviceAxios({
     url: backendUrl + adminRoutes + "/getAllPromoCode",
     method: "get",

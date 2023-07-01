@@ -120,8 +120,7 @@ function PromoCodeManagement() {
           showDate: year + "-" + month + "-" + date,
           usedUser: usedUsersList,
         };
-      });
-      console.log("showData" + showData);
+      }); 
       setPromoCodeList(showData);
       setIsLoading(false);
     } catch (error) {

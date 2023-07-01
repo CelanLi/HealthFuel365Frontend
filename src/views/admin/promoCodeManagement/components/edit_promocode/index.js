@@ -30,9 +30,9 @@ function EditPromoCode({ info, getlist }) {
   const [messageApi, contextHolder] = message.useMessage();
 
   const showModal = () => {
-    const newDate = +new Date(info.expirationDate);
+    const newDate = +new Date(info.expirationDate); 
     setCodeValue(info.code);
-    // setExpirationDateValue(newDate);
+    setExpirationDateValue(dayjs(newDate));
     setDiscountRateValue(info.discountRate * 100);
     setMinThresholdValue(info.minThreshold);
     setIsModalOpen(true);
@@ -76,7 +76,7 @@ function EditPromoCode({ info, getlist }) {
       messageApi.open({
         type: "error",
         content: res.message,
-        duration:3,
+        duration: 3,
       });
     }
 
