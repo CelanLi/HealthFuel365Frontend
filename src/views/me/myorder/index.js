@@ -69,6 +69,7 @@ function App() {
             {orderList.map(orderItem => {
               return(
                 <MyOrder
+                  key={orderItem.id}
                   id={orderItem.id}
                   date={orderItem.orderDate}
                   totalPrice={orderItem.totalPrice}

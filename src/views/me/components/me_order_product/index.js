@@ -7,7 +7,7 @@ function OrderProduct({orderProducts}) {
   return (
     <div className='order-product-wrap'>
       {displayProductItems.map((productItem) => (
-        <div className='order-product-img'>
+        <div className='order-product-img' key={productItem.product.productID}>
             <img key={productItem.product.productID} src={productItem.product.imageUrl} />
         </div>
         
