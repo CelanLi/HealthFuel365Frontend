@@ -1,0 +1,56 @@
+.pc_promocode_edit_buttom {
+  text-decoration-line: underline;
+  color: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+
+.pc_promocode_edit_buttom:hover {
+  filter: brightness(1.4);
+}
+
+.pc_edit_promocode_titel {
+  font-family: "Kaisei Opti";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 29px;
+  color: #033d1f;
+}
+
+.pc_edit_promocode_name,
+.pc_edit_promocode_expiration_date,
+.pc_edit_promocode_discount_rate,
+.pc_edit_promocode_min_threshold {
+  display: flex;
+  justify-content: left;
+  margin-top: 15px;
+}
+
+.pc_edit_promocode_name_attribute,
+.pc_edit_promocode_expiration_date_attribute,
+.pc_edit_promocode_discount_rate_attribute,
+.pc_edit_promocode_min_threshold_attribute {
+  font-family: "Kaisei Opti";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 29px;
+  color: #033d1f;
+  width: 180px;
+  flex-shrink: 0;
+}
+
+sup {
+  color: red;
+  margin-right: 5px;
+}
+
+.pc_edit_promocode_model
+  .ant-space.css-dev-only-do-not-override-w8mnev.ant-space-vertical.pc_edit_promocode_expiration_date_input,
+.pc_edit_promocode_model .ant-picker.css-dev-only-do-not-override-w8mnev,
+.pc_edit_promocode_model
+  .ant-space.css-dev-only-do-not-override-w8mnev.ant-space-horizontal.ant-space-align-center.pc_edit_promocode_discount_rate_input,
+.pc_edit_promocode_model .ant-space-item,
+.pc_edit_promocode_model .ant-input-number.css-dev-only-do-not-override-w8mnev {
+  width: 100%;
+}
