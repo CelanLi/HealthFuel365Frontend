@@ -125,3 +125,35 @@ export const addPromoCode = async (data) => {
     }
   }
 };
+
+export const getAllOrdersWithService = async () => {
+  try {
+    const result: Response = await axios.get(
+      backendUrl + adminRoutes + "/orders"
+    );
+    const response = result.data;
+    if (response.status >= 300) {
+      throw new Error(response.message);
+    }
+    return response;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
+
+export const updateOrder = async (orderID, status, trackingnumber) => {
+  try {
+    const result: Response = await axios.put(
+      backendUrl + adminRoutes + "/orders/update/" + orderID + "/" + status+ "/" + trackingnumber
+    );
+    const response = result.data;
+    if (response.status >= 300) {
+      throw new Error(response.message);
+    }
+    message.success("Update order " + orderID + " successfully.");
+    return response;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
