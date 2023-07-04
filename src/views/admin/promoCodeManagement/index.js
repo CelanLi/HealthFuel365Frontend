@@ -54,15 +54,13 @@ function PromoCodeManagement() {
       title: "Discount Rate",
       width: 150,
       dataIndex: "discountRate",
-      key: "discountRate",
-      sorter: (a, b) => a.discountRate.localeCompare(b.discountRate),
+      key: "discountRate", 
     },
     {
       title: "minThreshold",
       width: 150,
       dataIndex: "minThreshold",
-      key: "minThreshold",
-      sorter: (a, b) => a.minThreshold.localeCompare(b.minThreshold),
+      key: "minThreshold", 
     },
     {
       title: "Users who have already used it",
@@ -144,8 +142,8 @@ function PromoCodeManagement() {
             <input
               type="text"
               value={keyWords}
-              onChange={(e) => setKeyWords(e.target.value)}
-              placeholder=""
+              onChange={(e) => setKeyWords(e.target.value)} 
+              placeholder="PromoCode ID"
             />
             <button type="submit" />
           </form>
