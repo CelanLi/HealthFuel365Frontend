@@ -143,7 +143,7 @@ function PromoCodeManagement() {
               type="text"
               value={keyWords}
               onChange={(e) => setKeyWords(e.target.value)} 
-              placeholder="PromoCode ID"
+              placeholder="PromoCode Name"
             />
             <button type="submit" />
           </form>
