@@ -126,10 +126,10 @@ export const addPromoCode = async (data) => {
   }
 };
 
-export const getAllOrdersWithService = async () => {
+export const getAllOrdersWithService = async (keyWords) => {
   try {
     const result: Response = await axios.get(
-      backendUrl + adminRoutes + "/orders"
+      backendUrl + adminRoutes + "/orders" + "/?keyWords=" + keyWords
     );
     const response = result.data;
     if (response.status >= 300) {

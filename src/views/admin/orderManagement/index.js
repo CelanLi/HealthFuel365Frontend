@@ -4,6 +4,7 @@ import { Table, Select, Input, message } from "antd";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { getAllOrdersWithService, updateOrder } from "../../../services/adminService";
+import { getOrderTimestamp } from "../../../services/orderService";
 const { Option } = Select;
 
 function OrderManagement () {
@@ -32,6 +33,15 @@ function OrderManagement () {
       value: "Cancelled",
     }
   ]
+  // keywords in search bar
+  const [keyWords, setKeyWords] = useState("");
+  // default sort order is descending order date
+  const [currentSortOrder, setCurrentSortOrder] = useState("descend");
+  // change sort
+  const handleSortChange = () => {
+    const newSortOrder = currentSortOrder === "ascend" ? "descend" : "ascend";
+    setCurrentSortOrder(newSortOrder);
+  };
   // define columns of data
   const columns= [
     {
@@ -56,7 +66,11 @@ function OrderManagement () {
       width: 180,
       dataIndex: "orderDate",
       key: "orderDate",
-      sorter: (a, b) => a.orderDate.localeCompare(b.orderDate)
+      sorter: (a, b) =>  getOrderTimestamp(a) - getOrderTimestamp(b),
+      sortOrder: currentSortOrder,
+      onHeaderCell:  () => ({
+          onClick: handleSortChange,
+      })
     },
     {
        /* order.totalPrice */
@@ -179,13 +193,12 @@ function OrderManagement () {
     setIsLoading(true);
     try{
     //returns both orders and service data
-    const [orders,services] = await getAllOrdersWithService();
+    const [orders,services] = await getAllOrdersWithService( keyWords );
     const formattedData = orders.map((order, index) => {
       //find corresponding services
       const service = services.find((s) => s.orderID === order.orderID);
       return {
         key: String(index + 1),
-        /* to do */
         orderID: order.orderID,
         userID: order.userID,
         orderDate: order.orderDate,
@@ -254,25 +267,48 @@ function OrderManagement () {
       setOrder();
   }
  
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await setOrder();
+  };
+
   return (
     <div>
-      {isLoading ? (
-        <div className="loading">
-          <p>Loading...</p>
+      <div className="pc_bread_crumb">Order Management ＞</div>
+      <div className="pc_top">
+        <div className="pc_search_container">
+          <form onSubmit={handleSubmit}>
+            <input
+              type="text"
+              value={keyWords}
+              onChange={(e) => setKeyWords(e.target.value)}
+              placeholder="OrderID"
+            />
+            <button type="submit" />
+          </form>
         </div>
-      ) : (
-        <Table 
-          columns={columns}
-          dataSource={orderList}
-          scroll={{
-            x: 1200,
-          }}
-          pagination={{
-            showTotal: (total) => (total + " orders"),
-          }}
-          className="table"
-        />
-    )}
+      </div>
+
+      {/* main content */}
+      <div>
+        {isLoading ? (
+          <div className="loading">
+            <p>Loading...</p>
+          </div>
+        ) : (
+          <Table 
+            columns={columns}
+            dataSource={orderList}
+            scroll={{
+              x: 1200,
+            }}
+            pagination={{
+              showTotal: (total) => (total + " orders"),
+            }}
+            className="table"
+          />
+      )}
+    </div>
   </div>
   );
 }
