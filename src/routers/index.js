@@ -20,6 +20,7 @@ import ProductManagement from "../views/admin/productManagement";
 import UserManagement from "../views/admin/userManagement";
 import PromoCodeManagement from "../views/admin/promoCodeManagement";
 import OrderManagement from "../views/admin/orderManagement";
+import AdminOrderDetail from '../views/admin/orderManagement/orderDetail'
 
 export const routers = [
   {
@@ -77,7 +78,17 @@ export const routers = [
       },
       {
         path:'orderManagement', //http://www.healthfuel365.com/admin/orderManagement
-        element: <OrderManagement />
+        //element: <OrderManagement />,
+        children: [
+          {
+            path:'',
+            element: <OrderManagement />,
+          },
+          {
+            path:'orderdetail/:orderID', //http://www.healthfuel365.com/admin/orderManagement/orderdetail
+            element: <AdminOrderDetail />
+          }
+        ]
       },
     ]
   },

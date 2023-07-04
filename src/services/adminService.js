@@ -141,7 +141,6 @@ export const getAllOrdersWithService = async () => {
   }
 };
 
-
 export const updateOrder = async (orderID, status, trackingnumber) => {
   try {
     const result: Response = await axios.put(
@@ -152,6 +151,21 @@ export const updateOrder = async (orderID, status, trackingnumber) => {
       throw new Error(response.message);
     }
     message.success("Update order " + orderID + " successfully.");
+    return response;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
+export const getOrderById = async (orderID) => {
+  try {
+    const result: Response = await axios.get(
+      backendUrl + adminRoutes + "/getOrder/" + orderID
+    );
+    const response = result.data;
+    if (response.status >= 300) {
+      throw new Error(response.message);
+    }
     return response;
   } catch (error) {
     throw new Error(error);

@@ -4,13 +4,18 @@ import './index.css'
 
 import ShoppingCartNutri from '../../../../../components/nutri';
 
-function OrderDetailProduct( {orderDetailProduct} ) {
+function OrderDetailProduct( { orderDetailProduct, disable = true }) {
+    console.log(disable);
   return (
     <div className='detail-product-wrap'>
         <div className="sc_item_image">
-            <Link to={`/product/detail/${orderDetailProduct.product.productID}`}>
-                <img className="detail-product-image" src={orderDetailProduct.product.imageUrl}></img>
-            </Link>
+            {disable ? (
+                <Link to={`/product/detail/${orderDetailProduct.product.productID}`}>
+                    <img className="detail-product-image" src={orderDetailProduct.product.imageUrl}></img>
+                </Link>): (
+                    <img className="detail-product-image" src={orderDetailProduct.product.imageUrl}></img>
+                )
+            }    
         </div>
         <div className='detail-product-middle'>
             <div className='detail-product-name'>

@@ -165,8 +165,7 @@ function OrderManagement () {
           ) : (
           <div className="operation-column">
             <Link onClick={() => handleEdit(order.orderID,order.orderStatus,order.trackingNumber)}>Edit</Link>
-            {/* to do: get details */}
-            <Link>Details</Link>
+            <Link to = { "orderdetail/" + order.orderID + `?services=${encodeURIComponent(JSON.stringify(order.services))}` }>Details</Link>
           </div>
           );
       }
@@ -207,7 +206,7 @@ function OrderManagement () {
   const formattedAddress = (address) =>{
     return "Receiver:  " + address.receiver + "\n"
     + "Tel: " + address.tel + "\n"
-    + "Address: "  + address.additionalAddress + " " + address.street + " " + address.postCode + " " + address.city
+    + "Address: "  + address.additionalAddress + ", " + address.street + ", " + address.postCode + ", " + address.city
   }
   const formattedService = (service) => {
     let s = "";
@@ -274,7 +273,7 @@ function OrderManagement () {
           className="table"
         />
     )}
-    </div>
+  </div>
   );
 }
 
