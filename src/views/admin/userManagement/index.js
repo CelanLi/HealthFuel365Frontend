@@ -9,6 +9,8 @@ function UserManagement () {
   // data: list of user and corresponding profile
   const [userProfileList,setUserProfileList] = useState([]);
   const [isLoading,setIsLoading] = useState(true);
+  // keywords in search bar
+  const [keyWords, setKeyWords] = useState("");
   // define columns of data
   const columns= [
     {
@@ -90,7 +92,7 @@ function UserManagement () {
     setIsLoading(true);
     try{
     // returns both user and profile data
-    const [user,profiles] = await getAllUserWithProfile();
+    const [user,profiles] = await getAllUserWithProfile( keyWords );
     const formattedData = user.map((user, index) => {
       // find corresponding profile
       const profile = profiles.find((p) => p.userID === user._id);
@@ -162,26 +164,48 @@ function UserManagement () {
     // reset users after delete one
     setUsers();
   }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await setUsers();
+  };
  
   return (
     <div>
-      {isLoading ? (
-        <div className="loading">
-          <p>Loading...</p>
+      <div className="pc_bread_crumb">User Management ＞</div>
+      <div className="pc_top">
+        <div className="pc_search_container">
+          <form onSubmit={handleSubmit}>
+            <input
+              type="text"
+              value={keyWords}
+              onChange={(e) => setKeyWords(e.target.value)}
+              placeholder="User Name"
+            />
+            <button type="submit" />
+          </form>
         </div>
-      ) : (
-        <Table 
-          columns={columns}
-          dataSource={userProfileList}  
-          scroll={{
-            x: 1200,
-          }}
-          pagination={{
-            showTotal: (total) => (total + " users"),
-          }}
-          className="table"
-        />
-    )}
+      </div>
+
+      <div>
+        {isLoading ? (
+          <div className="loading">
+            <p>Loading...</p>
+          </div>
+        ) : (
+          <Table 
+            columns={columns}
+            dataSource={userProfileList}  
+            scroll={{
+              x: 1200,
+            }}
+            pagination={{
+              showTotal: (total) => (total + " users"),
+            }}
+            className="table"
+          />
+      )}
+      </div>
     </div>
   );
 }

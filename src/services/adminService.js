@@ -3,10 +3,10 @@ import { backendUrl, adminRoutes } from "../util/constants";
 import { message } from "antd";
 import serviceAxios from "../util/request.js";
 
-export const getAllUserWithProfile = async () => {
+export const getAllUserWithProfile = async (keyWords) => {
   try {
     const result: Response = await axios.get(
-      backendUrl + adminRoutes + "/user"
+      backendUrl + adminRoutes + "/user" + "/?keyWords=" + keyWords
     );
     const response = result.data;
     if (response.status >= 300) {
