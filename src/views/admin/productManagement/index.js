@@ -4,8 +4,6 @@ import { Table, Input } from "antd";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import {
-  getAllUserWithProfile,
-  deleteUserWithProfile,
   getProductsWithDetail,
   deleteProduct,
 } from "../../../services/adminService";
@@ -13,7 +11,7 @@ import EditProduct from "../component/updateProduct";
 import AddProduct from "../component/addProduct";
 
 function ProductManagement() {
-  // data: list of user and corresponding profile
+  // data: list of products and corresponding detail
   const [productsWithDetail, setProductsWithDetail] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   // define columns
@@ -115,7 +113,7 @@ function ProductManagement() {
       title: "Description",
       dataIndex: "description",
       key: "description",
-      width: 100,
+      width: 300,
     },
     {
       title: "Image Url",
@@ -150,6 +148,7 @@ function ProductManagement() {
       const formattedData = p.map((p, index) => {
         //find corresponding detail
         const detail = details.find((d) => d.productID === p.productID);
+        console.log(JSON.stringify(details));
         return {
           key: String(index + 1),
           productID: p.productID,
@@ -160,39 +159,34 @@ function ProductManagement() {
           productBrand: p.productBrand,
           productPrice: p.productPrice,
           productName: p.productName,
-          vegan: detail?.vegan,
-          vegetarian: detail?.vegetarian,
+          vegan: detail?.vegan ? "T" : "F",
+          vegetarian: detail?.vegetarian ? "T" : "F",
           fat: detail?.fat,
           sugar: detail?.sugar,
           salt: detail?.salt,
           fatLevel: detail?.fatLevel,
           sugarLevel: detail?.sugarLevel,
           saltLevel: detail?.saltLevel,
-          description: detail?.description,
+          description: detail?.productDescription,
         };
       });
+      console.log(JSON.stringify(formattedData));
       setProductsWithDetail(formattedData);
       setIsLoading(false);
     } catch (error) {
       console.error("error set products with profiles:", error);
     }
   };
-  // used to delete illeage user
   const handleDeleteProduct = async (productID) => {
     console.log(productID);
     await deleteProduct(productID);
-    // reset users after delete one
     setProductList();
   };
-  // save the tracking the userID of editing row
   const [editingProduct, setEditingProduct] = useState("");
-  // used to handle edit clink and save the userID of editing row
   const handleEdit = (i) => {
     setEditingProduct(i);
   };
-  // used to edit email
   const handleProductEdit = async (editedProduct) => {
-    //await updateEmail(userID, editedEmail);
     setEditingProduct("");
     setProductList();
   };

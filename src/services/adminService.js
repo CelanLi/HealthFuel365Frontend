@@ -184,6 +184,7 @@ export const getProductsWithDetail = async () => {
       backendUrl + adminRoutes + "/products"
     );
     const response = result.data;
+    console.log(JSON.stringify(response));
     if (response.status >= 300) {
       throw new Error(response.message);
     }
