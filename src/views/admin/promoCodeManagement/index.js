@@ -135,7 +135,7 @@ function PromoCodeManagement() {
   return (
     <div className="promocode_manage_wrap">
       {/* &lt;represent< */}
-      <div className="pc_bread_crumb">Product Management ＞</div>
+      <div className="pc_bread_crumb">PromoCode Management ＞</div>
       <div className="pc_top">
         <div className="pc_search_container">
           <form onSubmit={handleSubmit}>
