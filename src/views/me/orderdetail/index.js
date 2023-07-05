@@ -3,7 +3,7 @@ import './index.css'
 import { useParams } from 'react-router-dom';
 import { Link } from "react-router-dom";
 
-import { getOrderById, getServiceByOrderId } from '../../../services/orderService';
+import { getOrderById, getPaymentByOrderId, getPromocodeByOrderId } from '../../../services/orderService';
 import OrderDetailProduct from './component/order_detail_product';
 import OrderAddress from './component/order_detail_address';
 import OrderServices from './component/order_detail_service';
@@ -12,10 +12,14 @@ import OrderServices from './component/order_detail_service';
 function Index() {
     const { orderId } = useParams(); // use useParams hook to get userid from url
     const [order, setOrder] = useState(null);
+    const [payment, setPayment] = useState(null);
+    const [discountRate, setDiscountRate] = useState(null);
   
     useEffect(() => {
       // get order detail when first load the page
       fetchOrderDetail(orderId);
+      fetchPayment(orderId);
+      fetchPromocode(orderId);
     }, [orderId]);
 
     const fetchOrderDetail = async (orderId) => {
@@ -24,6 +28,29 @@ function Index() {
         const response = await getOrderById(orderId);
         console.log(response)
         setOrder(response);
+      } catch (error) {
+        console.error('Error fetching order detail:', error);
+      }
+    };
+
+    const fetchPayment = async (orderId) => {
+      try {
+        // async request to get payment by id from backend
+        const response = await getPaymentByOrderId(orderId);
+        setPayment(response.payment.paymentID)
+      } catch (error) {
+        console.error('Error fetching payment detail:', error);
+      }
+    };
+
+    const fetchPromocode = async (orderId) => {
+      try {
+        // async request to get payment by id from backend
+        const response = await getPromocodeByOrderId(orderId);
+        if (response.promocode) {
+          const discount = (1-response.promocode.discountRate).toFixed(2);
+          setDiscountRate(discount*100)
+        }
       } catch (error) {
         console.error('Error fetching order detail:', error);
       }
@@ -60,6 +87,22 @@ function Index() {
             <p className='myaccount-order-text'>Total Price:&nbsp;</p>
             <p className='myaccount-order-text'>{order.totalPrice}€</p>
         </div>
+      </div>
+      <div className='order-detail-row'>
+        <div className='myaccount-order-title'>
+            <p className='myaccount-order-text'>Payment ID:&nbsp;</p>
+            <p className='myaccount-order-text'>{payment}</p>
+        </div>
+        <div className='myaccount-order-title'>
+            <p className='myaccount-order-text'>Tracking Number:&nbsp;</p>
+            <p className='myaccount-order-text'>{order.trackingNumber}</p>
+        </div>
+      </div>
+      <div className='order-detail-promocode'>
+        {order.codeValue ? (
+          <p className='order-detail-promocode-text'>You received a {discountRate}% discount by using promocode "{order.codeValue}".</p>
+        ) : (<></>
+        )}
       </div>
 
       <div className="order-detail-address">

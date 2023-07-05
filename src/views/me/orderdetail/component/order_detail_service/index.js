@@ -4,10 +4,11 @@ import './index.css'
 import GiftIcon from '../../../../../assets/images/gift-icon.png'
 import DeliveryIcon from '../../../../../assets/images/delivery-icon.png'
 import FastDeliveryIcon from '../../../../../assets/images/box-icon.png'
-import { getServiceByOrderId } from '../../../../../services/orderService';
+import { getServiceByOrderId, getPaymentByOrderId } from '../../../../../services/orderService';
 
 function OrderServices({orderID}) {
   const [services, setServices] = useState(null);
+
 
   useEffect(() => {
     // get services when first load the page
@@ -17,9 +18,8 @@ function OrderServices({orderID}) {
   const fetchOrderServices = async (orderID) => {
     try {
       // async request to get order by id from backend
-      const response = await getServiceByOrderId(orderID);
-      console.log(response);
-      setServices(response);
+      const serviceResponse = await getServiceByOrderId(orderID);
+      setServices(serviceResponse);
     } catch (error) {
         console.error('Error fetching order detail:', error);
     }
@@ -57,7 +57,7 @@ function OrderServices({orderID}) {
             <div className='order-service-row'>
               
               <div className='myaccount-order-text'>Standard shipping via HERMES</div>
-              <div className='myaccount-order-text'>7.95€</div>
+              <div className='myaccount-order-text'>4.95€</div>
             </div>
           </div>
         )}

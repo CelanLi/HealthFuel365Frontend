@@ -69,8 +69,8 @@ export const getOrderById = async (orderID) => {
     if (response.status >= 300) {
       throw new Error(response.message);
     }
-    console.log(response[0])
-    return response[0];
+    console.log(response)
+    return response;
   } catch (error) {
     throw new Error(error);
   }
@@ -84,6 +84,57 @@ export const getServiceByOrderId = async (orderID) => {
     }
     const result: Response = await axios.get(
       'http://localhost:8081/user/getServiceByOrderId',
+      {
+        headers: {
+          Authorization: document.cookie, //put cookie into header
+        },
+        params: {orderID : orderID},
+      },
+    );
+    const response = result.data;
+    if (response.status >= 300) {
+      throw new Error(response.message);
+    }
+    return response;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
+// get payment information by order id
+export const getPaymentByOrderId = async (orderID) => {
+  console.log("aaaa")
+  try {
+    if (!document.cookie) {
+      throw new Error("Cookie is empty");
+    }
+    const result: Response = await axios.get(
+      'http://localhost:8081/user/getPaymentByOrderId',
+      {
+        headers: {
+          Authorization: document.cookie, //put cookie into header
+        },
+        params: {orderID : orderID},
+      },
+    );
+    const response = result.data;
+    if (response.status >= 300) {
+      throw new Error(response.message);
+    }
+    return response;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
+// get promocode information by order id
+export const getPromocodeByOrderId = async (orderID) => {
+  try {
+    if (!document.cookie) {
+      throw new Error("Cookie is empty");
+    }
+    const result: Response = await axios.get(
+      'http://localhost:8081/user/getPromocodeByOrderId',
       {
         headers: {
           Authorization: document.cookie, //put cookie into header

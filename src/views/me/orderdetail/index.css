@@ -120,3 +120,24 @@
     text-align: center;
     color: #033d1f;
   }
+
+.order-detail-promocode{
+  display: flex;
+  flex-direction: row;
+
+  margin-left: 9%;
+  margin-right: 10%;
+  margin-top: 5px;
+}
+
+.order-detail-promocode-text{
+
+    
+  font-family: 'Kaisei Opti';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  text-decoration: none;
+
+  color: #033d1f;
+}
