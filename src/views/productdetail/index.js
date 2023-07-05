@@ -20,7 +20,6 @@ function Page() {
   // get corresponding product data by comparing the product id
   var pathname = window.location.pathname;
   var id = pathname.split("/")[3];
-  console.log(id);
   const [product, setProduct] = useState([]);
   const [productDetail, setProductDetail] = useState([]);
   const [shoppingCartID, setShoppingCartID] = useState("");
@@ -74,31 +73,29 @@ function Page() {
     const cookie = getCookie("login");
     if (!cookie) {
       showLoginReminder();
-    } 
-    else if (product?.capacity === 0) {
+    } else if (product?.capacity === 0) {
       message.error("Sorry, this item is not available.");
-    } 
-    else{
+    } else {
       clickShoppingCart(id);
     }
   };
 
   const getDetailDict = () => {
     const detail = productDetail?.productDescription;
-    const dict = {}
+    const dict = {};
     const descriptions = detail.split(";");
-    descriptions.forEach(description => {
-        const keyValue = description.split(":");
-        if (keyValue.length === 2) {
-            const key = keyValue[0].trim();
-            const value = keyValue[1].trim();
-            dict[key] = value;
+    descriptions.forEach((description) => {
+      const keyValue = description.split(":");
+      if (keyValue.length === 2) {
+        const key = keyValue[0].trim();
+        const value = keyValue[1].trim();
+        dict[key] = value;
       }
     });
     return dict;
-  }
-  const detailDict = (productDetail?.productDescription) ? getDetailDict() : {};
-  
+  };
+  const detailDict = productDetail?.productDescription ? getDetailDict() : {};
+
   // data for nutrition facts table
   const columns = [
     {
@@ -107,18 +104,20 @@ function Page() {
     },
     {
       title: "As sold for 100 g / 100 ml",
-      dataIndex: 'content',
+      dataIndex: "content",
     },
   ];
-  const data = Object.keys(detailDict).map(key => {
-      if (!["Ingredients","Allergens", "Nova"].includes(key)) {
+  const data = Object.keys(detailDict)
+    .map((key) => {
+      if (!["Ingredients", "Allergens", "Nova"].includes(key)) {
         return {
           nutri: key,
-          content: detailDict[key]
+          content: detailDict[key],
         };
-      } 
+      }
       return null;
-    }).filter(nutriFact=> nutriFact !=null);
+    })
+    .filter((nutriFact) => nutriFact != null);
 
   return (
     <div className="productdetail-wrap">
@@ -158,61 +157,82 @@ function Page() {
           </div>
         </div>
         <div className="pd_content_bottom">
-          <Collapse bordered={false} defaultActiveKey={["1"]}  expandIconPosition="end">
-              <Panel header="Nutritional Information" key="1">
-                {/* nutritional information including fat/ sugar/ salz */}
-                <div class="info">
-                  <ContentLevel degree={productDetail?.fatLevel} />
-                  <p> Fat in {productDetail?.fatLevel} amount ({productDetail?.fat}%) </p>
-                </div>
-                <div class="info">
-                  <ContentLevel degree={productDetail?.sugarLevel} />
-                  <p> Sugar in {productDetail?.sugarLevel} amount ({productDetail?.sugar}%) </p>
-                </div>
-                <div class="info">
-                  <ContentLevel degree={productDetail?.saltLevel} />
-                  <p> Salt in {productDetail?.saltLevel} amount ({productDetail?.salt}%) </p>
-                </div>
-                {/* nutritional table */}
-                { data.length>0 && 
-                  <Table columns={columns} dataSource={data} pagination={false}  className="table"/>
-                }
-              </Panel>
+          <Collapse
+            bordered={false}
+            defaultActiveKey={["1"]}
+            expandIconPosition="end"
+          >
+            <Panel header="Nutritional Information" key="1">
+              {/* nutritional information including fat/ sugar/ salz */}
+              <div class="info">
+                <ContentLevel degree={productDetail?.fatLevel} />
+                <p>
+                  {" "}
+                  Fat in {productDetail?.fatLevel} amount ({productDetail?.fat}
+                  %){" "}
+                </p>
+              </div>
+              <div class="info">
+                <ContentLevel degree={productDetail?.sugarLevel} />
+                <p>
+                  {" "}
+                  Sugar in {productDetail?.sugarLevel} amount (
+                  {productDetail?.sugar}%){" "}
+                </p>
+              </div>
+              <div class="info">
+                <ContentLevel degree={productDetail?.saltLevel} />
+                <p>
+                  {" "}
+                  Salt in {productDetail?.saltLevel} amount (
+                  {productDetail?.salt}%){" "}
+                </p>
+              </div>
+              {/* nutritional table */}
+              {data.length > 0 && (
+                <Table
+                  columns={columns}
+                  dataSource={data}
+                  pagination={false}
+                  className="table"
+                />
+              )}
+            </Panel>
           </Collapse>
           {/* ingredients including ingredients, allergens, vegan, vegetarian */}
           <Collapse bordered={false} expandIconPosition="end">
-            { "Ingredients"|"Allergens" in detailDict | productDetail.vegetarian | productDetail.vegan ? (
+            {"Ingredients" |
+            ("Allergens" in detailDict) |
+            productDetail.vegetarian |
+            productDetail.vegan ? (
               <Panel header="Ingredients">
                 <p>{detailDict["Ingredients"]}</p>
-                { "Allergens" in detailDict && (
+                {"Allergens" in detailDict && (
                   <p>Allergens: {detailDict["Allergens"]}</p>
                 )}
                 <div className="row">
-                { productDetail.vegan ? (
-                  <div class="info">
-                    <img src={Vegan} className="icon"/>
-                    <p> Vegan </p>
-                  </div>
-                ): null
-                }
-                { productDetail.vegetarian ? (
-                  <div class="info">
-                    <img src={Vegetarian} className="icon"/>
-                    <p> Vegetarian </p>
-                  </div>
-                ): null
-                }
-              </div>
+                  {productDetail.vegan ? (
+                    <div class="info">
+                      <img src={Vegan} className="icon" />
+                      <p> Vegan </p>
+                    </div>
+                  ) : null}
+                  {productDetail.vegetarian ? (
+                    <div class="info">
+                      <img src={Vegetarian} className="icon" />
+                      <p> Vegetarian </p>
+                    </div>
+                  ) : null}
+                </div>
               </Panel>
-            ): null
-            }
+            ) : null}
           </Collapse>
           {/* food processing */}
-          <Collapse bordered = {false} expandIconPosition = "end">
-            {"Nova" in detailDict && detailDict["Nova"]!=="nan" && (
-            <Panel header = "Food Processing">
-              <Nova nova = {detailDict["Nova"]}/>
-            </Panel>
+          <Collapse bordered={false} expandIconPosition="end">
+            {"Nova" in detailDict && detailDict["Nova"] !== "nan" && (
+              <Panel header="Food Processing">
+                <Nova nova={detailDict["Nova"]} />
+              </Panel>
             )}
           </Collapse>
         </div>

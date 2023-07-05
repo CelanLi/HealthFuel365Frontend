@@ -17,6 +17,12 @@ function Page() {
       question: "Can I only pay with paypal?",
       answer: "Yes, currently, paypal is the only payment method.",
     },
+    {
+      question:
+        "Why is it recommended to consume foods with low fat/sugar/salt content?",
+      answer:
+        "A high consumption of fat can raise cholesterol, which increases the risk of heart diseases. A high consumption of sugar can cause weight gain and tooth decay. It also augments the risk of type 2 diabetes and cardio-vascular diseases. A high consumption of salt (or sodium) can cause raised blood pressure, which can increase the risk of heart disease and stroke.",
+    },
   ];
   return (
     <div className="faq">

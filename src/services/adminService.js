@@ -50,7 +50,7 @@ export const updateUserEmail = async (userID, email) => {
   }
 };
 
-export const getAllPromoCode = (params) => { 
+export const getAllPromoCode = (params) => {
   return serviceAxios({
     url: backendUrl + adminRoutes + "/getAllPromoCode",
     method: "get",
@@ -77,7 +77,7 @@ export const updatePromoCode = async (data) => {
         code: data.code,
         expirationDate: data.expirationDate,
         discountRate: data.discountRate / 100,
-        minThreshold: data.minThreshold, 
+        minThreshold: data.minThreshold,
       }
     );
     const response = result.data;
@@ -144,7 +144,14 @@ export const getAllOrdersWithService = async (keyWords) => {
 export const updateOrder = async (orderID, status, trackingnumber) => {
   try {
     const result: Response = await axios.put(
-      backendUrl + adminRoutes + "/orders/update/" + orderID + "/" + status+ "/" + trackingnumber
+      backendUrl +
+        adminRoutes +
+        "/orders/update/" +
+        orderID +
+        "/" +
+        status +
+        "/" +
+        trackingnumber
     );
     const response = result.data;
     if (response.status >= 300) {
@@ -166,6 +173,123 @@ export const getOrderById = async (orderID) => {
     if (response.status >= 300) {
       throw new Error(response.message);
     }
+    return response;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+export const getProductsWithDetail = async () => {
+  try {
+    const result: Response = await axios.get(
+      backendUrl + adminRoutes + "/products"
+    );
+    const response = result.data;
+    if (response.status >= 300) {
+      throw new Error(response.message);
+    }
+    return response;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+export const getProductWithDetail = async (productID) => {
+  try {
+    const result: Response = await axios.get(
+      backendUrl + adminRoutes + "/products/edit/" + productID
+    );
+    const response = result.data;
+    if (response.status >= 300) {
+      throw new Error(response.message);
+    }
+    return response;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
+export const deleteProduct = async (productID) => {
+  console.log(productID);
+  try {
+    console.log(productID);
+    const result = await axios.delete(
+      backendUrl + adminRoutes + "/products/delete/" + productID
+    );
+    const response = result.data;
+    if (response.status >= 300) {
+      throw new Error(response.message);
+    }
+    return response;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
+export const addProduct = async (data) => {
+  try {
+    const result: Response = await axios.post(
+      backendUrl + adminRoutes + "/products/add",
+      {
+        productID: "1",
+        category: data.category,
+        imageUrl: data.imageUrl,
+        nutriScore: data.nutriScore,
+        capacity: data.capacity,
+        productBrand: data.productBrand,
+        productPrice: data.productPrice,
+        productName: data.productName,
+        vegan: data.vegan,
+        vegetarian: data.vegetarian,
+        fat: data.fat,
+        sugar: data.sugar,
+        salt: data.salt,
+        fatLevel: data.fatLevel,
+        sugarLevel: data.sugarLevel,
+        saltLevel: data.saltLevel,
+        productDescription: data.description,
+      }
+    );
+    const response = result.data;
+    if (response.status >= 300) {
+      throw new Error(response.message);
+    }
+    console.log(result.data);
+    return response;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
+export const updateProduct = async (data) => {
+  try {
+    console.log(JSON.stringify(data));
+    // await deleteProduct(data.productID);
+    const result: Response = await axios.post(
+      backendUrl + adminRoutes + "/products/update/" + data.productID,
+      {
+        productID: data.productID,
+        category: data.category,
+        imageUrl: data.imageUrl,
+        nutriScore: data.nutriScore,
+        capacity: data.capacity,
+        productBrand: data.productBrand,
+        productPrice: data.productPrice,
+        productName: data.productName,
+        vegan: data.vegan,
+        vegetarian: data.vegetarian,
+        fat: data.fat,
+        sugar: data.sugar,
+        salt: data.salt,
+        fatLevel: data.fatLevel,
+        sugarLevel: data.sugarLevel,
+        saltLevel: data.saltLevel,
+        description: data.description,
+      }
+    );
+    const response = result.data;
+    if (response.status >= 300) {
+      throw new Error(response.message);
+    }
+    console.log(result.data);
     return response;
   } catch (error) {
     throw new Error(error);

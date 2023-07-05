@@ -133,7 +133,6 @@ function Page() {
       const list = await (keyWords === null
         ? getAllProducts(sort)
         : getProductsByName(keyWords, sort));
-      console.log(JSON.stringify(list) + "product to test");
       setProductList(list);
       const detailList = async () => {
         const dList = [];
@@ -146,7 +145,6 @@ function Page() {
       const productDetails = await detailList();
       setProductDetailList(productDetails);
       setIsLoading(false);
-      console.log(JSON.stringify(productDetails) + "detail to test");
     } catch (error) {
       console.error("error set products:", error);
     }
@@ -222,11 +220,6 @@ function Page() {
             (productDetail) => productDetail?.fat <= fatContent
           );
           fatIDs = fat.map((productDetail) => productDetail.productID);
-          console.log(
-            fatContent +
-              "fat..." +
-              fat.map((productDetail) => productDetail?.fat)
-          );
           conditions.push(fatIDs.includes(product.productID));
         }
         if (sugarContent != 100) {
@@ -270,11 +263,6 @@ function Page() {
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     resetfilteredProductList();
-    console.log("all-product-page category: " + category);
-    console.log("all-product-page nutri: " + nutri);
-    console.log("all-product-page preference: " + preference);
-    console.log("all-product-page fat content: " + fatContent);
-    console.log("all-product-page brands: " + brands);
   }, [
     category,
     nutri,
@@ -303,7 +291,6 @@ function Page() {
   const handlePaginationChange = useCallback(
     (pagination) => {
       setPageNumber(pagination);
-      console.log(pagination);
       const list = arrSplit(filteredProductList, pagination, 10);
       setPageProductList(list);
     },
