@@ -1,4 +1,4 @@
-import "../../../../components/topnav/index.css"
+import "./index.css";
 import { Link, useLocation } from "react-router-dom";
 
 function Topnav() {
@@ -6,10 +6,10 @@ function Topnav() {
   return (
     <div className="topnav">
       <div className="topnav_slogan"> HealthFuel365——Online gas station for your health </div>
-      <div className="topnav_logo">
+      <div className="topnav_logo_admin">
         <Link to="/userManagement"/>
       </div>
-      <div className="topnav_wrap">
+      <div className="topnav_container">
         <div className="left">
           <Link to="/admin/userManagement" className={(location.pathname==="/admin/userManagement" | location.pathname==="/admin")? "active" : ""}>User Management</Link>
           <Link to="/admin/productManagement" className={(location.pathname==="/admin/productManagement")? "active" : ""}>Product Management</Link>

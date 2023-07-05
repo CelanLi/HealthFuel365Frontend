@@ -1,0 +1,55 @@
+.topnav_container{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.topnav_logo_admin{
+    position: absolute;
+    top: 15pt;
+    left: -24pt;
+    width: 200pt;
+    height: 50pt;
+    background: transparent url("../../../../assets/images/logo.png") center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    float: left;
+}
+  
+.topnav_logo_admin a{
+    width: 100%;
+    background: transparent;
+}
+
+@media (max-width: 930px){
+    .topnav_logo_admin{ 
+        top: 130px;
+        left: -30px;
+    }
+    
+    .topnav_container .left{
+        width: 100%;
+        margin-left: 200px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .topnav_container .left a{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .topnav_container .right{
+        width: 10%;
+        display: flex;
+        justify-content: space-between;
+        margin: auto 15px;
+    }
+
+    .topnav_container .right-icon-container a {
+        margin-left: 0px;
+    } 
+}

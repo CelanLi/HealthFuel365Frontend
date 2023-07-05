@@ -47,7 +47,7 @@ function OrderManagement () {
     {
       /* order.orderID */
       title: "OrderID",
-      width: 120,
+      width: 110,
       dataIndex: "orderID",
       key: "orderID",
       fixed: "left"
@@ -55,10 +55,9 @@ function OrderManagement () {
     {
       /* order.userID */
       title: "OrdererID",
-      width: 120,
+      width: 110,
       dataIndex: "userID",
       key: "userID",
-      fixed: "left"
     },
     {
       /* order.orderDate */
@@ -115,7 +114,7 @@ function OrderManagement () {
     {
       /* order.orderStatus */
       title: "Order Status",
-      width: 150,
+      width: 105,
       fixed: "right",
       dataIndex: "orderStatus",
       key: "orderStatus",
@@ -144,8 +143,8 @@ function OrderManagement () {
     },
     {
       /* order.trackingNumber */
-      title: "tracking Number",
-      width: 150,
+      title: "Tracking Number",
+      width: 110,
       fixed: "right",
       dataIndex: "trackingNumber",
       key: "trackingNumber",
@@ -167,7 +166,7 @@ function OrderManagement () {
       title: "",
       key: "operation",
       fixed: "right",
-      width: 100,
+      width: 80,
       render: (order) => {
         // check if current row is in editing
         const isEditing = order.orderID === editingOrder;
