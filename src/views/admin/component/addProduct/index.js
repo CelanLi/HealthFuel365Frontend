@@ -4,6 +4,7 @@ import { Modal, Input, Space, message, Select } from "antd";
 import "./index.css";
 
 import { addProduct, updateProduct } from "../../../../services/adminService";
+import { async } from "q";
 
 function AddProduct() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -35,7 +36,7 @@ function AddProduct() {
     setIsModalOpen(true);
   };
 
-  const handleOk = () => {
+  const handleOk = async () => {
     if (
       !productName ||
       !category ||
@@ -56,7 +57,8 @@ function AddProduct() {
       });
       return;
     }
-    addProduct({
+    console.log(vegan + "   vegan");
+    await addProduct({
       productID: "1",
       category: category,
       imageUrl: imageUrl,
@@ -80,7 +82,7 @@ function AddProduct() {
         " Allergens: " +
         allergens +
         ";" +
-        " Nova " +
+        " Nova: " +
         nova +
         ";" +
         " Energy: " +

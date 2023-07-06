@@ -227,6 +227,7 @@ export const deleteProduct = async (productID) => {
 
 export const addProduct = async (data) => {
   try {
+    console.log(data.vegan);
     const result: Response = await axios.post(
       backendUrl + adminRoutes + "/products/add",
       {
@@ -283,7 +284,7 @@ export const updateProduct = async (data) => {
         fatLevel: data.fatLevel,
         sugarLevel: data.sugarLevel,
         saltLevel: data.saltLevel,
-        description: data.description,
+        productDescription: data.description,
       }
     );
     const response = result.data;
