@@ -9,10 +9,12 @@ import ContentLevel from "./components/content_level";
 import AddToScButton from "../../components/add_to_sc_button";
 import Vegetarian from "../../assets/images/vegetarian.png";
 import Vegan from "../../assets/images/vegan.png";
+import ScItemCounter from  "../../views/shoppingcart/components/sc_item_counter";
 import { getDetail } from "../../services/productDetailService";
 import { addShoppingCart } from "../../services/productService";
 import { getCookie } from "../../util/cookie";
 import { getUser } from "../../services/userService";
+import { changeProductCount, getShoppingCartDetail } from "../../services/shoppingCartService";
 import { Collapse, Table } from "antd";
 const { Panel } = Collapse;
 
@@ -63,7 +65,6 @@ function Page() {
       },
     });
   };
-
   const clickShoppingCart = async (id) => {
     // wait for shoppingCartID
     await addShoppingCart(shoppingCartID, id);
@@ -77,8 +78,50 @@ function Page() {
       message.error("Sorry, this item is not available.");
     } else {
       clickShoppingCart(id);
+      setQuantity(1);
     }
   };
+  /* store the quantity of this product in the shopping cart*/
+  const [quantity, setQuantity] = useState(0);
+  /* update the product count*/
+  async function changeProductQuantity({ id, value: count }) {
+    if (Number(count) === 0) {
+      message.success("Removed this item from shopping cart.");
+      return;
+    }
+    await changeProductCount({
+      shoppingCartID: shoppingCartID,
+      productID: id,
+      quantity: Number(count),
+    });
+    message.success(`Updated this item's quantity to ${count} in shopping cart.`);
+  }
+  /* get the quantity of this product in the shopping cart*/
+  const showQuantity = async (id)=>{
+    console.log(shoppingCartID);
+    const data = await getShoppingCartDetail({ shoppingCartID: shoppingCartID });
+    const q = data.productItems
+      .map((i) => ({ ...i.product, quantity: i.quantity }))
+      .filter((i) => i.productID === id)
+      .map((i)=>i.quantity);
+    if (q.length === 0){
+      setQuantity(0);
+    }
+    else{
+      setQuantity(q[0]);
+      console.log("-----" + JSON.stringify(q[0]));
+    }
+    console.log("-----" + JSON.stringify(q));
+  }
+  useEffect(()=>{
+    if (shoppingCartID) {
+    showQuantity(id);
+    }
+  },[shoppingCartID])
+  function getItemCount(value) {
+    setQuantity(value);
+    changeProductQuantity({ id, value });
+  }
 
   const getDetailDict = () => {
     const detail = productDetail?.productDescription;
@@ -95,7 +138,6 @@ function Page() {
     return dict;
   };
   const detailDict = productDetail?.productDescription ? getDetailDict() : {};
-
   // data for nutrition facts table
   const columns = [
     {
@@ -148,10 +190,17 @@ function Page() {
               </div>
               <div className="right">
                 {/* add to shopping cart button */}
-                <AddToScButton
-                  onClick={handleClick}
-                  disabled={product?.capacity === 0}
-                />
+                { quantity === 0 ?
+                  <AddToScButton 
+                    onClick={handleClick} 
+                    disabled={product?.capacity===0}
+                  /> :
+                  ( <ScItemCounter
+                      count={quantity}
+                      setCount={getItemCount}
+                      maxCapacity={product?.capacity}
+                  />)
+                }
               </div>
             </div>
           </div>
