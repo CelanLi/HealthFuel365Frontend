@@ -24,20 +24,24 @@
   display: flex;
   justify-content: space-between;
   margin-top: 10px;
+  width: 100%;
+  min-width: 940px;
 }
 
 .sc_content_left {
   margin-left: 34px;
+  width: 60%;
 }
 
 .sc_content_right {
   display: block;
   margin-right: 62px;
   margin-left: 30px;
+  width: 33%;
 } 
 
 .sc_no_items_wrap { 
-  width: 850px;
+  width: 100%;
   margin: 200px auto;
   font-family: "Kaisei Opti";
   font-style: normal;

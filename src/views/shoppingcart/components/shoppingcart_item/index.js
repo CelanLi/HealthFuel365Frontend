@@ -42,30 +42,28 @@ function ShoppingCartItem({
         <div className="sc_item_content_left">
           <div className="sc_item_name">
             <Link to={`/product/detail/${productID}`}>{productName}</Link>
+            <div
+              className="sc_item_remove"
+              onClick={() => deleteProductID(productID)}
+            >
+              Remove
+            </div>
           </div>
           <div className="sc_item_unitprice">{productUnitPrice}€</div>
           <div className="sc_item_content_leftbottom">
             <div className="sc_item_nutri">
               <ShoppingCartNutri nutri={productNutri}></ShoppingCartNutri>
             </div>
-            <div className="sc_item_count"> 
+            <div> 
               <ScItemCounter
                 count={quantity}
                 setCount={getItemCount}
                 maxCapacity={capacity}
               ></ScItemCounter>
             </div>
-          </div>
-        </div>
-        <div className="sc_item_content_right">
-          <div
-            className="sc_item_remove"
-            onClick={() => deleteProductID(productID)}
-          >
-            Remove
-          </div>
-          <div className="sc_item_price">
-            {getTimesValue(countValue, productUnitPrice)}€
+            <div className="sc_item_price">
+              {getTimesValue(countValue, productUnitPrice)}€
+            </div>
           </div>
         </div>
       </div>
