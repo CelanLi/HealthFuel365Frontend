@@ -10,7 +10,8 @@ const { Header, Footer, Content } = Layout;
 function LayoutComponent() {
   return (
     <>
-      <Layout style={{'min-width': '940px'}}>
+      {/* style={{'min-width': '940px'}} */}
+      <Layout>
         <Header className="page_header">
           <TopNav />
         </Header>
