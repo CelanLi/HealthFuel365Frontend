@@ -2,7 +2,7 @@ import "./index.css";
 
 function NovaScore({nova}) {
   function getNovaScore(nova = "1.0") {
-    return require(`../../../../assets/images/nova_score/novascore${nova}.jpeg`);
+    return require(`../../../../assets/images/nova_score/novascore${nova}.png`);
   }
   function getNovaText(nova = "1.0") {
     if (nova === "1.0"){
