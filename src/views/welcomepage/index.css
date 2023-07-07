@@ -1,75 +1,85 @@
 /* Outside Wrap */
 .welcomepage_wrap {
   background-image: url("../../assets/images/welcomepage_background.png");
-  background-size:cover;
+  background-size: cover;
   /* background-attachment:fixed; */
   background-position: center center;
   background-repeat: no-repeat;
   width: 100%;
   height: 100vh;
+  min-height: 0.48rem;
 
   /* wel-left,right devided */
-  display: flex; 
+  display: flex;
   justify-content: space-between;
-
 }
 
 .wel_left {
   /* Level：1 */
   z-index: 1;
-  margin-top: 200px; 
-  margin-left: 140px;
+  width: calc((100% - 0.4rem) / 2);
+  margin-right: auto;
+  /* margin-top: 2rem;
+  margin-left: 1.4rem; */
 }
 
 .wel_right {
   /* Level：1 */
   z-index: 1;
-  margin-top: 80px; 
-  margin-right: 60px; 
+  width: calc((100% - 0.4rem) / 2);
+  margin-left: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  /* margin-top: 0.8rem; 
+  margin-right: 0.6rem;  */
 }
 
-.whiteboard { 
+.whiteboard {
   /* Level：o */
   z-index: 0;
   /* absolute position：fixed */
   position: absolute;
-  left: 38px;
-  right: 38px;
-  top: 38px;
-  bottom: 38px;
+  left: 0.38rem;
+  right: 0.38rem;
+  top: 0.38rem;
+  bottom: 0.38rem;
 
   /* weight & height depends on outside wrap */
-  width: calc(100% - 76px);
-  height: calc(100vh - 76px);
- 
+  width: calc(100% - 0.76rem);
+  height: calc(100vh - 0.76rem);
+  min-height: 4rem;
   background: rgba(255, 255, 255, 0.47);
-  border-radius: 30px;
-}
- 
-.wel_feature { 
-  width: 662px; 
-  height: 140px;  
-  line-height: 46px; 
-  box-sizing: border-box; 
-  margin-bottom: 32px;
-   
+  border-radius: 0.3rem;
+  padding: 0.3rem;
   display: flex;
   justify-content: center;
   align-items: center;
+}
 
- 
-  border-radius: 20px; 
-  padding: 60px ;
+.wel_feature {
+  width: 100%;
+  height: calc((100vh - 1.5rem) / 5);
+  /* line-height: .46rem;  */
+  box-sizing: border-box;
+  margin-bottom: 0.32rem;
+  min-height: 0.7rem;
+  max-height: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  border-radius: 0.2rem;
+  padding: 0 0.6rem;
 
   /* front style */
-  font-family: 'Kaisei Opti';
+  font-family: "Kaisei Opti";
   font-style: normal;
   font-weight: 500;
-  font-size: 32px; 
+  font-size: 0.28rem;
   text-align: center;
-  color: #FFFFFF; 
-
-} 
+  color: #ffffff;
+}
 
 /* feature 4 color */
 .wel_feature:nth-of-type(1) {
@@ -87,29 +97,47 @@
 
 /* buttom wrap */
 .wel_btn_wrap {
-  display: flex; 
-  justify-content: space-around; 
-  margin-top: 42px;
-
+  display: flex;
+  justify-content: space-around;
+  margin-top: 0.42rem;
 }
 
-.login, .register { 
-  width: 188px;
-  height: 84px; 
-  line-height: 84px;
+.login,
+.register {
+  width: 1.88rem;
+  height: 0.84rem;
+  line-height: 0.84rem;
 
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   text-align: center;
-  border-radius: 10px;
+  border-radius: 0.1rem;
 
   /* front style */
-  font-family: 'Kaisei Opti';
+  font-family: "Kaisei Opti";
   font-style: normal;
   font-weight: 700;
-  font-size: 24px;  
+  font-size: 0.24rem;
   text-transform: capitalize;
-  color: #033D1F;
+  color: #033d1f;
+}
 
+.login a:visited,
+.register a:visited,
+.guest a:visited {
+  color: #033d1f;
+}
+
+.login a:link,
+.register a:link,
+.guest a:link {
+  color: #033d1f;
+  text-decoration: none;
+}
+
+.login a:hover,
+.register a:hover,
+.guest a:hover {
+  filter: brightness(2.0);
 }
 
 /* .register {
@@ -118,45 +146,38 @@
   background-color: #FFFFFF;
 } */
 
-.guest { 
+.guest {
   /* right  */
   text-align: right;
-  margin-top: 16px;
+  margin-top: 0.16rem;
 
-  height: 26px; 
-  font-family: 'Kaisei Opti';
+  height: 0.26rem;
+  font-family: "Kaisei Opti";
   font-style: normal;
   font-weight: 400;
-  font-size: 22px;
-  line-height: 23px;
+  font-size: 0.22rem;
+  line-height: 0.23rem;
   text-decoration-line: underline;
-  color: #033D1F;
+  color: #033d1f;
 }
-
-/* click color */
-.guest a:visited {
-  color: #033D1F;
-}
-
 /* HealthFuel365 title */
-.wel_titel { 
-  font-family: 'Great Vibes';
+.wel_titel {
+  font-family: "Great Vibes";
   font-style: normal;
   font-weight: 400;
-  font-size: 78px;
-  line-height: 120px;
+  font-size: 0.78rem;
+  line-height: 1.2rem;
   color: rgba(3, 61, 31, 0.8);
 }
 
 /* HealthFuel365 slogan */
-.wel_slogan{  
+.wel_slogan {
   text-align: right;
 
-  font-family: 'Kaisei Opti';
+  font-family: "Kaisei Opti";
   font-style: normal;
   font-weight: 500;
-  font-size: 26px;
-  line-height: 35px;
+  font-size: 0.26rem;
+  line-height: 0.35rem;
   color: rgba(3, 61, 31, 0.8);
 }
- 
