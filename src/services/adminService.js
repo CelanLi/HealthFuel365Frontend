@@ -184,7 +184,6 @@ export const getProductsWithDetail = async () => {
       backendUrl + adminRoutes + "/products"
     );
     const response = result.data;
-    console.log(JSON.stringify(response));
     if (response.status >= 300) {
       throw new Error(response.message);
     }
@@ -211,7 +210,6 @@ export const getProductWithDetail = async (productID) => {
 export const deleteProduct = async (productID) => {
   console.log(productID);
   try {
-    console.log(productID);
     const result = await axios.delete(
       backendUrl + adminRoutes + "/products/delete/" + productID
     );
@@ -263,7 +261,7 @@ export const addProduct = async (data) => {
 
 export const updateProduct = async (data) => {
   try {
-    console.log(JSON.stringify(data));
+    console.log(JSON.stringify(data.description) + "uuuupdate");
     // await deleteProduct(data.productID);
     const result: Response = await axios.post(
       backendUrl + adminRoutes + "/products/update/" + data.productID,
@@ -291,7 +289,6 @@ export const updateProduct = async (data) => {
     if (response.status >= 300) {
       throw new Error(response.message);
     }
-    console.log(result.data);
     return response;
   } catch (error) {
     throw new Error(error);

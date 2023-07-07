@@ -2,11 +2,13 @@ import "./index.css";
 import Nutri from "../nutri";
 import AddToScButton from "../add_to_sc_button";
 import { addShoppingCart } from "../../services/productService";
+import { changeProductCount, getShoppingCartDetail } from "../../services/shoppingCartService";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { message, Modal } from "antd";
 import { getUser } from "../../services/userService";
 import { getCookie } from "../../util/cookie";
+import ScItemCounter from  "../../views/shoppingcart/components/sc_item_counter";
 
 function ProductComponent({
   productID,
@@ -28,11 +30,8 @@ function ProductComponent({
       },
     });
   };
-  const clickShoppingCart = async (productID) => {
-    // wait for shoppingCartID
-    await addShoppingCart(shoppingCartID, productID);
-  };
-  const handleClick = () => {
+  /* if there is no this product in the shopping cart  */
+  const handleClick = async() => {
     const cookie = getCookie("login");
     if (!cookie) {
       showLoginReminder();
@@ -41,9 +40,15 @@ function ProductComponent({
       message.error("Sorry, this item is not available.");
     } 
     else{
-      clickShoppingCart(productID);
+      await clickShoppingCart(productID);
+      setQuantity(1);
     }
   };
+  const clickShoppingCart = async (productID) => {
+    // wait for shoppingCartID
+    await addShoppingCart(shoppingCartID, productID);
+  };
+
   useEffect(() => {
     (async () => {
       // only get user when document.cookie is not empty
@@ -55,6 +60,46 @@ function ProductComponent({
       }
     })();
   }, []);
+
+  /* store the quantity of this product in the shopping cart*/
+  const [quantity, setQuantity] = useState(0);
+  /* update the product count*/
+  async function changeProductQuantity({ productID, value: count }) {
+    if (Number(count) === 0) {
+      message.success("Removed this item from shopping cart.");
+      return;
+    }
+    await changeProductCount({
+      shoppingCartID: shoppingCartID,
+      productID: productID,
+      quantity: Number(count),
+    });
+    message.success(`Updated this item's quantity to ${count} in shopping cart.`);
+  }
+  /* get the quantity of this product in the shopping cart*/
+  const showQuantity = async (productID)=>{
+    const data = await getShoppingCartDetail({ shoppingCartID: shoppingCartID });
+    const q = data.productItems
+      .map((i) => ({ ...i.product, quantity: i.quantity }))
+      .filter((i) => i.productID === productID)
+      .map((i)=>i.quantity);
+    if (q.length === 0){
+      setQuantity(0);
+    }
+    else{
+      setQuantity(q[0]);
+    }
+  }
+  useEffect(()=>{
+    if (shoppingCartID) {
+    showQuantity(productID);
+    }
+  },[shoppingCartID])
+  function getItemCount(value) {
+    setQuantity(value);
+    changeProductQuantity({ productID, value });
+  }
+  
   return (
     <div className="product">
       {/* should link to the corresponding product detail page*/}
@@ -68,7 +113,17 @@ function ProductComponent({
         <Nutri nutri={nutriScore} />
         <div className="product-right-buttom">
           <div className="product-unitprice">{productPrice}€</div>
-          <AddToScButton onClick={handleClick} disabled={notAvailable} />
+          { quantity === 0 ?
+            <AddToScButton 
+              onClick={handleClick} 
+              disabled={notAvailable}
+            /> :
+            ( <ScItemCounter
+                count={quantity}
+                setCount={getItemCount}
+                maxCapacity={capacity}
+            />)
+          }
         </div>
       </div>
     </div>

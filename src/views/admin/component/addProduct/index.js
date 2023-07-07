@@ -23,12 +23,12 @@ function AddProduct() {
   const [fatLevel, setFatLevel] = useState("");
   const [sugarLevel, setSugarLevel] = useState("");
   const [saltLevel, setSaltLevel] = useState("");
-  const [ingredients, setIngredients] = useState("");
-  const [allergens, setAllergens] = useState("");
-  const [nova, setNova] = useState("");
-  const [energy, setEnergy] = useState("");
-  const [fiber, setFiber] = useState("");
-  const [proteins, setProteins] = useState("");
+  const [ingredients, setIngredients] = useState("unknown");
+  const [allergens, setAllergens] = useState("unknown");
+  const [nova, setNova] = useState("unknown");
+  const [energy, setEnergy] = useState("unknown");
+  const [fiber, setFiber] = useState("unknown");
+  const [proteins, setProteins] = useState("unknown");
   const [messageApi, contextHolder] = message.useMessage();
   const { Option } = Select;
 
@@ -57,7 +57,7 @@ function AddProduct() {
       });
       return;
     }
-    console.log(vegan + "   vegan");
+    console.log(nova + "   nova");
     await addProduct({
       productID: "1",
       category: category,
@@ -147,12 +147,17 @@ function AddProduct() {
               <sup>*</sup>Category:
             </div>
             <div className="Category_input">
-              <Input
-                className="category"
+              <Select
                 defaultValue={""}
                 value={category}
-                onChange={(e) => setCategory(e.target.value)}
-              />
+                onChange={(value) => setCategory(value)}
+              >
+                <Option value="staple">staple</Option>
+                <Option value="snacks">snacks</Option>
+                <Option value="drinks">drinks</Option>
+                <Option value="flavorings">flavorings</Option>
+                <Option value="supplements">supplements</Option>
+              </Select>
             </div>
           </div>
         </div>
@@ -377,11 +382,17 @@ function AddProduct() {
               <sup>*</sup>Nova:
             </div>
             <div className="Nova_input">
-              <Input
+              <Select
                 defaultValue={""}
                 value={nova}
-                onChange={(e) => setNova(e.target.value)}
-              />
+                onChange={(value) => setNova(value)}
+              >
+                <Option value="1.0">1.0</Option>
+                <Option value="2.0">2.0</Option>
+                <Option value="3.0">3.0</Option>
+                <Option value="4.0">4.0</Option>
+                <Option value="unknown">unknown</Option>
+              </Select>
             </div>
           </div>
         </div>

@@ -106,6 +106,7 @@ const Tab101 = () => {
             productPrice={productItem.productPrice}
             imageUrl={productItem.imageUrl}
             nutriScore={productItem.nutriScore}
+            capacity={productItem.capacity}
           />
         );
       });
