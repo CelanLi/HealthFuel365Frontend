@@ -148,7 +148,6 @@ function ProductManagement() {
       const formattedData = p.map((p, index) => {
         //find corresponding detail
         const detail = details.find((d) => d.productID === p.productID);
-        console.log(JSON.stringify(details));
         return {
           key: String(index + 1),
           productID: p.productID,
@@ -170,7 +169,6 @@ function ProductManagement() {
           description: detail?.productDescription,
         };
       });
-      console.log(JSON.stringify(formattedData));
       setProductsWithDetail(formattedData);
       setIsLoading(false);
     } catch (error) {
