@@ -1,3 +1,8 @@
+@font-face {
+  font-family: "flower";
+  src: url("../../assets/font/Hanston Demo.otf");
+}
+
 /* Outside Wrap */
 .welcomepage_wrap {
   background-image: url("../../assets/images/welcomepage_background.png");
@@ -137,7 +142,7 @@
 .login a:hover,
 .register a:hover,
 .guest a:hover {
-  filter: brightness(2.0);
+  filter: brightness(2);
 }
 
 /* .register {
@@ -162,12 +167,13 @@
 }
 /* HealthFuel365 title */
 .wel_titel {
-  font-family: "Great Vibes";
+  font-family: "flower";
   font-style: normal;
-  font-weight: 400;
-  font-size: 0.78rem;
+  font-weight: 500;
+  font-size: 1.28rem;
   line-height: 1.2rem;
   color: rgba(3, 61, 31, 0.8);
+  margin-left: 0.90rem;
 }
 
 /* HealthFuel365 slogan */
