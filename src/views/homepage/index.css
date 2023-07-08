@@ -88,12 +88,6 @@
   flex-direction: column;
 }
 
-/* /* .homepage-alternative-block{
-  display: flex;
-  flex-direction: row;
-
-} */
-
 .homepage-junkfood-icon{
   display: flex;
   flex-direction: column;
@@ -123,12 +117,13 @@
 .homepage-nutri-score{
   display: flex;
   flex-direction: column;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 
 .homepage-nutri-score-block{
   display: flex;
   flex-direction: row;
-  height: 300px;
 }
 
 .homepage-nutri-score-introduction{
@@ -142,9 +137,8 @@
   font-family: 'Kaisei Opti';
   font-style: normal;
   font-weight: 400;
-  font-size: 28px;
-  line-height: 46px;
-
+  font-size: 22px;
+  line-height: 30px;
   color: #033D1F;
 }
 
@@ -152,8 +146,8 @@
   font-family: 'Kaisei Opti';
   font-style: normal;
   font-weight: 400;
-  font-size: 24px;
-  line-height: 35px;
+  font-size: 20px;
+  line-height: 28px;
   text-align: justify;
 
   color: #033D1F;
@@ -161,6 +155,7 @@
 
 .homepage-nutri-score-to-faqs{
   display: flex;
+  margin-left: 10px;
   width: 50%;
   align-items: center;
   justify-content: center;
@@ -178,7 +173,6 @@
   position: absolute;
   /*width: 200px;*/
   width: 28%;
-  height: 80px;
   /*
   left: 1100px;
   top: 2300px;
@@ -188,14 +182,14 @@
   /* style of button */
   border: none;
   background-color: rgba(255, 255, 255, 0.3);
-  padding: 35px;
+  padding: 20px;
 
   /* font style */
   font-family: 'Kaisei Opti';
   font-style: normal;
   font-weight: 700;
   font-size: 18px;
-  line-height: 46px;
+  line-height: 20px;
   display: flex;
   align-items: center;
   text-align: center;
@@ -206,5 +200,3 @@
 .homepage-learn-more:hover{
   cursor: pointer;
 }
-
-  

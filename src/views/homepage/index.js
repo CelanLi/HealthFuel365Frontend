@@ -4,15 +4,9 @@ import { Link } from "react-router-dom";
 
 //import components
 import Category from "../../components/category"
-import Product from "../../components/product"
 import Carousel from "./components/carousel"
 import Alternative from "./components/alternatives"
 import Recommendation from './components/recommendation';
-
-//import junkfood images
-import Chips from '../../assets/images/homepage/junkfood/chips.png'
-import Friedchicken from '../../assets/images/homepage/junkfood/friedchicken.png'
-import Pommes from '../../assets/images/homepage/junkfood/pommes.png'
 import Nutri from '../../assets/images/homepage/NutriScore-on-Package.jpg'
 
 function Page() {

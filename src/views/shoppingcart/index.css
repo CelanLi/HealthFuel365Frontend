@@ -24,8 +24,7 @@
   display: flex;
   justify-content: space-between;
   margin-top: 10px;
-  width: 100%;
-  min-width: 940px;
+  width: 100%; 
 }
 
 .sc_content_left {
@@ -117,4 +116,17 @@
   align-items: center;
   text-align: center;
   color: #033d1f;
+}
+
+@media (max-width:940px) {
+  .sc_content {
+    /* background-color: red; */
+    display: block;
+    margin-top: 10px;
+    width: 100%; 
+  }
+  .sc_content_left, .sc_content_right {
+    margin: 0 34px;
+    width: calc(100% - 68px);
+  }
 }
