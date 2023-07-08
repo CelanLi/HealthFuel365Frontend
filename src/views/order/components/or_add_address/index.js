@@ -45,12 +45,12 @@ function OrderAddAddress() {
       return;
     } 
     addressAdd({
-        street: streetValue + streetNoValue,
+        street: streetValue + ' ' + streetNoValue,
         postCode: postCodeValue,
         city: cityValue,
         additionalAddress: additionalAddressValue,
         tel: telValue,
-        receiver: firstNameValue + lastNameValue,
+        receiver: firstNameValue + ' ' + lastNameValue,
     })
     // console.log(firstNameValue);
     // console.log(lastNameValue);
@@ -112,12 +112,12 @@ function OrderAddAddress() {
             <div className="or_add_address_tel_input">
               <Space direction="vertical" size="middle">
                 <Space.Compact>
-                  <Input
+                  {/* <Input
                     style={{ width: "20%" }}
                     defaultValue="0571"
                     value={telStateValue}
                     onChange={(e) => setTelStateValue(e.target.value)}
-                  />
+                  /> */}
                   <Input
                     style={{ width: "80%" }}
                     defaultValue="26888888"

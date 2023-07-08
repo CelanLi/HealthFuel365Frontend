@@ -87,8 +87,8 @@ function OrderDelivery({setorDelivery}) {
                 </div>
                 <div className="or_standard_shipping_name">
                   {deliveryItem.desc}
+                  {deliveryItem.icon ? deliveryItem.icon : null}
                 </div>
-                {deliveryItem.icon ? deliveryItem.icon : null}
               </div>
               <div className="or_shipping_service_price">
                 {deliveryItem.price}

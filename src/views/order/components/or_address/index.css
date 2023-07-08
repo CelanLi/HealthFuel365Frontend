@@ -11,6 +11,8 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  width: calc(100% - 28px);
+  overflow: hidden;
 }
 
 .or_address_info .myaccount-address-text-1 {
@@ -34,5 +36,22 @@
 .or_address_info .myaccount-content-bottom {
   margin: 5px;
   margin-left: 40px;
+}
+
+@media (max-width:940px) {
+  .or_address_info .myaccount-content-up {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .or_address_info .myaccount-content-up,
+  .or_address_info .myaccount-content-bottom {
+    margin: 0px;
+    margin-left: 40px;
+  }
+
+  .or_address_info .myaccount-address-text-1 {
+    word-break: break-all;
+  }
 }
  

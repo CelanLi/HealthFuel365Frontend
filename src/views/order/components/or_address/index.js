@@ -14,10 +14,10 @@ function OrderAddress({ addressList = [], addressChoice }) {
     setSelectedOption(event.target.value);
     addressChoice(event.target.value);
   };
- 
-  useEffect(() => { 
+
+  useEffect(() => {
     if (addressList.length > 0) {
-      setSelectedOption(addressList[0].id); 
+      setSelectedOption(addressList[0].id);
       addressChoice(addressList[0].id);
     }
   }, [addressList]);
@@ -56,8 +56,9 @@ function OrderAddress({ addressList = [], addressChoice }) {
                   <img src={AddIcon} className="myaccount-address-icon" />
                   <div className="myaccount-content-bottom-text">
                     <div className="myaccount-address-text-1">
-                      Address:&nbsp;{addressItem.additional},&nbsp;
-                      {addressItem.street},&nbsp;{addressItem.postCode},&nbsp;
+                      Address: &nbsp;{addressItem.street},&nbsp;
+                      {addressItem.additionalAddress ? addressItem.additionalAddress + ', ' : ''}
+                      {addressItem.postCode}&nbsp;
                       {addressItem.city}
                     </div>
                   </div>
