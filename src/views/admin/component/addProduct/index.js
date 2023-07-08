@@ -113,6 +113,77 @@ function AddProduct() {
   const handleCancel = () => {
     setIsModalOpen(false);
   };
+  const handleProductPriceChange = (e) => {
+    const value = e.target.value;
+
+    setTimeout(() => {
+      if (!isNaN(value)) {
+        setProductPrice(value);
+      } else {
+        messageApi.open({
+          type: "error",
+          content: "Please enter a valid product price (numeric value)",
+        });
+      }
+    });
+  };
+
+  const handleSugarChange = (e) => {
+    const value = e.target.value;
+
+    setTimeout(() => {
+      if (!isNaN(value)) {
+        setSugar(value);
+      } else {
+        messageApi.open({
+          type: "error",
+          content: "Please enter a valid sugar content (numeric value)",
+        });
+      }
+    });
+  };
+  const handleCapicityChange = (e) => {
+    const value = e.target.value;
+
+    setTimeout(() => {
+      if (!isNaN(value)) {
+        setCapacity(value);
+      } else {
+        messageApi.open({
+          type: "error",
+          content: "Please enter a valid capacity (numeric value)",
+        });
+      }
+    });
+  };
+  const handleFatChange = (e) => {
+    const value = e.target.value;
+
+    setTimeout(() => {
+      if (!isNaN(value)) {
+        setFat(value);
+      } else {
+        messageApi.open({
+          type: "error",
+          content: "Please enter a valid fat content (numeric value)",
+        });
+      }
+    });
+  };
+  const handleSaltChange = (e) => {
+    const value = e.target.value;
+
+    setTimeout(() => {
+      if (!isNaN(value)) {
+        setSalt(value);
+      } else {
+        messageApi.open({
+          type: "error",
+          content: "Please enter a valid salt content (numeric value)",
+        });
+      }
+    });
+  };
   return (
     <div className="addProduct">
       {contextHolder}
@@ -202,7 +273,7 @@ function AddProduct() {
               <Input
                 defaultValue={""}
                 value={capacity}
-                onChange={(e) => setCapacity(e.target.value)}
+                onChange={handleCapicityChange}
               />
             </div>
           </div>
@@ -226,7 +297,7 @@ function AddProduct() {
               <Input
                 defaultValue={""}
                 value={productPrice}
-                onChange={(e) => setProductPrice(e.target.value)}
+                onChange={handleProductPriceChange}
               />
             </div>
           </div>
@@ -269,11 +340,7 @@ function AddProduct() {
               <sup>*</sup>Fat:
             </div>
             <div className="Fat_input">
-              <Input
-                defaultValue={""}
-                value={fat}
-                onChange={(e) => setFat(e.target.value)}
-              />
+              <Input defaultValue={""} value={fat} onChange={handleFatChange} />
             </div>
           </div>
           <div className="sugar">
@@ -284,7 +351,7 @@ function AddProduct() {
               <Input
                 defaultValue={""}
                 value={sugar}
-                onChange={(e) => setSugar(e.target.value)}
+                onChange={handleSugarChange}
               />
             </div>
           </div>
@@ -296,7 +363,7 @@ function AddProduct() {
               <Input
                 defaultValue={""}
                 value={salt}
-                onChange={(e) => setSalt(e.target.value)}
+                onChange={handleSaltChange}
               />
             </div>
           </div>
