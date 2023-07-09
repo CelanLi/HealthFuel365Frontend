@@ -1,55 +1,16 @@
-import { useState } from "react";
 import "./index.css";
-
+import { useState } from "react";
 import Product from "../../../../components/product";
+import { getAlternative } from "../../../../services/alternativeService";
 
 import Chips from "../../../../assets/images/homepage/junkfood/chips.png";
-import Friedchicken from "../../../../assets/images/homepage/junkfood/friedchicken.png";
-import Pommes from "../../../../assets/images/homepage/junkfood/pommes.png";
 import WhiteChocolate from "../../../../assets/images/homepage/junkfood/whiteChocolate.png";
 import GummiBears from "../../../../assets/images/homepage/junkfood/gummyBears.png";
 import Cola from "../../../../assets/images/homepage/junkfood/cola.png";
 import Cookies from "../../../../assets/images/homepage/junkfood/cookies.png";
 import Salami from "../../../../assets/images/homepage/junkfood/salami.png";
 
-import { getAlternative } from "../../../../services/alternativeService";
-// const alternative0 = (
-//     <div className='alternative-product'>
-//         <Product/>
-//         <Product/>
-//         <Product/>
-//         <Product/>
-//     </div>)
-// const alternative1 = (
-//     <div className='alternative-product'>
-//         <Product/>
-//         <Product/>
-//         <Product/>
-//     </div>)
-// const alternative2 = (
-//     <div className='alternative-product'>
-//         <Product/>
-//         <Product/>
-//     </div>)
-// const alternative3 = (
-//     <div className='alternative-product'>
-//         <Product/>
-//         <Product/>
-//         <Product/>
-//     </div>)
-// const alternative4 = (
-//     <div className='alternative-product'>
-//         <Product/>
-//         <Product/>
-//     </div>)
-// const alternative5 = (
-//     <div className='alternative-product'>
-//         <Product/>
-//         <Product/>
-//         <Product/>
-//     </div>)
-
-const Tab101 = () => {
+const Alternative = () => {
   const [value, setValue] = useState(0);
   const [alternative0, setAlternative0] = useState([]);
   const [alternative1, setAlternative1] = useState([]);
@@ -59,8 +20,13 @@ const Tab101 = () => {
   const [alternative5, setAlternative5] = useState([]);
   const [showText, setShowText] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
-  const junkFoodNames = ["chips", "white chocolate", "unhealthy carbonated beverages", "gummi bears", "unhealthy sugary and fatty cookies", "highly processed salami"];
-  const junkFoodName = junkFoodNames[value];
+  const junkFoodNames = [
+    "chips",
+    "white chocolate",
+    "unhealthy carbonated beverages",
+    "gummi bears",
+    "unhealthy sugary and fatty cookies",
+    "highly processed salami"];
 
   const className = (baseName, isSelected) =>
     (isSelected ? [baseName].concat("selected") : [baseName]).join(" ");
@@ -69,7 +35,6 @@ const Tab101 = () => {
     setIsLoading(true);
     setShowText(false);
     setValue(value);
-    console.log("alternativeitem: " + value);
     await setAlternative(value);
     setIsLoading(false);
   };
@@ -96,7 +61,6 @@ const Tab101 = () => {
   };
 
   const alternativeMap = (alternativeList) => {
-    console.log("alternativemap");
     if (alternativeList.length != 0) {
       return alternativeList.map((productItem) => {
         return (
@@ -106,6 +70,7 @@ const Tab101 = () => {
             productPrice={productItem.productPrice}
             imageUrl={productItem.imageUrl}
             nutriScore={productItem.nutriScore}
+            capacity={productItem.capacity}
           />
         );
       });
@@ -114,49 +79,47 @@ const Tab101 = () => {
   return (
     <div className="alternative-wrap">
       <div className="alternative-nav">
+        {/* icons */}
         <div className="alternative-nav-tabs">
-          <div className="alternative-nav-row">
-            <div
-              className={className("alternative-tab-item", value === 0)}
-              onClick={() => handleAlternativeClick(0)}
-            >
-              <img src={Chips} className="alternative-tab-icon" />
-            </div>
-            <div
-              className={className("alternative-tab-item", value === 1)}
-              onClick={() => handleAlternativeClick(1)}
-            >
-              <img src={WhiteChocolate} className="alternative-tab-icon" />
-            </div>
-            <div
-              className={className("alternative-tab-item", value === 2)}
-              onClick={() => handleAlternativeClick(2)}
-            >
-              <img src={Cola} className="alternative-tab-icon" />
-            </div>
+          <div
+            className={className("alternative-tab-item", value === 0)}
+            onClick={() => handleAlternativeClick(0)}
+          >
+            <img src={Chips} className="alternative-tab-icon" />
           </div>
-          <div className="alternative-nav-row">
-            <div
-              className={className("alternative-tab-item", value === 3)}
-              onClick={() => handleAlternativeClick(3)}
-            >
-              <img src={GummiBears} className="alternative-tab-icon" />
-            </div>
-            <div
-              className={className("alternative-tab-item", value === 4)}
-              onClick={() => handleAlternativeClick(4)}
-            >
-              <img src={Cookies} className="alternative-tab-icon" />
-            </div>
-            <div
-              className={className("alternative-tab-item", value === 5)}
-              onClick={() => handleAlternativeClick(5)}
-            >
-              <img src={Salami} className="alternative-tab-icon" />
-            </div>
+          <div
+            className={className("alternative-tab-item", value === 1)}
+            onClick={() => handleAlternativeClick(1)}
+          >
+            <img src={WhiteChocolate} className="alternative-tab-icon" />
+          </div>
+          <div
+            className={className("alternative-tab-item", value === 2)}
+            onClick={() => handleAlternativeClick(2)}
+          >
+            <img src={Cola} className="alternative-tab-icon" />
+          </div>
+          <div
+            className={className("alternative-tab-item", value === 3)}
+            onClick={() => handleAlternativeClick(3)}
+          >
+            <img src={GummiBears} className="alternative-tab-icon" />
+          </div>
+          <div
+            className={className("alternative-tab-item", value === 4)}
+            onClick={() => handleAlternativeClick(4)}
+          >
+            <img src={Cookies} className="alternative-tab-icon" />
+          </div>
+          <div
+            className={className("alternative-tab-item", value === 5)}
+            onClick={() => handleAlternativeClick(5)}
+          >
+            <img src={Salami} className="alternative-tab-icon" />
           </div>
         </div>
 
+        {/* product alternatives */}
         <div className="alternative-panels">
           {showText && (
             <div className="alternative-panel-text">
@@ -169,46 +132,35 @@ const Tab101 = () => {
             </div>
           )}
           {(!isLoading) && value === 0 && (
-            <div className="alternative-panel-item">
-              <div className="alternative-product">
+            <div className="alternative-product">
                 {alternativeMap(alternative0)}
-              </div>
             </div>
           )}
           {(!isLoading) && value === 1 && (
-            <div className="alternative-panel-item">
-              <div className="alternative-product">
-                {alternativeMap(alternative1)}
-              </div>
+            <div className="alternative-product">
+              {alternativeMap(alternative1)}
             </div>
           )}
           {(!isLoading) && value === 2 && (
-            <div className="alternative-panel-item">
-              <div className="alternative-product">
-                {alternativeMap(alternative2)}
-              </div>
+            <div className="alternative-product">
+              {alternativeMap(alternative2)}
             </div>
           )}
           {(!isLoading) && value === 3 && (
-            <div className="alternative-panel-item">
-              <div className="alternative-product">
-                {alternativeMap(alternative3)}
-              </div>
+            <div className="alternative-product">
+              {alternativeMap(alternative3)}
             </div>
           )}
           {(!isLoading) && value === 4 && (
-            <div className="alternative-panel-item">
-              <div className="alternative-product">
-                {alternativeMap(alternative4)}
-              </div>
+            <div className="alternative-product">
+              {alternativeMap(alternative4)}
             </div>
           )}
           {(!isLoading) && value === 5 && (
-            <div className="alternative-panel-item">
-              <div className="alternative-product">
-                {alternativeMap(alternative5)}
-              </div>
+            <div className="alternative-product">
+              {alternativeMap(alternative5)}
             </div>
+  
           )}
         </div>
       </div>
@@ -216,4 +168,4 @@ const Tab101 = () => {
   );
 };
 
-export default Tab101;
+export default Alternative;

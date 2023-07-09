@@ -1,40 +1,45 @@
 .alternative-wrap{
+    width: 100%;
     display: flex;
     justify-content: center;
 }
 
 .alternative-nav{
-    width: 95%;
+    width: 96%;
     display: flex;
     flex-direction: row;
+    margin-bottom: 15px;
+    margin-top: 15px;
 }
 
 .alternative-nav-tabs{
     display: flex;
-    flex-direction: column;
-}
-
-.alternative-nav-row{
-    display: flex;
-    flex-direction: row;
+    flex-wrap: wrap;
+    width: 40%;
+    min-width: 230px;
+    align-items: center; 
 }
 
 .alternative-tab-item{
-    margin-right: 10px;
-    margin-bottom: 15px;
-    margin-top: 10px;
     cursor: pointer;
+    width: 28%;
+    border-radius: 50%;
+    min-width: 105px;
+    margin-bottom: 10px;
+    margin-right: max(10px, 2%);
 }
 
 .alternative-tab-icon{
-    height: 120px;
-    width: 120px;
+    width: 100%;
 }
 
-.alternative-panels{
-    display: flex;
-    margin-left: 20px;
-    width: 100%;
+.alternative-tab-icon:hover{
+    filter:brightness(1.2);
+}
+
+.alternative-tab-item.selected{
+    filter:brightness(1.3);
+    box-shadow: 0 0 10px rgba(3, 61, 31, 0.5);
 }
 
 .alternative-panel-text{
@@ -49,18 +54,23 @@
    font-size: 20px;
 }
 
+.alternative-panels{
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    margin-left: 5px;
+    justify-content: center;
+    align-items: center; 
+}
+
 .alternative-product{
     display: flex;
-    flex-direction: row;
-    gap: 10px;
-    padding: 10px;
-    margin-top: 5px;
-
     flex-wrap: wrap;
+    gap: 10px;
     width: 100%;
 }
 
 .alternative-product .product{
-    width: 19%;
-    min-width: 120px;
+    width: 21%;
+    min-width: 98px;
 }

@@ -1,16 +1,19 @@
 import "./index.css";
 import Product from "../../../../components/product";
+import { LoadingScreen } from "../../../../components/loading/index";
 
 function ProductList({ productlist = [], isLoading }) {
   if (isLoading) {
-    return (
-      <div className="products-container">
-        <div className="center">
-          <h1>Loading...</h1>
-        </div>
-      </div>
-    );
-  } else if (productlist.length === 0) { // no corresponding product which may occurs when apply filters or input sth. wrong 
+    return <LoadingScreen />; 
+    // return (
+    //   <div className="products-container">
+    //     <div className="center">
+    //       <h1>Loading...</h1>
+    //     </div>
+    //   </div>
+    // );
+  } else if (productlist.length === 0) {
+    // no corresponding product which may occurs when apply filters or input sth. wrong
     return (
       <div className="products-container">
         <div className="center">
