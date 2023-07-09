@@ -94,7 +94,25 @@ sup {
   color: red;
   margin-right: 5px;
 }
+.popover_container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
 
+.popover_content {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  padding: 8px;
+  background-color: transparent;
+  border: 0px;
+  z-index: 999;
+}
+.PopoverContainer .ant-popover {
+  background-color: transparent;
+  box-shadow: none;
+}
 .add_product_model
   .ant-space.css-dev-only-do-not-override-w8mnev.ant-space-vertical.pc_add_promocode_expiration_date_input,
 .add_product_model.ant-picker.css-dev-only-do-not-override-w8mnev,

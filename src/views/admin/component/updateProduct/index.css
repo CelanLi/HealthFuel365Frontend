@@ -42,7 +42,25 @@
   display: flex;
   flex-wrap: nowrap;
 }
+.popover_container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
 
+.popover_content {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  padding: 8px;
+  background-color: transparent;
+  border: 0px;
+  z-index: 999;
+}
+.PopoverContainer .ant-popover {
+  background-color: transparent;
+  box-shadow: none;
+}
 .Short_Field > div,
 .Short_Field1 > div,
 .Short_Field2 > div,

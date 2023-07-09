@@ -192,7 +192,7 @@ function ProductManagement() {
   return (
     <div className="product_manage_wrap">
       {/* &lt;represent< */}
-      <div className="pc_bread_crumb">Product Management </div>
+      <div className="pc_bread_crumb">Product Management ＞ </div>
       <div className="pc_top">
         <div className="pc_add_code">
           <AddProduct></AddProduct>

@@ -7,6 +7,7 @@ import {
   updateProduct,
 } from "../../../../services/adminService";
 import "./index.css";
+import { Popover } from "antd";
 function EditProduct({ productID }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [productName, setProductName] = useState("");
@@ -43,8 +44,8 @@ function EditProduct({ productID }) {
         setCapacity(product.capacity);
         setProductBrand(product.productBrand);
         setProductPrice(product.productPrice);
-        setVegan(detail.vegan);
-        setVegetarian(detail.vegetarian);
+        setVegan(detail.vegan ? "True" : "False");
+        setVegetarian(detail.vegetarian ? "True" : "False");
         setFat(detail.fat);
         setSugar(detail.sugar);
         setSalt(detail.salt);
@@ -132,7 +133,53 @@ function EditProduct({ productID }) {
       }
     });
   };
+  const handleFiberChange = (e) => {
+    const value = e.target.value;
+
+    setTimeout(() => {
+      if (!isNaN(value)) {
+        setFiber(value);
+      } else {
+        messageApi.open({
+          type: "error",
+          content: "Please enter a valid fiber content (numeric value)",
+        });
+      }
+    });
+  };
+  const handleProteinChange = (e) => {
+    const value = e.target.value;
+
+    setTimeout(() => {
+      if (!isNaN(value)) {
+        setProteins(value);
+      } else {
+        messageApi.open({
+          type: "error",
+          content: "Please enter a valid protein content (numeric value)",
+        });
+      }
+    });
+  };
+  // const handleEnergyChange = (e) => {
+  //   const value = e.target.value;
+
+  //   setTimeout(() => {
+  //     const regex = /\d/;
+
+  //     if (regex.test(value)) {
+  //       setEnergy(value);
+  //     } else {
+  //       messageApi.open({
+  //         type: "error",
+  //         content: "Please enter a valid energy content with unit",
+  //       });
+  //     }
+  //   });
+  // };
   const handleOk = async () => {
+    const regex1 = /\d/;
+    const regex2 = /kcal|kj/i; // i means do no distinguish cases
     if (
       !productName ||
       !category ||
@@ -152,7 +199,20 @@ function EditProduct({ productID }) {
         content: "Please fill in all necessary fields",
       });
       return;
+    } else if (!regex1.test(energy) && energy != "unknown") {
+      messageApi.open({
+        type: "error",
+        content: "Please enter a valid energy content (numeric value)",
+      });
+      return;
+    } else if (!regex2.test(energy) && energy != "unknown") {
+      messageApi.open({
+        type: "error",
+        content: "Please enter a valid energy with unit (kcal/kj)",
+      });
+      return;
     }
+
     console.log(nova);
     await updateProduct({
       productID: productID,
@@ -186,18 +246,19 @@ function EditProduct({ productID }) {
         ";" +
         " Fat: " +
         fat +
-        ";" +
+        "g;" +
         " Sugar: " +
         sugar +
-        ";" +
+        "g;" +
         " Fiber: " +
         fiber +
-        ";" +
+        "g;" +
         " Proteins: " +
         proteins +
-        ";" +
+        "g;" +
         " Salt: " +
-        salt,
+        salt +
+        "g;",
     });
 
     setIsModalOpen(false);
@@ -244,11 +305,7 @@ function EditProduct({ productID }) {
               <sup>*</sup>Category:
             </div>
             <div className="Category_input">
-              <Select
-                defaultValue={""}
-                value={category}
-                onChange={(value) => setCategory(value)}
-              >
+              <Select value={category} onChange={(value) => setCategory(value)}>
                 <Option value="staple">staple</Option>
                 <Option value="snacks">snacks</Option>
                 <Option value="drinks">drinks</Option>
@@ -366,7 +423,12 @@ function EditProduct({ productID }) {
               <sup>*</sup>Fat:
             </div>
             <div className="Fat_input">
-              <Input defaultValue={""} value={fat} onChange={handleFatChange} />
+              <Input
+                defaultValue={""}
+                value={fat}
+                onChange={handleFatChange}
+                addonAfter="g"
+              />
             </div>
           </div>
           <div className="sugar">
@@ -378,6 +440,7 @@ function EditProduct({ productID }) {
                 defaultValue={""}
                 value={sugar}
                 onChange={handleSugarChange}
+                addonAfter="g"
               />
             </div>
           </div>
@@ -390,6 +453,7 @@ function EditProduct({ productID }) {
                 defaultValue={""}
                 value={salt}
                 onChange={handleSaltChange}
+                addonAfter="g"
               />
             </div>
           </div>
@@ -491,18 +555,6 @@ function EditProduct({ productID }) {
         </div>
 
         <div className="Short_Field5">
-          <div className="Energy">
-            <div className="Energy_text">
-              <sup>*</sup>Energy:
-            </div>
-            <div className="Energy_input">
-              <Input
-                defaultValue={""}
-                value={energy}
-                onChange={(e) => setEnergy(e.target.value)}
-              />
-            </div>
-          </div>
           <div className="Fiber">
             <div className="Fiber_text">
               <sup>*</sup>Fiber:
@@ -511,7 +563,8 @@ function EditProduct({ productID }) {
               <Input
                 defaultValue={""}
                 value={fiber}
-                onChange={(e) => setFiber(e.target.value)}
+                onChange={handleFiberChange}
+                addonAfter="g"
               />
             </div>
           </div>
@@ -523,8 +576,40 @@ function EditProduct({ productID }) {
               <Input
                 defaultValue={""}
                 value={proteins}
-                onChange={(e) => setProteins(e.target.value)}
+                onChange={handleProteinChange}
+                addonAfter="g"
               />
+            </div>
+          </div>
+          <div className="Energy">
+            <div className="Energy_text">
+              <sup>*</sup>Energy:
+            </div>
+            <div className="popover_container">
+              <div className="Energy_input">
+                <Input
+                  defaultValue={""}
+                  value={energy}
+                  onChange={(e) => setEnergy(e.target.value)}
+                />
+              </div>
+              <div className="popover_content">
+                <Popover
+                  overlayClassName="popover_energy"
+                  overlayInnerStyle={{ color: "red" }}
+                  content={
+                    "Please enter a valid energy content with the unit 'kcal' or 'kj'"
+                  }
+                  trigger="hover"
+                  placement="right"
+                >
+                  <span className="or_additional_shipping_note">
+                    <img
+                      src={require("../../../../assets/images/information_note.png")}
+                    />
+                  </span>
+                </Popover>
+              </div>
             </div>
           </div>
         </div>

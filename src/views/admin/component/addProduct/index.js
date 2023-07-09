@@ -5,6 +5,7 @@ import "./index.css";
 
 import { addProduct, updateProduct } from "../../../../services/adminService";
 import { async } from "q";
+import { Popover } from "antd";
 
 function AddProduct() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -37,6 +38,8 @@ function AddProduct() {
   };
 
   const handleOk = async () => {
+    const regex1 = /\d/;
+    const regex2 = /kcal|kj/i; // i means do no distinguish cases
     if (
       !productName ||
       !category ||
@@ -54,6 +57,18 @@ function AddProduct() {
       messageApi.open({
         type: "error",
         content: "Please fill in all necessary fields",
+      });
+      return;
+    } else if (!regex1.test(energy) && energy != "unknown") {
+      messageApi.open({
+        type: "error",
+        content: "Please enter a valid energy content (numeric value)",
+      });
+      return;
+    } else if (!regex2.test(energy) && energy != "unknown") {
+      messageApi.open({
+        type: "error",
+        content: "Please enter a valid energy with unit (kcal/kj)",
       });
       return;
     }
@@ -87,21 +102,22 @@ function AddProduct() {
         ";" +
         " Energy: " +
         energy +
-        ";" +
+        "kj;" +
         " Fat: " +
         fat +
-        ";" +
+        "g;" +
         " Sugar: " +
         sugar +
-        ";" +
+        "g;" +
         " Fiber: " +
         fiber +
-        ";" +
+        "g;" +
         " Proteins: " +
         proteins +
-        ";" +
+        "g;" +
         " Salt: " +
-        salt,
+        salt +
+        "g;",
     });
 
     setIsModalOpen(false);
@@ -184,6 +200,34 @@ function AddProduct() {
       }
     });
   };
+  const handleFiberChange = (e) => {
+    const value = e.target.value;
+
+    setTimeout(() => {
+      if (!isNaN(value)) {
+        setFiber(value);
+      } else {
+        messageApi.open({
+          type: "error",
+          content: "Please enter a valid fiber content (numeric value)",
+        });
+      }
+    });
+  };
+  const handleProteinChange = (e) => {
+    const value = e.target.value;
+
+    setTimeout(() => {
+      if (!isNaN(value)) {
+        setProteins(value);
+      } else {
+        messageApi.open({
+          type: "error",
+          content: "Please enter a valid protein content (numeric value)",
+        });
+      }
+    });
+  };
   return (
     <div className="addProduct">
       {contextHolder}
@@ -218,11 +262,7 @@ function AddProduct() {
               <sup>*</sup>Category:
             </div>
             <div className="Category_input">
-              <Select
-                defaultValue={""}
-                value={category}
-                onChange={(value) => setCategory(value)}
-              >
+              <Select value={category} onChange={(value) => setCategory(value)}>
                 <Option value="staple">staple</Option>
                 <Option value="snacks">snacks</Option>
                 <Option value="drinks">drinks</Option>
@@ -340,7 +380,12 @@ function AddProduct() {
               <sup>*</sup>Fat:
             </div>
             <div className="Fat_input">
-              <Input defaultValue={""} value={fat} onChange={handleFatChange} />
+              <Input
+                defaultValue={""}
+                value={fat}
+                onChange={handleFatChange}
+                addonAfter="g"
+              />
             </div>
           </div>
           <div className="sugar">
@@ -352,6 +397,7 @@ function AddProduct() {
                 defaultValue={""}
                 value={sugar}
                 onChange={handleSugarChange}
+                addonAfter="g"
               />
             </div>
           </div>
@@ -364,6 +410,7 @@ function AddProduct() {
                 defaultValue={""}
                 value={salt}
                 onChange={handleSaltChange}
+                addonAfter="g"
               />
             </div>
           </div>
@@ -465,18 +512,6 @@ function AddProduct() {
         </div>
 
         <div className="Short_Field5">
-          <div className="Energy">
-            <div className="Energy_text">
-              <sup>*</sup>Energy:
-            </div>
-            <div className="Energy_input">
-              <Input
-                defaultValue={""}
-                value={energy}
-                onChange={(e) => setEnergy(e.target.value)}
-              />
-            </div>
-          </div>
           <div className="Fiber">
             <div className="Fiber_text">
               <sup>*</sup>Fiber:
@@ -485,7 +520,8 @@ function AddProduct() {
               <Input
                 defaultValue={""}
                 value={fiber}
-                onChange={(e) => setFiber(e.target.value)}
+                onChange={handleFiberChange}
+                addonAfter="g"
               />
             </div>
           </div>
@@ -497,8 +533,40 @@ function AddProduct() {
               <Input
                 defaultValue={""}
                 value={proteins}
-                onChange={(e) => setProteins(e.target.value)}
+                onChange={handleProteinChange}
+                addonAfter="g"
               />
+            </div>
+          </div>
+          <div className="Energy">
+            <div className="Energy_text">
+              <sup>*</sup>Energy:
+            </div>
+            <div className="popover_container">
+              <div className="Energy_input">
+                <Input
+                  defaultValue={""}
+                  value={energy}
+                  onChange={(e) => setEnergy(e.target.value)}
+                />
+              </div>
+              <div className="popover_content">
+                <Popover
+                  overlayClassName="popover_energy"
+                  overlayInnerStyle={{ color: "red" }}
+                  content={
+                    "Please enter a valid energy content with the unit 'kcal' or 'kj'"
+                  }
+                  trigger="hover"
+                  placement="right"
+                >
+                  <span className="or_additional_shipping_note">
+                    <img
+                      src={require("../../../../assets/images/information_note.png")}
+                    />
+                  </span>
+                </Popover>
+              </div>
             </div>
           </div>
         </div>
