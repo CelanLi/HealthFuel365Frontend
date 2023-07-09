@@ -43,30 +43,22 @@ function App() {
       }
     }
 
-    if (!userProfile) {
-      return(
-        <div>
-          loading...
-        </div>
-      )
-    }
   return (
     <div className='myaccount-profile-wrap'>
         <MyNav/>
         <div className='myaccount-profile-page'>
+          <div className='myaccount-title'>
+              <p className='myaccount-title-1'>My Profile&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+              <p className='myaccount-title-2'>{">>>"}</p>
+          </div>
 
-            <div className='myaccount-title'>
-                <p className='myaccount-title-1'>My Profile&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-                <p className='myaccount-title-2'>{">>>"}</p>
-            </div>
+          {userProfile && (
+              <MyProfile userProfile={userProfile} />
+          )}
 
-            {userProfile && (
-                <MyProfile userProfile={userProfile} />
-            )}
-
-            <a href="/myaccount/profileEdit" className="shopping_cart">
-                <button className='myaccount-edit'>Edit</button>
-            </a>
+          <a href="/myaccount/profileEdit" className="shopping_cart" style={{width: '120px'}}>
+              <button className='myaccount-edit'>Edit</button>
+          </a>
       </div>
     
     </div>
