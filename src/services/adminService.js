@@ -36,7 +36,12 @@ export const logoutAdmin = async () => {
 export const getAllUserWithProfile = async (keyWords) => {
   try {
     const result: Response = await axios.get(
-      backendUrl + adminRoutes + "/user" + "/?keyWords=" + keyWords
+      backendUrl + adminRoutes + "/user" + "/?keyWords=" + keyWords,
+      {
+        headers: {
+          Authorization: document.cookie, //put cookie into header
+        },
+      }
     );
     const response = result.data;
     if (response.status >= 300) {
@@ -51,7 +56,12 @@ export const getAllUserWithProfile = async (keyWords) => {
 export const deleteUserWithProfile = async (userID) => {
   try {
     const result: Response = await axios.delete(
-      backendUrl + adminRoutes + "/" + userID
+      backendUrl + adminRoutes + "/" + userID,
+      {
+        headers: {
+          Authorization: document.cookie, //put cookie into header
+        },
+      }
     );
     const response = result.data;
     if (response.status >= 300) {
@@ -67,7 +77,13 @@ export const deleteUserWithProfile = async (userID) => {
 export const updateUserEmail = async (userID, email) => {
   try {
     const result: Response = await axios.put(
-      backendUrl + adminRoutes + "/update/" + userID + "/" + email
+      backendUrl + adminRoutes + "/update/" + userID + "/" + email,
+      {},
+      {
+        headers: {
+          Authorization: document.cookie, //put cookie into header
+        }
+      }
     );
     const response = result.data;
     if (response.status >= 300) {
@@ -159,7 +175,12 @@ export const addPromoCode = async (data) => {
 export const getAllOrdersWithService = async (keyWords) => {
   try {
     const result: Response = await axios.get(
-      backendUrl + adminRoutes + "/orders" + "/?keyWords=" + keyWords
+      backendUrl + adminRoutes + "/orders" + "/?keyWords=" + keyWords,
+      {
+        headers: {
+          Authorization: document.cookie, //put cookie into header
+        },
+      }
     );
     const response = result.data;
     if (response.status >= 300) {
@@ -181,7 +202,13 @@ export const updateOrder = async (orderID, status, trackingnumber) => {
         "/" +
         status +
         "/" +
-        trackingnumber
+        trackingnumber,
+        {},
+        {
+          headers: {
+            Authorization: document.cookie, //put cookie into header
+          },
+        }
     );
     const response = result.data;
     if (response.status >= 300) {
@@ -197,7 +224,12 @@ export const updateOrder = async (orderID, status, trackingnumber) => {
 export const getOrderById = async (orderID) => {
   try {
     const result: Response = await axios.get(
-      backendUrl + adminRoutes + "/getOrder/" + orderID
+      backendUrl + adminRoutes + "/getOrder/" + orderID,
+      {
+        headers: {
+          Authorization: document.cookie, //put cookie into header
+        },
+      }
     );
     const response = result.data;
     if (response.status >= 300) {
@@ -208,6 +240,7 @@ export const getOrderById = async (orderID) => {
     throw new Error(error);
   }
 };
+
 export const getProductsWithDetail = async (keywords) => {
   try {
     const result: Response = await axios.get(
