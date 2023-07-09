@@ -178,10 +178,10 @@ export const getOrderById = async (orderID) => {
     throw new Error(error);
   }
 };
-export const getProductsWithDetail = async () => {
+export const getProductsWithDetail = async (keywords) => {
   try {
     const result: Response = await axios.get(
-      backendUrl + adminRoutes + "/products"
+      backendUrl + adminRoutes + "/products" + "/?keywords=" + keywords
     );
     const response = result.data;
     if (response.status >= 300) {
