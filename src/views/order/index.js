@@ -74,7 +74,7 @@ function Page() {
   //get user from backend
   const setShoppingCart = async () => {
     try {
-      const cookie = getCookie("login");
+      const cookie = getCookie("userLogin");
       if (cookie) {
         const userAccount = await getUser();
         console.log(userAccount, "userAccount to test");
@@ -121,7 +121,7 @@ function Page() {
   // first visit the page
   useEffect(() => {
     (async () => {
-      const cookie = getCookie("login");
+      const cookie = getCookie("userLogin");
       if (cookie) {
         const userAccount = await getUser();
         const userID = userAccount.id;

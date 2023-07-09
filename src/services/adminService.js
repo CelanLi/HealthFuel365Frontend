@@ -2,6 +2,36 @@ import axios from "axios";
 import { backendUrl, adminRoutes } from "../util/constants";
 import { message } from "antd";
 import serviceAxios from "../util/request.js";
+import { setAdminCookie , invalidateCookie } from "../util/cookie.js";
+
+export const loginAdmin = async (data) => {
+  try {
+    const result = await axios.post(
+      backendUrl + adminRoutes + "/login", 
+      {
+      adminID: data.adminID,
+      password: data.password,
+      }
+    );
+    const response = result.data;
+    if (response.status >= 300) {
+      throw new Error(response.message);
+    }
+    setAdminCookie(data.adminID, response.token); 
+    return response;
+  } catch (error) {
+    if (error.response) {
+      const responseData = error.response.data;
+      message.error(`Login failed: ${responseData.message}`);
+    } else {
+      message.error('Login failed!');
+    }
+  }
+};
+
+export const logoutAdmin = async () => {
+  invalidateCookie("adminLogin");
+};
 
 export const getAllUserWithProfile = async (keyWords) => {
   try {

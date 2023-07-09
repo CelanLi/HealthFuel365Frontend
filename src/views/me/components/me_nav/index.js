@@ -28,7 +28,7 @@ function MyNav() {
     //get account from backend
     const setAccount = async () => {
       try{
-        const cookie = getCookie("login")
+        const cookie = getCookie("userLogin")
         if (cookie) {
           console.log("getaccount")
           const userAccount = await (getUser());

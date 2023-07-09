@@ -1,5 +1,6 @@
 import axios, { AxiosHeaders } from "axios";
-import {setCookie,getCookie, invalidateCookie, invalidateAllCookies} from "../util/cookie.js"
+//import {setCookie,getCookie, invalidateCookie, invalidateAllCookies, setUserCookie} from "../util/cookie.js"
+import {setUserCookie, invalidateAllCookies, invalidateCookie} from "../util/cookie.js"
 import serviceAxios from "../util/request.js";
 import { message } from "antd";
 
@@ -21,7 +22,8 @@ export const registerUser = async (data) => {
     if (response.status >= 300) {
       throw new Error(response.message);
     }
-    setCookie(data.username,response.token)
+    //setCookie(data.username,response.token);
+    setUserCookie(data.username,response.token);
     return true;
   } catch (error){
     if(error.response){
@@ -51,7 +53,8 @@ export const loginUser = async (data) => {
       throw new Error(response.message);
     }
     //when user log in successfully, a token will be stored in his browser.
-    setCookie(data.username,response.token)
+    //setCookie(data.username,response.token)
+    setUserCookie(data.username,response.token)
     return response;
 
   } catch (error){

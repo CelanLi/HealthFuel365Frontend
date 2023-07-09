@@ -38,7 +38,7 @@ function Page() {
     };
     setData(id);
     (async () => {
-      const cookie = getCookie("login");
+      const cookie = getCookie("userLogin");
       if (cookie) {
         const userAccount = await getUser();
         const userID = userAccount.id;
@@ -71,7 +71,7 @@ function Page() {
   };
   // if the item is not avialable, it cannot be added to the cart.
   const handleClick = () => {
-    const cookie = getCookie("login");
+    const cookie = getCookie("userLogin");
     if (!cookie) {
       showLoginReminder();
     } else if (product?.capacity === 0) {

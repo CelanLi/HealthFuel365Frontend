@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "../../../me/orderdetail/index.css";
+import { Modal } from "antd";
 import { useLocation, useParams } from 'react-router-dom';
 import { Link } from "react-router-dom";
 import OrderAddress from "../../../me/orderdetail/component/order_detail_address";
 import OrderDetailProduct from "../../../me/orderdetail/component/order_detail_product";
 import { getOrderById } from "../../../../services/adminService";
+import { getCookie } from "../../../../util/cookie";
+
 
 function OrderDetail() { 
   // use useParams hook to get userid from url
@@ -15,9 +18,23 @@ function OrderDetail() {
   const location = useLocation();
   const servicesParam = new URLSearchParams(location.search).get("services");
   const services = JSON.parse(decodeURIComponent(servicesParam)).replace("\n","\n\n");
-
+  const showLoginReminder = () => {
+    Modal.error({
+      title: "please log in",
+      content: "To access admin panel, log in is reuired",
+      onOk: () => {
+        window.location.href = "http://localhost:3000/admin";
+      },
+    });
+  };
   useEffect(() => {
+    const cookie = getCookie("adminLogin");
+    if (!cookie) {
+      showLoginReminder();
+    } 
+    else{
     fetchOrderDetail(orderID);
+    }
   }, [orderID]);
 
   const fetchOrderDetail = async (orderID) => {

@@ -108,7 +108,7 @@ function Page() {
   // first visit the page
   useEffect(() => {
     (async () => {
-      const cookie = getCookie("login")
+      const cookie = getCookie("userLogin")
       if (cookie) {
         const userAccount = await getUser();
         const userID = userAccount.id;

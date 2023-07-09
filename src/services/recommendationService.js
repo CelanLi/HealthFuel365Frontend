@@ -3,9 +3,10 @@ import { backendUrl, alternativeRoute } from "../util/constants";
 import { getCookie } from "../util/cookie";
 
 export const getRecommendation = async () => {
-    if (getCookie("login")) {
-        console.log("getRecommendations")
+    if (getCookie("userLogin")) {
+        console.log("getRecommendationswithCookies"+ getCookie("userLogin"))
         try {
+            console.log(document.cookie)
             const result: Response = await axios.get(
                 'http://localhost:8081/recommendation/getRecommendationsWithCookies',
                 {

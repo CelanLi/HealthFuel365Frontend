@@ -1,9 +1,10 @@
 import "./index.css";
 import React from "react";
-import { Table, Input, message } from "antd";
+import { Table, Input, message, Modal } from "antd";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { getAllUserWithProfile, deleteUserWithProfile, updateUserEmail} from "../../../services/adminService";
+import { getCookie } from "../../../util/cookie";
 
 function UserManagement () {
   // data: list of user and corresponding profile
@@ -84,9 +85,25 @@ function UserManagement () {
       }
     }
   ];
+  const showLoginReminder = () => {
+    Modal.error({
+      title: "please log in",
+      content: "To access admin panel, log in is reuired",
+      onOk: () => {
+        window.location.href = "http://localhost:3000/admin";
+      },
+    });
+  };
+
   // initialization data
   useEffect(() => {
-    setUsers();
+    const cookie = getCookie("adminLogin");
+    if (!cookie) {
+      showLoginReminder();
+    } 
+    else{
+      setUsers();
+    }
   },[])
   const setUsers = async () => {
     setIsLoading(true);

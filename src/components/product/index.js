@@ -32,7 +32,7 @@ function ProductComponent({
   };
   /* if there is no this product in the shopping cart  */
   const handleClick = async() => {
-    const cookie = getCookie("login");
+    const cookie = getCookie("userLogin");
     if (!cookie) {
       showLoginReminder();
     } 
@@ -52,7 +52,7 @@ function ProductComponent({
   useEffect(() => {
     (async () => {
       // only get user when document.cookie is not empty
-      const cookie = getCookie("login");
+      const cookie = getCookie("userLogin");
       if (cookie) {
         const userAccount = await getUser();
         const userID = userAccount.id;
