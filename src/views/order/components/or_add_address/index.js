@@ -30,8 +30,7 @@ function OrderAddAddress() {
   const handleOk = () => {
     if (
       !firstNameValue ||
-      !lastNameValue ||
-      !telStateValue ||
+      !lastNameValue || 
       !telValue ||
       !streetValue ||
       !streetNoValue ||
