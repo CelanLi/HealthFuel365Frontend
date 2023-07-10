@@ -15,7 +15,6 @@ function OrderSummary({
   shipping,
   additionalService,
   totalPrice,
-  orAddressID,
   submitOrder,
 }) {
   const initialOptions = {
@@ -44,7 +43,6 @@ function OrderSummary({
       console.log("IS PAID");
     });
   };
-  
 
   const onCancel = (data, actions) => {
     console.log(data);
@@ -61,41 +59,6 @@ function OrderSummary({
     });
     console.log("IS CANCELLED");
   };
-
-  const onCreateOrder = (data, actions) => {
-    try {
-      // Check if the required field is filled in
-      if (!orAddressID.current) {
-        messageApi.open({
-          type: "error",
-          content: "Recieving Address can not be empty",
-          duration: 1,
-        });
-        return Promise.reject('Recieving Address can not be empty');
-      }
-  
-      // Otherwise, proceed with creating the order
-      return actions.order
-        .create({
-          purchase_units: [
-            {
-              amount: {
-                currency_code: initialOptions.currency,
-                value: totalPrice.current,
-              },
-            },
-          ],
-        })
-        .then((paymentId) => {
-          // Your code here after create the order
-          submitOrder(paymentId);
-          return paymentId;
-        });
-    } catch(e) {
-      console.log(e);
-      return null;
-    }
-  }
 
   useEffect(() => {
     console.log(totalPrice);
@@ -151,12 +114,34 @@ function OrderSummary({
         <PayPalScriptProvider options={initialOptions}>
           <PayPalButtons
             style={{ layout: "horizontal" }}
-            createOrder={(data, actions) => onCreateOrder(data, actions)}
+            createOrder={(data, actions) => {
+              if (true) {
+                messageApi.open({
+                  type: "error",
+                  content: "Recieving Address can not be empty",
+                  duration: 1,
+                });
+                return;
+              }
+              return actions.order
+                .create({
+                  purchase_units: [
+                    {
+                      amount: {
+                        currency_code: initialOptions.currency,
+                        value: totalPrice.current,
+                      },
+                    },
+                  ],
+                })
+                .then((paymentId) => {
+                  // Your code here after create the order
+                  submitOrder(paymentId);
+                  return paymentId;
+                });
+            }}
             onCancel={onCancel}
             onApprove={onApprove}
-            onError={(err) => {
-              console.log(err);
-            }}
           />
         </PayPalScriptProvider>
       )}
