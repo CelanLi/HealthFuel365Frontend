@@ -113,7 +113,8 @@ export const deletePromoCode = (data) => {
 };
 
 export const updatePromoCode = async (data) => {
-  console.log("updatePromoCode", data);
+  console.log("updatePromoCode", data); 
+
   //catch error
   try {
     const result: Response = await axios.post(
@@ -124,6 +125,11 @@ export const updatePromoCode = async (data) => {
         expirationDate: data.expirationDate,
         discountRate: data.discountRate / 100,
         minThreshold: data.minThreshold,
+      },
+      {
+        headers: {
+          Authorization: document.cookie, //put cookie into header
+        }
       }
     );
     const response = result.data;
@@ -154,6 +160,11 @@ export const addPromoCode = async (data) => {
         discountRate: data.discountRate / 100,
         minThreshold: data.minThreshold,
         usedUser: [],
+      },
+      {
+        headers: {
+          Authorization: document.cookie, //put cookie into header
+        }
       }
     );
     const response = result.data;
