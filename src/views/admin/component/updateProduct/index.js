@@ -224,10 +224,6 @@ function EditProduct({ productID }) {
       });
       return;
     }
-    setFiber(fiber.toString + "g");
-    setProteins(proteins.toString + "g");
-
-    console.log(nova);
     await updateProduct({
       productID: productID,
       category: category,
@@ -265,10 +261,10 @@ function EditProduct({ productID }) {
         sugar +
         "g;" +
         " Fiber: " +
-        fiber +
+        (fiber === "unknown" ? fiber : fiber + "g") +
         ";" +
         " Proteins: " +
-        proteins +
+        (proteins === "unknown" ? proteins : proteins + "g") +
         ";" +
         " Salt: " +
         salt +
