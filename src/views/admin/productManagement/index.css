@@ -1,1 +1,52 @@
+.pm_top {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-left: 34px;
+  margin-top: 10px;
+}
 
+/* Product Management ＞ */
+.pm_bread_crumb {
+  font-family: "Kaisei Opti";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 35px;
+  display: flex;
+  align-items: center;
+  color: #033d1f;
+  margin-top: 16px;
+  margin-left: 34px;
+}
+
+.pm_search_container form {
+  background: rgba(217, 217, 217, 0.59);
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Style the input field inside the navbar */
+.pm_search_container [type="text"] {
+  padding: 7px 8px;
+  width: 220px;
+  border: none;
+  border-right: 1px solid #b0b0b0;
+  background: transparent;
+  border-radius: 20px 0px 0px 20px;
+  color: rgba(3, 61, 31, 0.85);
+}
+
+/* search icon */
+.pm_search_container button[type="submit"] {
+  background: transparent url("../../../assets/images/search_icon.png") center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: transparent;
+  border-radius: 20px;
+  width: 40px;
+  float: right;
+  margin: 4px;
+  cursor: pointer;
+}

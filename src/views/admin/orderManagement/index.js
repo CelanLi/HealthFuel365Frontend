@@ -1,10 +1,11 @@
 import "./index.css";
 import React from "react";
-import { Table, Select, Input, message } from "antd";
+import { Table, Select, Input, Modal } from "antd";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { getAllOrdersWithService, updateOrder } from "../../../services/adminService";
 import { getOrderTimestamp } from "../../../services/orderService";
+import { getCookie } from '../../../util/cookie';
 const { Option } = Select;
 
 function OrderManagement () {
@@ -184,9 +185,24 @@ function OrderManagement () {
       }
     }
   ];
+  const showLoginReminder = () => {
+    Modal.error({
+      title: "please log in",
+      content: "To access admin panel, log in is reuired",
+      onOk: () => {
+        window.location.href = "http://localhost:3000/admin";
+      },
+    });
+  };
   // initialization data
   useEffect(() => {
-    setOrder();
+    const cookie = getCookie("adminLogin");
+    if (!cookie) {
+      showLoginReminder();
+    } 
+    else{
+      setOrder();
+    }
   },[])
   const setOrder = async () => {
     setIsLoading(true);

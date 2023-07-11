@@ -16,6 +16,7 @@ import ProfileEdit from "../views/me/profileedit";
 import Login from "../views/login/index";
 import Register from "../views/register/index";
 import AdminLayout from "../views/admin/component/layout";
+import AdminLogin from "../views/admin/login";
 import ProductManagement from "../views/admin/productManagement";
 import UserManagement from "../views/admin/userManagement";
 import PromoCodeManagement from "../views/admin/promoCodeManagement";
@@ -56,14 +57,14 @@ export const routers = [
     element: <Register />,
   },
   {
+    path:'admin', //http://www.healthfuel365.com/admin
+    element: <AdminLogin />
+  },
+  {
     // Admin Page
     path:'admin', //http://www.healthfuel365.com/admin
     element: <AdminLayout />, 
     children: [
-      {
-        index: true,
-        element: <UserManagement />,
-      },
       {
         path:'productManagement', //http://www.healthfuel365.com/admin/productManagement
         element: <ProductManagement />

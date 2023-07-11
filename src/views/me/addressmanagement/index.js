@@ -30,7 +30,7 @@ function App() {
     // get address list from backend
     const setAddress = async () => {
       try{
-        const cookie = getCookie("login")
+        const cookie = getCookie("userLogin")
         if (cookie) {
           // delay get address list
           setTimeout(async () => {

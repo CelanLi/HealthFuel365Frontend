@@ -27,7 +27,7 @@ function Login () {
   const navigate = useNavigate();
   // if a logged in user get to this page, log in automatically
   useEffect(() => {
-    const cookie = getCookie("login")
+    const cookie = getCookie("userLogin")
     if (cookie) {
       message.success("Welcome!");
       navigate("/homepage");

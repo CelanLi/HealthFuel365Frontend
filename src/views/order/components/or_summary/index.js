@@ -15,7 +15,8 @@ function OrderSummary({
   shipping,
   additionalService,
   totalPrice,
-  submitOrder
+  orAddressID,
+  submitOrder,
 }) {
   const initialOptions = {
     clientId:
@@ -38,12 +39,12 @@ function OrderSummary({
             content: res.message,
           });
         }
-        window.location.href =
-          "http://localhost:3000/myaccount/myorder";
+        window.location.href = "http://localhost:3000/myaccount/myorder";
       });
       console.log("IS PAID");
     });
-  }
+  };
+  
 
   const onCancel = (data, actions) => {
     console.log(data);
@@ -56,10 +57,44 @@ function OrderSummary({
           content: res.message,
         });
       }
-      window.location.href =
-        "http://localhost:3000/myaccount/myorder";
+      window.location.href = "http://localhost:3000/myaccount/myorder";
     });
     console.log("IS CANCELLED");
+  };
+
+  const onCreateOrder = (data, actions) => {
+    try {
+      // Check if the required field is filled in
+      if (!orAddressID.current) {
+        messageApi.open({
+          type: "error",
+          content: "Recieving Address can not be empty",
+          duration: 1,
+        });
+        return Promise.reject('Recieving Address can not be empty');
+      }
+  
+      // Otherwise, proceed with creating the order
+      return actions.order
+        .create({
+          purchase_units: [
+            {
+              amount: {
+                currency_code: initialOptions.currency,
+                value: totalPrice.current,
+              },
+            },
+          ],
+        })
+        .then((paymentId) => {
+          // Your code here after create the order
+          submitOrder(paymentId);
+          return paymentId;
+        });
+    } catch(e) {
+      console.log(e);
+      return null;
+    }
   }
 
   useEffect(() => {
@@ -116,26 +151,12 @@ function OrderSummary({
         <PayPalScriptProvider options={initialOptions}>
           <PayPalButtons
             style={{ layout: "horizontal" }}
-            createOrder={(data, actions) => {
-              return actions.order
-                .create({
-                  purchase_units: [
-                    {
-                      amount: {
-                        currency_code: initialOptions.currency,
-                        value: totalPrice.current,
-                      },
-                    },
-                  ],
-                })
-                .then((paymentId) => {
-                  // Your code here after create the order
-                  submitOrder(paymentId);
-                  return paymentId;
-                });
-            }}
+            createOrder={(data, actions) => onCreateOrder(data, actions)}
             onCancel={onCancel}
             onApprove={onApprove}
+            onError={(err) => {
+              console.log(err);
+            }}
           />
         </PayPalScriptProvider>
       )}

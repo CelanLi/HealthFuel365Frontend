@@ -1,3 +1,4 @@
+/*
 // set a cookie with cookie name, cookie value, and expire days
 export function setCookie(cname, cvalue) {
     const expireDate = new Date();
@@ -7,6 +8,23 @@ export function setCookie(cname, cvalue) {
     console.log("777",document.cookie)
     console.log("888",document.expires)
 };
+*/
+
+export function setUserCookie(cname, cvalue) {
+  const expireDate = new Date();
+    expireDate.setTime(expireDate.getTime() + 86400000);
+    document.cookie = `userLogin=${cvalue}; expires=${expireDate.toUTCString()}; path=/`;
+    console.log("777",document.cookie)
+    console.log("888",document.expires)
+};
+
+export function setAdminCookie(cvalue) {
+  const expireDate = new Date();
+  expireDate.setTime(expireDate.getTime() + 86400000);
+  document.cookie = `adminLogin=${cvalue}; expires=${expireDate.toUTCString()}; path=/`;
+  console.log("777", document.cookie);
+  console.log("888", document.expires);
+}
 
 // get cookie by name
 export function getCookie(cname)
@@ -21,6 +39,8 @@ export function getCookie(cname)
   return "";
 };
 
+/*
+// not used function
 // check cookie
 export function checkCookie()
 {
@@ -38,11 +58,12 @@ export function checkCookie()
     }
   }
 };
+*/
 
 //invalidate specific cookie
 export function invalidateCookie(cname)
 {
-    document.cookie = `${cname}=""; expires=Thu, 01 Jan 1970 00:00:00 UTC;`;
+  document.cookie = `${cname}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
 };
 
 //invalidate all cookies
@@ -55,5 +76,5 @@ export function invalidateAllCookies() {
       // 将过期时间设置为一个过去的时间点，使 cookie 失效
       document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
     }
-  }
+}
 

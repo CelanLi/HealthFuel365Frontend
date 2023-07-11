@@ -1,0 +1,52 @@
+/* Outside Wrap */
+.admin_login_wrap {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-image: url("../../../assets/images/welcomepage_background.png");
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    overflow-y: scroll;
+    padding: 3%;
+}
+
+.wel_container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    margin: auto;
+    background: rgba(255, 255, 255, 0.47);
+    border-radius: 0.3rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.wel {
+    width: 70%;
+    height: auto;
+    margin: 0 auto;
+}
+
+.wel .login-form{
+    width: 100%;
+    margin: 0 auto;
+}
+
+.wel .login-form-item {
+    width: 100%;
+}
+
+.wel .login-form-input {
+    width: 100%;
+}
+
+@media (max-height: 400px) and (min-width: 1370px){
+    .wel_container {
+        display: flex;
+        flex-direction: row;
+    }
+}

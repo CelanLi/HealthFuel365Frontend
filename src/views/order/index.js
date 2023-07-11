@@ -33,6 +33,7 @@ function Page() {
   const orDeliveryRef = useRef(orDelivery);
   const orServiceRef = useRef(orService);
   const orTotalPriceRef = useRef(orTotalPrice);
+  const orAddressIDRef = useRef(orAddressID);
 
   function calculateTotalPrice() {
     const value = new BigNumber(orSummary.subtotal)
@@ -48,6 +49,7 @@ function Page() {
 
   function getAddressChoice(value) {
     setorAddressID(value);
+    orAddressIDRef.current = value;
   }
 
   // get: itemquantity,itemprice,total savings, subtotal
@@ -70,11 +72,12 @@ function Page() {
         });
       });
   }
-
+  
+  
   //get user from backend
   const setShoppingCart = async () => {
     try {
-      const cookie = getCookie("login");
+      const cookie = getCookie("userLogin");
       if (cookie) {
         const userAccount = await getUser();
         console.log(userAccount, "userAccount to test");
@@ -121,7 +124,7 @@ function Page() {
   // first visit the page
   useEffect(() => {
     (async () => {
-      const cookie = getCookie("login");
+      const cookie = getCookie("userLogin");
       if (cookie) {
         const userAccount = await getUser();
         const userID = userAccount.id;
@@ -222,6 +225,7 @@ function Page() {
             additionalService={orServicePrice}
             totalPrice={orTotalPriceRef}
             submitOrder={addOrder}
+            orAddressID={orAddressIDRef}
           ></OrderSummary>
         </div>
       </div>

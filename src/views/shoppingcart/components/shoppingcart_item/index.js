@@ -4,6 +4,7 @@ import BigNumber from "bignumber.js";
 import "./index.css";
 import ShoppingCartNutri from "../../../../components/nutri";
 import ScItemCounter from "../sc_item_counter";
+import DefaultImage from "../../../../assets/images/logo.png";
 
 function ShoppingCartItem({
   productID,
@@ -31,11 +32,18 @@ function ShoppingCartItem({
     return value;
   }
 
+  /* If no image is retrieved from the stored URL, the logo is displayed as a product image */
+  const [image, setImage] = useState( productImage );
+  const [imageNotFound, setImageNotFound] = useState(false);
+  const handleImageNotFound = () => {
+    setImage(DefaultImage);
+    setImageNotFound(true);
+  };  
   return (
     <div className="sc_item">
       <div className="sc_item_image">
         <Link to={`/product/detail/${productID}`}>
-          <img className="sc_item_testimage" src={productImage}></img>
+          <img className="sc_item_testimage" src={image} onError={handleImageNotFound}></img>
         </Link>
       </div>
       <div className="sc_item_content">
