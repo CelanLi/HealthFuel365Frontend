@@ -180,6 +180,7 @@ function EditProduct({ productID }) {
   const handleOk = async () => {
     const regex1 = /\d/;
     const regex2 = /kcal|kj/i; // i means do no distinguish cases
+    console.log(typeof fat);
     if (
       !productName ||
       !category ||
@@ -187,11 +188,11 @@ function EditProduct({ productID }) {
       !nutriScore ||
       !productBrand ||
       !productPrice ||
-      !fat ||
+      fat.length < 1 ||
       !fatLevel ||
-      !salt ||
+      salt.length < 1 ||
       !saltLevel ||
-      !sugar ||
+      sugar.length < 1 ||
       !sugarLevel
     ) {
       messageApi.open({
@@ -203,6 +204,24 @@ function EditProduct({ productID }) {
       messageApi.open({
         type: "error",
         content: "Please enter a valid fiber content (numeric value)",
+      });
+      return;
+    } else if (isNaN(fat)) {
+      messageApi.open({
+        type: "error",
+        content: "Please enter a valid fat content (numeric value)",
+      });
+      return;
+    } else if (isNaN(salt) && salt !== "unknown") {
+      messageApi.open({
+        type: "error",
+        content: "Please enter a valid salt content (numeric value)",
+      });
+      return;
+    } else if (isNaN(sugar) && sugar !== "unknown") {
+      messageApi.open({
+        type: "error",
+        content: "Please enter a valid sugar content (numeric value)",
       });
       return;
     } else if (isNaN(proteins) && proteins !== "unknown") {
@@ -436,7 +455,7 @@ function EditProduct({ productID }) {
               <Input
                 defaultValue={""}
                 value={fat}
-                onChange={handleFatChange}
+                onChange={(e) => setFat(e.target.value)}
                 addonAfter="g"
               />
             </div>
@@ -449,7 +468,7 @@ function EditProduct({ productID }) {
               <Input
                 defaultValue={""}
                 value={sugar}
-                onChange={handleSugarChange}
+                onChange={(e) => setSugar(e.target.value)}
                 addonAfter="g"
               />
             </div>
@@ -462,7 +481,7 @@ function EditProduct({ productID }) {
               <Input
                 defaultValue={""}
                 value={salt}
-                onChange={handleSaltChange}
+                onChange={(e) => setSalt(e.target.value)}
                 addonAfter="g"
               />
             </div>
