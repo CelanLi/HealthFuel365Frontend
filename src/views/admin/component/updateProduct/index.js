@@ -183,7 +183,7 @@ function EditProduct({ productID }) {
     console.log(typeof fat);
     if (
       !productName ||
-      !category ||
+      category.length < 1 ||
       !imageUrl ||
       !nutriScore ||
       !productBrand ||
