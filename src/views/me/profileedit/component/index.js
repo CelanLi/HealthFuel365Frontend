@@ -1,7 +1,7 @@
 import { Button, Form, Input, Select,Radio,Checkbox } from 'antd';
 import React, { useState, useEffect } from 'react';
 import "./index.css";
-import { profileEdit, profileGet } from '../../../../services/userService';
+import { profileEdit } from '../../../../services/userService';
 import { useNavigate } from 'react-router-dom';
 
 import HealthGoal from '../../../../assets/images/myaccount/icon-health-goal.png'

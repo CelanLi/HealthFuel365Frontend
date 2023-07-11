@@ -57,22 +57,23 @@
     visibility: hidden;
     cursor: pointer;
     margin-left: 1pt;
+    position: relative;
 }
   
 .filter .filter-choice input[type=checkbox]:after{
     display: block;
     visibility: visible;
     content: "";
-    width: 17px;
-    height: 17px;
+    text-align: center;
+    width: 18px;
+    height: 18px;
+    line-height: 18px;
     background: rgba(3, 61, 31, 0.15);
 }
   
 .filter .filter-choice input[type=checkbox]:checked:after {
     content: "x";
     font-size: 16px;
-    text-align: center;
-    align-items: center;
     background: rgba(3, 61, 31, 0.15);
 }
   

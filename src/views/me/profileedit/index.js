@@ -73,14 +73,7 @@ function Page() {
       if (nutri_score === "E") {
         setNutriScore("notSure");
       }
-
-      //others are the same as in profile
-
-      //delay get profile
-      // setTimeout(async () => {
-      //     setUserProfile(profile);
-      //     setIsDataLoaded(true);
-      //   }, 300);
+      
       await setUserProfile(profile);
       setIsDataLoaded(true);
     } catch (error) {
