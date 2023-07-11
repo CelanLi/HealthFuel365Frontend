@@ -1,29 +1,45 @@
 //dependencies
 import React, { useEffect } from 'react'
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 //import style
 import "./index.css"
 import MyInfo from '../me_info'
+import { Upload, message } from 'antd';
+import defaultAvatar from '../../../../assets/images/myaccount/default-user.png'
 
 //import functions
 import { logoutUser } from '../../../../services/userService';
-import { getUser } from '../../../../services/userService';
+import { getUser, AvatarEdit } from '../../../../services/userService';
 import { getCookie } from '../../../../util/cookie';
+import { decodeBase64ToFile, compressImage } from '../../../../util/avatar';
 
 
 function MyNav() {
     //get user information
-    const [userAccount,setUserAccount] = useState(null)
+    const [userAccount,setUserAccount] = useState(null);
+    const [isHovered, setIsHovered] = useState(false);
+    const [imageFile, setImageFile] = useState(null);
+    const avatarRef = useRef(null);
+
+
     //initial user account
     useEffect(() => {
       setAccount();
     },[])
-    //get account if account changes
+
     useEffect(() => {
-      setUserAccount(userAccount);
-    },[userAccount])
+      if (userAccount && userAccount.avatar) {
+        if (userAccount.avatar === "default") {
+          avatarRef.current.src = defaultAvatar;
+        } else {
+          const blob = decodeBase64ToFile(userAccount.avatar, 'image/png');
+          const blobUrl = URL.createObjectURL(blob);
+          avatarRef.current.src = blobUrl;
+        }
+      }
+    }, [userAccount]);
   
     //get account from backend
     const setAccount = async () => {
@@ -32,8 +48,9 @@ function MyNav() {
         if (cookie) {
           console.log("getaccount")
           const userAccount = await (getUser());
-          console.log(userAccount + "userAccount to test1");
-          setUserAccount(userAccount);
+          if (userAccount) {
+            setUserAccount(userAccount)
+          }
         }
         else{
           const userAccount = {
@@ -49,10 +66,37 @@ function MyNav() {
     }
 
 
-    //navigation
+    // navigation
     const navigate = useNavigate();
 
-    //log out handle
+    // upload avatar handle
+    const handleAvatarChange = async (info) => {
+
+      console.log(info.file.size)
+      const compressionOptions = {
+        maxWidthOrHeight: 800, // Specify the maximum width or height of the compressed image
+        maxSizeMB: 0.5, // Specify the maximum size in megabytes of the compressed image
+      };
+      if (info.file) {
+        if (info.file.type.startsWith("image/")){
+          const compressedFile = await compressImage(info.file, compressionOptions);
+          console.log('Upload completed');
+          const successFlag = await AvatarEdit( {avatar: compressedFile} )
+          if (successFlag) {
+            message.success("Avatar upload completed!")
+            await setAccount();
+          }
+          else{
+            message.error("Avatar upload failed!")
+          }
+        }
+        else{
+          message.error("Please upload images!");
+        }
+      }
+    };
+
+    // log out handle
     const handleLogout = (e) => {
         e.preventDefault();
         navigate('/homepage');
@@ -61,8 +105,46 @@ function MyNav() {
 
   return (
     <div className='myaccount-nav-wrap'>
+
+        {userAccount && userAccount.avatar && (
+          <div className="nav-avatar-container">
+            {userAccount && userAccount.avatar && (
+              <div>
+                <img ref={avatarRef} className="avatar-image" alt="Avatar"
+                      onMouseEnter={() => setIsHovered(true)}
+                      onMouseLeave={() => setIsHovered(false)}/>
+                {isHovered && (
+                  <div className="nav-upload-container"
+                      onMouseEnter={() => setIsHovered(true)}
+                      onMouseLeave={() => setIsHovered(false)}>
+                    <Upload
+                      name="avatar"
+                      listType="picture"
+                      className="avatar-uploader"
+                      showUploadList={false}
+                      beforeUpload={() => false} // Prevent immediate upload
+                      onChange={handleAvatarChange}
+                    >
+                      <div className="circular-upload">
+                        <div className="upload-content">
+                          <span className="upload-icon">+</span>
+                          <span className="upload-text">Upload Avatar</span>
+                        </div>
+                      </div>
+                    </Upload>
+                  </div>
+                )}
+              </div>
+              
+            )}
+          </div>
+        )}
+
         {userAccount && (
-            <MyInfo userAccount={userAccount}/>
+            // <MyInfo username={userAccount.username}/>
+            <div className='myaccount-nav-text'>
+              {userAccount.username}
+            </div>
         )}
 
         <div style={{ height: '100px' }}></div>

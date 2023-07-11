@@ -1,12 +1,24 @@
 import axios, { AxiosHeaders } from "axios";
 import {setCookie,getCookie, invalidateCookie, invalidateAllCookies} from "../util/cookie.js"
 import serviceAxios from "../util/request.js";
-import { message } from "antd";
+import { Avatar, message } from "antd";
+import { encodeFileToBase64, decodeBase64ToFile } from "../util/avatar.js";
 
 const expiryDate = new Date();
 expiryDate.setTime(expiryDate.getTime() + 24 * 60 * 60 * 1000);
 
 export const registerUser = async (data) => {
+  console.log(typeof(data.avatar));
+  let avatar = data.avatar;
+
+  if (avatar !== "default") {
+    avatar = await encodeFileToBase64(data.avatar)
+    console.log("avatar",avatar.length)
+  }
+  else{
+    avatar = data.avatar;
+  }
+
   //catch error
   try {
     const result: Response = await axios.post(
@@ -15,9 +27,11 @@ export const registerUser = async (data) => {
         username:data.username,
         password:data.password,
         email:data.email,
+        avatar: avatar,
       }
     );
     const response = result.data;
+    console.log(response)
     if (response.status >= 300) {
       throw new Error(response.message);
     }
@@ -34,6 +48,7 @@ export const registerUser = async (data) => {
       return false;
     }
   }
+
 };
 
 export const loginUser = async (data) => {
@@ -67,9 +82,6 @@ export const loginUser = async (data) => {
 
 export const getUser = async () => {
   try {
-    console.log("fjdalk")
-    console.log(document.cookie)
-
     if (!document.cookie) {
       throw new Error("Cookie is empty,get user");
     }
@@ -83,6 +95,7 @@ export const getUser = async () => {
       },
     );
     const response = result.data;
+    console.log("getuser",response)
 
     if (response.status >= 300) {
       throw new Error(response.message);
@@ -90,6 +103,39 @@ export const getUser = async () => {
     return response;
   } catch (error) {
     throw new Error(error);
+  }
+};
+
+export const AvatarEdit = async (data) => {
+  console.log("bbb",data)
+  const avatar = await encodeFileToBase64(data.avatar)
+  console.log(avatar)
+  //catch error
+  try {
+    const result: Response = await axios.put(
+      'http://localhost:8081/user/AvatarEdit',
+      {
+        avatar: avatar,
+      },
+      {
+        headers: {
+          Authorization: document.cookie, //put cookie into header
+        },
+      }
+    );
+    const response = result.data;
+    if (response.status >= 300) {
+      throw new Error(response.message);
+    }
+    return response;
+  } catch (error){
+    if(error.response){
+      const responseData = error.response.data;
+      message.error(`Avatar edit failed: ${responseData.message}`);
+    }
+    else{
+      message.error(`Avatar edit failed!`);
+    }
   }
 };
 
