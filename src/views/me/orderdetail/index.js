@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './index.css'
 import { useParams } from 'react-router-dom';
 import { Link } from "react-router-dom";
+import BigNumber from "bignumber.js";
 
 import { getOrderById, getPaymentByOrderId, getPromocodeByOrderId } from '../../../services/orderService';
 import OrderDetailProduct from './component/order_detail_product';
@@ -47,6 +48,7 @@ function Index() {
       try {
         // async request to get payment by id from backend
         const response = await getPromocodeByOrderId(orderId);
+        console.log(response.promocode)
         if (response.promocode) {
           const discount = (1-response.promocode.discountRate).toFixed(2);
           setDiscountRate(discount*100)

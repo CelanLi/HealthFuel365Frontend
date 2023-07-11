@@ -1,3 +1,37 @@
+.ant-radio-wrapper.ant-radio-wrapper-disabled .ant-radio-inner {
+    border-color: #033D1F;
+}
+
+.ant-radio-wrapper.ant-radio-wrapper-disabled .ant-radio-inner::after {
+    background-color: #033D1F;
+}
+
+.ant-radio-wrapper:not(.ant-radio-wrapper-disabled) .ant-radio-inner {
+    background-color: white;
+    border-color: white;
+    border-color: #033D1F;
+}
+
+.ant-radio-wrapper:not(.ant-radio-wrapper-disabled) .ant-radio-inner::after {
+    background-color: #033D1F;
+}
+
+.ant-checkbox-checked .ant-checkbox-inner {
+    background-color: #033D1F;
+}
+
+.ant-checkbox-checked:hover .ant-checkbox-inner {
+    background-color: #033D1F;
+  }
+  
+  .ant-checkbox:hover .ant-checkbox-inner::after {
+    background-color: #033D1F;
+  }
+  
+  .ant-checkbox-disabled .ant-checkbox-inner::after {
+    border-color: white;
+  }
+
 .myaccount-address-text-1{
     margin-left: 10px;
     
@@ -10,6 +44,19 @@
     color: #033D1F;
 }
 
+.my-profile-wrap{
+    width: 100%;
+    min-width: 110px;
+}
+
+.my-profile-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+
+}
+
 .myaccount-profile-block{
     background-color: #C4D0CB;
     margin-bottom: 20px;
@@ -20,6 +67,17 @@
 
     display: flex;
     flex-direction: column;
+}
+
+.myaccount-profile-block-wider{
+    background-color: #C4D0CB;
+    border-radius: 20px;
+    height: 180px;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
 }
 
 .myaccount-profile-block-1{
@@ -60,4 +118,18 @@
 
 .myaccount-preference-list{
     margin-top: -8px;
+}
+
+.myaccount-profile-button{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.myaccount-profile-button-div{
+    width: 20%;
+}
+
+.edit-button{
+    background-color: green;
 }

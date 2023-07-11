@@ -73,6 +73,7 @@ function RegisterForm(){
         const url = URL.createObjectURL(compressedFile);
         setImageUrl(url);
         setImageFile(compressedFile);
+        console.log(compressedFile.size)
       }
       else{
         message.error("Please upload images!");
