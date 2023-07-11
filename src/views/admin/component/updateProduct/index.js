@@ -199,19 +199,33 @@ function EditProduct({ productID }) {
         content: "Please fill in all necessary fields",
       });
       return;
-    } else if (!regex1.test(energy) && energy != "unknown") {
+    } else if (isNaN(fiber) && fiber !== "unknown") {
+      messageApi.open({
+        type: "error",
+        content: "Please enter a valid fiber content (numeric value)",
+      });
+      return;
+    } else if (isNaN(proteins) && proteins !== "unknown") {
+      messageApi.open({
+        type: "error",
+        content: "Please enter a valid proteins content (numeric value)",
+      });
+      return;
+    } else if (!regex1.test(energy) && energy !== "unknown") {
       messageApi.open({
         type: "error",
         content: "Please enter a valid energy content (numeric value)",
       });
       return;
-    } else if (!regex2.test(energy) && energy != "unknown") {
+    } else if (!regex2.test(energy) && energy !== "unknown") {
       messageApi.open({
         type: "error",
         content: "Please enter a valid energy with unit (kcal/kj)",
       });
       return;
     }
+    setFiber(fiber.toString + "g");
+    setProteins(proteins.toString + "g");
 
     console.log(nova);
     await updateProduct({
@@ -252,10 +266,10 @@ function EditProduct({ productID }) {
         "g;" +
         " Fiber: " +
         fiber +
-        "g;" +
+        ";" +
         " Proteins: " +
         proteins +
-        "g;" +
+        ";" +
         " Salt: " +
         salt +
         "g;",
@@ -563,7 +577,7 @@ function EditProduct({ productID }) {
               <Input
                 defaultValue={""}
                 value={fiber}
-                onChange={handleFiberChange}
+                onChange={(e) => setFiber(e.target.value)}
                 addonAfter="g"
               />
             </div>
@@ -576,7 +590,7 @@ function EditProduct({ productID }) {
               <Input
                 defaultValue={""}
                 value={proteins}
-                onChange={handleProteinChange}
+                onChange={(e) => setProteins(e.target.value)}
                 addonAfter="g"
               />
             </div>

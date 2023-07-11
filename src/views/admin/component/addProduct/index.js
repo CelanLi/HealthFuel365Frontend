@@ -59,19 +59,33 @@ function AddProduct() {
         content: "Please fill in all necessary fields",
       });
       return;
-    } else if (!regex1.test(energy) && energy != "unknown") {
+    } else if (isNaN(fiber) && fiber !== "unknown") {
+      messageApi.open({
+        type: "error",
+        content: "Please enter a valid fiber content (numeric value)",
+      });
+      return;
+    } else if (isNaN(proteins) && proteins !== "unknown") {
+      messageApi.open({
+        type: "error",
+        content: "Please enter a valid proteins content (numeric value)",
+      });
+      return;
+    } else if (!regex1.test(energy) && energy !== "unknown") {
       messageApi.open({
         type: "error",
         content: "Please enter a valid energy content (numeric value)",
       });
       return;
-    } else if (!regex2.test(energy) && energy != "unknown") {
+    } else if (!regex2.test(energy) && energy !== "unknown") {
       messageApi.open({
         type: "error",
         content: "Please enter a valid energy with unit (kcal/kj)",
       });
       return;
     }
+    setFiber(fiber.toString + "g");
+    setProteins(proteins.toString + "g");
     console.log(nova + "   nova");
     await addProduct({
       productID: "1",
@@ -102,7 +116,7 @@ function AddProduct() {
         ";" +
         " Energy: " +
         energy +
-        "kj;" +
+        ";" +
         " Fat: " +
         fat +
         "g;" +
@@ -111,10 +125,10 @@ function AddProduct() {
         "g;" +
         " Fiber: " +
         fiber +
-        "g;" +
+        ";" +
         " Proteins: " +
         proteins +
-        "g;" +
+        ";" +
         " Salt: " +
         salt +
         "g;",
@@ -196,34 +210,6 @@ function AddProduct() {
         messageApi.open({
           type: "error",
           content: "Please enter a valid salt content (numeric value)",
-        });
-      }
-    });
-  };
-  const handleFiberChange = (e) => {
-    const value = e.target.value;
-
-    setTimeout(() => {
-      if (!isNaN(value)) {
-        setFiber(value);
-      } else {
-        messageApi.open({
-          type: "error",
-          content: "Please enter a valid fiber content (numeric value)",
-        });
-      }
-    });
-  };
-  const handleProteinChange = (e) => {
-    const value = e.target.value;
-
-    setTimeout(() => {
-      if (!isNaN(value)) {
-        setProteins(value);
-      } else {
-        messageApi.open({
-          type: "error",
-          content: "Please enter a valid protein content (numeric value)",
         });
       }
     });
@@ -520,7 +506,7 @@ function AddProduct() {
               <Input
                 defaultValue={""}
                 value={fiber}
-                onChange={handleFiberChange}
+                onChange={(e) => setFiber(e.target.value)}
                 addonAfter="g"
               />
             </div>
@@ -533,7 +519,7 @@ function AddProduct() {
               <Input
                 defaultValue={""}
                 value={proteins}
-                onChange={handleProteinChange}
+                onChange={(e) => setProteins(e.target.value)}
                 addonAfter="g"
               />
             </div>
