@@ -1,0 +1,36 @@
+.register-avatar-image{
+    border-radius: 50%;
+    height: 80px;
+    width: 80px;
+}
+
+.upload-wrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.upload-container {
+    position: relative;
+    width: 120px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+  }
+  
+.clear-image-button {
+    position: absolute;
+    top: -10px;
+    right: 5px;
+    z-index: 1;
+}
+
+.clear-image-button:hover {
+    border-color: #033D1F;
+}
+
+.upload-margin{
+    height: 70px;
+}
