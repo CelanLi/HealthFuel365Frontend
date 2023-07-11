@@ -204,7 +204,8 @@ export const profileGet = async () => {
 };
 
 export const logoutUser = async () => {
-  invalidateAllCookies();
+  //invalidateAllCookies();
+  invalidateCookie("userLogin");
 };
 
 export const addressAdd = async (data) => {
