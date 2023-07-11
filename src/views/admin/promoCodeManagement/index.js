@@ -1,7 +1,8 @@
 import "./index.css";
 import { useNavigate } from "react-router-dom";
 import React from "react";
-import { Table, message } from "antd";
+import { Table, Modal } from "antd";
+import { getCookie } from '../../../util/cookie';
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import {
@@ -89,11 +90,29 @@ function PromoCodeManagement() {
       },
     },
   ];
+ 
 
+  const showLoginReminder = () => {
+    Modal.error({
+      title: "please log in",
+      content: "To access admin panel, log in is reuired",
+      onOk: () => {
+        window.location.href = "http://localhost:3000/admin";
+      },
+    });
+  };
+  
   // initialization data
   useEffect(() => {
-    setPromoCodes();
-  }, []);
+    const cookie = getCookie("adminLogin");
+    if (!cookie) {
+      showLoginReminder();
+    } 
+    else{
+      setPromoCodes();
+    }
+  },[])
+
 
   const setPromoCodes = async () => {
     setIsLoading(true);
