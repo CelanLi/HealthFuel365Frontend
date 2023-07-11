@@ -1,19 +1,32 @@
 import React from 'react'
 import { Link } from "react-router-dom";
+import { useState } from "react";
 import './index.css'
-
 import ShoppingCartNutri from '../../../../../components/nutri';
+import DefaultImage from "../../../../../assets/images/logo.png";
 
-function OrderDetailProduct( { orderDetailProduct, disable = true }) {
-    console.log(disable);
+function OrderDetailProduct( { orderDetailProduct, enable = true }) {
+    /* If no image is retrieved from the stored URL, the logo is displayed as a product image */
+    const [image, setImage] = useState(orderDetailProduct.product.imageUrl);
+    const [imageNotFound, setImageNotFound] = useState(false);
+    const handleImageNotFound = () => {
+     setImage(DefaultImage);
+     setImageNotFound(true);
+    };
   return (
     <div className='detail-product-wrap'>
         <div className="sc_item_image">
-            {disable ? (
+            {enable ? (
                 <Link to={`/product/detail/${orderDetailProduct.product.productID}`}>
-                    <img className="detail-product-image" src={orderDetailProduct.product.imageUrl}></img>
+                    <img className="detail-product-image" 
+                        src={image}
+                        onError={handleImageNotFound}
+                    ></img>
                 </Link>): (
-                    <img className="detail-product-image" src={orderDetailProduct.product.imageUrl}></img>
+                    <img className="detail-product-image" 
+                        src={image}
+                        onError={handleImageNotFound}
+                    ></img>
                 )
             }    
         </div>

@@ -9,6 +9,7 @@ import { message, Modal } from "antd";
 import { getUser } from "../../services/userService";
 import { getCookie } from "../../util/cookie";
 import ScItemCounter from  "../../views/shoppingcart/components/sc_item_counter";
+import DefaultImage from "../../assets/images/logo.png";
 
 function ProductComponent({
   productID,
@@ -21,6 +22,15 @@ function ProductComponent({
   const [shoppingCartID, setShoppingCartID] = useState("");
   const router_path = "/product/detail/" + productID;
   const notAvailable = capacity === 0;
+
+  /* If no image is retrieved from the stored URL, the logo is displayed as a product image */
+  const [image, setImage] = useState(imageUrl);
+  const [imageNotFound, setImageNotFound] = useState(false);
+  const handleImageNotFound = () => {
+    setImage(DefaultImage);
+    setImageNotFound(true);
+  };
+
   const showLoginReminder = () => {
     Modal.error({
       title: "please log in",
@@ -105,7 +115,7 @@ function ProductComponent({
       {/* should link to the corresponding product detail page*/}
       <Link to={router_path}>
         <div className="product-img">
-          <img src={imageUrl} />
+          <img src={image} onError={handleImageNotFound} />
         </div>
         <div className="product-name">{productName}</div>
       </Link>

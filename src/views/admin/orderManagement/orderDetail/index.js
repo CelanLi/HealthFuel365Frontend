@@ -121,7 +121,7 @@ function OrderDetail() {
           {order.orderProducts.map(orderDetailProduct => ((
             <div key={orderDetailProduct.product.productID}>
               <OrderDetailProduct orderDetailProduct = {orderDetailProduct} 
-                                  disable = {false}/>
+                                  enable = {false}/>
             </div>
           )
           ))}

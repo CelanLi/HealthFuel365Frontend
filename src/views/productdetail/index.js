@@ -9,6 +9,7 @@ import ContentLevel from "./components/content_level";
 import AddToScButton from "../../components/add_to_sc_button";
 import Vegetarian from "../../assets/images/vegetarian.png";
 import Vegan from "../../assets/images/vegan.png";
+import DefaultImage from "../../assets/images/logo.png";
 import ScItemCounter from  "../../views/shoppingcart/components/sc_item_counter";
 import { getDetail } from "../../services/productDetailService";
 import { addShoppingCart } from "../../services/productService";
@@ -25,13 +26,17 @@ function Page() {
   const [product, setProduct] = useState([]);
   const [productDetail, setProductDetail] = useState([]);
   const [shoppingCartID, setShoppingCartID] = useState("");
-  const [messageApi, contextHolder] = message.useMessage();
+  const [messageApi] = message.useMessage();
+  /* If no image is retrieved from the stored URL, the logo is displayed as a product image */
+  const [image, setImage] = useState();
+  const [imageNotFound, setImageNotFound] = useState(false);  
   useEffect(() => {
     const setData = async (id: string) => {
       try {
         const [product, productDetail] = await getDetail(id);
         setProduct(product);
         setProductDetail(productDetail);
+        setImage(product?.imageUrl)
       } catch (error) {
         console.error("error set products:", error);
       }
@@ -56,6 +61,12 @@ function Page() {
     if (capacity > 0) return "Available";
     else return "Not Available";
   };
+  
+  const handleImageNotFound = () => {
+    setImage(DefaultImage);
+    setImageNotFound(true);
+  };
+
   const showLoginReminder = () => {
     Modal.error({
       title: "please log in",
@@ -172,7 +183,7 @@ function Page() {
         <div className="pd_content_top">
           {/* product-img */}
           <div className="pd_top_left">
-            <img src={product?.imageUrl}></img>
+            <img src={image} onError={handleImageNotFound}></img>
           </div>
           <div className="pd_top_right">
             {/* product-name */}

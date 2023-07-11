@@ -1,5 +1,6 @@
 import React from 'react'
 import "./index.css";
+import DefaultImage from "../../../../assets/images/logo.png";
 
 function OrderProduct({orderProducts}) {
     const displayProductItems = orderProducts.slice(0, 5);
@@ -8,7 +9,12 @@ function OrderProduct({orderProducts}) {
     <div className='order-product-wrap'>
       {displayProductItems.map((productItem) => (
         <div className='order-product-img' key={productItem.product.productID}>
-            <img key={productItem.product.productID} src={productItem.product.imageUrl} />
+            <img key={productItem.product.productID} 
+                 src={productItem.product.imageUrl}
+                 onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src = DefaultImage;
+                }} />
         </div>
         
       ))}
