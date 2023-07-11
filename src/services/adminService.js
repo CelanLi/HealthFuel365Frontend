@@ -244,7 +244,12 @@ export const getOrderById = async (orderID) => {
 export const getProductsWithDetail = async (keywords) => {
   try {
     const result: Response = await axios.get(
-      backendUrl + adminRoutes + "/products" + "/?keywords=" + keywords
+      backendUrl + adminRoutes + "/products" + "/?keywords=" + keywords,
+      {
+        headers: {
+          Authorization: document.cookie, //put cookie into header
+        }
+      }
     );
     const response = result.data;
     if (response.status >= 300) {
@@ -274,7 +279,12 @@ export const deleteProduct = async (productID) => {
   console.log(productID);
   try {
     const result = await axios.delete(
-      backendUrl + adminRoutes + "/products/delete/" + productID
+      backendUrl + adminRoutes + "/products/delete/" + productID,
+      {
+        headers: {
+          Authorization: document.cookie, //put cookie into header
+        }
+      }
     );
     const response = result.data;
     if (response.status >= 300) {
@@ -309,6 +319,11 @@ export const addProduct = async (data) => {
         sugarLevel: data.sugarLevel,
         saltLevel: data.saltLevel,
         productDescription: data.description,
+      },
+      {
+        headers: {
+          Authorization: document.cookie, //put cookie into header
+        }
       }
     );
     const response = result.data;
@@ -324,7 +339,7 @@ export const addProduct = async (data) => {
 
 export const updateProduct = async (data) => {
   try {
-    console.log(JSON.stringify(data.description) + "uuuupdate");
+    console.log(JSON.stringify(data.description) + "update");
     // await deleteProduct(data.productID);
     const result: Response = await axios.post(
       backendUrl + adminRoutes + "/products/update/" + data.productID,
@@ -346,6 +361,11 @@ export const updateProduct = async (data) => {
         sugarLevel: data.sugarLevel,
         saltLevel: data.saltLevel,
         productDescription: data.description,
+      },
+      {
+        headers: {
+          Authorization: document.cookie, //put cookie into header
+        }
       }
     );
     const response = result.data;

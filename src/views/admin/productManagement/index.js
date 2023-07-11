@@ -1,12 +1,13 @@
 import "./index.css";
 import React from "react";
-import { Table, Input } from "antd";
+import { Table, Modal } from "antd";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import {
   getProductsWithDetail,
   deleteProduct,
 } from "../../../services/adminService";
+import { getCookie } from "../../../util/cookie";
 import EditProduct from "../component/updateProduct";
 import AddProduct from "../component/addProduct";
 
@@ -137,10 +138,26 @@ function ProductManagement() {
       ),
     },
   ];
+
+  const showLoginReminder = () => {
+    Modal.error({
+      title: "please log in",
+      content: "To access admin panel, log in is reuired",
+      onOk: () => {
+        window.location.href = "http://localhost:3000/admin";
+      },
+    });
+  };
   // initialization data
   useEffect(() => {
-    setProductList();
-  }, []);
+    const cookie = getCookie("adminLogin");
+    if (!cookie) {
+      showLoginReminder();
+    } 
+    else{
+      setProductList();
+    }
+  },[]);
   const setProductList = async () => {
     setIsLoading(true);
     try {
