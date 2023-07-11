@@ -31,6 +31,10 @@ function ProductComponent({
     setImageNotFound(true);
   };
 
+  useEffect(() => {
+    setImage(imageUrl)
+  }, [imageUrl]);
+
   const showLoginReminder = () => {
     Modal.error({
       title: "please log in",

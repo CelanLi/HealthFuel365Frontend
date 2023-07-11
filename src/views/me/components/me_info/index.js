@@ -1,15 +1,14 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import User from "../../../../assets/images/myaccount/tax-inspector.png"
 
 //import style
 import "./index.css"
 
-function MyInfo({ userAccount }) {
+function MyInfo({ username }) {
+
   return (
     <div className="me-info-wrap">
-      <div className='me-info-background'>
-        <span className="me-info-title">{userAccount.username}</span>
-      </div>
+        <span className="me-info-title">{username}</span>
     </div>
   )
 }

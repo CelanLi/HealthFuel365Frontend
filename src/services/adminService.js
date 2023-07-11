@@ -2,29 +2,26 @@ import axios from "axios";
 import { backendUrl, adminRoutes } from "../util/constants";
 import { message } from "antd";
 import serviceAxios from "../util/request.js";
-import { setAdminCookie , invalidateCookie } from "../util/cookie.js";
+import { setAdminCookie, invalidateCookie } from "../util/cookie.js";
 
 export const loginAdmin = async (data) => {
   try {
-    const result = await axios.post(
-      backendUrl + adminRoutes + "/login", 
-      {
+    const result = await axios.post(backendUrl + adminRoutes + "/login", {
       adminID: data.adminID,
       password: data.password,
-      }
-    );
+    });
     const response = result.data;
     if (response.status >= 300) {
       throw new Error(response.message);
     }
-    setAdminCookie(data.adminID, response.token); 
+    setAdminCookie(data.adminID, response.token);
     return response;
   } catch (error) {
     if (error.response) {
       const responseData = error.response.data;
       message.error(`Login failed: ${responseData.message}`);
     } else {
-      message.error('Login failed!');
+      message.error("Login failed!");
     }
   }
 };
@@ -82,7 +79,7 @@ export const updateUserEmail = async (userID, email) => {
       {
         headers: {
           Authorization: document.cookie, //put cookie into header
-        }
+        },
       }
     );
     const response = result.data;
@@ -214,12 +211,12 @@ export const updateOrder = async (orderID, status, trackingnumber) => {
         status +
         "/" +
         trackingnumber,
-        {},
-        {
-          headers: {
-            Authorization: document.cookie, //put cookie into header
-          },
-        }
+      {},
+      {
+        headers: {
+          Authorization: document.cookie, //put cookie into header
+        },
+      }
     );
     const response = result.data;
     if (response.status >= 300) {
@@ -255,7 +252,12 @@ export const getOrderById = async (orderID) => {
 export const getProductsWithDetail = async (keywords) => {
   try {
     const result: Response = await axios.get(
-      backendUrl + adminRoutes + "/products" + "/?keywords=" + keywords
+      backendUrl + adminRoutes + "/products" + "/?keywords=" + keywords,
+      {
+        headers: {
+          Authorization: document.cookie, //put cookie into header
+        },
+      }
     );
     const response = result.data;
     if (response.status >= 300) {
@@ -269,7 +271,12 @@ export const getProductsWithDetail = async (keywords) => {
 export const getProductWithDetail = async (productID) => {
   try {
     const result: Response = await axios.get(
-      backendUrl + adminRoutes + "/products/edit/" + productID
+      backendUrl + adminRoutes + "/products/edit/" + productID,
+      {
+        headers: {
+          Authorization: document.cookie, //put cookie into header
+        },
+      }
     );
     const response = result.data;
     if (response.status >= 300) {
@@ -285,7 +292,12 @@ export const deleteProduct = async (productID) => {
   console.log(productID);
   try {
     const result = await axios.delete(
-      backendUrl + adminRoutes + "/products/delete/" + productID
+      backendUrl + adminRoutes + "/products/delete/" + productID,
+      {
+        headers: {
+          Authorization: document.cookie, //put cookie into header
+        },
+      }
     );
     const response = result.data;
     if (response.status >= 300) {
@@ -320,6 +332,11 @@ export const addProduct = async (data) => {
         sugarLevel: data.sugarLevel,
         saltLevel: data.saltLevel,
         productDescription: data.description,
+      },
+      {
+        headers: {
+          Authorization: document.cookie, //put cookie into header
+        },
       }
     );
     const response = result.data;
@@ -335,7 +352,7 @@ export const addProduct = async (data) => {
 
 export const updateProduct = async (data) => {
   try {
-    console.log(JSON.stringify(data.description) + "uuuupdate");
+    console.log(JSON.stringify(data.description) + "update");
     // await deleteProduct(data.productID);
     const result: Response = await axios.post(
       backendUrl + adminRoutes + "/products/update/" + data.productID,
@@ -357,6 +374,11 @@ export const updateProduct = async (data) => {
         sugarLevel: data.sugarLevel,
         saltLevel: data.saltLevel,
         productDescription: data.description,
+      },
+      {
+        headers: {
+          Authorization: document.cookie, //put cookie into header
+        },
       }
     );
     const response = result.data;
