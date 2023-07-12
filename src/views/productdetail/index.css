@@ -197,3 +197,30 @@
   width: 100%;
   height: 100%;
 }
+
+.center {
+  display: flex;
+  flex-direction: column;
+  width: 96%;
+  margin: 20vh auto;
+  gap: 10px;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.center p{
+  font-family: "Kaisei Opti";
+  font-style: normal;
+  font-size: 20px;
+  line-height: 30px;
+  font-weight: 700;
+  color: #033d1f;
+}
+
+.center .logo {
+  width: 200px;
+  height: 48px;
+  background: transparent url("../../assets/images/logo.png") center;
+  background-size: cover;
+}
