@@ -14,6 +14,7 @@ import React from "react";
 import { useState, useCallback, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { Pagination } from "antd";
+
 function Page() {
   // used to store all products
   const [productList, setProductList] = useState([]);
@@ -37,11 +38,13 @@ function Page() {
 
   const setProducts = async () => {
     try {
-      setIsLoading(true);
+      setProductsLoading(true);
+      setDetailsLoading(true);
       const list = await (keyWords === null
         ? getAllProducts(sort)
         : getProductsByName(keyWords, sort));
       setProductList(list);
+      setProductsLoading(false);
       const detailList = async () => {
         const dList = [];
         for (const product of list) {
@@ -52,7 +55,8 @@ function Page() {
       };
       const productDetails = await detailList();
       setProductDetailList(productDetails);
-      setIsLoading(false);
+      setDetailsLoading(false);
+      setDetailsLoaded(false);
     } catch (error) {
       console.error("error set products:", error);
     }
@@ -80,6 +84,7 @@ function Page() {
   }
   // used to get the selected preference
   const [preference, setPreference] = useState([]);
+
   function getSelectedPreference(value) {
     setPreference(value);
   }
@@ -168,7 +173,17 @@ function Page() {
       })
     );
   };
-  const [isLoading, setIsLoading] = useState(true);
+  const [productsLoading, setProductsLoading] = useState(true);
+  const [detailsLoading, setDetailsLoading] = useState(false);
+  const [detailsLoaded, setDetailsLoaded] = useState(false);
+  useEffect(() => {
+    if (detailsLoading) {
+      //used to pass the status of details to product list
+      setDetailsLoaded(true);
+    } else {
+      setDetailsLoaded(false);
+    }
+  }, [sugarContent, saltContent, fatContent, preference]);
   useEffect(() => {
     resetfilteredProductList();
   }, [
@@ -180,7 +195,9 @@ function Page() {
     saltContent,
     brands,
     productList,
-    isLoading,
+    productsLoading,
+    detailsLoading,
+    //isLoading,
   ]);
   useEffect(() => {
     setPageProductList(filteredProductList.slice(0, 10));
@@ -204,13 +221,7 @@ function Page() {
     },
     [filteredProductList, pageNumber]
   );
-  // no pagination when there is no product or the product is loading
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     setIsLoading(false);
-  //   }, 1000);
-  // }, []);
-  const showPagination = (filteredProductList.length > 0) & !isLoading;
+  const showPagination = (filteredProductList.length > 0) & !productsLoading;
 
   return (
     <div className="allproductspage-wrap">
@@ -231,7 +242,11 @@ function Page() {
         {/* categories and products*/}
         <div className="content-right">
           <Category setCategory={getSelectedCategory} />
-          <ProductList productlist={pageProductList} isLoading={isLoading} />
+          <ProductList
+            productlist={pageProductList}
+            isLoading_p={productsLoading}
+            isLoading_d={detailsLoaded}
+          />
           {showPagination ? (
             <div className="pagination-bar">
               <Pagination
