@@ -53,8 +53,37 @@ function Page() {
         }
         return dList;
       };
-      const productDetails = await detailList();
-      setProductDetailList(productDetails);
+      if (!localStorage.getItem("details")) {
+        //if no detail stored in the local storage
+        if (keyWords == null) {
+          //if not using seaching function
+          const productDetails = await detailList();
+          localStorage.setItem("details", JSON.stringify(productDetails));
+          setProductDetailList(productDetails);
+        } else {
+          //with searching then not store in the local storage
+          const productDetails = await detailList();
+          setProductDetailList(productDetails);
+        }
+      } else {
+        //if details stored, directly set to the list
+        const detailsList = JSON.parse(localStorage.getItem("details"));
+        console.log(detailsList.length);
+        if (productList.length !== detailsList.length) {
+          //if new products added, in this case the original detailList do not include the new product
+          clearCache();
+          const productDetails = await detailList();
+          if (keyWords == null) {
+            localStorage.setItem("details", JSON.stringify(productDetails));
+            setProductDetailList(productDetails);
+          } else {
+            setProductDetailList(productDetails);
+          }
+        } else {
+          setProductDetailList(detailsList);
+        }
+      }
+
       setDetailsLoading(false);
       setDetailsLoaded(false);
     } catch (error) {
@@ -65,6 +94,13 @@ function Page() {
   useEffect(() => {
     setProducts();
   }, []);
+  // useEffect(() => {
+  //   //remove clear cache id every 60s
+  //   const intervalId = setInterval(clearCache, 60000);
+  //   return () => {
+  //     clearInterval(intervalId);
+  //   };
+  // }, []);
   // change the product list when keywords/ sort method changed
   useEffect(() => {
     setProducts();
@@ -77,6 +113,10 @@ function Page() {
   function getSelectedCategory(value) {
     setCategory(value);
   }
+  const clearCache = () => {
+    //clear cached data
+    localStorage.removeItem("details");
+  };
   // used to get the selected Nutri Filter
   const [nutri, setNutri] = useState(null);
   function getSelectedNutri(value) {
