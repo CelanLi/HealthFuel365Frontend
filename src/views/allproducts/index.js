@@ -195,8 +195,7 @@ function Page() {
     saltContent,
     brands,
     productList,
-    productsLoading,
-    detailsLoading,
+    productsLoading
     //isLoading,
   ]);
   useEffect(() => {
