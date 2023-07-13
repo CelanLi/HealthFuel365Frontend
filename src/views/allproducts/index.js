@@ -195,11 +195,17 @@ function Page() {
     saltContent,
     brands,
     productList,
-    productsLoading
+    productsLoading,
+    detailsLoading
     //isLoading,
   ]);
   useEffect(() => {
-    setPageProductList(filteredProductList.slice(0, 10));
+    //setPageProductList(filteredProductList.slice(0, 10))
+    console.log("page"+pageNumber)
+    const start_index = (pageNumber - 1) * 10;
+    start_index + 10 >= filteredProductList.length
+    ? setPageProductList(filteredProductList.slice(start_index, filteredProductList.length))
+    : setPageProductList(filteredProductList.slice(start_index, start_index + 10))
   }, [filteredProductList]);
 
   // default pagination states
@@ -207,7 +213,7 @@ function Page() {
   // products displayed per page
   const arrSplit = (arr, pageIndex, size) => {
     const offset = (pageIndex - 1) * size;
-    setPageNumber(pageIndex + 1);
+    //setPageNumber(pageIndex + 1);
     return offset + size >= arr.length
       ? arr.slice(offset, arr.length)
       : arr.slice(offset, offset + size);
