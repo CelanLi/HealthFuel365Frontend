@@ -237,12 +237,12 @@ function Page() {
     productList,
     productsLoading,
     detailsLoading
-    //isLoading,
   ]);
   useEffect(() => {
     //setPageProductList(filteredProductList.slice(0, 10))
-    console.log("page"+pageNumber)
+    // calculate the starting index based on the current page number
     const start_index = (pageNumber - 1) * 10;
+    // display up to 10 products per page
     start_index + 10 >= filteredProductList.length
     ? setPageProductList(filteredProductList.slice(start_index, filteredProductList.length))
     : setPageProductList(filteredProductList.slice(start_index, start_index + 10))
@@ -250,6 +250,10 @@ function Page() {
 
   // default pagination states
   const [pageNumber, setPageNumber] = useState(1);
+  useEffect(() => { 
+    // reset the page number to 1 when category changes
+    setPageNumber(1);
+  }, [category]);
   // products displayed per page
   const arrSplit = (arr, pageIndex, size) => {
     const offset = (pageIndex - 1) * size;
@@ -295,7 +299,7 @@ function Page() {
           {showPagination ? (
             <div className="pagination-bar">
               <Pagination
-                defaultCurrent={pageNumber}
+                current={pageNumber}
                 total={filteredProductList.length}
                 pageSize={10}
                 onChange={handlePaginationChange}
