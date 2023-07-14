@@ -23,6 +23,7 @@ function Page() {
   // get corresponding product data by comparing the product id
   var pathname = window.location.pathname;
   var id = pathname.split("/")[3];
+  const previousPath = localStorage.getItem("navigationHistory")? JSON.parse(localStorage.getItem("navigationHistory")):"/product"
   const [product, setProduct] = useState([]);
   const [productDetail, setProductDetail] = useState([]);
   const [shoppingCartID, setShoppingCartID] = useState("");
@@ -174,7 +175,7 @@ function Page() {
     <div className="productdetail-wrap">
       {/* <back */}
       <div className="pd_bread_crumb">
-        <Link to="/product">&lt;Back</Link>
+        <Link to={previousPath}>&lt;Back</Link>
       </div>
       {/* product Information */}
       { (!product)? 

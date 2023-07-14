@@ -271,6 +271,9 @@ function Page() {
   );
   const showPagination = (filteredProductList.length > 0) & !productsLoading;
 
+  // store current path
+  localStorage.setItem("navigationHistory", JSON.stringify(window.location.pathname));
+
   return (
     <div className="allproductspage-wrap">
       <div className="content-container">
