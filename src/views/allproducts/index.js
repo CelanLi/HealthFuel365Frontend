@@ -68,8 +68,7 @@ function Page() {
       } else {
         //if details stored, directly set to the list
         const detailsList = JSON.parse(localStorage.getItem("details"));
-        console.log(detailsList.length);
-        if (productList.length !== detailsList.length) {
+        if (list.length !== detailsList.length) {
           //if new products added, in this case the original detailList do not include the new product
           clearCache();
           const productDetails = await detailList();
@@ -299,7 +298,7 @@ function Page() {
           {showPagination ? (
             <div className="pagination-bar">
               <Pagination
-                current={pageNumber}
+                defaultCurrent={pageNumber}
                 total={filteredProductList.length}
                 pageSize={10}
                 onChange={handlePaginationChange}
