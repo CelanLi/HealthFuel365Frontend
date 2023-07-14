@@ -298,7 +298,7 @@ function Page() {
           {showPagination ? (
             <div className="pagination-bar">
               <Pagination
-                defaultCurrent={pageNumber}
+                current={pageNumber}
                 total={filteredProductList.length}
                 pageSize={10}
                 onChange={handlePaginationChange}
