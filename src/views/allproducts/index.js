@@ -250,9 +250,9 @@ function Page() {
   // default pagination states
   const [pageNumber, setPageNumber] = useState(1);
   useEffect(() => { 
-    // reset the page number to 1 when category changes
+    // reset the page number to 1 when category/keywords changes
     setPageNumber(1);
-  }, [category]);
+  }, [category,keyWords]);
   // products displayed per page
   const arrSplit = (arr, pageIndex, size) => {
     const offset = (pageIndex - 1) * size;

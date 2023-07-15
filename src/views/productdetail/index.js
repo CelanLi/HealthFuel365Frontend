@@ -269,8 +269,8 @@ function Page() {
               </Collapse>
               {/* ingredients including ingredients, allergens, vegan, vegetarian */}
               <Collapse bordered={false} expandIconPosition="end">
-                {"Ingredients" |
-                ("Allergens" in detailDict) |
+                {"Ingredients" in  detailDict|
+                "Allergens" in detailDict |
                 productDetail.vegetarian |
                 productDetail.vegan ? (
                   <Panel header="Ingredients">
