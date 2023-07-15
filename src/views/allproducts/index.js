@@ -104,7 +104,6 @@ function Page() {
   useEffect(() => {
     setProducts();
   }, [keyWords, sort]);
-
   // used to get the selected category in all product page
   const [category, setCategory] = useState(
     window.location.href.split("/")[3].split("#")[1]
@@ -235,7 +234,8 @@ function Page() {
     brands,
     productList,
     productsLoading,
-    detailsLoading
+    detailsLoading,
+    keyWords,
   ]);
   useEffect(() => {
     //setPageProductList(filteredProductList.slice(0, 10))
@@ -243,16 +243,29 @@ function Page() {
     const start_index = (pageNumber - 1) * 10;
     // display up to 10 products per page
     start_index + 10 >= filteredProductList.length
-    ? setPageProductList(filteredProductList.slice(start_index, filteredProductList.length))
-    : setPageProductList(filteredProductList.slice(start_index, start_index + 10))
+      ? setPageProductList(
+          filteredProductList.slice(start_index, filteredProductList.length)
+        )
+      : setPageProductList(
+          filteredProductList.slice(start_index, start_index + 10)
+        );
   }, [filteredProductList]);
 
   // default pagination states
   const [pageNumber, setPageNumber] = useState(1);
-  useEffect(() => { 
-    // reset the page number to 1 when category/keywords changes
+  useEffect(() => {
+    // reset the page number to 1 when filtered product list changes
     setPageNumber(1);
-  }, [category,keyWords]);
+  }, [
+    category,
+    keyWords,
+    nutri,
+    preference,
+    fatContent,
+    sugarContent,
+    saltContent,
+    brands,
+  ]);
   // products displayed per page
   const arrSplit = (arr, pageIndex, size) => {
     const offset = (pageIndex - 1) * size;
@@ -272,7 +285,10 @@ function Page() {
   const showPagination = (filteredProductList.length > 0) & !productsLoading;
 
   // store current path
-  localStorage.setItem("navigationHistory", JSON.stringify(window.location.pathname));
+  localStorage.setItem(
+    "navigationHistory",
+    JSON.stringify(window.location.pathname)
+  );
 
   return (
     <div className="allproductspage-wrap">
