@@ -11,10 +11,15 @@
 
 .sc_item_image {
   margin-right: 20px;
+  width: 90px;
+  height: 130px;
+  background-color: white;
+  justify-content: center;
+  display: flex;
 }
 
 .sc_item_testimage {
-  width: 90px;
+  /* width: 90px; */
   height: 130px;
 }
 
