@@ -21,6 +21,8 @@ function Index() {
       fetchOrderDetail(orderId);
       fetchPayment(orderId);
       fetchPromocode(orderId);
+      // store current path
+      localStorage.setItem("navigationHistory", JSON.stringify(window.location.pathname));
     }, [orderId]);
 
     const fetchOrderDetail = async (orderId) => {

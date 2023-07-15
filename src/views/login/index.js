@@ -1,4 +1,3 @@
-
 // import css file
 import './index.css';
 // dependencies
@@ -39,7 +38,7 @@ function Login () {
   return(
     <div className="welcomepage_wrap"> 
     <div className="whiteboard"></div>
-    <div className="wel_left">
+    <div className="wel_login">
       <div className="wel_titel"> HealthFuel365 </div>
       <div className="wel_slogan"> ——Online gas station for your health </div>
 
@@ -50,7 +49,7 @@ function Login () {
       <div className="guest"><Link to="/homepage">Visit as a guest</Link></div>
     </div>
 
-    <div className="wel_right">
+    <div className="wel_login_right">
       {/* 遍历 */}
       {featurelist.map(item => ((
         <>

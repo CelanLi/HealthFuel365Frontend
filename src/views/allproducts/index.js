@@ -68,8 +68,7 @@ function Page() {
       } else {
         //if details stored, directly set to the list
         const detailsList = JSON.parse(localStorage.getItem("details"));
-        console.log(detailsList.length);
-        if (productList.length !== detailsList.length) {
+        if (list.length !== detailsList.length) {
           //if new products added, in this case the original detailList do not include the new product
           clearCache();
           const productDetails = await detailList();
@@ -237,12 +236,12 @@ function Page() {
     productList,
     productsLoading,
     detailsLoading
-    //isLoading,
   ]);
   useEffect(() => {
     //setPageProductList(filteredProductList.slice(0, 10))
-    console.log("page"+pageNumber)
+    // calculate the starting index based on the current page number
     const start_index = (pageNumber - 1) * 10;
+    // display up to 10 products per page
     start_index + 10 >= filteredProductList.length
     ? setPageProductList(filteredProductList.slice(start_index, filteredProductList.length))
     : setPageProductList(filteredProductList.slice(start_index, start_index + 10))
@@ -250,6 +249,10 @@ function Page() {
 
   // default pagination states
   const [pageNumber, setPageNumber] = useState(1);
+  useEffect(() => { 
+    // reset the page number to 1 when category changes
+    setPageNumber(1);
+  }, [category]);
   // products displayed per page
   const arrSplit = (arr, pageIndex, size) => {
     const offset = (pageIndex - 1) * size;
@@ -267,6 +270,9 @@ function Page() {
     [filteredProductList, pageNumber]
   );
   const showPagination = (filteredProductList.length > 0) & !productsLoading;
+
+  // store current path
+  localStorage.setItem("navigationHistory", JSON.stringify(window.location.pathname));
 
   return (
     <div className="allproductspage-wrap">
@@ -295,7 +301,7 @@ function Page() {
           {showPagination ? (
             <div className="pagination-bar">
               <Pagination
-                defaultCurrent={pageNumber}
+                current={pageNumber}
                 total={filteredProductList.length}
                 pageSize={10}
                 onChange={handlePaginationChange}

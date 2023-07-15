@@ -113,6 +113,8 @@ function Page() {
         const userAccount = await getUser();
         const userID = userAccount.id;
         setShoppingCartID(userID);
+        // store current path
+        localStorage.setItem("navigationHistory", JSON.stringify(window.location.pathname));
       }
       else {
         Modal.error({
@@ -131,7 +133,6 @@ function Page() {
       getShoppingCartInfo();
     }
   }, [shoppingCartID]);
-
 
   return (
     // HTML structer

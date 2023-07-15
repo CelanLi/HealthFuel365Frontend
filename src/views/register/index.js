@@ -29,7 +29,7 @@ function Register () {
   return (
     <div className="welcomepage_wrap"> 
     <div className="whiteboard"></div>
-    <div className="wel_left">
+    <div className="wel_register">
       <div className="wel_titel"> HealthFuel365 </div>
       <div className="wel_slogan"> ——Online gas station for your health </div>
 
@@ -40,8 +40,7 @@ function Register () {
       <div className="guest"><Link to="/homepage">Visit as a guest</Link></div>
     </div>
 
-    <div className="wel_right">
-      {/* 遍历 */}
+    <div className="wel_register_right">
       {featurelist.map(item => ((
         <>
           <div className="wel_feature"><div>{item}</div></div>

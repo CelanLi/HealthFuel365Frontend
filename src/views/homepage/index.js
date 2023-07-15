@@ -10,6 +10,8 @@ import Recommendation from './components/recommendation';
 import Nutri from '../../assets/images/homepage/NutriScore-on-Package.jpg'
 
 function Page() {
+  // store current path
+  localStorage.setItem("navigationHistory", JSON.stringify(window.location.pathname));
   return (
     // HTML structure
     <div className="homepage-wrap"> 
