@@ -12,6 +12,9 @@ function Page() {
     if (keyWords.trim()) {
      navigate("/product?search="+keyWords);
     }
+    else{
+      alert("Please")
+    }
   };
   
   useEffect(() => {
@@ -23,7 +26,7 @@ function Page() {
 
   return (
     <div className="topnav">
-      <div className="topnav_slogan"> HealthFuel365——Online gas station for your health </div>
+      <div className="topnav_slogan"> HealthFuel365—— Online gas station for your health </div>
       <div className="topnav_logo">
         <Link to="/homepage"/>
       </div>
@@ -36,7 +39,7 @@ function Page() {
         <div className="right">
           <div className="search-container">
             <form onSubmit={handleSubmit}>
-              <input type="text"  value={keyWords} onChange={(e) => setKeyWords(e.target.value)} placeholder=""/>
+              <input type="text"  value={keyWords} onChange={(e) => setKeyWords(e.target.value)} placeholder="Search" required/>
               <button type="submit"/>
             </form>
           </div>  

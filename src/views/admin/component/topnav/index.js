@@ -15,7 +15,7 @@ function Topnav() {
   };
   return (
     <div className="topnav">
-      <div className="topnav_slogan"> HealthFuel365——Online gas station for your health </div>
+      <div className="topnav_slogan"> HealthFuel365—— Online gas station for your health </div>
       <div className="topnav_logo_admin">
         <Link to="/admin/userManagement"/>
       </div>
