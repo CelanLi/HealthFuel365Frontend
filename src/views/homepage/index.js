@@ -1,3 +1,5 @@
+import React, { useState } from 'react';
+
 // import css file
 import './index.css';
 import { Link } from "react-router-dom";
@@ -8,8 +10,21 @@ import Carousel from "./components/carousel"
 import Alternative from "./components/alternatives"
 import Recommendation from './components/recommendation';
 import Nutri from '../../assets/images/homepage/NutriScore-on-Package.jpg'
+import Refresh from '../../assets/images/homepage/refresh.png'
+import Alnatura from '../../assets/images/homepage/suppliers/alnatura.png'
+import Davert from '../../assets/images/homepage/suppliers/davert.png'
+import Alpro from '../../assets/images/homepage/suppliers/alpro.png'
+import Seitenbacher from '../../assets/images/homepage/suppliers/seitenbacher.png'
+import Seeberger from '../../assets/images/homepage/suppliers/seeberger.png'
+import Rapunzel from '../../assets/images/homepage/suppliers/rapunzel.png'
 
 function Page() {
+  const [refreshKey, setRefreshKey] = useState(0);
+  
+
+  const handleRefresh = () => {
+    setRefreshKey(prevKey => prevKey + 1);
+  };
   return (
     // HTML structure
     <div className="homepage-wrap"> 
@@ -43,33 +58,22 @@ function Page() {
         <div className='homepage-recommendation'>
 
           {/* the title of blocks on homepage */}
-          <div className='homepage-title'>
-            <p className='homepage-title-1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Special Recommend for You&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-            <p className='homepage-title-2'>{">>>"}</p>
+          <div className='homepage-recommendation-wrap'>
+            <div className='homepage-title'>
+              <p className='homepage-title-1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Special Recommend for You&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+              <p className='homepage-title-2'>{">>>"}</p>
+            </div>
+            <div className='homepage-refresh' onClick={handleRefresh}>
+              <p className='homepage-title-3'> Change </p>
+              <img src={Refresh} className='homepage-refresh-icon'/>
+            </div>
+            
           </div>
 
           {/* the recommended products */}
-          {/* TODO */}
           <div className='homepage-product'>
-            <Recommendation />
-            {/* <div className='homepage-product-1'>
-              <Product/>
-              <Product/>
-              <Product/>
-              <Product/>
-              <Product/>
-              <Product/>
-            </div>
-            <div className='homepage-product-1'>
-              <Product/>
-              <Product/>
-              <Product/>
-              <Product/>
-              <Product/>
-              <Product/>
-            </div> */}
+            <Recommendation key={refreshKey}/>
           </div>
-
         </div>
         
         {/* suppliers */}
@@ -84,7 +88,12 @@ function Page() {
           {/* the suppliers' icons */}
           {/* TODO */}
           <div className='homepage-suppliers-icon'>
-
+            <img src={Alnatura} className='homepage-suppliers-image'/>
+            <img src={Alpro} className='homepage-suppliers-image'/>
+            <img src={Davert} className='homepage-suppliers-image'/>
+            <img src={Seitenbacher} className='homepage-suppliers-image'/>
+            <img src={Seeberger} className='homepage-suppliers-image'/>
+            <img src={Rapunzel} className='homepage-suppliers-image'/>
           </div>
 
         </div>

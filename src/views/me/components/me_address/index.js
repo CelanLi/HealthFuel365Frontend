@@ -56,12 +56,7 @@ function MyAddress({ addressList = [] }) {
                             </div>
                         </div>
                         <div>
-                            {/* <div  className="myaccount-button-block">
-                                <button className='myaccount-edit' onClick={handleEdit} value={addressItem._id}>Edit</button>
-                            </div> */}
-                            <div  className="myaccount-button-block">
-                                <button className='myaccount-delete' onClick={handelDelete} value={addressItem._id}>Delete</button>
-                            </div>
+                            <button className='myaccount-delete' onClick={handelDelete} value={addressItem._id}>Delete</button>
                         </div>
                     </div>
                 );

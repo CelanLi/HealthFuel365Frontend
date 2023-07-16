@@ -3,7 +3,7 @@
     margin-bottom: 20px;
     border-radius: 20px;
     height: 150px;
-    width: 1000px;
+    width: 100%;
 
     display: flex;
     flex-direction: row;
@@ -81,6 +81,10 @@
     font-style: normal;
     font-weight: 700;
     font-size: 20px;
+}
+
+.myaccount-delete:hover{
+    cursor: pointer;
 }
 
 .myaccount-edit:hover{

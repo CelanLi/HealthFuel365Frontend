@@ -1,5 +1,5 @@
 import { Button, Checkbox, Form, Input, List, message } from 'antd';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {loginUser} from '../../../services/userService';
 import {loginAdmin} from '../../../services/adminService';
 import { useNavigate } from 'react-router-dom';
@@ -11,6 +11,7 @@ function LoginForm({isUser=true}){
   const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   const handleUsernameChange = (e) => {
       setUsername(e.target.value);
@@ -50,6 +51,27 @@ function LoginForm({isUser=true}){
     setPassword('');
   };
 
+  // listen the change of size of window
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  const calculateInputWidth = () => {
+    if (windowWidth >= 900) {
+      return '300px';
+    } else {
+        return '200px';
+    }
+  };
+
   return(
     <div className='login-form'>
       <List 
@@ -58,13 +80,22 @@ function LoginForm({isUser=true}){
       bordered={false}
       split={false}>
         <List.Item className='login-form-item'>
-          <Input className='login-form-input' placeholder={isUser? "Username":"AdminID"} type="text" value={username} onChange={handleUsernameChange} />
+          <Input className='login-form-input' placeholder={isUser? "Username":"AdminID"} type="text" value={username} onChange={handleUsernameChange} 
+                  style={{ width: calculateInputWidth() }}/>
         </List.Item>
         <List.Item className='login-form-item'>
-          <Input.Password className='login-form-input' placeholder="Password" value={password} onChange={handlePasswordChange} />
+          <Input.Password className='login-form-input' placeholder="Password" value={password} onChange={handlePasswordChange} 
+                          style={{ width: calculateInputWidth() }}/>
         </List.Item>
         <List.Item className='login-form-item'>
-          <Button className='login-form-button' onClick={handleSubmit}>Login</Button>
+          <div
+            className="or_contact_information_add"
+            type="primary"
+            onClick={handleSubmit}
+            style={{ width: calculateInputWidth() }}
+          >
+            Login
+          </div>
         </List.Item>
       </List>
     </div>

@@ -66,16 +66,18 @@ function App() {
               <p className='myaccount-title-1'>My Orders&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
               <p className='myaccount-title-2'>{">>>"}</p>
             </div>
-            {orderList.map(orderItem => {
-              return(
-                <MyOrder
-                  key={orderItem.orderID}
-                  id={orderItem.orderID}
-                  date={orderItem.orderDate}
-                  totalPrice={orderItem.totalPrice}
-                  status={orderItem.orderStatus}
-                  orderProducts={orderItem.orderProducts}></MyOrder>
-              )})}
+            <div style={{ width:'100%' }}>
+              {orderList.map(orderItem => {
+                return(
+                  <MyOrder
+                    key={orderItem.orderID}
+                    id={orderItem.orderID}
+                    date={orderItem.orderDate}
+                    totalPrice={orderItem.totalPrice}
+                    status={orderItem.orderStatus}
+                    orderProducts={orderItem.orderProducts}></MyOrder>
+                )})}
+            </div>
         </div>
     </div>
   )

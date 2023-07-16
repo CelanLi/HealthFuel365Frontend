@@ -30,6 +30,28 @@
   object-fit: cover;
 } */
 
+.homepage-recommendation-wrap{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.homepage-refresh-icon{
+  width: 30px;
+  height: 30px;
+  margin-left: 10px;
+}
+
+.homepage-refresh{
+  display: flex;
+  flex-direction: row;
+  margin: 15px;
+}
+
+.homepage-refresh:hover{
+  cursor: pointer;
+}
+
 .homepage-title{
   display: flex;
   flex-direction: row;
@@ -58,10 +80,20 @@
   color: #4D4D4D;
 }
 
+.homepage-title-3{
+  font-family: 'Kaisei Opti';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  text-decoration: none;
+
+  color: #033D1F;
+}
+
 .homepage-recommendation{
   margin-top: 10px;
   background-color: #C4D0CB;
-  /* height: 650px; */
+  min-height: 400px;
 }
 
 .homepage-product{
@@ -78,7 +110,20 @@
 }
 
 .homepage-supplier{
-  height: 300px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.homepage-suppliers-icon{
+  margin-left: 50px;
+}
+
+.homepage-suppliers-image{
+  max-height: 200px;
+  max-width: 200px;
+
+  margin-right: 40px;
 }
 
 .homepage-alternative{

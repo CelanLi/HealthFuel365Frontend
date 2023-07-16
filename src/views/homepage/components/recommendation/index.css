@@ -1,0 +1,16 @@
+@media (max-width: 768px) {
+    .recommendation-wrap-product {
+      width: 33.33%; /* 每行展示 3 个商品 */
+    }
+  }
+  
+  /* 在更小的视口宽度下展示 2 个商品 */
+  @media (max-width: 480px) {
+    .recommendation-wrap-product {
+      width: 50%; /* 每行展示 2 个商品 */
+    }
+  }
+
+.recommendation-wrap-product{
+    background-color: red;
+}

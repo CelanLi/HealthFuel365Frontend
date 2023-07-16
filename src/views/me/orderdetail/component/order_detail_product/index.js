@@ -5,6 +5,20 @@ import './index.css'
 import ShoppingCartNutri from '../../../../../components/nutri';
 import DefaultImage from "../../../../../assets/images/logo.png";
 
+(function (doc, win) {
+    var docEl = doc.documentElement,
+        resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+        recalc = function () {
+            var clientWidth = docEl.clientWidth;
+            if (!clientWidth) return;
+            docEl.style.fontSize = 100 * (clientWidth / 1512) + 'px';
+        };
+  
+    if (!doc.addEventListener) return;
+    win.addEventListener(resizeEvt, recalc, false);
+    doc.addEventListener('DOMContentLoaded', recalc, false);
+  })(document, window);
+
 function OrderDetailProduct( { orderDetailProduct, enable = true }) {
     /* If no image is retrieved from the stored URL, the logo is displayed as a product image */
     const [image, setImage] = useState(orderDetailProduct.product.imageUrl);

@@ -3,10 +3,10 @@ import "./index.css";
 import DefaultImage from "../../../../assets/images/logo.png";
 
 function OrderProduct({orderProducts}) {
-    const displayProductItems = orderProducts.slice(0, 5);
+  const displayProductItems = orderProducts.slice(0, 5);
 
   return (
-    <div className='order-product-wrap'>
+    <div className='order-product-wrap' style={{ display: 'flex', flexWrap: 'wrap' }}>
       {displayProductItems.map((productItem) => (
         <div className='order-product-img' key={productItem.product.productID}>
             <img key={productItem.product.productID} 

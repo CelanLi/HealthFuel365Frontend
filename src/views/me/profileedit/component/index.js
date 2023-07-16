@@ -97,7 +97,7 @@ function EditProfile({goal, type, nutri, fatContent, saltContent, sugarContent})
             lowInSalt: salt,
             lowInSugar: sugar,
         })
-        navigate('/myaccount/myprofile');
+        navigate('/homepage');
       };
 
 

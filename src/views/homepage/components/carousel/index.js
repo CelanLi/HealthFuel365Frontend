@@ -1,9 +1,11 @@
 import { Carousel } from 'antd';
+import "./index.css"
 
 
 // size of carousel images: 1450*500
-import Carousel1 from '../../../../assets/images/homepage/Healthy-Snacks.jpg'
-import Carousel2 from '../../../../assets/images/homepage/snacks2.jpg'
+import Carousel1 from '../../../../assets/images/homepage/promocode.jpg'
+import Carousel2 from '../../../../assets/images/homepage/Alnatura.jpg'
+import Carousel3 from '../../../../assets/images/homepage/fitness.jpg'
 
 const contentStyle = {
   height: '200px',
@@ -16,16 +18,19 @@ const contentStyle = {
 const App = () => (
   <Carousel autoplay>
     <div>
+      <div className="carousel-image-container">
         <img  src={Carousel1}/>
+      </div>
     </div>
     <div>
+      <div className="carousel-image-container">
         <img  src={Carousel2}/>
+      </div>
     </div>
     <div>
-      <h3 style={contentStyle}>3</h3>
-    </div>
-    <div>
-      <h3 style={contentStyle}>4</h3>
+      <div className="carousel-image-container">
+        <img  src={Carousel3}/>
+      </div>
     </div>
   </Carousel>
 );

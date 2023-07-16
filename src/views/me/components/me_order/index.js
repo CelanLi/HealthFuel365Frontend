@@ -28,7 +28,7 @@ function MyOrder({id,date,totalPrice,status,orderProducts}) {
                 </div>
                 <div>
                     <Link to={'myorder/orderdetail/${id}'}></Link>
-                    <button className='myaccount-edit' onClick={() => handleDetail(id)} value={id}>Detail</button>
+                    <button className='myaccount-edit' onClick={() => handleDetail(id)} value={id}>Details</button>
                 </div>
             </div>
             <div className='myaccount-order-row'>

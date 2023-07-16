@@ -9,6 +9,19 @@ import OrderDetailProduct from './component/order_detail_product';
 import OrderAddress from './component/order_detail_address';
 import OrderServices from './component/order_detail_service';
 
+(function (doc, win) {
+  var docEl = doc.documentElement,
+      resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+      recalc = function () {
+          var clientWidth = docEl.clientWidth;
+          if (!clientWidth) return;
+          docEl.style.fontSize = 100 * (clientWidth / 1512) + 'px';
+      };
+
+  if (!doc.addEventListener) return;
+  win.addEventListener(resizeEvt, recalc, false);
+  doc.addEventListener('DOMContentLoaded', recalc, false);
+})(document, window);
 
 function Index() {
     const { orderId } = useParams(); // use useParams hook to get userid from url

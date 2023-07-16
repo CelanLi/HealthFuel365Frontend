@@ -1,7 +1,7 @@
 import { Button, Input, List, message, Upload } from 'antd';
 import { CloseOutlined } from '@ant-design/icons';
 import { UploadChangeParam } from 'antd/es/upload/interface';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {registerUser} from '../../../services/userService'
 import { useNavigate } from 'react-router-dom';
 import { compressImage } from '../../../util/avatar';
@@ -16,6 +16,8 @@ function RegisterForm(){
   const [password, setPassword] = useState('');
   const [imageUrl, setImageUrl] = useState(defaultAvatar);
   const [imageFile, setImageFile] = useState("default");
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [windowHeight, setWindowHeight] = useState(window.innerHeight);
 
 
   //handle register
@@ -45,6 +47,35 @@ function RegisterForm(){
       message.error(`Register failed: ${error.response.data.message}`);
     }
   };
+
+    // listen the change of size of window
+    useEffect(() => {
+      const handleResize = () => {
+        setWindowWidth(window.innerWidth);
+      };
+  
+      window.addEventListener('resize', handleResize);
+  
+      return () => {
+        window.removeEventListener('resize', handleResize);
+      };
+    }, []);
+  
+    const calculateInputWidth = () => {
+      if (windowWidth >= 900) {
+        return '300px';
+      } else {
+          return '200px';
+      }
+    };
+
+    const calculateAvatarWidth = () => {
+      if (windowHeight >= 900) {
+        return '80px';
+      } else {
+          return '40px';
+      }
+    };
 
   const handleUsernameChange = (e) => {
     setUsername(e.target.value);
@@ -86,8 +117,6 @@ function RegisterForm(){
     setImageFile("default");
   };
 
-
-
   const uploadButton = (
     <div>
       <div style={{ marginTop: 8 }}>Upload</div>
@@ -101,7 +130,7 @@ function RegisterForm(){
       size="large"
       bordered={false}
       split={false}>
-        <List.Item>
+        <List.Item className='upload-margin'>
           <div className='upload-wrapper'>
             <div className="upload-container">
               <Upload
@@ -134,24 +163,28 @@ function RegisterForm(){
               )}
             </div>
           </div>
-
         </List.Item>
-        <List.Item>
-          <div className='upload-margin'>
-
+        <List.Item className='login-form-item'>
+          <Input className='login-form-input' placeholder="Username" type="text" value={username} onChange={handleUsernameChange} 
+                  style={{ width: calculateInputWidth() }}/>
+        </List.Item>
+        <List.Item className='login-form-item'>
+          <Input className='login-form-input' placeholder="Email" type="text" value={email} onChange={handleEmailChange} 
+                  style={{ width: calculateInputWidth() }}/>
+        </List.Item>
+        <List.Item className='login-form-item'>
+          <Input.Password className='login-form-input' placeholder="Password" value={password} onChange={handlePasswordChange} 
+                  style={{ width: calculateInputWidth() }}/>
+        </List.Item>
+        <List.Item className='login-form-item'>
+          <div
+              className="or_contact_information_add"
+              type="primary"
+              onClick={handleSubmit}
+              style={{ width: calculateInputWidth() }}
+            >
+            Register
           </div>
-        </List.Item>
-        <List.Item className='login-form-item'>
-          <Input className='login-form-input' placeholder="Username" type="text" value={username} onChange={handleUsernameChange} />
-        </List.Item>
-        <List.Item className='login-form-item'>
-          <Input className='login-form-input' placeholder="Email" type="text" value={email} onChange={handleEmailChange} />
-        </List.Item>
-        <List.Item className='login-form-item'>
-          <Input.Password className='login-form-input' placeholder="Password" value={password} onChange={handlePasswordChange} />
-        </List.Item>
-        <List.Item className='login-form-item'>
-          <Button className='login-form-button' onClick={handleSubmit}>Register</Button>
         </List.Item>
       </List>
     </div>

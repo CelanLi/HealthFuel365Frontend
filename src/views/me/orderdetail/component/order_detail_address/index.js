@@ -3,6 +3,20 @@ import Receiver from '../../../../../assets/images/myaccount/icon-receiver.png'
 import PhoneIcon from '../../../../../assets/images/myaccount/icon-phone.png'
 import AddIcon from '../../../../../assets/images/myaccount/icon-address.png'
 
+(function (doc, win) {
+    var docEl = doc.documentElement,
+        resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+        recalc = function () {
+            var clientWidth = docEl.clientWidth;
+            if (!clientWidth) return;
+            docEl.style.fontSize = 100 * (clientWidth / 1512) + 'px';
+        };
+  
+    if (!doc.addEventListener) return;
+    win.addEventListener(resizeEvt, recalc, false);
+    doc.addEventListener('DOMContentLoaded', recalc, false);
+  })(document, window);
+
 function OrderAddress({receiver, tel, additionalAddress, street, postCode, city}) {
   return (
     <div>
