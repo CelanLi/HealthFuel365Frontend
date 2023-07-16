@@ -61,6 +61,7 @@ function Page() {
                 onChange={(e) => setKeyWords(e.target.value)}
                 placeholder="Search"
                 required
+                onInvalid={(e) => e.target.setCustomValidity("Please fill in this field")}
               />
               <button type="submit" />
             </form>
