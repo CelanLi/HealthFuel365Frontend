@@ -238,16 +238,16 @@ function Page() {
     keyWords,
   ]);
   useEffect(() => {
-    //setPageProductList(filteredProductList.slice(0, 10))
+    //setPageProductList(filteredProductList.slice(0, 15))
     // calculate the starting index based on the current page number
-    const start_index = (pageNumber - 1) * 10;
-    // display up to 10 products per page
-    start_index + 10 >= filteredProductList.length
+    const start_index = (pageNumber - 1) * 15;
+    // display up to 15 products per page
+    start_index + 15 >= filteredProductList.length
       ? setPageProductList(
           filteredProductList.slice(start_index, filteredProductList.length)
         )
       : setPageProductList(
-          filteredProductList.slice(start_index, start_index + 10)
+          filteredProductList.slice(start_index, start_index + 15)
         );
   }, [filteredProductList]);
 
@@ -277,7 +277,7 @@ function Page() {
   const handlePaginationChange = useCallback(
     (pagination) => {
       setPageNumber(pagination);
-      const list = arrSplit(filteredProductList, pagination, 10);
+      const list = arrSplit(filteredProductList, pagination, 15);
       setPageProductList(list);
     },
     [filteredProductList, pageNumber]
@@ -319,7 +319,7 @@ function Page() {
               <Pagination
                 current={pageNumber}
                 total={filteredProductList.length}
-                pageSize={10}
+                pageSize={15}
                 onChange={handlePaginationChange}
                 showSizeChanger={false}
               />
