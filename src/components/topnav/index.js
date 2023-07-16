@@ -62,6 +62,7 @@ function Page() {
                 placeholder="Search"
                 required
                 onInvalid={(e) => e.target.setCustomValidity("Please fill in this field")}
+                onInput={(e) => e.target.setCustomValidity("")}
               />
               <button type="submit" />
             </form>
