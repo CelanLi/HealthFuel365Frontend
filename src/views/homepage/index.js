@@ -25,6 +25,8 @@ function Page() {
   const handleRefresh = () => {
     setRefreshKey(prevKey => prevKey + 1);
   };
+  // store current path
+  localStorage.setItem("navigationHistory", JSON.stringify(window.location.pathname));
   return (
     // HTML structure
     <div className="homepage-wrap"> 

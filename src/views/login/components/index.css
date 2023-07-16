@@ -1,4 +1,9 @@
+.login-form{
+  width: 100%;
+}
+
 .login-form-item {
+    width: 100%;
     border: none;
   }
   
@@ -28,6 +33,6 @@
 }
 
 .login-form-input {
-    width: 300px;
+    width: 100%;
     height: 40px;
-  }
+}

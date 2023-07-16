@@ -32,7 +32,7 @@ function Page() {
       <div className="whiteboard">
         <div className="wel_left">
           <div className="wel_titel"> HealthFuel365 </div>
-          <div className="wel_slogan"> ——Online gas station for your health </div>
+          <div className="wel_slogan"> —— Online gas station for your health </div>
 
           <div className="wel_btn_wrap">
             <div className="login"><Link to={'/login'}>Login</Link></div>

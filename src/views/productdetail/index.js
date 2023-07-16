@@ -23,6 +23,7 @@ function Page() {
   // get corresponding product data by comparing the product id
   var pathname = window.location.pathname;
   var id = pathname.split("/")[3];
+  const previousPath = localStorage.getItem("navigationHistory")? JSON.parse(localStorage.getItem("navigationHistory")):"/product"
   const [product, setProduct] = useState([]);
   const [productDetail, setProductDetail] = useState([]);
   const [shoppingCartID, setShoppingCartID] = useState("");
@@ -120,9 +121,7 @@ function Page() {
     }
     else{
       setQuantity(q[0]);
-      console.log("-----" + JSON.stringify(q[0]));
     }
-    console.log("-----" + JSON.stringify(q));
   }
   useEffect(()=>{
     if (shoppingCartID) {
@@ -176,127 +175,138 @@ function Page() {
     <div className="productdetail-wrap">
       {/* <back */}
       <div className="pd_bread_crumb">
-        <Link to="/product">&lt;Back</Link>
+        <Link to={previousPath}>&lt;Back</Link>
       </div>
-
-      <div className="pd_content">
-        <div className="pd_content_top">
-          {/* product-img */}
-          <div className="pd_top_left">
-            <img src={image} onError={handleImageNotFound}></img>
-          </div>
-          <div className="pd_top_right">
-            {/* product-name */}
-            <h2>{product?.productName}</h2>
-            {/* brand */}
-            <p>Brand: {product?.productBrand}</p>
-            {/* nutri-score */}
-            <Nutri nutri={product?.nutriScore} />
-            <div className="pd_top_right_bottom">
-              <div className="left">
-                <div className="price">{product?.productPrice}€</div>
-                <div className="available">
-                  {isAvailable(product?.capacity)}
-                </div>
+      {/* product Information */}
+      { (!product)? 
+        // case 1: product not found
+        ( <div className="pd_content">
+            <div className="center">
+              <div className="logo"/>
+              <p>Sorry, this product no longer exists.</p>
+            </div>
+          </div>):
+        // case 2: product exists
+        ( <div className="pd_content">
+            <div className="pd_content_top">
+              {/* product-img */}
+              <div className="pd_top_left">
+                <img src={image} onError={handleImageNotFound}></img>
               </div>
-              <div className="right">
-                {/* add to shopping cart button */}
-                { quantity === 0 ?
-                  <AddToScButton 
-                    onClick={handleClick} 
-                    disabled={product?.capacity===0}
-                  /> :
-                  ( <ScItemCounter
-                      count={quantity}
-                      setCount={getItemCount}
-                      maxCapacity={product?.capacity}
-                  />)
-                }
+              <div className="pd_top_right">
+                {/* product-name */}
+                <h2>{product?.productName}</h2>
+                {/* brand */}
+                <p>Brand: {product?.productBrand}</p>
+                {/* nutri-score */}
+                <Nutri nutri={product?.nutriScore} />
+                <div className="pd_top_right_bottom">
+                  <div className="left">
+                    <div className="price">{product?.productPrice}€</div>
+                    <div className="available">
+                      {isAvailable(product?.capacity)}
+                    </div>
+                  </div>
+                  <div className="right">
+                    {/* add to shopping cart button */}
+                    { quantity === 0 ?
+                      <AddToScButton 
+                        onClick={handleClick} 
+                        disabled={product?.capacity===0}
+                      /> :
+                      ( <ScItemCounter
+                          count={quantity}
+                          setCount={getItemCount}
+                          maxCapacity={product?.capacity}
+                      />)
+                    }
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-        <div className="pd_content_bottom">
-          <Collapse
-            bordered={false}
-            defaultActiveKey={["1"]}
-            expandIconPosition="end"
-          >
-            <Panel header="Nutritional Information" key="1">
-              {/* nutritional information including fat/ sugar/ salz */}
-              <div class="info">
-                <ContentLevel degree={productDetail?.fatLevel} />
-                <p>
-                  {" "}
-                  Fat in {productDetail?.fatLevel} amount ({productDetail?.fat}
-                  %){" "}
-                </p>
-              </div>
-              <div class="info">
-                <ContentLevel degree={productDetail?.sugarLevel} />
-                <p>
-                  {" "}
-                  Sugar in {productDetail?.sugarLevel} amount (
-                  {productDetail?.sugar}%){" "}
-                </p>
-              </div>
-              <div class="info">
-                <ContentLevel degree={productDetail?.saltLevel} />
-                <p>
-                  {" "}
-                  Salt in {productDetail?.saltLevel} amount (
-                  {productDetail?.salt}%){" "}
-                </p>
-              </div>
-              {/* nutritional table */}
-              {data.length > 0 && (
-                <Table
-                  columns={columns}
-                  dataSource={data}
-                  pagination={false}
-                  className="table"
-                />
-              )}
-            </Panel>
-          </Collapse>
-          {/* ingredients including ingredients, allergens, vegan, vegetarian */}
-          <Collapse bordered={false} expandIconPosition="end">
-            {"Ingredients" |
-            ("Allergens" in detailDict) |
-            productDetail.vegetarian |
-            productDetail.vegan ? (
-              <Panel header="Ingredients">
-                <p>{detailDict["Ingredients"]}</p>
-                {"Allergens" in detailDict && (
-                  <p>Allergens: {detailDict["Allergens"]}</p>
+            <div className="pd_content_bottom">
+              <Collapse
+                bordered={false}
+                defaultActiveKey={["1"]}
+                expandIconPosition="end"
+              >
+                <Panel header="Nutritional Information" key="1">
+                  {/* nutritional information including fat/ sugar/ salz */}
+                  <div class="info">
+                    <ContentLevel degree={productDetail?.fatLevel} />
+                    <p>
+                      {" "}
+                      Fat in {productDetail?.fatLevel} amount ({productDetail?.fat}
+                      %){" "}
+                    </p>
+                  </div>
+                  <div class="info">
+                    <ContentLevel degree={productDetail?.sugarLevel} />
+                    <p>
+                      {" "}
+                      Sugar in {productDetail?.sugarLevel} amount (
+                      {productDetail?.sugar}%){" "}
+                    </p>
+                  </div>
+                  <div class="info">
+                    <ContentLevel degree={productDetail?.saltLevel} />
+                    <p>
+                      {" "}
+                      Salt in {productDetail?.saltLevel} amount (
+                      {productDetail?.salt}%){" "}
+                    </p>
+                  </div>
+                  {/* nutritional table */}
+                  {data.length > 0 && (
+                    <Table
+                      columns={columns}
+                      dataSource={data}
+                      pagination={false}
+                      className="table"
+                    />
+                  )}
+                </Panel>
+              </Collapse>
+              {/* ingredients including ingredients, allergens, vegan, vegetarian */}
+              <Collapse bordered={false} expandIconPosition="end">
+                {"Ingredients" in  detailDict|
+                "Allergens" in detailDict |
+                productDetail.vegetarian |
+                productDetail.vegan ? (
+                  <Panel header="Ingredients">
+                    <p>{detailDict["Ingredients"]}</p>
+                    {"Allergens" in detailDict && (
+                      <p>Allergens: {detailDict["Allergens"]}</p>
+                    )}
+                    <div className="row">
+                      {productDetail.vegan ? (
+                        <div class="info">
+                          <img src={Vegan} className="icon" />
+                          <p> Vegan </p>
+                        </div>
+                      ) : null}
+                      {productDetail.vegetarian ? (
+                        <div class="info">
+                          <img src={Vegetarian} className="icon" />
+                          <p> Vegetarian </p>
+                        </div>
+                      ) : null}
+                    </div>
+                  </Panel>
+                ) : null}
+              </Collapse>
+              {/* food processing */}
+              <Collapse bordered={false} expandIconPosition="end">
+                {"Nova" in detailDict && detailDict["Nova"] !== "nan" && (
+                  <Panel header="Food Processing">
+                    <Nova nova={detailDict["Nova"]} />
+                  </Panel>
                 )}
-                <div className="row">
-                  {productDetail.vegan ? (
-                    <div class="info">
-                      <img src={Vegan} className="icon" />
-                      <p> Vegan </p>
-                    </div>
-                  ) : null}
-                  {productDetail.vegetarian ? (
-                    <div class="info">
-                      <img src={Vegetarian} className="icon" />
-                      <p> Vegetarian </p>
-                    </div>
-                  ) : null}
-                </div>
-              </Panel>
-            ) : null}
-          </Collapse>
-          {/* food processing */}
-          <Collapse bordered={false} expandIconPosition="end">
-            {"Nova" in detailDict && detailDict["Nova"] !== "nan" && (
-              <Panel header="Food Processing">
-                <Nova nova={detailDict["Nova"]} />
-              </Panel>
-            )}
-          </Collapse>
-        </div>
-      </div>
+              </Collapse>
+            </div>
+          </div>
+        )
+      }    
     </div>
   );
 }

@@ -1,4 +1,10 @@
-.carousel-image-container img {
-    max-width: 100%;
-    max-height: 100%;
-  }
+.carousel-img{
+    width: 100%;
+    height: auto;
+}
+
+.carousel-img img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}

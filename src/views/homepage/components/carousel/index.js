@@ -17,20 +17,14 @@ const contentStyle = {
 
 const App = () => (
   <Carousel autoplay>
-    <div>
-      <div className="carousel-image-container">
-        <img  src={Carousel1}/>
-      </div>
+    <div className="carousel-img">
+      <img src={Carousel1} />
     </div>
-    <div>
-      <div className="carousel-image-container">
-        <img  src={Carousel2}/>
-      </div>
+    <div className="carousel-img">
+      <img src={Carousel2} />
     </div>
-    <div>
-      <div className="carousel-image-container">
-        <img  src={Carousel3}/>
-      </div>
+    <div className="carousel-img">
+      <img src={Carousel3} />
     </div>
   </Carousel>
 );

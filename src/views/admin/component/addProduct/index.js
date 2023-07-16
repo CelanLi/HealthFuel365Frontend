@@ -47,11 +47,11 @@ function AddProduct() {
       !nutriScore ||
       !productBrand ||
       !productPrice ||
-      !fat ||
+      fat.length < 1 ||
       !fatLevel ||
-      !salt ||
+      salt.length < 1 ||
       !saltLevel ||
-      !sugar ||
+      sugar.length < 1 ||
       !sugarLevel
     ) {
       messageApi.open({
@@ -84,9 +84,6 @@ function AddProduct() {
       });
       return;
     }
-    setFiber(fiber.toString + "g");
-    setProteins(proteins.toString + "g");
-    console.log(nova + "   nova");
     await addProduct({
       productID: "1",
       category: category,
@@ -124,10 +121,10 @@ function AddProduct() {
         sugar +
         "g;" +
         " Fiber: " +
-        fiber +
+        (fiber === "unknown" ? fiber : fiber + "g") +
         ";" +
         " Proteins: " +
-        proteins +
+        (proteins === "unknown" ? proteins : proteins + "g") +
         ";" +
         " Salt: " +
         salt +

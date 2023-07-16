@@ -14,6 +14,7 @@ import React from "react";
 import { useState, useCallback, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { Pagination } from "antd";
+
 function Page() {
   // used to store all products
   const [productList, setProductList] = useState([]);
@@ -37,11 +38,13 @@ function Page() {
 
   const setProducts = async () => {
     try {
-      setIsLoading(true);
+      setProductsLoading(true);
+      setDetailsLoading(true);
       const list = await (keyWords === null
         ? getAllProducts(sort)
         : getProductsByName(keyWords, sort));
       setProductList(list);
+      setProductsLoading(false);
       const detailList = async () => {
         const dList = [];
         for (const product of list) {
@@ -50,9 +53,38 @@ function Page() {
         }
         return dList;
       };
-      const productDetails = await detailList();
-      setProductDetailList(productDetails);
-      setIsLoading(false);
+      if (!localStorage.getItem("details")) {
+        //if no detail stored in the local storage
+        if (keyWords == null) {
+          //if not using seaching function
+          const productDetails = await detailList();
+          localStorage.setItem("details", JSON.stringify(productDetails));
+          setProductDetailList(productDetails);
+        } else {
+          //with searching then not store in the local storage
+          const productDetails = await detailList();
+          setProductDetailList(productDetails);
+        }
+      } else {
+        //if details stored, directly set to the list
+        const detailsList = JSON.parse(localStorage.getItem("details"));
+        if (list.length !== detailsList.length) {
+          //if new products added, in this case the original detailList do not include the new product
+          clearCache();
+          const productDetails = await detailList();
+          if (keyWords == null) {
+            localStorage.setItem("details", JSON.stringify(productDetails));
+            setProductDetailList(productDetails);
+          } else {
+            setProductDetailList(productDetails);
+          }
+        } else {
+          setProductDetailList(detailsList);
+        }
+      }
+
+      setDetailsLoading(false);
+      setDetailsLoaded(false);
     } catch (error) {
       console.error("error set products:", error);
     }
@@ -61,11 +93,17 @@ function Page() {
   useEffect(() => {
     setProducts();
   }, []);
+  // useEffect(() => {
+  //   //remove clear cache id every 60s
+  //   const intervalId = setInterval(clearCache, 60000);
+  //   return () => {
+  //     clearInterval(intervalId);
+  //   };
+  // }, []);
   // change the product list when keywords/ sort method changed
   useEffect(() => {
     setProducts();
   }, [keyWords, sort]);
-
   // used to get the selected category in all product page
   const [category, setCategory] = useState(
     window.location.href.split("/")[3].split("#")[1]
@@ -73,6 +111,10 @@ function Page() {
   function getSelectedCategory(value) {
     setCategory(value);
   }
+  const clearCache = () => {
+    //clear cached data
+    localStorage.removeItem("details");
+  };
   // used to get the selected Nutri Filter
   const [nutri, setNutri] = useState(null);
   function getSelectedNutri(value) {
@@ -80,6 +122,7 @@ function Page() {
   }
   // used to get the selected preference
   const [preference, setPreference] = useState([]);
+
   function getSelectedPreference(value) {
     setPreference(value);
   }
@@ -168,7 +211,17 @@ function Page() {
       })
     );
   };
-  const [isLoading, setIsLoading] = useState(true);
+  const [productsLoading, setProductsLoading] = useState(true);
+  const [detailsLoading, setDetailsLoading] = useState(false);
+  const [detailsLoaded, setDetailsLoaded] = useState(false);
+  useEffect(() => {
+    if (detailsLoading) {
+      //used to pass the status of details to product list
+      setDetailsLoaded(true);
+    } else {
+      setDetailsLoaded(false);
+    }
+  }, [sugarContent, saltContent, fatContent, preference]);
   useEffect(() => {
     resetfilteredProductList();
   }, [
@@ -180,18 +233,43 @@ function Page() {
     saltContent,
     brands,
     productList,
-    isLoading,
+    productsLoading,
+    detailsLoading,
+    keyWords,
   ]);
   useEffect(() => {
-    setPageProductList(filteredProductList.slice(0, 10));
+    //setPageProductList(filteredProductList.slice(0, 15))
+    // calculate the starting index based on the current page number
+    const start_index = (pageNumber - 1) * 15;
+    // display up to 15 products per page
+    start_index + 15 >= filteredProductList.length
+      ? setPageProductList(
+          filteredProductList.slice(start_index, filteredProductList.length)
+        )
+      : setPageProductList(
+          filteredProductList.slice(start_index, start_index + 15)
+        );
   }, [filteredProductList]);
 
   // default pagination states
   const [pageNumber, setPageNumber] = useState(1);
+  useEffect(() => {
+    // reset the page number to 1 when filtered product list changes
+    setPageNumber(1);
+  }, [
+    category,
+    keyWords,
+    nutri,
+    preference,
+    fatContent,
+    sugarContent,
+    saltContent,
+    brands,
+  ]);
   // products displayed per page
   const arrSplit = (arr, pageIndex, size) => {
     const offset = (pageIndex - 1) * size;
-    setPageNumber(pageIndex + 1);
+    //setPageNumber(pageIndex + 1);
     return offset + size >= arr.length
       ? arr.slice(offset, arr.length)
       : arr.slice(offset, offset + size);
@@ -199,18 +277,18 @@ function Page() {
   const handlePaginationChange = useCallback(
     (pagination) => {
       setPageNumber(pagination);
-      const list = arrSplit(filteredProductList, pagination, 10);
+      const list = arrSplit(filteredProductList, pagination, 15);
       setPageProductList(list);
     },
     [filteredProductList, pageNumber]
   );
-  // no pagination when there is no product or the product is loading
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     setIsLoading(false);
-  //   }, 1000);
-  // }, []);
-  const showPagination = (filteredProductList.length > 0) & !isLoading;
+  const showPagination = (filteredProductList.length > 0) & !productsLoading;
+
+  // store current path
+  localStorage.setItem(
+    "navigationHistory",
+    JSON.stringify(window.location.pathname)
+  );
 
   return (
     <div className="allproductspage-wrap">
@@ -231,13 +309,17 @@ function Page() {
         {/* categories and products*/}
         <div className="content-right">
           <Category setCategory={getSelectedCategory} />
-          <ProductList productlist={pageProductList} isLoading={isLoading} />
+          <ProductList
+            productlist={pageProductList}
+            isLoading_p={productsLoading}
+            isLoading_d={detailsLoaded}
+          />
           {showPagination ? (
             <div className="pagination-bar">
               <Pagination
-                defaultCurrent={pageNumber}
+                current={pageNumber}
                 total={filteredProductList.length}
-                pageSize={10}
+                pageSize={15}
                 onChange={handlePaginationChange}
                 showSizeChanger={false}
               />
