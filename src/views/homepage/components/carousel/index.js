@@ -4,7 +4,7 @@ import "./index.css"
 
 // size of carousel images: 1450*500
 import Carousel1 from '../../../../assets/images/homepage/promocode.jpg'
-import Carousel2 from '../../../../assets/images/homepage/Alnatura.jpg'
+import Carousel2 from '../../../../assets/images/homepage/alnatura.jpg'
 import Carousel3 from '../../../../assets/images/homepage/fitness.jpg'
 
 const contentStyle = {
