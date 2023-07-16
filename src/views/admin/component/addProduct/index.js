@@ -47,11 +47,11 @@ function AddProduct() {
       !nutriScore ||
       !productBrand ||
       !productPrice ||
-      !fat ||
+      fat.length < 1 ||
       !fatLevel ||
-      !salt ||
+      salt.length < 1 ||
       !saltLevel ||
-      !sugar ||
+      sugar.length < 1 ||
       !sugarLevel
     ) {
       messageApi.open({
