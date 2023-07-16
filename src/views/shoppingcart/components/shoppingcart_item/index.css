@@ -15,12 +15,14 @@
   height: 130px;
   background-color: white;
   justify-content: center;
-  display: flex;
+  display: flex; 
+  align-items: center; 
 }
 
 .sc_item_testimage {
   /* width: 90px; */
-  height: 130px;
+  max-height: 130px; 
+  max-width: 90px;
 }
 
 .sc_item_testimage:hover {
