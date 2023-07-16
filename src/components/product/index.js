@@ -104,11 +104,18 @@ function ProductComponent({
       setQuantity(q[0]);
     }
   }
+  /*
   useEffect(()=>{
     if (shoppingCartID) {
     showQuantity(productID);
     }
   },[shoppingCartID])
+  */
+  useEffect(() => {
+    if (shoppingCartID && productID) {
+      showQuantity(productID);
+    }
+  }, [shoppingCartID, productID]);
   function getItemCount(value) {
     setQuantity(value);
     changeProductQuantity({ productID, value });
