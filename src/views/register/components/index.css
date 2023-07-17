@@ -34,3 +34,13 @@
 .upload-margin{
     height: 120px;
 }
+
+.login-form{
+    display: flex;
+    flex-direction: column;
+
+}
+
+.login-form-input{
+    margin-left: 25%;
+}

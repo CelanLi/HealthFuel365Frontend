@@ -46,21 +46,19 @@ function Register() {
     <div className="welcomepage_wrap"> 
       <div className="whiteboard">
         <div className="wel_left">
-          <div className="wel_titel"> HealthFuel365 </div>
-          <div className="wel_slogan"> ——Online gas station for your health </div>
-
-          <div className="wel_btn_wrap" style={{ marginTop: '0px' }}>
+            <div className="wel_titel"> HealthFuel365 </div>
+            <div className="wel_slogan"> ——Online gas station for your health </div>
+          <div className="wel_register">
             <RegisterForm/>
-            
           </div>
-          <div className="guest" style={{ textDecoration: 'none', textAlign: 'center'}}><Link to="/login">Already have an account? Click to log in →</Link></div>
-
           <div>
+            <div className="guest" style={{ textDecoration: 'none', textAlign: 'center'}}><Link to="/login">Already have an account? Click to log in →</Link></div>
             <div className="guest"><Link to="/homepage">Visit as a guest</Link></div>
-            
           </div>
-          
         </div>
+
+        
+        
 
         <div className="wel_right">
           {/* Loop */}

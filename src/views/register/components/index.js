@@ -62,11 +62,7 @@ function RegisterForm(){
     }, []);
   
     const calculateInputWidth = () => {
-      if (windowWidth >= 900) {
-        return '300px';
-      } else {
-          return '200px';
-      }
+        return '50%';
     };
 
     const calculateAvatarWidth = () => {
