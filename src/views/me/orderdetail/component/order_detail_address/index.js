@@ -21,14 +21,14 @@ function OrderAddress({receiver, tel, additionalAddress, street, postCode, city}
   return (
     <div>
         <div className="order-detail-address-up">
-        <div className="order-detail-address-up-block">
-            <img src={Receiver} className="myaccount-address-icon"/>
-            <div className="myaccount-order-text">&nbsp;&nbsp;Receiver: {receiver}</div>
-        </div>
-        <div className="order-detail-address-up-block">
-            <img src={PhoneIcon} className="myaccount-address-icon"/>
-            <div className="myaccount-order-text">&nbsp;&nbsp;Tel: {tel}</div>
-        </div>
+            <div className="order-detail-address-up-block">
+                <img src={Receiver} className="myaccount-address-icon"/>
+                <div className="myaccount-order-text">&nbsp;&nbsp;Receiver: {receiver}</div>
+            </div>
+            <div className="order-detail-address-up-block">
+                <img src={PhoneIcon} className="myaccount-address-icon"/>
+                <div className="myaccount-order-text">&nbsp;&nbsp;Tel: {tel}</div>
+            </div>
         </div>
         <div className="order-detail-address-up">
             <img src={AddIcon} className="myaccount-address-icon" />

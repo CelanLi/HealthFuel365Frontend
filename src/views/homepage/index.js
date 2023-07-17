@@ -88,7 +88,6 @@ function Page() {
           </div>
 
           {/* the suppliers' icons */}
-          {/* TODO */}
           <div className='homepage-suppliers-icon'>
             <img src={Alnatura} className='homepage-suppliers-image'/>
             <img src={Alpro} className='homepage-suppliers-image'/>

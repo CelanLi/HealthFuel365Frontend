@@ -50,7 +50,6 @@
     font-weight: 400;
     font-size: 26px;
     text-decoration: none;
-    border-bottom: #033D1F solid 1px;
   
     color: #033D1F;
 }
@@ -58,9 +57,11 @@
 .profile-answer{
     margin-top: 20px;
     margin-left: 60px;
+    margin-bottom: 20px;
 
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
 }
 
 

@@ -5,7 +5,7 @@
 
     width: 100%;
 
-    padding: 20px;
+    padding: 1%;
 
     display: flex;
     flex-direction: column;
@@ -17,7 +17,7 @@
     flex-direction: row;
     align-items: center;
     margin-top: 5px;
-    margin-left: 30px;
+    margin-left: 1%;
 }
 
 .myaccount-order-text{
@@ -32,7 +32,7 @@
 
 .myaccount-order-row{
     display: flex;
-    flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .myaccount-order-center{

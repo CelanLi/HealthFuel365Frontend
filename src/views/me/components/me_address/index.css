@@ -17,11 +17,12 @@
 }
 
 .myaccount-content-up{
-    margin: 10px;
-    margin-left: 50px;
+    margin-left: 3%;
+    margin-bottom: 2%;
 
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     align-items: center;
 }
 
@@ -34,7 +35,6 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding: 10px;
 }
 
 .myaccount-address-text-1{
@@ -50,8 +50,7 @@
 }
 
 .myaccount-content-bottom{
-    margin: 10px;
-    margin-left: 60px;
+    margin-left: 3%;
 
     display: flex;
     flex-direction: row;

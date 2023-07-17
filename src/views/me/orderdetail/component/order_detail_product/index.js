@@ -30,23 +30,13 @@ function OrderDetailProduct( { orderDetailProduct, enable = true }) {
   return (
     <div className='detail-product-wrap'>
         <div className="sc_item_image">
-            {enable ? (
-                <Link to={`/product/detail/${orderDetailProduct.product.productID}`}>
-                    <img className="detail-product-image" 
-                        src={image}
-                        onError={handleImageNotFound}
-                    ></img>
-                </Link>): (
-                    <img className="detail-product-image" 
-                        src={image}
-                        onError={handleImageNotFound}
-                    ></img>
-                )
-            }    
+            <Link to={`/product/detail/${orderDetailProduct.product.productID}`}>
+            <img className="sc_item_testimage" src={image} onError={handleImageNotFound}></img>
+            </Link>
         </div>
         <div className='detail-product-middle'>
             <div className='detail-product-name'>
-                {orderDetailProduct.product.productName}
+            <Link to={`/product/detail/${orderDetailProduct.product.productID}`}>{orderDetailProduct.product.productName}</Link>
             </div>
             <div className='detail-product-text'>
                 Brand: {orderDetailProduct.product.productBrand}

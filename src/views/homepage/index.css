@@ -117,14 +117,17 @@
 }
 
 .homepage-suppliers-icon{
-  margin-left: 50px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .homepage-suppliers-image{
-  max-height: 200px;
-  max-width: 200px;
-
-  margin-right: 40px;
+  max-height: 14%;
+  max-width: 14%;
+  object-fit: contain;
+  margin: 1%;
 }
 
 .homepage-alternative{

@@ -45,8 +45,8 @@ function MyAddress({ addressList = [] }) {
                                 </div>
                                 <div className="myaccount-content-up-block">
                                     <img src={PhoneIcon} className="myaccount-address-icon"/>
-                                <div className="myaccount-address-text-1">Tel:&nbsp;{addressItem.tel}</div>
-                            </div>
+                                    <div className="myaccount-address-text-1">Tel:&nbsp;{addressItem.tel}</div>
+                                </div>
                             </div>
                             <div className="myaccount-content-bottom">
                                 <img src={AddIcon} className="myaccount-address-icon" />

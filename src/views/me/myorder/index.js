@@ -53,10 +53,7 @@ function App() {
       console.error("order get error:", error);
     }
   }
-
-  const handleOk = () => {
-    navigate('/');
-  };
+  
   return (
     <div className='myaccount-order-wrap'>
         <MyNav/>

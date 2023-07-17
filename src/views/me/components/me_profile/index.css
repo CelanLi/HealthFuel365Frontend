@@ -53,8 +53,6 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-
-
 }
 
 .myaccount-profile-block{
@@ -63,17 +61,31 @@
     padding: 10px;
     border-radius: 20px;
     width: 100%;
-    height: 90%;
 
     display: flex;
     flex-direction: column;
 }
 
+.profile-block-top {
+    position: relative;
+  }
+  
+  .profile-questions::after {
+    content: "";
+    display: block;
+    width: 50%;
+    height: 1px;
+    background-color: #033D1F;
+    position: absolute;
+    bottom: -5px;
+    left: 2%;
+  }
+
 .myaccount-profile-block-wider{
     background-color: #C4D0CB;
     border-radius: 20px;
-    height: 180px;
     width: 100%;
+    margin-bottom: 20px;
 
     display: flex;
     flex-direction: column;
