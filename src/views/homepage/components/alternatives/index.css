@@ -2,6 +2,7 @@
     width: 100%;
     display: flex;
     justify-content: center;
+    position: relative;
 }
 
 .alternative-nav{
@@ -74,3 +75,26 @@
     width: 21%;
     min-width: 98px;
 }
+
+.change-icon{
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    top: -41px;
+    right: 1%;
+}
+
+@media (max-width: 1200px){
+    .change-icon{
+        display: flex;
+        flex-direction: row;
+        position: absolute;
+        top: -14px;
+        right: 1%;
+        margin-left: 2.5%;
+    }
+    .alternative-nav{
+        margin-top: 25px;
+    }
+    
+  }

@@ -1,6 +1,7 @@
 import "./index.css";
 import { useState } from "react";
 import Product from "../../../../components/product";
+import { LoadingScreen } from "../../../../components/loading";
 import { getAlternative } from "../../../../services/alternativeService";
 
 import Chips from "../../../../assets/images/homepage/junkfood/chips.png";
@@ -9,6 +10,7 @@ import GummiBears from "../../../../assets/images/homepage/junkfood/gummyBears.p
 import Cola from "../../../../assets/images/homepage/junkfood/cola.png";
 import Cookies from "../../../../assets/images/homepage/junkfood/cookies.png";
 import Salami from "../../../../assets/images/homepage/junkfood/salami.png";
+import Refresh from "../../../../assets/images/homepage/refresh.png";
 
 const Alternative = () => {
   const [value, setValue] = useState(0);
@@ -128,12 +130,12 @@ const Alternative = () => {
           )}
           {isLoading && (
             <div className="alternative-panel-text">
-              Loading alternatives for {junkFoodNames[value]}...
+              <LoadingScreen />
             </div>
           )}
           {(!isLoading) && value === 0 && (
             <div className="alternative-product">
-                {alternativeMap(alternative0)}
+              {alternativeMap(alternative0)}
             </div>
           )}
           {(!isLoading) && value === 1 && (
@@ -160,9 +162,14 @@ const Alternative = () => {
             <div className="alternative-product">
               {alternativeMap(alternative5)}
             </div>
-  
           )}
         </div>
+        {(!showText) && (
+          <div className="change-icon" onClick={() => handleAlternativeClick(value)}>
+            <p className='homepage-title-3'> Change alternatives for {junkFoodNames[value]}</p>
+            <img src={Refresh} className='homepage-refresh-icon'/>
+          </div>
+        )}
       </div>
     </div>
   );
