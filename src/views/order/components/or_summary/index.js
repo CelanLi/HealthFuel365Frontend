@@ -39,7 +39,7 @@ function OrderSummary({
             content: res.message,
           });
         }
-        window.location.href = "http://localhost:3000/myaccount/myorder";
+        window.location.href = "http://localhost:3000/myaccount/myorder?tips=success";
       });
       console.log("IS PAID");
     });
@@ -57,7 +57,7 @@ function OrderSummary({
           content: res.message,
         });
       }
-      window.location.href = "http://localhost:3000/myaccount/myorder";
+      window.location.href = "http://localhost:3000/myaccount/myorder?tips=cancel";
     });
     console.log("IS CANCELLED");
   };
