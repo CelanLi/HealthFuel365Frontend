@@ -271,21 +271,21 @@ function Page() {
               <Collapse bordered={false} expandIconPosition="end">
                 {"Ingredients" in  detailDict|
                 "Allergens" in detailDict |
-                productDetail.vegetarian |
-                productDetail.vegan ? (
+                productDetail?.vegetarian |
+                productDetail?.vegan ? (
                   <Panel header="Ingredients">
                     <p>{detailDict["Ingredients"]}</p>
                     {"Allergens" in detailDict && (
                       <p>Allergens: {detailDict["Allergens"]}</p>
                     )}
                     <div className="row">
-                      {productDetail.vegan ? (
+                      {productDetail?.vegan ? (
                         <div class="info">
                           <img src={Vegan} className="icon" />
                           <p> Vegan </p>
                         </div>
                       ) : null}
-                      {productDetail.vegetarian ? (
+                      {productDetail?.vegetarian ? (
                         <div class="info">
                           <img src={Vegetarian} className="icon" />
                           <p> Vegetarian </p>
