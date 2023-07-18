@@ -51,7 +51,7 @@ function MyAddress({ addressList = [] }) {
                             <div className="myaccount-content-bottom">
                                 <img src={AddIcon} className="myaccount-address-icon" />
                                 <div className="myaccount-content-bottom-text">
-                                    <div className="myaccount-address-text-1">Address:&nbsp;{addressItem.additional},&nbsp;{addressItem.street},&nbsp;{addressItem.postCode},&nbsp;{addressItem.city}</div>
+                                    <div className="myaccount-address-text-1">Address:&nbsp;{addressItem.additional}&nbsp;{addressItem.street},&nbsp;{addressItem.postCode},&nbsp;{addressItem.city}</div>
                                 </div>
                             </div>
                         </div>

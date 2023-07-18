@@ -2,6 +2,8 @@ import React from 'react'
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import './index.css'
+import BigNumber from "bignumber.js";
+
 import ShoppingCartNutri from '../../../../../components/nutri';
 import DefaultImage from "../../../../../assets/images/logo.png";
 
@@ -23,10 +25,17 @@ function OrderDetailProduct( { orderDetailProduct, enable = true }) {
     /* If no image is retrieved from the stored URL, the logo is displayed as a product image */
     const [image, setImage] = useState(orderDetailProduct.product.imageUrl);
     const [imageNotFound, setImageNotFound] = useState(false);
+    
+    // calculate the price of products
+    const totalPrice = new BigNumber(orderDetailProduct.quantity)
+        .multipliedBy(new BigNumber(orderDetailProduct.product.productPrice))
+        .toFixed(2);
+
     const handleImageNotFound = () => {
      setImage(DefaultImage);
      setImageNotFound(true);
     };
+    
   return (
     <div className='detail-product-wrap'>
         <div className="sc_item_image">
@@ -60,7 +69,7 @@ function OrderDetailProduct( { orderDetailProduct, enable = true }) {
             </div>
             <div className='detail-product-price'>
                 <div className='detail-product-total'>
-                    Total Price: {orderDetailProduct.quantity * orderDetailProduct.product.productPrice}€
+                    Total Price: {totalPrice}€
                 </div>
             </div>
         </div>

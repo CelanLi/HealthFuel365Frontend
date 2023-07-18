@@ -22,6 +22,9 @@ function OrderAddAddress() {
   const [cityValue, setCityValue] = useState("");
 
   const [messageApi, contextHolder] = message.useMessage();
+  const phoneNumberRegex = /^[\d-]+$/;
+  const postcodeRegex = /^\d{5,6}$/;
+  const streetNoRegex = /^\d{1,5}$/;
 
   const showModal = () => {
     setIsModalOpen(true);
@@ -42,7 +45,44 @@ function OrderAddAddress() {
         content: "Please fill in all necessary fields",
       });
       return;
-    } 
+    }
+    // check the length of input
+    if (
+      firstNameValue.length > 100 ||
+      lastNameValue.length > 100 ||
+      streetValue.length > 100 ||
+      cityValue.length > 100
+    ) {
+      messageApi.open({
+        type: 'error',
+        content: 'Input fields exceed the character limit',
+      });
+      return;
+    }
+    // check whether the phone number is valid
+    if (!phoneNumberRegex.test(telValue) || telValue.length < 10 || telValue.length > 11) {
+      messageApi.open({
+        type: "error",
+        content: "Please enter a valid phone number",
+      });
+      return;
+    }
+    // check whether the post code is valid
+    if (!postcodeRegex.test(postCodeValue)) {
+      messageApi.open({
+        type: "error",
+        content: "Please enter a valid postcode",
+      });
+      return;
+    }
+    //check whether the street no value is valid
+    if (!streetNoRegex.test(streetNoValue)) {
+      messageApi.open({
+        type: 'error',
+        content: 'Street No. must be a number and no more than 5 digits',
+      });
+      return;
+    }
     addressAdd({
         street: streetValue + ' ' + streetNoValue,
         postCode: postCodeValue,

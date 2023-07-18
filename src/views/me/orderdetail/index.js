@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import './index.css'
 import { useParams } from 'react-router-dom';
 import { Link } from "react-router-dom";
-import BigNumber from "bignumber.js";
 
 import { getOrderById, getPaymentByOrderId, getPromocodeByOrderId } from '../../../services/orderService';
 import OrderDetailProduct from './component/order_detail_product';
@@ -54,6 +53,7 @@ function Index() {
         // async request to get payment by id from backend
         const response = await getPaymentByOrderId(orderId);
         setPayment(response.payment.paymentID)
+        console.log("response.payment.paymentID",response.payment.paymentID)
       } catch (error) {
         console.error('Error fetching payment detail:', error);
       }
@@ -108,7 +108,12 @@ function Index() {
       <div className='order-detail-row'>
         <div className='myaccount-order-title'>
             <p className='myaccount-order-text'>Payment ID:&nbsp;</p>
-            <p className='myaccount-order-text'>{payment}</p>
+            <p className='myaccount-order-text'>
+              {payment? (
+                {payment}
+              ): (
+                <>-</>
+              )}</p>
         </div>
         <div className='myaccount-order-title'>
             <p className='myaccount-order-text'>Tracking Number:&nbsp;</p>

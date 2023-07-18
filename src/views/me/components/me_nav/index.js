@@ -20,7 +20,6 @@ function MyNav() {
     //get user information
     const [userAccount,setUserAccount] = useState(null);
     const [isHovered, setIsHovered] = useState(false);
-    const [imageFile, setImageFile] = useState(null);
     const avatarRef = useRef(null);
 
 
@@ -85,6 +84,9 @@ function MyNav() {
           if (successFlag) {
             message.success("Avatar upload completed!")
             await setAccount();
+            const blob = compressedFile;
+            const blobUrl = URL.createObjectURL(blob);
+            avatarRef.current.src = blobUrl;
           }
           else{
             message.error("Avatar upload failed!")
