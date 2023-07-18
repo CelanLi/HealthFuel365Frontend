@@ -269,13 +269,15 @@ function Page() {
               </Collapse>
               {/* ingredients including ingredients, allergens, vegan, vegetarian */}
               <Collapse bordered={false} expandIconPosition="end">
-                {"Ingredients" in  detailDict|
-                "Allergens" in detailDict |
+                {("Ingredients" in  detailDict && detailDict["Ingredients"]!="unknown")|
+                ("Allergens" in detailDict  && detailDict["Allergens"]!="unknown")|
                 productDetail?.vegetarian |
                 productDetail?.vegan ? (
                   <Panel header="Ingredients">
-                    <p>{detailDict["Ingredients"]}</p>
-                    {"Allergens" in detailDict && (
+                    {"Ingredients" in detailDict && detailDict["Ingredients"]!="unknown" && (
+                        <p>{detailDict["Ingredients"]}</p>
+                    )}
+                    {"Allergens" in detailDict && detailDict["Allergens"]!="unknown" && (
                       <p>Allergens: {detailDict["Allergens"]}</p>
                     )}
                     <div className="row">
