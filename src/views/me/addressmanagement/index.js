@@ -56,7 +56,7 @@ function App() {
       navigate('/');
     };
 
-    if (cookie) {
+    if (!cookie) {
       return(
         <div className='myaccount-error-message'>
           <Modal
