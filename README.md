@@ -46,10 +46,10 @@ You don't have to ever use `eject`. The curated feature set is suitable for smal
     │   ├── font
     │   └── images
     │       ├── category
-    │       ├── homepage
-    │       │   ├── junkfood
-    │       │   └── suppliers
-    │       ├── myaccount
+    │       ├── homepage [store images of homepage]
+    │       │   ├── junkfood [store images in the alternative block]
+    │       │   └── suppliers [store images of suppliers]
+    │       ├── myaccount [store images of myaccount]
     │       ├── nova_score
     │       └── nutri_score
     ├── components
@@ -64,7 +64,21 @@ You don't have to ever use `eject`. The curated feature set is suitable for smal
     ├── models
     ├── routers
     ├── services
+    │   ├── adminService.js []
+    │   ├── alternativeService.js []
+    │   ├── orderService.js []
+    │   ├── productDetailService.js []
+    │   ├── productService.js
+    │   ├── recommendationService.js [communicate with backend and get recommended product list]
+    │   ├── shoppingCartService.js
+    │   └── userService.js [communicate with backend and implement functions related to users such as register, log in, profile management, address management and so on ]
+    │
     ├── util
+    │   ├── avatar.js [util functions used to deal with avatars, like compression, encoding and decoding]
+    │   ├── constants.js []
+    │   ├── cookie.js [util functions used to manage cookies]
+    │   └── request.js
+    │
     └── views
         ├── admin
         │   ├── component
