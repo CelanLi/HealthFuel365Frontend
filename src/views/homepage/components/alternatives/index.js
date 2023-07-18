@@ -1,5 +1,5 @@
 import "./index.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Product from "../../../../components/product";
 import { LoadingScreen } from "../../../../components/loading";
 import { getAlternative } from "../../../../services/alternativeService";
@@ -13,6 +13,7 @@ import Salami from "../../../../assets/images/homepage/junkfood/salami.png";
 import Refresh from "../../../../assets/images/homepage/refresh.png";
 
 const Alternative = () => {
+  // default alternatives of junk food: chips
   const [value, setValue] = useState(0);
   const [alternative0, setAlternative0] = useState([]);
   const [alternative1, setAlternative1] = useState([]);
@@ -20,26 +21,29 @@ const Alternative = () => {
   const [alternative3, setAlternative3] = useState([]);
   const [alternative4, setAlternative4] = useState([]);
   const [alternative5, setAlternative5] = useState([]);
-  const [showText, setShowText] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const junkFoodNames = [
     "chips",
     "white chocolate",
-    "unhealthy carbonated beverages",
+    "unhealthy beverages",
     "gummi bears",
     "unhealthy sugary and fatty cookies",
-    "highly processed salami"];
+    "high salt salami"
+  ];
 
   const className = (baseName, isSelected) =>
     (isSelected ? [baseName].concat("selected") : [baseName]).join(" ");
 
   const handleAlternativeClick = async (value) => {
     setIsLoading(true);
-    setShowText(false);
     setValue(value);
     await setAlternative(value);
     setIsLoading(false);
   };
+
+  useEffect(() => {
+    handleAlternativeClick(0); // set alternatives of chips initially
+  }, []);
 
   const setAlternative = async (value) => {
     try {
@@ -86,36 +90,42 @@ const Alternative = () => {
           <div
             className={className("alternative-tab-item", value === 0)}
             onClick={() => handleAlternativeClick(0)}
+            junkFoodName={junkFoodNames[value]}
           >
             <img src={Chips} className="alternative-tab-icon" />
           </div>
           <div
             className={className("alternative-tab-item", value === 1)}
             onClick={() => handleAlternativeClick(1)}
+            junkFoodName={junkFoodNames[value]}
           >
             <img src={WhiteChocolate} className="alternative-tab-icon" />
           </div>
           <div
             className={className("alternative-tab-item", value === 2)}
             onClick={() => handleAlternativeClick(2)}
+            junkFoodName={junkFoodNames[value]}
           >
             <img src={Cola} className="alternative-tab-icon" />
           </div>
           <div
             className={className("alternative-tab-item", value === 3)}
             onClick={() => handleAlternativeClick(3)}
+            junkFoodName={junkFoodNames[value]}
           >
             <img src={GummiBears} className="alternative-tab-icon" />
           </div>
           <div
             className={className("alternative-tab-item", value === 4)}
             onClick={() => handleAlternativeClick(4)}
+            junkFoodName={junkFoodNames[value]}
           >
             <img src={Cookies} className="alternative-tab-icon" />
           </div>
           <div
             className={className("alternative-tab-item", value === 5)}
             onClick={() => handleAlternativeClick(5)}
+            junkFoodName={junkFoodNames[value]}
           >
             <img src={Salami} className="alternative-tab-icon" />
           </div>
@@ -123,13 +133,8 @@ const Alternative = () => {
 
         {/* product alternatives */}
         <div className="alternative-panels">
-          {showText && (
-            <div className="alternative-panel-text">
-              Please click the icon on the left to get corresponding healthier alternatives
-            </div>
-          )}
           {isLoading && (
-            <div className="alternative-panel-text">
+            <div className="alternative-panel-loading">
               <LoadingScreen />
             </div>
           )}
@@ -164,12 +169,10 @@ const Alternative = () => {
             </div>
           )}
         </div>
-        {(!showText) && (
-          <div className="change-icon" onClick={() => handleAlternativeClick(value)}>
-            <p className='homepage-title-3'> Change alternatives for {junkFoodNames[value]}</p>
-            <img src={Refresh} className='homepage-refresh-icon'/>
-          </div>
-        )}
+        <div className="change-icon" onClick={() => handleAlternativeClick(value)}>
+          <p className='homepage-title-3'> Change alternatives for {junkFoodNames[value]}</p>
+          <img src={Refresh} className='homepage-refresh-icon'/>
+        </div>
       </div>
     </div>
   );

@@ -1,4 +1,3 @@
-// 引入样式文件
 import "./index.css";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -45,7 +44,7 @@ function Page({ setCategory = () => undefined }) {
             onClick={handleCategoryChange}
           />
         </div>
-        <p>Staple</p>
+        <p>Staples</p>
       </div>
       <div className="category">
         <div className="category-icon">

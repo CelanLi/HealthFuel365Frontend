@@ -37,22 +37,34 @@
 .alternative-tab-icon:hover{
     filter:brightness(1.2);
 }
-
-.alternative-tab-item.selected{
-    filter:brightness(1.3);
-    box-shadow: 0 0 10px rgba(3, 61, 31, 0.5);
+  
+.alternative-tab-item.selected {
+    box-shadow: 0 0 0.07rem white;
+    position: relative;
 }
 
-.alternative-panel-text{
+.alternative-tab-item.selected .alternative-tab-icon{
+    opacity: 0.5; /* partially transparent */
+}
+
+.alternative-tab-item.selected::after {
+    content: attr(junkFoodName); /* get content from .js file */
+    font-family: 'Kaisei Opti';
+    font-style: normal;
+    color: white;
+    text-align: center;
+    font-weight: 700;
+    font-size: max(0.2rem,17px); 
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.alternative-panel-loading{
    text-align: center;
    align-items: center;
    margin: auto;
-   font-family: 'Kaisei Opti';
-   font-style: normal;
-   color: #033D1F;
-   text-align: center;
-   font-weight: 600;
-   font-size: 20px;
 }
 
 .alternative-panels{
@@ -96,5 +108,4 @@
     .alternative-nav{
         margin-top: 25px;
     }
-    
   }
