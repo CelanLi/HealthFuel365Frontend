@@ -126,8 +126,14 @@
 .homepage-suppliers-image{
   max-height: 14%;
   max-width: 14%;
-  object-fit: contain;
   margin: 1%;
+}
+
+
+.homepage-suppliers-image img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .homepage-alternative{
