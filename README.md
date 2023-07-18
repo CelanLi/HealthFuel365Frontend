@@ -64,20 +64,20 @@ You don't have to ever use `eject`. The curated feature set is suitable for smal
     ├── models
     ├── routers
     ├── services
-    │   ├── adminService.js []
+    │   ├── adminService.js [communicate with the backend and implement functions related to the management system such as CRUD the product, promo code etc.]
     │   ├── alternativeService.js []
-    │   ├── orderService.js []
+    │   ├── orderService.js [communicate with the backend and implement functions related to orders such as creating orders, processing Paypal, getting order info etc.]
     │   ├── productDetailService.js []
     │   ├── productService.js
     │   ├── recommendationService.js [communicate with backend and get recommended product list]
-    │   ├── shoppingCartService.js
+    │   ├── shoppingCartService.js [communicate with the backend and implement functions related to shopping carts such as getting product list and summary price, deleting product items/managing the quantity, validating and removing promo code etc.]
     │   └── userService.js [communicate with backend and implement functions related to users such as register, log in, profile management, address management and so on ]
     │
     ├── util
     │   ├── avatar.js [util functions used to deal with avatars, like compression, encoding and decoding]
     │   ├── constants.js []
     │   ├── cookie.js [util functions used to manage cookies]
-    │   └── request.js
+    │   └── request.js [util functions used to sets up an Axios instance with request and response interceptors for handling API requests and responses]
     │
     └── views
         ├── admin

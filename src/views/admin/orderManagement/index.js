@@ -115,7 +115,7 @@ function OrderManagement () {
     {
       /* order.orderStatus */
       title: "Order Status",
-      width: 105,
+      width: 120,
       fixed: "right",
       dataIndex: "orderStatus",
       key: "orderStatus",

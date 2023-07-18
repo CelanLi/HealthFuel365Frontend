@@ -10,24 +10,9 @@ const serviceAxios = axios.create({
 });
 
 serviceAxios.interceptors.request.use(
-  (config) => {
-    //   if (serverConfig.useTokenAuthorization) {
-    config.headers["Authorization"] = document.cookie;
-
-    // headers: {
-    //   Authorization: document.cookie, //put cookie into header
-    // },
-    //   }
-
-    // if (!config.headers["content-type"]) {
-    //
-    //   if (config.method === "post") {
-    //     config.headers["content-type"] = "application/x-www-form-urlencoded";
-    //     config.data = qs.stringify(config.data);
-    //   } else {
-    config.headers["content-type"] = "application/json";
-    //   }
-    // }
+  (config) => { 
+    config.headers["Authorization"] = document.cookie; 
+    config.headers["content-type"] = "application/json"; 
     return config;
   },
   (error) => {
