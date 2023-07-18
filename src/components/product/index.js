@@ -13,7 +13,7 @@ import DefaultImage from "../../assets/images/logo.png";
 
 function ProductComponent({
   productID,
-  productName = "name",
+  productName,
   productPrice,
   nutriScore,
   imageUrl,
@@ -23,14 +23,13 @@ function ProductComponent({
   const router_path = "/product/detail/" + productID;
   const notAvailable = capacity === 0;
 
-  /* If no image is retrieved from the stored URL, the logo is displayed as a product image */
+  /* If no image is retrieved from the stored URL, the website logo is displayed as a product image */
   const [image, setImage] = useState(imageUrl);
   const [imageNotFound, setImageNotFound] = useState(false);
   const handleImageNotFound = () => {
     setImage(DefaultImage);
     setImageNotFound(true);
   };
-
   useEffect(() => {
     setImage(imageUrl)
   }, [imageUrl]);
@@ -44,7 +43,7 @@ function ProductComponent({
       },
     });
   };
-  /* if there is no this product in the shopping cart  */
+  /* used to handle clicking on the button, if there is no this product in the shopping cart */
   const handleClick = async() => {
     const cookie = getCookie("userLogin");
     if (!cookie) {
@@ -62,7 +61,7 @@ function ProductComponent({
     // wait for shoppingCartID
     await addShoppingCart(shoppingCartID, productID);
   };
-
+  /* retrieve the user ID and set it as the shoppingCartID */
   useEffect(() => {
     (async () => {
       // only get user when document.cookie is not empty
@@ -74,7 +73,6 @@ function ProductComponent({
       }
     })();
   }, []);
-
   /* store the quantity of this product in the shopping cart*/
   const [quantity, setQuantity] = useState(0);
   /* update the product count*/
@@ -97,25 +95,19 @@ function ProductComponent({
       .map((i) => ({ ...i.product, quantity: i.quantity }))
       .filter((i) => i.productID === productID)
       .map((i)=>i.quantity);
-    if (q.length === 0){
+    if (q.length === 0){ // there is no this product in the shopping cart
       setQuantity(0);
     }
     else{
       setQuantity(q[0]);
     }
   }
-  /*
-  useEffect(()=>{
-    if (shoppingCartID) {
-    showQuantity(productID);
-    }
-  },[shoppingCartID])
-  */
   useEffect(() => {
     if (shoppingCartID && productID) {
       showQuantity(productID);
     }
   }, [shoppingCartID, productID]);
+  /* handle the item count change */
   function getItemCount(value) {
     setQuantity(value);
     changeProductQuantity({ productID, value });
