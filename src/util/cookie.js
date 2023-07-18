@@ -73,7 +73,7 @@ export function invalidateAllCookies() {
       const cookie = cookies[i].trim();
       const cookieParts = cookie.split('=');
       const cookieName = cookieParts[0];
-      // 将过期时间设置为一个过去的时间点，使 cookie 失效
+      // invalidate cookies by setting the expire time to a past time
       document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
     }
 }
