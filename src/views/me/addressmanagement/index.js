@@ -16,8 +16,10 @@ import OrderAddAddress from '../../order/components/or_add_address';
 function App() {
     // set address list value
     const [addressList,setAddressList] = useState([]);
-    //navigation
+    // navigation
     const navigate = useNavigate();
+    // cookie
+    const cookie = getCookie("userLogin")
     // initial address list
     useEffect(() => {
       setAddress();
@@ -54,7 +56,7 @@ function App() {
       navigate('/');
     };
 
-    if (!document.cookie) {
+    if (cookie) {
       return(
         <div className='myaccount-error-message'>
           <Modal
