@@ -89,12 +89,24 @@ function Page() {
 
           {/* the suppliers' icons */}
           <div className='homepage-suppliers-icon'>
-            <img src={Alnatura} className='homepage-suppliers-image'/>
-            <img src={Alpro} className='homepage-suppliers-image'/>
-            <img src={Davert} className='homepage-suppliers-image'/>
-            <img src={Seitenbacher} className='homepage-suppliers-image'/>
-            <img src={Seeberger} className='homepage-suppliers-image'/>
-            <img src={Rapunzel} className='homepage-suppliers-image'/>
+            <Link to="https://www.alnatura.de/de-de/" className='homepage-suppliers-image'>
+              <img src={Alnatura}/>
+            </Link>
+            <Link to="https://www.alpro.com/de/" className='homepage-suppliers-image'>
+              <img src={Alpro}/>
+            </Link>
+            <Link to="https://www.davert.de/" className='homepage-suppliers-image'>
+              <img src={Davert}/>
+            </Link>
+            <Link to="https://www.seitenbacher.de/" className='homepage-suppliers-image'>
+              <img src={Seitenbacher}/>
+            </Link>
+            <Link to="https://www.seeberger.de/" className='homepage-suppliers-image'>
+              <img src={Seeberger}/>
+            </Link>
+            <Link to="https://www.rapunzel.de/" className='homepage-suppliers-image'>
+              <img src={Rapunzel}/>
+            </Link>
           </div>
 
         </div>
