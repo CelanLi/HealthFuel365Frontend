@@ -29,10 +29,10 @@
   }
   
 .sort select{
-    /* 去掉边框样式 */
+    /* no border */
     border: none;
     outline: none;
-    /* 宽度和高度比box小 */
+    /* height and width */
     width: 95%;
     height: 26px;
     line-height: 26px;

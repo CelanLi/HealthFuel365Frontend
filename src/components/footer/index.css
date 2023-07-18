@@ -1,15 +1,15 @@
-/* 定义footer容器 */
+/* footer container */
 .footer-container{
     width: 100%;
 }
 
-/* 背景颜色和宽度 */
+/* background */
 .footer-background{
     background-color: #033D1F;
     width: 100%;
 }
 
-/* 文字样式 */
+/* font */
 .footer-text{            
     display: flex;
     flex-direction: column;
@@ -21,7 +21,7 @@
     text-align: center;
 }
         
-/* logo样式 */
+/* logo */
 .footer-logo{
     height: 100px;
     display: flex;

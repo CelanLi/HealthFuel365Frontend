@@ -1,13 +1,15 @@
+/* 3 products will be displayed under 768px width */
 @media (max-width: 768px) {
     .recommendation-wrap-product {
-      width: 33.33%; /* 每行展示 3 个商品 */
+      
+      width: 33.33%; 
     }
   }
   
-  /* 在更小的视口宽度下展示 2 个商品 */
+  /* 2 products will be displayed under 480px width */
   @media (max-width: 480px) {
     .recommendation-wrap-product {
-      width: 50%; /* 每行展示 2 个商品 */
+      width: 50%; 
     }
   }
 

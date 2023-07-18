@@ -1,4 +1,4 @@
-// 引入样式文件
+// import css file
 import './index.css';
 import Logo from "../../assets/images/logo.png"
 

@@ -4,17 +4,15 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-//新加引入
 import { BrowserRouter as Router} from 'react-router-dom'; 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render( 
-  //新加
   <Router>
     <App />
   </Router>
 
-  //原始demo
+  // original demo
   // <React.StrictMode>
   //   <App />
   // </React.StrictMode>

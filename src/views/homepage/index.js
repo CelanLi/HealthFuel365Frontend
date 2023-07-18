@@ -35,7 +35,6 @@ function Page() {
       <div className='homepage-body'>
 
         {/* The carousel ads block */}
-        {/* TODO */}
         <div className='homepage-carousel-ad'>
           {/* <img className='homepage-carousel-ads' src={Carousel1}/> */}
           <Carousel/>

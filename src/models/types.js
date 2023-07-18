@@ -4,10 +4,10 @@ export interface ProductInterface {
   imageUrl: string | undefined;
   ingredients?: IProductIngredient[];
   ingredientsText?: string;
-  ingredientsTextDE?: string; //可能不需要
+  ingredientsTextDE?: string;
   nutriments: INutriments;
   nutriScore: string;
-  nutriScoreScore?: number; //用来计算nutriscore
+  nutriScoreScore?: number;
   nutriscoreData?: INutriscoreData;
   quantity?: string;
   nutrientLevels?: INutrientLevel;
