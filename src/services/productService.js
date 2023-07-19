@@ -1,7 +1,6 @@
-import axios, { AxiosHeaders } from "axios";
-import { IOpenFoodFactsData } from "../models/types";
+import axios from "axios";
 import { backendUrl, productRoute } from "../util/constants";
-import { Modal, Input, Space, message } from "antd";
+import { Modal, message } from "antd";
 
 const showLoginReminder = () => {
   Modal.error({

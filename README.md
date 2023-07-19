@@ -68,7 +68,7 @@ You don't have to ever use `eject`. The curated feature set is suitable for smal
     ├── models
     ├── routers
     ├── services
-    │   ├── adminService.js [communicate with the backend and implement functions related to the management system such as CRUD the product, promo code etc.]
+    │   ├── adminService.js [communicate with the backend and implement functions related to the management system such as admin log in, CRUD the product, promo code etc.]
     │   ├── alternativeService.js [communicate with the backend and get alternatives product list]
     │   ├── orderService.js [communicate with the backend and implement functions related to orders such as creating orders, processing Paypal, getting order info etc.]
     │   ├── productDetailService.js [communicate with the backend and get product detail by product id]

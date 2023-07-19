@@ -1,29 +1,17 @@
-/*
-// set a cookie with cookie name, cookie value, and expire days
-export function setCookie(cname, cvalue) {
-    const expireDate = new Date();
-    expireDate.setTime(expireDate.getTime() + 86400000);
-    // document.cookie = `${cname}=${cvalue}; expires=${expireDate.toUTCString()}; path=/`;
-    document.cookie = `login=${cvalue}; expires=${expireDate.toUTCString()}; path=/`;
-    console.log("777",document.cookie)
-    console.log("888",document.expires)
-};
-*/
-
 export function setUserCookie(cname, cvalue) {
   const expireDate = new Date();
-    expireDate.setTime(expireDate.getTime() + 86400000);
-    document.cookie = `userLogin=${cvalue}; expires=${expireDate.toUTCString()}; path=/`;
-    console.log("777",document.cookie)
-    console.log("888",document.expires)
+  // expiration time for the cookie by adding 24 hours
+  expireDate.setTime(expireDate.getTime() + 86400000);
+  // cookie of user will be named "userLogin"
+  document.cookie = `userLogin=${cvalue}; expires=${expireDate.toUTCString()}; path=/`;
 };
 
+// function to set an admin cookie with the provided value (adminID)
 export function setAdminCookie(cvalue) {
   const expireDate = new Date();
   expireDate.setTime(expireDate.getTime() + 86400000);
+  // cookie of admin will be named "adminLogin"
   document.cookie = `adminLogin=${cvalue}; expires=${expireDate.toUTCString()}; path=/`;
-  console.log("777", document.cookie);
-  console.log("888", document.expires);
 }
 
 // get cookie by name
@@ -39,28 +27,7 @@ export function getCookie(cname)
   return "";
 };
 
-/*
-// not used function
-// check cookie
-export function checkCookie()
-{
-  var username=getCookie("username");
-  if (username!="")
-  {
-    alert("Welcome again " + username);
-  }
-  else 
-  {
-    username = prompt("Please enter your name:","");
-    if (username!="" && username!=null)
-    {
-      setCookie("username",username,365);
-    }
-  }
-};
-*/
-
-//invalidate specific cookie
+//invalidate a specific cookie by its name, can be used to invalidate admin cookie and user cookie indendpentendly
 export function invalidateCookie(cname)
 {
   document.cookie = `${cname}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;

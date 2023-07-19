@@ -1,5 +1,4 @@
 import axios from "axios";
-import { IOpenFoodFactsData } from "../models/types";
 import { backendUrl, productDetailRoute } from "../util/constants";
 
 export const getDetail = async (productID: string) => {
