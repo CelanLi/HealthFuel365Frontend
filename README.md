@@ -16,6 +16,24 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
+## Test Accounts
+
+### Customer Account
+
+- Username: Julia
+- Password: Julia
+
+### Admin Account
+
+- Username: admin
+- Password: admin123
+
+### Test PayPal Accounts
+
+- Account: sb-pxqax26409036@personal.example.com
+- Password: cL5W_-{P
+
+
 ## Folder Structure
 
 ```bash
