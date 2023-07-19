@@ -38,7 +38,7 @@ function AddProduct() {
   };
 
   const handleOk = async () => {
-    const regex1 = /\d/;
+    const regex1 = /\d/; // matches digit character
     const regex2 = /kcal|kj/i; // i means do no distinguish cases
     if (
       !productName ||
@@ -72,12 +72,14 @@ function AddProduct() {
       });
       return;
     } else if (!regex1.test(energy) && energy !== "unknown") {
+      // does not include number and != unknown
       messageApi.open({
         type: "error",
         content: "Please enter a valid energy content (numeric value)",
       });
       return;
     } else if (!regex2.test(energy) && energy !== "unknown") {
+      //test if unit is included kj/kcal
       messageApi.open({
         type: "error",
         content: "Please enter a valid energy with unit (kcal/kj)",
@@ -121,7 +123,7 @@ function AddProduct() {
         sugar +
         "g;" +
         " Fiber: " +
-        (fiber === "unknown" ? fiber : fiber + "g") +
+        (fiber === "unknown" ? fiber : fiber + "g") + //add unit to the variable fiber, unless it's unknown
         ";" +
         " Proteins: " +
         (proteins === "unknown" ? proteins : proteins + "g") +

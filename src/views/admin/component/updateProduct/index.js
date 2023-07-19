@@ -26,7 +26,7 @@ function EditProduct({ productID }) {
   const [sugarLevel, setSugarLevel] = useState("");
   const [saltLevel, setSaltLevel] = useState("");
   const [ingredients, setIngredients] = useState("unknown");
-  const [allergens, setAllergens] = useState("unkown");
+  const [allergens, setAllergens] = useState("unknown");
   const [nova, setNova] = useState("unknown");
   const [energy, setEnergy] = useState("unknown");
   const [fiber, setFiber] = useState("unknown");
@@ -161,38 +161,22 @@ function EditProduct({ productID }) {
       }
     });
   };
-  // const handleEnergyChange = (e) => {
-  //   const value = e.target.value;
-
-  //   setTimeout(() => {
-  //     const regex = /\d/;
-
-  //     if (regex.test(value)) {
-  //       setEnergy(value);
-  //     } else {
-  //       messageApi.open({
-  //         type: "error",
-  //         content: "Please enter a valid energy content with unit",
-  //       });
-  //     }
-  //   });
-  // };
   const handleOk = async () => {
-    const regex1 = /\d/;
+    const regex1 = /\d/; // matches digit character
     const regex2 = /kcal|kj/i; // i means do no distinguish cases
     console.log(typeof fat);
     if (
       !productName ||
-      category.length < 1 ||
+      category.length < 1 || //if no category chosen
       !imageUrl ||
       !nutriScore ||
       !productBrand ||
       !productPrice ||
-      fat.length < 1 ||
+      fat.length < 1 || //if no fat entered
       !fatLevel ||
-      salt.length < 1 ||
+      salt.length < 1 || //if no salt entered
       !saltLevel ||
-      sugar.length < 1 ||
+      sugar.length < 1 || //if no sugar entered
       !sugarLevel
     ) {
       messageApi.open({
@@ -231,12 +215,14 @@ function EditProduct({ productID }) {
       });
       return;
     } else if (!regex1.test(energy) && energy !== "unknown") {
+      // does not include number and != unknown
       messageApi.open({
         type: "error",
         content: "Please enter a valid energy content (numeric value)",
       });
       return;
     } else if (!regex2.test(energy) && energy !== "unknown") {
+      // includes unit kj/kcal
       messageApi.open({
         type: "error",
         content: "Please enter a valid energy with unit (kcal/kj)",
@@ -280,7 +266,7 @@ function EditProduct({ productID }) {
         sugar +
         "g;" +
         " Fiber: " +
-        (fiber === "unknown" ? fiber : fiber + "g") +
+        (fiber === "unknown" ? fiber : fiber + "g") + //add unit to the variable fiber, unless it's unknown
         ";" +
         " Proteins: " +
         (proteins === "unknown" ? proteins : proteins + "g") +
