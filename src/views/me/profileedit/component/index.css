@@ -89,3 +89,19 @@
     font-weight: 700;
     font-size: 20px;
 }
+
+.profile-privacy{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.disabled-button {
+    background-color: #ccc;
+    color: #fff;
+    cursor: not-allowed;
+  }
+
+.disabled-button:hover {
+    cursor: not-allowed;
+}

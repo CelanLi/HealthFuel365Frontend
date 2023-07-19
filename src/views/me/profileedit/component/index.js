@@ -1,8 +1,8 @@
-import { Button, Form, Input, Select,Radio,Checkbox } from 'antd';
+import { Form, Radio,Checkbox, Modal } from 'antd';
 import React, { useState, useEffect } from 'react';
 import "./index.css";
 import { profileEdit } from '../../../../services/userService';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import HealthGoal from '../../../../assets/images/myaccount/icon-health-goal.png'
 import DietType from '../../../../assets/images/myaccount/icon-diet-type.png'
@@ -11,6 +11,8 @@ import Preference from '../../../../assets/images/myaccount/icon-preference.png'
 function EditProfile({goal, type, nutri, fatContent, saltContent, sugarContent}) {
     const [form] = Form.useForm();
     const navigate = useNavigate();
+    const [isPrivacy, setIsPrivacy] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     const [healthGoal, setHealthGoal] = useState(goal)
     const [dietType, setDietType] = useState(type)
@@ -18,6 +20,25 @@ function EditProfile({goal, type, nutri, fatContent, saltContent, sugarContent})
     const [fat, setFat] = useState(fatContent);
     const [salt, setSalt] = useState(saltContent);
     const [sugar, setSugar] = useState(sugarContent);
+    const buttonClassNames = `myaccount-edit ${!isPrivacy ? 'disabled-button' : ''}`;
+
+    const ModalContent = () => (
+        <div>
+          <h2>Privacy Policy</h2>
+          <div>&nbsp;&nbsp;&nbsp;&nbsp;This privacy notice for HealthFuel365 ("we," "us," or "our"), describes how and why we mightcollect, store, use, and/or share ("process") your information when you use our services"Services"), such as when you:</div>
+            <div>&nbsp;&nbsp;&nbsp;&nbsp;·Visit our website at HealthFuel365.com, or any website of ours that links to this privacy notice </div>
+            <div>&nbsp;&nbsp;&nbsp;&nbsp;·Engage with us in other related ways, including any sales, marketing, or events</div>
+            <div>&nbsp;&nbsp;&nbsp;&nbsp;Questions or concerns? Reading this privacy notice will help you understand your privacy rightsand choices. lf you do not agree with our policies and practices, please do not use our Services. lf you still have any questions or concerns, please contact us at <strong>HealthFuel365@gmail.com</strong>.</div>
+            <h4></h4>
+        <h3>SUMMARY OF KEY POINTS</h3>
+            <div>&nbsp;&nbsp;&nbsp;&nbsp;This summary provides key points from our privacy notice, but you can find out more detailsabout any of these topics by clicking the link following each key point or by using our tableof contents below to find the section you are looking for.</div>
+            <div><strong>What personal information do we process?</strong></div> 
+            <div>&nbsp;&nbsp;&nbsp;&nbsp;When you visit, use, or navigate our Services, wemay process personal information depending on how you interact with us and the Services, thechoices you make, and the products and features you use. Learn more about personal informationyou disclose to us</div>
+            <div><strong>Do we process any sensitive personal information?</strong></div>
+            <div>&nbsp;&nbsp;&nbsp;&nbsp;We may process sensitive personalinformation when necessary with your consent or as otherwise permitted by applicable law. Learnmore about sensitive information we process.</div>
+ 
+        </div>
+      );
 
     // handle change of states
     const handleHealthGoalChange = (e) => {
@@ -43,6 +64,19 @@ function EditProfile({goal, type, nutri, fatContent, saltContent, sugarContent})
     const handleSugarChange = (e) => {
         setSugar(e.target.checked);
     };
+
+    const handlePrivacyChange = (e) => {
+        setIsPrivacy(e.target.checked);
+    }
+    
+    const handlePrivacyPolicyClick = () => {
+        setIsModalOpen(true);
+    };
+
+    const handleModalClose = () => {
+        setIsModalOpen(false);
+    }
+      
 
     // handle submit
     const handleButtonClick = () => {
@@ -198,9 +232,26 @@ function EditProfile({goal, type, nutri, fatContent, saltContent, sugarContent})
                     </div>
                 </div>
             </Form.Item>
+            <Form.Item>
+                <div className='profile-privacy'>
+                    <Checkbox onClick={handlePrivacyChange} defaultChecked={isPrivacy}></Checkbox>
+                    <div className='profile-answers'>I agree to the &nbsp;
+                        <Link to="#" style={{ textDecoration: 'underline', color: '#033D1F' }}
+                            onClick={handlePrivacyPolicyClick}>
+                                privacy policy
+                        </Link>
+                    </div>
+                </div>
+                <Modal open={isModalOpen}
+                    onCancel={handleModalClose}
+                    footer={null}
+                    width="600px">
+                    <ModalContent />
+                </Modal>
+            </Form.Item>
 
             <Form.Item>
-                <button className='myaccount-edit' htmlType="submit" onClick={handleButtonClick}> 
+                <button className={buttonClassNames} htmlType="submit" onClick={handleButtonClick} disabled={!isPrivacy}> 
                     Submit
                 </button>
             </Form.Item>
