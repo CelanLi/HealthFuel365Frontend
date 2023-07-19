@@ -1,21 +1,28 @@
 # HealthFuel365
 Our health foods platform named "HealthFuel365" is an online store that offers food retailing and recommends suitable products based on your dietary preferences, and health goals.
 ## Table of contents
+* [Installition](#installation)
 * [Usage](#usage)
+* [Test Accounts](#test-accounts)
 * [Folder Structure](#folder-structure)
 
+## Installition
+Install dependencies by run the following command in Terminal:
+```bash
+   npm install
+```
 ## Usage
-
-In the project directory, you can run:
-
-### `npm start`
-
+After completing the environment configuration and dependency installation, you can run:
+```bash
+   npm start
+```
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
+## Test Accounts
 ## Folder Structure
 
 ```bash
