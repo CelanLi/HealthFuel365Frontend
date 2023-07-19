@@ -85,6 +85,7 @@ function Page() {
 
       setDetailsLoading(false);
       setDetailsLoaded(false);
+      setLoadingScreen(false);
     } catch (error) {
       console.error("error set products:", error);
     }
