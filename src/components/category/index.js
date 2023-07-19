@@ -1,37 +1,31 @@
 import "./index.css";
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
-function Page({ setCategory = () => undefined }) {
+function Category({ setCategory = () => undefined }) {
+  // retrieve the selected category from the URL
   const [selectedCategory, setSelectedCategory] = useState(
     window.location.href.split("/")[3].split("#")[1]
   );
-  useEffect(() => {
-    console.log("category component: " + selectedCategory);
-  }, [selectedCategory]);
+
+  // handle the category change: get the selected category
   const handleCategoryChange = (event) => {
     const { className } = event.target;
-    const category = className.split(" ")[1].split("-")[0];
+    const category = className.split(" ")[1].split("-")[0]; // className contains the category name
     if (selectedCategory === category) {
+      // if the same category is clicked again, reset the category to undefined (namely all products)
       setCategory(() => undefined);
       setSelectedCategory(() => undefined);
     } else {
+      // update the selected category
       setSelectedCategory(() => category);
       setCategory(() => category);
     }
   };
-  /*
-  const resetCategory = () => {
-    if (window.location.href.split("/")[3]==="product") {
-      setCategory(() => undefined);
-      setSelectedCategory(() => undefined);
-    }
-  }
-  useEffect(() => {resetCategory()},[window.location.href]);
-  */
 
   return (
     <div className="category-container">
+      {/* category 1: staples */}
       <div className="category">
         <div className="category-icon">
           <Link
@@ -46,6 +40,7 @@ function Page({ setCategory = () => undefined }) {
         </div>
         <p>Staples</p>
       </div>
+      {/* category 2: snacks */}
       <div className="category">
         <div className="category-icon">
           <Link
@@ -60,6 +55,7 @@ function Page({ setCategory = () => undefined }) {
         </div>
         <p>Snacks</p>
       </div>
+      {/* category 3: drinks */}
       <div className="category">
         <div className="category-icon">
           <Link
@@ -74,6 +70,7 @@ function Page({ setCategory = () => undefined }) {
         </div>
         <p>Drinks</p>
       </div>
+      {/* category 4: flavorings */}
       <div className="category">
         <div className="category-icon">
           <Link to={selectedCategory === "flavorings" ? "/product" : "/product#flavorings"}
@@ -87,6 +84,7 @@ function Page({ setCategory = () => undefined }) {
         </div>
         <p>Flavorings</p>
       </div>
+      {/* category 5: supplements */}
       <div className="category">
         <div className="category-icon">
           <Link to={selectedCategory === "supplements" ? "/product" : "/product#supplements"}
@@ -104,4 +102,4 @@ function Page({ setCategory = () => undefined }) {
   );
 }
 
-export default Page;
+export default Category;

@@ -3,6 +3,7 @@ import './index.css';
 // Dependency
 import {Link} from 'react-router-dom'
 
+//auto-Adaption of page size
 (function (doc, win) {
   var docEl = doc.documentElement,
       resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
