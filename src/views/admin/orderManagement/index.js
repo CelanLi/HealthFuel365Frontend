@@ -1,4 +1,3 @@
-import "./index.css";
 import React from "react";
 import { Table, Select, Input, Modal } from "antd";
 import { useState, useEffect } from "react";
@@ -12,6 +11,7 @@ function OrderManagement () {
   // data: list of order
   const [orderList,setOrderList] = useState([]);
   const [isLoading,setIsLoading] = useState(true);
+  // filters options for order status
   const statusFilter = [
     {
       text: "Processing",
@@ -209,6 +209,7 @@ function OrderManagement () {
     try{
     //returns both orders and service data
     const [orders,services] = await getAllOrdersWithService( keyWords );
+    // format data for display in the table
     const formattedData = orders.map((order, index) => {
       //find corresponding services
       const service = services.find((s) => s.orderID === order.orderID);

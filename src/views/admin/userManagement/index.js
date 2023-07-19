@@ -12,7 +12,7 @@ function UserManagement () {
   const [isLoading,setIsLoading] = useState(true);
   // keywords in search bar
   const [keyWords, setKeyWords] = useState("");
-  // define columns of data
+  // define columns of for the table
   const columns= [
     {
       title: "UserID",
@@ -95,7 +95,7 @@ function UserManagement () {
     });
   };
 
-  // initialization data
+  // initialization data: fetch users and profiles
   useEffect(() => {
     const cookie = getCookie("adminLogin");
     if (!cookie) {
@@ -110,6 +110,7 @@ function UserManagement () {
     try{
     // returns both user and profile data
     const [user,profiles] = await getAllUserWithProfile( keyWords );
+    // format data for display in the table
     const formattedData = user.map((user, index) => {
       // find corresponding profile
       const profile = profiles.find((p) => p.userID === user._id);

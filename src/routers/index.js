@@ -28,23 +28,6 @@ export const routers = [
     // go to welcomepage
     path: "/", // http://www.healthfuel365.com
     element: <Welcome />,
-    
-
- 
-    // children: [
-    //   {
-    //     index: true,
-    //     element: (<Home />)
-    //   },
-    //   {
-    //     path: '/Menu11',
-    //     element: (<Menu11 />)
-    //   },
-    //   {
-    //     path: '/Menu22',
-    //     element: (<Menu22 />)
-    //   }
-    // ]
   },
   {
     // log in Page
@@ -79,7 +62,6 @@ export const routers = [
       },
       {
         path:'orderManagement', //http://www.healthfuel365.com/admin/orderManagement
-        //element: <OrderManagement />,
         children: [
           {
             path:'',
@@ -97,10 +79,6 @@ export const routers = [
     path: "/",
     element: <AppLayout />, 
     children: [
-      // {
-      //   index: true,
-      //   element: lazyLoad(<Home />),
-      // },
       {
         // Homepage
         path: "/homepage", // http://www.healthfuel365.com/homepage
@@ -109,7 +87,6 @@ export const routers = [
       {
         // All Products Page
         path: "product", // http://www.healthfuel365.com/product
-        // element: <Product />,
         children: [
           {
             index: true,
@@ -175,7 +152,6 @@ export const routers = [
       },
     ]
   },
-
     ]
   }
 ]

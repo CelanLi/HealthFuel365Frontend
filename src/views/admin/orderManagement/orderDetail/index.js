@@ -18,6 +18,7 @@ function OrderDetail() {
   const location = useLocation();
   const servicesParam = new URLSearchParams(location.search).get("services");
   const services = JSON.parse(decodeURIComponent(servicesParam)).replace("\n","\n\n");
+  // check if the admin is logged in before fetching the order detail
   const showLoginReminder = () => {
     Modal.error({
       title: "please log in",
@@ -41,7 +42,6 @@ function OrderDetail() {
     setIsLoading(true);
     try {
       const order = await getOrderById(orderID);
-      console.log(order)
       setOrder(order);
     } catch (error) {
       console.error('Error fetching order detail:', error);

@@ -20,9 +20,10 @@ import { Collapse, Table } from "antd";
 const { Panel } = Collapse;
 
 function Page() {
-  // get corresponding product data by comparing the product id
+  // get product id from the URL path
   var pathname = window.location.pathname;
   var id = pathname.split("/")[3];
+  // keep track of the previous page that the user visited, used in "back"
   const previousPath = localStorage.getItem("navigationHistory")? JSON.parse(localStorage.getItem("navigationHistory")):"/product"
   const [product, setProduct] = useState([]);
   const [productDetail, setProductDetail] = useState([]);
@@ -32,6 +33,7 @@ function Page() {
   const [image, setImage] = useState();
   const [imageNotFound, setImageNotFound] = useState(false);  
   useEffect(() => {
+    // fetch product and product details based on the id
     const setData = async (id: string) => {
       try {
         const [product, productDetail] = await getDetail(id);
@@ -43,6 +45,7 @@ function Page() {
       }
     };
     setData(id);
+    // check if the user is logged in
     (async () => {
       const cookie = getCookie("userLogin");
       if (cookie) {

@@ -1,9 +1,7 @@
-import axios, { AxiosHeaders } from "axios";
-//import {setCookie,getCookie, invalidateCookie, invalidateAllCookies, setUserCookie} from "../util/cookie.js"
-import {setUserCookie, invalidateAllCookies, invalidateCookie} from "../util/cookie.js"
-import serviceAxios from "../util/request.js";
+import axios from "axios";
+import {setUserCookie, invalidateCookie} from "../util/cookie.js";
 import { Avatar, message } from "antd";
-import { encodeFileToBase64, decodeBase64ToFile } from "../util/avatar.js";
+import { encodeFileToBase64 } from "../util/avatar.js";
 
 const expiryDate = new Date();
 expiryDate.setTime(expiryDate.getTime() + 24 * 60 * 60 * 1000);

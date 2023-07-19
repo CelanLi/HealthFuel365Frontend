@@ -1,7 +1,6 @@
 import "./index.css";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { logoutAdmin } from "../../../../services/adminService";
-import { message } from 'antd';
 
 function Topnav() {
   const location= useLocation();
