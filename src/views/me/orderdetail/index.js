@@ -7,6 +7,7 @@ import { getOrderById, getPaymentByOrderId, getPromocodeByOrderId } from '../../
 import OrderDetailProduct from './component/order_detail_product';
 import OrderAddress from './component/order_detail_address';
 import OrderServices from './component/order_detail_service';
+import { LoadingScreen } from '../../../components/loading/index'
 
 (function (doc, win) {
   var docEl = doc.documentElement,
@@ -74,7 +75,7 @@ function Index() {
     };
   
     if (!order) {
-      return <div>Loading...</div>;
+      return <div><LoadingScreen /></div>;
     }
   
   return (
