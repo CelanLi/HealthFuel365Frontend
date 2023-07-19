@@ -39,7 +39,7 @@ function Page() {
   const setProducts = async () => {
     try {
       setProductsLoading(true);
-      setDetailsLoading(true);
+      setDetailsLoading(true); //details loading process, initialise every time before products loading
       const list = await (keyWords === null
         ? getAllProducts(sort)
         : getProductsByName(keyWords, sort));
@@ -83,9 +83,9 @@ function Page() {
         }
       }
 
-      setDetailsLoading(false);
-      setDetailsLoaded(false);
-      setLoadingScreen(false);
+      setDetailsLoading(false); //means details are not loading currently
+      // setDetailsLoaded(false);
+      setLoadingScreen(false); // after loading details, any dietary preference change, the page will not navigate to loading page
     } catch (error) {
       console.error("error set products:", error);
     }
@@ -215,14 +215,13 @@ function Page() {
   const [productsLoading, setProductsLoading] = useState(true);
   const [loadingScreen, setLoadingScreen] = useState(false);
   const [detailsLoading, setDetailsLoading] = useState(false);
-  const [detailsLoaded, setDetailsLoaded] = useState(false);
+  // const [detailsLoaded, setDetailsLoaded] = useState(false);
   useEffect(() => {
+    // check the if the details are loading, every time dietary preference change
     if (detailsLoading) {
-      //used to pass the status of details to product list
-      setLoadingScreen(true);
-      setDetailsLoaded(true);
-    } else {
-      setDetailsLoaded(false);
+      // if currently details are loading
+      setLoadingScreen(true); //if details are loading, the page is ready to navigate to loading page, until details are loaded
+      // setDetailsLoaded(true);
     }
   }, [sugarContent, saltContent, fatContent, preference]);
   useEffect(() => {
@@ -316,7 +315,7 @@ function Page() {
           <ProductList
             productlist={pageProductList}
             isLoading_p={productsLoading}
-            isLoading_d={detailsLoaded}
+            isLoading_d={loadingScreen}
           />
           {showPagination ? (
             <div className="pagination-bar">
