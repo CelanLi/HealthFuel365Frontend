@@ -2,6 +2,9 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Table of contents
+* [Structure](#structure)
+
 ## Available Scripts
 
 In the project directory, you can run:
@@ -39,6 +42,7 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
+## Structure
 ```bash
 ├── public
 └── src
@@ -65,17 +69,17 @@ You don't have to ever use `eject`. The curated feature set is suitable for smal
     ├── routers
     ├── services
     │   ├── adminService.js [communicate with the backend and implement functions related to the management system such as CRUD the product, promo code etc.]
-    │   ├── alternativeService.js []
+    │   ├── alternativeService.js [communicate with the backend and get alternatives product list]
     │   ├── orderService.js [communicate with the backend and implement functions related to orders such as creating orders, processing Paypal, getting order info etc.]
-    │   ├── productDetailService.js []
-    │   ├── productService.js
+    │   ├── productDetailService.js [communicate with the backend and get product detail by product id]
+    │   ├── productService.js [communicate with the backend and impelement functions realted to products such as getting all products, get product by name and add product to shopping cart etc.]
     │   ├── recommendationService.js [communicate with backend and get recommended product list]
     │   ├── shoppingCartService.js [communicate with the backend and implement functions related to shopping carts such as getting product list and summary price, deleting product items/managing the quantity, validating and removing promo code etc.]
     │   └── userService.js [communicate with backend and implement functions related to users such as register, log in, profile management, address management and so on ]
     │
     ├── util
     │   ├── avatar.js [util functions used to deal with avatars, like compression, encoding and decoding]
-    │   ├── constants.js []
+    │   ├── constants.js [used to store route]
     │   ├── cookie.js [util functions used to manage cookies]
     │   └── request.js [util functions used to sets up an Axios instance with request and response interceptors for handling API requests and responses]
     │
