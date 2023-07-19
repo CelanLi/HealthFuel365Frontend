@@ -111,7 +111,7 @@ function Index() {
             <p className='myaccount-order-text'>Payment ID:&nbsp;</p>
             <p className='myaccount-order-text'>
               {payment? (
-                {payment}
+                payment
               ): (
                 <>-</>
               )}</p>
