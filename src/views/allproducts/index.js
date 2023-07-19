@@ -212,11 +212,13 @@ function Page() {
     );
   };
   const [productsLoading, setProductsLoading] = useState(true);
+  const [loadingScreen, setLoadingScreen] = useState(false);
   const [detailsLoading, setDetailsLoading] = useState(false);
   const [detailsLoaded, setDetailsLoaded] = useState(false);
   useEffect(() => {
     if (detailsLoading) {
       //used to pass the status of details to product list
+      setLoadingScreen(true);
       setDetailsLoaded(true);
     } else {
       setDetailsLoaded(false);
@@ -282,7 +284,8 @@ function Page() {
     },
     [filteredProductList, pageNumber]
   );
-  const showPagination = (filteredProductList.length > 0) & !productsLoading;
+  const showPagination =
+    (filteredProductList.length > 0) & !productsLoading & !loadingScreen;
 
   // store current path
   localStorage.setItem(
