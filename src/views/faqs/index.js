@@ -14,14 +14,22 @@ function Page() {
         "Its purpose is to offer consumers transparency on the overall nutritional quality of prepackaged foods, allowing them, within a few seconds of the purchase act, to recognize and compare the nutritional quality of foods and guide their choices towards better alternatives.",
     },
     {
-      question: "Can I only pay with paypal?",
-      answer: "Yes, currently, paypal is the only payment method.",
-    },
-    {
       question:
         "Why is it recommended to consume foods with low fat/sugar/salt content?",
       answer:
         "A high consumption of fat can raise cholesterol, which increases the risk of heart diseases. A high consumption of sugar can cause weight gain and tooth decay. It also augments the risk of type 2 diabetes and cardio-vascular diseases. A high consumption of salt (or sodium) can cause raised blood pressure, which can increase the risk of heart disease and stroke.",
+    },
+    {
+      question: "Can I only pay with paypal?",
+      answer: "Yes, currently, paypal is the only payment method.",
+    },
+    {
+      question: "How do I request a refund?",
+      answer: "If you would like to request a refund for your purchase, please contact us at HealthFuel365@gmail.com with your order details and the reason for the refund. Our customer support team will be happy to assist you with the process.",
+    },
+    {
+      question: "How long does it take to process a refund?",
+      answer: "Refunds are typically processed within 3-5 business days after the return is received and inspected.",
     },
   ];
   return (
