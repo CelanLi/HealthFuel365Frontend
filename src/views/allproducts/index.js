@@ -234,7 +234,6 @@ function Page() {
     keyWords,
   ]);
   useEffect(() => {
-    //setPageProductList(filteredProductList.slice(0, 15))
     // calculate the starting index based on the current page number
     const start_index = (pageNumber - 1) * 15;
     // display up to 15 products per page
@@ -265,7 +264,6 @@ function Page() {
   // products displayed per page
   const arrSplit = (arr, pageIndex, size) => {
     const offset = (pageIndex - 1) * size;
-    //setPageNumber(pageIndex + 1);
     return offset + size >= arr.length
       ? arr.slice(offset, arr.length)
       : arr.slice(offset, offset + size);
