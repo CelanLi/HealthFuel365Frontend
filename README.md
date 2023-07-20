@@ -7,7 +7,11 @@ Our health foods platform named "HealthFuel365" is an online store that offers f
 * [Folder Structure](#folder-structure)
 
 ## Installition
-Install dependencies by run the following command in Terminal:
+1. Before running the application, ensure you have the installed the following:
+
+   [Node.js](https://nodejs.org/en) (version 18.16.0)
+
+2. Install dependencies by run the following command in Terminal:
 ```bash
    npm install
 ```
@@ -39,8 +43,6 @@ You may also see any lint errors in the console.
 - Account: sb-pxqax26409036@personal.example.com
 - Password: cL5W_-{P
 
-
-## Test Accounts
 ## Folder Structure
 
 ```bash
