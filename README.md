@@ -1,5 +1,9 @@
-# HealthFuel365
+# HealthFuel365 
 Our health foods platform named "HealthFuel365" is an online store that offers food retailing and recommends suitable products based on your dietary preferences, and health goals.
+<div style="text-align: center;">
+  <img src="src/assets/images/logo.png" alt="logo" width="200">
+</div>
+
 ## Table of contents
 * [Installition](#installation)
 * [Usage](#usage)
@@ -20,11 +24,9 @@ After completing the environment configuration and dependency installation, you 
 ```bash
    npm start
 ```
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+The app will run in the development mode.\
+To access the user login page, open [http://localhost:3000](http://localhost:3000) in your browser.\
+To access the admin login page, open [http://localhost:3000/admin](http://localhost:3000/admin) in your browser.
 
 ## Test Accounts
 
