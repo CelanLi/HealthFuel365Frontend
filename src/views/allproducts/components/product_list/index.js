@@ -2,7 +2,7 @@ import "./index.css";
 import Product from "../../../../components/product";
 import { LoadingScreen } from "../../../../components/loading/index";
 
-function ProductList({ productlist = [], isLoading_p, isLoading_d }) {
+function ProductList({ productlist = [], isLoading_p, isLoading_d, total }) {
   if (isLoading_p) {
     return <LoadingScreen />;
     // return (
@@ -14,7 +14,7 @@ function ProductList({ productlist = [], isLoading_p, isLoading_d }) {
     // );
   } else if (isLoading_d) {
     return <LoadingScreen />;
-  } else if (productlist.length === 0) {
+  } else if (total === 0) {
     // no corresponding product which may occurs when apply filters or input sth. wrong
     return (
       <div className="products-container">

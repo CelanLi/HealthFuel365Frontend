@@ -82,7 +82,6 @@ function Page() {
           setProductDetailList(detailsList);
         }
       }
-
       setDetailsLoading(false); //means details are not loading currently
       // setDetailsLoaded(false);
       setLoadingScreen(false); // after loading details, any dietary preference change, the page will not navigate to loading page
@@ -94,13 +93,6 @@ function Page() {
   useEffect(() => {
     setProducts();
   }, []);
-  // useEffect(() => {
-  //   //remove clear cache id every 60s
-  //   const intervalId = setInterval(clearCache, 60000);
-  //   return () => {
-  //     clearInterval(intervalId);
-  //   };
-  // }, []);
   // change the product list when keywords/ sort method changed
   useEffect(() => {
     setProducts();
@@ -152,7 +144,7 @@ function Page() {
   // displayed product list on page one
   const [pageProductList, setPageProductList] = useState([]);
   // reset filteredProductList if the selected category/ nutri-score/ dietray preference/ brands
-  const resetfilteredProductList = () => {
+  const resetfilteredProductList = async () => {
     var fatIDs,
       sugarIDs,
       saltIDs,
@@ -215,7 +207,6 @@ function Page() {
   const [productsLoading, setProductsLoading] = useState(true);
   const [loadingScreen, setLoadingScreen] = useState(false);
   const [detailsLoading, setDetailsLoading] = useState(false);
-  // const [detailsLoaded, setDetailsLoaded] = useState(false);
   useEffect(() => {
     // check the if the details are loading, every time dietary preference change
     if (detailsLoading) {
@@ -225,7 +216,10 @@ function Page() {
     }
   }, [sugarContent, saltContent, fatContent, preference]);
   useEffect(() => {
-    resetfilteredProductList();
+    const resetData = async () => {
+      await resetfilteredProductList();
+    };
+    resetData();
   }, [
     category,
     nutri,
@@ -285,7 +279,10 @@ function Page() {
     [filteredProductList, pageNumber]
   );
   const showPagination =
-    (filteredProductList.length > 0) & !productsLoading & !loadingScreen;
+    (filteredProductList.length > 0) &
+    !productsLoading &
+    !loadingScreen &
+    !(pageProductList === 0);
 
   // store current path
   localStorage.setItem(
@@ -316,6 +313,7 @@ function Page() {
             productlist={pageProductList}
             isLoading_p={productsLoading}
             isLoading_d={loadingScreen}
+            total={filteredProductList.length}
           />
           {showPagination ? (
             <div className="pagination-bar">
