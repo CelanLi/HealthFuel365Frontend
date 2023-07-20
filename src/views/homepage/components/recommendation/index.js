@@ -17,7 +17,7 @@ function Recommendation() {
 
     const fetchRecommendations = async () => {
       try {
-        console.log(isLoading)
+        console.log("recommendation is loading",isLoading)
         setTimeout(async () => {
             const recommendationlist = await (getRecommendation());
             console.log(recommendationlist + "recommendation to test");

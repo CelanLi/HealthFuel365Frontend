@@ -34,7 +34,6 @@ export const registerUser = async (data) => {
     if (response.status >= 300) {
       throw new Error(response.message);
     }
-    //setCookie(data.username,response.token);
     setUserCookie(data.username,response.token);
     return true;
   } catch (error){

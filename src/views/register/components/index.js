@@ -1,10 +1,10 @@
 import { Button, Input, List, message, Upload } from 'antd';
 import { CloseOutlined } from '@ant-design/icons';
-import { UploadChangeParam } from 'antd/es/upload/interface';
 import React, { useState, useEffect } from 'react';
 import {registerUser} from '../../../services/userService'
 import { useNavigate } from 'react-router-dom';
 import { compressImage } from '../../../util/avatar';
+import { getRecommendation } from '../../../services/recommendationService';
 import defaultAvatar from '../../../assets/images/myaccount/default-user.png'
 
 import "./index.css"
@@ -37,6 +37,8 @@ function RegisterForm(){
       if (successFlag) {
       navigate('/myaccount/profileEdit');
       }
+
+      getRecommendation();
 
       // empty the form
       setUsername('');
