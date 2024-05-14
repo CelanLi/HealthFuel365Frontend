@@ -7,7 +7,7 @@ import AddIcon from "../../../../assets/images/myaccount/icon-address.png";
 import PhoneIcon from "../../../../assets/images/myaccount/icon-phone.png";
 import Receiver from "../../../../assets/images/myaccount/icon-receiver.png";
 
-function OrderAddress({ addressList = [], addressChoice }) {
+function OrderAddress({ addressList , addressChoice }) {
   const [selectedOption, setSelectedOption] = useState("");
 
   const handleRadioChange = (event) => {

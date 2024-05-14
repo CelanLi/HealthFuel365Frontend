@@ -48,8 +48,19 @@ function Page() {
   }
 
   function getAddressChoice(value) {
-    setorAddressID(value);
-    orAddressIDRef.current = value;
+    console.log(value,"value of address");
+    if (value === null || value === undefined) {
+      // Set the default address to the first address in the list
+      if (addressList && addressList.length > 0) {
+          const defaultAddressId = addressList[0].id;
+          setorAddressID(defaultAddressId);
+          orAddressIDRef.current = defaultAddressId;
+      }
+  } else {
+      // If the user selects a specific address, set it as the selected address
+      setorAddressID(value);
+      orAddressIDRef.current = value;
+  }
   }
 
   // get: itemquantity,itemprice,total savings, subtotal
