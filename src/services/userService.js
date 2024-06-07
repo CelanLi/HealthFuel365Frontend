@@ -95,7 +95,6 @@ export const getUser = async () => {
       },
     );
     const response = result.data;
-    console.log("getuser",response)
 
     if (response.status >= 300) {
       throw new Error(response.message);

@@ -18,9 +18,11 @@ import { Pagination } from "antd";
 function Page() {
   // used to store all products
   const [productList, setProductList] = useState([]);
+
   // the filter needs the product detail information
   const [productDetailList, setProductDetailList] = useState([]);
-  // used to get the keywords in the search part
+
+  // get search params
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const [keyWords, setKeywords] = useState(searchParams.get("search"));
@@ -30,6 +32,7 @@ function Page() {
       setKeywords(newKeyWords);
     }
   }, [searchParams]);
+
   // used to get the selected sort value in all product page
   const [sort, setSort] = useState("1");
   function getSelectedSort(value) {
@@ -89,18 +92,22 @@ function Page() {
       console.error("error set products:", error);
     }
   };
+
   // inintialize the product list
   useEffect(() => {
     setProducts();
   }, []);
+
   // change the product list when keywords/ sort method changed
   useEffect(() => {
     setProducts();
   }, [keyWords, sort]);
+
   // used to get the selected category in all product page
   const [category, setCategory] = useState(
     window.location.href.split("/")[3].split("#")[1]
   );
+
   function getSelectedCategory(value) {
     setCategory(value);
   }
@@ -207,6 +214,7 @@ function Page() {
   const [productsLoading, setProductsLoading] = useState(true);
   const [loadingScreen, setLoadingScreen] = useState(false);
   const [detailsLoading, setDetailsLoading] = useState(false);
+
   useEffect(() => {
     // check the if the details are loading, every time dietary preference change
     if (detailsLoading) {
@@ -215,6 +223,7 @@ function Page() {
       // setDetailsLoaded(true);
     }
   }, [sugarContent, saltContent, fatContent, preference]);
+
   useEffect(() => {
     const resetData = async () => {
       await resetfilteredProductList();
@@ -233,6 +242,7 @@ function Page() {
     detailsLoading,
     keyWords,
   ]);
+
   useEffect(() => {
     // calculate the starting index based on the current page number
     const start_index = (pageNumber - 1) * 15;
@@ -261,6 +271,7 @@ function Page() {
     saltContent,
     brands,
   ]);
+
   // products displayed per page
   const arrSplit = (arr, pageIndex, size) => {
     const offset = (pageIndex - 1) * size;
@@ -276,6 +287,7 @@ function Page() {
     },
     [filteredProductList, pageNumber]
   );
+  
   const showPagination =
     (filteredProductList.length > 0) &
     !productsLoading &
