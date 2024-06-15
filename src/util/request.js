@@ -44,6 +44,9 @@ serviceAxios.interceptors.response.use(
       } else if (error.response.status === 401) {
         showLoginReminder();
       }
+      else {
+        message = `Error: ${error.response.data.message}`;
+      }
     }
 
     return Promise.reject(message);
