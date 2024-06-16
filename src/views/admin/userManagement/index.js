@@ -164,7 +164,7 @@ function UserManagement () {
   };
   // save edit
   const handleEditSave = async () => {
-    const emailFormat = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,}$/;
+    const emailFormat = /^[\w-.]+@([\w-]+\.)+[\w-]{2,}$/;
     if (emailFormat.test(editingEmail)) {
       await updateUserEmail(editingUser, editingEmail);
       setEditingUser("");

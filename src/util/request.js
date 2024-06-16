@@ -1,5 +1,4 @@
 import axios from "axios";
-import qs from "qs";
 import { Modal } from "antd";
 
 // create axios request instance

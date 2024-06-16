@@ -2,7 +2,7 @@
 import './index.css';
 // dependencies
 import {Link} from 'react-router-dom'
-import React, { useState,useEffect } from 'react';
+import React, { useEffect } from 'react';
 import LoginForm from "./components"
 import { getCookie } from '../../util/cookie';
 import { useNavigate } from "react-router-dom";
@@ -42,7 +42,6 @@ function Login() {
   ]
 
   return (
-    // Left & Right devided
     <div className="welcomepage_wrap"> 
       <div className="whiteboard">
         <div className="wel_left">

@@ -1,7 +1,5 @@
 import React from 'react'
 import "./index.css";
-import { message } from 'antd';
-
 import OrderProduct from '../me_order_product';
 import Link from 'antd/es/typography/Link';
 

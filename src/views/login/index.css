@@ -3,8 +3,6 @@
     z-index: 1;
     width: calc((100% - 0.5rem) / 2);
     margin: auto 0.3rem;
-    /* margin-top: 2rem;
-    margin-left: 1.4rem; */
   }
   
 .wel_login_right {
@@ -15,6 +13,4 @@
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    /* margin-top: 0.8rem; 
-    margin-right: 0.6rem;  */
 }

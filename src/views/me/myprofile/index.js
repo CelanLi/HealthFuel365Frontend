@@ -8,7 +8,6 @@ import { profileGet } from '../../../services/userService';
 import "./index.css"
 import MyNav from "../components/me_nav"
 import MyProfile from "../components/me_profile"
-import EditProfile from '../profileedit/component';
 
 function App() {
     const [userProfile,setUserProfile] = useState(null)
@@ -77,20 +76,6 @@ function App() {
       console.error("profile get error:", error);
     }
   };
-  
-    // //get profile from backend
-    // const setProfile = async () => {
-    //   try{
-    //     setTimeout(async () => {
-    //       const profile = await profileGet();
-    //       console.log(JSON.stringify(profile) + "profile to test");
-          
-    //       setUserProfile(profile);
-    //     }, 300);
-    //   } catch (error) {
-    //     console.error("profile get error:", error);
-    //   }
-    // }
 
   return (
     <div className='myaccount-profile-wrap'>

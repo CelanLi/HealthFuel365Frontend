@@ -21,7 +21,6 @@ function ShoppingCartItem({
   function getItemCount(value) {
     setCountValue(value);
     changeProductCount({ productID, value });
-    //Todo: getShoppingCartList
   }
 
   function getTimesValue(num1, num2) {
@@ -43,7 +42,7 @@ function ShoppingCartItem({
     <div className="sc_item">
       <div className="sc_item_image">
         <Link to={`/product/detail/${productID}`}>
-          <img className="sc_item_testimage" src={image} onError={handleImageNotFound}></img>
+          <img className="sc_item_testimage" src={image} onError={handleImageNotFound} alt="NotFound"></img>
         </Link>
       </div>
       <div className="sc_item_content">

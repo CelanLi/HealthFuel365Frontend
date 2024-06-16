@@ -42,7 +42,6 @@ function Register() {
   ]
 
   return (
-    // Left & Right devided
     <div className="welcomepage_wrap"> 
       <div className="whiteboard">
         <div className="wel_left">

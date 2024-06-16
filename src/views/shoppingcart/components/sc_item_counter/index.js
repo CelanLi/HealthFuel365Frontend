@@ -9,7 +9,6 @@ function ScItemCounter({ count = 1, setCount, maxCapacity }) {
 
   // input only accept the count below capacity
   function numberInput(inputValue) {
-    // !number change to ""
     const availableValue = inputValue.replace(/[^\d]/g, "");
     setCountValue(Math.min(availableValue, capacity));
     setCount(Math.min(availableValue, capacity));

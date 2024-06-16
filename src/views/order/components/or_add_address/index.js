@@ -13,7 +13,6 @@ function OrderAddAddress() {
 
   const [firstNameValue, setFirstNameValue] = useState("");
   const [lastNameValue, setLastNameValue] = useState("");
-  const [telStateValue, setTelStateValue] = useState("");
   const [telValue, seTelValue] = useState("");
   const [streetValue, setStreetValue] = useState("");
   const [streetNoValue, setStreetNoValue] = useState("");
@@ -91,15 +90,6 @@ function OrderAddAddress() {
         tel: telValue,
         receiver: firstNameValue + ' ' + lastNameValue,
     })
-    // console.log(firstNameValue);
-    // console.log(lastNameValue);
-    // console.log(telStateValue);
-    // console.log(telValue);
-    // console.log(streetValue);
-    // console.log(streetNoValue);
-    // console.log(additionalAddressValue);
-    // console.log(postCodeValue);
-    // console.log(cityValue);
 
     setIsModalOpen(false);
 

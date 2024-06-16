@@ -5,13 +5,6 @@ import { LoadingScreen } from "../../../../components/loading/index";
 function ProductList({ productlist = [], isLoading_p, isLoading_d, total }) {
   if (isLoading_p) {
     return <LoadingScreen />;
-    // return (
-    //   <div className="products-container">
-    //     <div className="center">
-    //       <h1>Loading...</h1>
-    //     </div>
-    //   </div>
-    // );
   } else if (isLoading_d) {
     return <LoadingScreen />;
   } else if (total === 0) {

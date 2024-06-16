@@ -6,7 +6,7 @@ function ShoppingcartNutri({nutri}) {
   }
   return (
     <div className="sc_nutri">
-      <img src={getNutriLevelSrc(nutri)}></img>
+      <img src={getNutriLevelSrc(nutri)} alt={`Nutritional score ${nutri}`}></img>
     </div>
   );
 }

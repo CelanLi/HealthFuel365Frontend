@@ -2,9 +2,6 @@
     /* Level：1 */
     z-index: 1;
     width: 100%;
-    /* margin: auto 0.3rem; */
-    /* margin-top: 2rem;
-    margin-left: 1.4rem; */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -19,6 +16,4 @@
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    /* margin-top: 0.8rem; 
-    margin-right: 0.6rem;  */
 }

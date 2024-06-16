@@ -198,14 +198,7 @@ function ProductManagement() {
     await deleteProduct(productID);
     setProductList();
   };
-  const [editingProduct, setEditingProduct] = useState("");
-  const handleEdit = (i) => {
-    setEditingProduct(i);
-  };
-  const handleProductEdit = async (editedProduct) => {
-    setEditingProduct("");
-    setProductList();
-  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     await setProductList();

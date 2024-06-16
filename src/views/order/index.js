@@ -15,8 +15,7 @@ import { addressGet, getUser } from "../../services/userService";
 import { createOrder } from "../../services/orderService";
 import { getCookie } from "../../util/cookie";
 
-//ANTD components
-import { Popover, Collapse } from "antd";
+import { Collapse } from "antd";
 const { Panel } = Collapse;
 
 function Page() {
@@ -65,10 +64,8 @@ function Page() {
 
   // get: itemquantity,itemprice,total savings, subtotal
   function getOrderSummaryInfo() {
-    // then:sucess;catch:error
     getShoppingCartDetail({ shoppingCartID: shoppingCartID })
       .then((data) => {
-        // setProductItemList(data.productItemList);
         setorSummary({
           itemsCount: data.shoppingCartItems.itemQuantity,
           itemsPrice: data.shoppingCartItems.itemPrice,

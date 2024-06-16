@@ -14,23 +14,6 @@
   padding-right: 2%;
 }
 
-.homepage-carousel-ad{
-  /* display: flex;
-  justify-content: center; */
-  /* max-height: 420px; */
-}
-
-/* 
-.homepage-carousel{
-  height: 200px;
-}
-
-.homepage-carousel-ads{
-  width: 100%;
-  max-height: 420px;
-  object-fit: cover;
-} */
-
 .homepage-recommendation-wrap{
   display: flex;
   flex-direction: row;
@@ -137,7 +120,7 @@
 }
 
 .homepage-alternative{
-  /*height: 360px;*/
+
   background-color: #C4D0CB;
   display: flex;
   flex-direction: column;
@@ -217,7 +200,6 @@
 }
 
 .homepage-nutri-score-image{
-  /*position: relative;*/
   width: 90%;
   height: 250px;
   object-fit: cover;
@@ -226,12 +208,7 @@
 .homepage-learn-more{
   /* position of button */
   position: absolute;
-  /*width: 200px;*/
   width: 28%;
-  /*
-  left: 1100px;
-  top: 2300px;
-  */
   left: 60%;
 
   /* style of button */

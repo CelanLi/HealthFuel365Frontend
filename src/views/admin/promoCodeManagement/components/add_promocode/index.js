@@ -7,7 +7,6 @@ import "./index.css";
 
 //import service
 import { addPromoCode } from "../../../../../services/adminService";
-import { configConsumerProps } from "antd/es/config-provider";
 
 function AddPromoCode({ getlist }) {
   const [isModalOpen, setIsModalOpen] = useState(false);

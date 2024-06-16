@@ -82,7 +82,7 @@ function Page() {
   };
 
   if (!isDataLoaded) {
-    return <div>Loading...</div>; // wait for data loading
+    return <div>Loading...</div>;
   }
 
   return (

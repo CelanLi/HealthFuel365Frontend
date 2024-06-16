@@ -5,7 +5,7 @@ import { message } from "antd";
 import "./index.css";
 import ShoppingCartItem from "./components/shoppingcart_item";
 import ShoppingCartSummary from "./components/sc_summary";
-import { addressGet,getUser } from "../../services/userService";
+import { getUser } from "../../services/userService";
 import { getCookie } from "../../util/cookie";
 import { Modal } from "antd";
 
@@ -18,17 +18,14 @@ import {
 } from "../../services/shoppingCartService";
 
 function Page() {
-  // definite value input
   const [productItemList, setProductItemList] = useState([]);
   const [shoppingCartID, setShoppingCartID] = useState("");
   const [scSummary, setscSummary] = useState({});
   const [messageApi, contextHolder] = message.useMessage();
 
   function getShoppingCartInfo() {
-    // then:sucess;catch:error
     getShoppingCartDetail({ shoppingCartID: shoppingCartID })
       .then((data) => {
-        // setProductItemList(data.productItemList);
         setProductItemList(
           data.productItems
             .map((i) => ({ ...i.product, quantity: i.quantity }))
@@ -63,7 +60,6 @@ function Page() {
   }
 
   async function deleteProductID(value) {
-    // console.log(value, shoppingCartID);
     // give shoppingCartID，and productId to backend
     await deleteProductItem({
       shoppingCartID: shoppingCartID,

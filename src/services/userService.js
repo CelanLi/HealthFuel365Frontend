@@ -1,7 +1,5 @@
-import axios from "axios";
 import serviceAxios from "../util/request.js";
 import {setUserCookie, invalidateCookie} from "../util/cookie.js";
-import { Avatar, message } from "antd";
 import { encodeFileToBase64 } from "../util/avatar.js";
 import { backendUrl, userRoute } from "../util/constants.js";
 

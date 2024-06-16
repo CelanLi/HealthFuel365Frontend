@@ -14,7 +14,6 @@ import EditPromoCode from "./components/edit_promocode";
 
 function PromoCodeManagement() {
   const [keyWords, setKeyWords] = useState("");
-  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();

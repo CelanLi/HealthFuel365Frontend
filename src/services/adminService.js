@@ -33,7 +33,7 @@ export const logoutAdmin = async () => {
 export const getAllUserWithProfile = async (keyWords) => {
   try {
     const result: Response = await axios.get(
-      backendUrl + adminRoutes + "/user" + "/?keyWords=" + keyWords,
+      backendUrl + adminRoutes + "/user/?keyWords=" + keyWords,
       {
         headers: {
           Authorization: document.cookie, //put cookie into header
@@ -183,7 +183,7 @@ export const addPromoCode = async (data) => {
 export const getAllOrdersWithService = async (keyWords) => {
   try {
     const result: Response = await axios.get(
-      backendUrl + adminRoutes + "/orders" + "/?keyWords=" + keyWords,
+      backendUrl + adminRoutes + "/orders/?keyWords=" + keyWords,
       {
         headers: {
           Authorization: document.cookie, //put cookie into header
@@ -252,7 +252,7 @@ export const getOrderById = async (orderID) => {
 export const getProductsWithDetail = async (keywords) => {
   try {
     const result: Response = await axios.get(
-      backendUrl + adminRoutes + "/products" + "/?keywords=" + keywords,
+      backendUrl + adminRoutes + "/products/?keywords=" + keywords,
       {
         headers: {
           Authorization: document.cookie, //put cookie into header

@@ -7,7 +7,6 @@
 .welcomepage_wrap {
   background-image: url("../../assets/images/welcomepage_background.png");
   background-size: cover;
-  /* background-attachment:fixed; */
   background-position: center center;
   background-repeat: no-repeat;
   width: 100%;
@@ -24,8 +23,6 @@
   z-index: 1;
   width: calc((100% - 0.4rem) / 2);
   margin-right: auto;
-  /* margin-top: 2rem;
-  margin-left: 1.4rem; */
 }
 
 .wel_right {
@@ -36,14 +33,10 @@
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  /* margin-top: 0.8rem; 
-  margin-right: 0.6rem;  */
 }
 
 .whiteboard {
-  /* Level：o */
   z-index: 0;
-  /* absolute position：fixed */
   position: absolute;
   left: 0.38rem;
   right: 0.38rem;
@@ -144,12 +137,6 @@
 .guest a:hover {
   filter: brightness(2);
 }
-
-/* .register {
-  width: 187px;
-  height: 83px; 
-  background-color: #FFFFFF;
-} */
 
 .guest {
   /* right  */

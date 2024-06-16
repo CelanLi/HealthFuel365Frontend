@@ -1,6 +1,4 @@
-// import
 import './index.css';
-// Dependency
 import {Link} from 'react-router-dom'
 
 //auto-Adaption of page size
@@ -28,7 +26,6 @@ function Page() {
   ]
 
   return (
-    // Left & Right devided
     <div className="welcomepage_wrap"> 
       <div className="whiteboard">
         <div className="wel_left">

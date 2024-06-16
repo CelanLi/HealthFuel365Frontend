@@ -41,12 +41,6 @@ function App() {
             setAddressList(list);
           }, 300);
         } 
-        // else {
-        //   const list = {};
-        //   setTimeout(async () => {
-        //     navigate('/');
-        //   }, 3000);
-        // }
       } catch (error) {
         console.error("address get error:", error);
       }

@@ -1,4 +1,3 @@
-import axios from "axios";
 import { backendUrl, recommendationRoutes } from "../util/constants";
 import { getCookie } from "../util/cookie";
 import serviceAxios from "../util/request";

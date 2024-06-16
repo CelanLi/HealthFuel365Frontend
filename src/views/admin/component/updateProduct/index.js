@@ -1,9 +1,7 @@
-//ANTD components
 import React, { useState, useEffect } from "react";
-import { Modal, Input, Space, message, Select } from "antd";
+import { Modal, Input, message, Select } from "antd";
 import {
   getProductWithDetail,
-  getProductsWithDetail,
   updateProduct,
 } from "../../../../services/adminService";
 import "./index.css";
@@ -77,20 +75,6 @@ function EditProduct({ productID }) {
     });
   };
 
-  const handleSugarChange = (e) => {
-    const value = e.target.value;
-
-    setTimeout(() => {
-      if (!isNaN(value)) {
-        setSugar(value);
-      } else {
-        messageApi.open({
-          type: "error",
-          content: "Please enter a valid sugar content (numeric value)",
-        });
-      }
-    });
-  };
   const handleCapicityChange = (e) => {
     const value = e.target.value;
 
@@ -105,62 +89,7 @@ function EditProduct({ productID }) {
       }
     });
   };
-  const handleFatChange = (e) => {
-    const value = e.target.value;
 
-    setTimeout(() => {
-      if (!isNaN(value)) {
-        setFat(value);
-      } else {
-        messageApi.open({
-          type: "error",
-          content: "Please enter a valid fat content (numeric value)",
-        });
-      }
-    });
-  };
-  const handleSaltChange = (e) => {
-    const value = e.target.value;
-
-    setTimeout(() => {
-      if (!isNaN(value)) {
-        setSalt(value);
-      } else {
-        messageApi.open({
-          type: "error",
-          content: "Please enter a valid salt content (numeric value)",
-        });
-      }
-    });
-  };
-  const handleFiberChange = (e) => {
-    const value = e.target.value;
-
-    setTimeout(() => {
-      if (!isNaN(value)) {
-        setFiber(value);
-      } else {
-        messageApi.open({
-          type: "error",
-          content: "Please enter a valid fiber content (numeric value)",
-        });
-      }
-    });
-  };
-  const handleProteinChange = (e) => {
-    const value = e.target.value;
-
-    setTimeout(() => {
-      if (!isNaN(value)) {
-        setProteins(value);
-      } else {
-        messageApi.open({
-          type: "error",
-          content: "Please enter a valid protein content (numeric value)",
-        });
-      }
-    });
-  };
   const handleOk = async () => {
     const regex1 = /\d/; // matches digit character
     const regex2 = /kcal|kj/i; // i means do no distinguish cases
@@ -621,6 +550,7 @@ function EditProduct({ productID }) {
                   <span className="or_additional_shipping_note">
                     <img
                       src={require("../../../../assets/images/information_note.png")}
+                      alt="information_note"
                     />
                   </span>
                 </Popover>

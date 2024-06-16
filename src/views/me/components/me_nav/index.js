@@ -5,7 +5,6 @@ import { Link, useNavigate } from 'react-router-dom';
 
 //import style
 import "./index.css"
-import MyInfo from '../me_info'
 import { Upload, message } from 'antd';
 import defaultAvatar from '../../../../assets/images/myaccount/default-user.png'
 
@@ -143,7 +142,6 @@ function MyNav() {
         )}
 
         {userAccount && (
-            // <MyInfo username={userAccount.username}/>
             <div className='myaccount-nav-text'>
               {userAccount.username}
             </div>

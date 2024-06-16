@@ -3,7 +3,6 @@ import { useState } from "react";
 import "./index.css";
 
 function OrderAdditionService({setorService}) {
-  //note componets from ANTD
   const additionalServiceNote = (
     <div
       style={{
@@ -49,6 +48,7 @@ function OrderAdditionService({setorService}) {
               <span className="or_additional_shipping_icon">
                 <img
                   src={require("../../../../assets/images/gift_service.png")}
+                  alt="gift_service"
                 />
               </span>
               <Popover
@@ -61,6 +61,7 @@ function OrderAdditionService({setorService}) {
                 <span className="or_additional_shipping_note">
                   <img
                     src={require("../../../../assets/images/information_note.png")}
+                    alt="information_note"
                   />
                 </span>
               </Popover>

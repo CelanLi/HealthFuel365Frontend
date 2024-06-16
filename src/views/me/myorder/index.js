@@ -1,8 +1,6 @@
 //dependencies
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-
 import { getOrder, getOrderTimestamp } from "../../../services/orderService";
 
 //import style
@@ -14,8 +12,6 @@ import { message } from "antd";
 function App() {
   // set order list value
   const [orderList, setOrderList] = useState([]);
-  //navigation
-  const navigate = useNavigate();
   const [messageApi, contextHolder] = message.useMessage();
 
   // initial order list
@@ -59,18 +55,10 @@ function App() {
             const timestampB = getOrderTimestamp(b);
             return timestampB - timestampA;
           });
-
-          // list.sort((a, b) => new Date(b.orderDate) - new Date(a.orderDate));
           console.log(sortedOrders + "order to test");
           setOrderList(sortedOrders);
         }, 300);
       }
-      // else {
-      //   const list = {};
-      //   setTimeout(async () => {
-      //     navigate('/');
-      //   }, 3000);
-      // }
     } catch (error) {
       console.error("order get error:", error);
     }

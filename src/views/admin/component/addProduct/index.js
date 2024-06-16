@@ -1,10 +1,8 @@
-//ANTD components
 import React, { useState } from "react";
-import { Modal, Input, Space, message, Select } from "antd";
+import { Modal, Input, message, Select } from "antd";
 import "./index.css";
 
-import { addProduct, updateProduct } from "../../../../services/adminService";
-import { async } from "q";
+import { addProduct } from "../../../../services/adminService";
 import { Popover } from "antd";
 
 function AddProduct() {
@@ -548,6 +546,7 @@ function AddProduct() {
                   <span className="or_additional_shipping_note">
                     <img
                       src={require("../../../../assets/images/information_note.png")}
+                      alt="information_note"
                     />
                   </span>
                 </Popover>

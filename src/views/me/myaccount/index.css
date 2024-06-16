@@ -32,7 +32,6 @@
 .myaccount-information{
     display: flex;
     flex-direction: column;
-    /* background-color: red; */
     margin-top: 20px;
     align-items: center;
 }

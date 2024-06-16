@@ -190,7 +190,6 @@ function Page() {
       </div>
       {/* product Information */}
       {!product ? (
-        // case 1: product not found
         <div className="pd_content">
           <div className="center">
             <div className="logo" />
@@ -198,12 +197,11 @@ function Page() {
           </div>
         </div>
       ) : (
-        // case 2: product exists
         <div className="pd_content">
           <div className="pd_content_top">
             {/* product-img */}
             <div className="pd_top_left">
-              <img src={image} onError={handleImageNotFound}></img>
+              <img src={image} alt="image" onError={handleImageNotFound}></img>
             </div>
             <div className="pd_top_right">
               {/* product-name */}
@@ -301,13 +299,13 @@ function Page() {
                   <div className="row">
                     {productDetail?.vegan ? (
                       <div class="info">
-                        <img src={Vegan} className="icon" />
+                        <img src={Vegan} alt="Vegan" className="icon" />
                         <p> Vegan </p>
                       </div>
                     ) : null}
                     {productDetail?.vegetarian ? (
                       <div class="info">
-                        <img src={Vegetarian} className="icon" />
+                        <img src={Vegetarian} alt="Vegetarian" className="icon" />
                         <p> Vegetarian </p>
                       </div>
                     ) : null}

@@ -1,5 +1,4 @@
 import "./index.css";
-import { Link } from "react-router-dom";
 import { useState } from "react";
 import { message, Tag } from "antd";
 function ShoppingCartSummary({

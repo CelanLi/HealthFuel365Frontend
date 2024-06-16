@@ -1,4 +1,4 @@
-export const backendUrl: string = "http://18.206.170.23";
+export const backendUrl: string = "http://54.173.92.143";
 export const productRoute: string = "/product";
 export const productDetailRoute: string = "/product/detail";
 export const alternativeRoute: string = "/alternative";

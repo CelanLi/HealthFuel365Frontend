@@ -1,6 +1,4 @@
-import React, { useEffect } from 'react'
-import User from "../../../../assets/images/myaccount/tax-inspector.png"
-
+import React from 'react'
 //import style
 import "./index.css"
 
