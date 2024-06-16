@@ -11,9 +11,9 @@ const showLoginReminder = () => {
     },
   });
 };
-export const getAllProducts = async (selectedSort: string) => {
+export const getAllProducts = async (selectedSort) => {
   try {
-    const result: Response = await axios.get(
+    const result = await axios.get(
       backendUrl + productRoute + "/" + selectedSort
     );
     const response = result.data;
@@ -28,7 +28,7 @@ export const getAllProducts = async (selectedSort: string) => {
 
 export const getProductsByName = async (name, selectedSort) => {
   try {
-    const result: Response = await axios.get(
+    const result = await axios.get(
       backendUrl + productRoute + "/" + selectedSort + "/?search=" + name
     );
     const response = result.data;
@@ -43,7 +43,7 @@ export const getProductsByName = async (name, selectedSort) => {
 
 export const addShoppingCart = async (shoppingCartID, productID) => {
   try {
-    const result: Response = await axios.post(
+    const result = await axios.post(
       backendUrl +
         productRoute +
         "/addToSc/" +
@@ -77,7 +77,7 @@ export const addShoppingCart = async (shoppingCartID, productID) => {
 
 export const getAllBrands = async () => {
   try {
-    const result: Response = await axios.get(
+    const result = await axios.get(
       backendUrl + productRoute + "/filter/brands"
     );
     const response = result.data;

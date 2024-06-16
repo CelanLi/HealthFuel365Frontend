@@ -4,10 +4,6 @@ import "./index.css";
 import { profileEdit } from '../../../../services/userService';
 import { Link, useNavigate } from 'react-router-dom';
 
-import HealthGoal from '../../../../assets/images/myaccount/icon-health-goal.png'
-import DietType from '../../../../assets/images/myaccount/icon-diet-type.png'
-import Preference from '../../../../assets/images/myaccount/icon-preference.png'
-
 function EditProfile({goal, type, nutri, fatContent, saltContent, sugarContent}) {
     const [form] = Form.useForm();
     const navigate = useNavigate();

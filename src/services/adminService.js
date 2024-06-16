@@ -32,7 +32,7 @@ export const logoutAdmin = async () => {
 
 export const getAllUserWithProfile = async (keyWords) => {
   try {
-    const result: Response = await axios.get(
+    const result = await axios.get(
       backendUrl + adminRoutes + "/user/?keyWords=" + keyWords,
       {
         headers: {
@@ -52,7 +52,7 @@ export const getAllUserWithProfile = async (keyWords) => {
 
 export const deleteUserWithProfile = async (userID) => {
   try {
-    const result: Response = await axios.delete(
+    const result = await axios.delete(
       backendUrl + adminRoutes + "/" + userID,
       {
         headers: {
@@ -73,7 +73,7 @@ export const deleteUserWithProfile = async (userID) => {
 
 export const updateUserEmail = async (userID, email) => {
   try {
-    const result: Response = await axios.put(
+    const result = await axios.put(
       backendUrl + adminRoutes + "/update/" + userID + "/" + email,
       {},
       {
@@ -114,7 +114,7 @@ export const updatePromoCode = async (data) => {
 
   //catch error
   try {
-    const result: Response = await axios.post(
+    const result = await axios.post(
       backendUrl + adminRoutes + "/updatePromoCode",
       {
         promocodeID: data.promocodeID,
@@ -149,7 +149,7 @@ export const addPromoCode = async (data) => {
   console.log("addPromoCode", data);
   //catch error
   try {
-    const result: Response = await axios.post(
+    const result = await axios.post(
       backendUrl + adminRoutes + "/addPromoCode",
       {
         code: data.code,
@@ -182,7 +182,7 @@ export const addPromoCode = async (data) => {
 
 export const getAllOrdersWithService = async (keyWords) => {
   try {
-    const result: Response = await axios.get(
+    const result = await axios.get(
       backendUrl + adminRoutes + "/orders/?keyWords=" + keyWords,
       {
         headers: {
@@ -202,7 +202,7 @@ export const getAllOrdersWithService = async (keyWords) => {
 
 export const updateOrder = async (orderID, status, trackingnumber) => {
   try {
-    const result: Response = await axios.put(
+    const result = await axios.put(
       backendUrl +
         adminRoutes +
         "/orders/update/" +
@@ -231,7 +231,7 @@ export const updateOrder = async (orderID, status, trackingnumber) => {
 
 export const getOrderById = async (orderID) => {
   try {
-    const result: Response = await axios.get(
+    const result = await axios.get(
       backendUrl + adminRoutes + "/getOrder/" + orderID,
       {
         headers: {
@@ -251,7 +251,7 @@ export const getOrderById = async (orderID) => {
 
 export const getProductsWithDetail = async (keywords) => {
   try {
-    const result: Response = await axios.get(
+    const result = await axios.get(
       backendUrl + adminRoutes + "/products/?keywords=" + keywords,
       {
         headers: {
@@ -270,7 +270,7 @@ export const getProductsWithDetail = async (keywords) => {
 };
 export const getProductWithDetail = async (productID) => {
   try {
-    const result: Response = await axios.get(
+    const result = await axios.get(
       backendUrl + adminRoutes + "/products/edit/" + productID,
       {
         headers: {
@@ -312,7 +312,7 @@ export const deleteProduct = async (productID) => {
 export const addProduct = async (data) => {
   try {
     console.log(data.vegan);
-    const result: Response = await axios.post(
+    const result = await axios.post(
       backendUrl + adminRoutes + "/products/add",
       {
         productID: "1",
@@ -354,7 +354,7 @@ export const updateProduct = async (data) => {
   try {
     console.log(JSON.stringify(data.description) + "update");
     // await deleteProduct(data.productID);
-    const result: Response = await axios.post(
+    const result = await axios.post(
       backendUrl + adminRoutes + "/products/update/" + data.productID,
       {
         productID: data.productID,

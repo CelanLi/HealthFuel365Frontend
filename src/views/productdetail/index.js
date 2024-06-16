@@ -39,7 +39,7 @@ function Page() {
   const [imageNotFound, setImageNotFound] = useState(false);
   useEffect(() => {
     // fetch product and product details based on the id
-    const setData = async (id: string) => {
+    const setData = async (id) => {
       try {
         const [product, productDetail] = await getDetail(id);
         setProduct(product);

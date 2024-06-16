@@ -1,10 +1,10 @@
 import axios from "axios";
 import { backendUrl, productDetailRoute } from "../util/constants";
 
-export const getDetail = async (productID: string) => {
+export const getDetail = async (productID) => {
   try {
     console.log(backendUrl + productDetailRoute + "/" + productID);
-    const result: Response = await axios.get(
+    const result = await axios.get(
       backendUrl + productDetailRoute + "/" + productID
     );
     const response = result.data;

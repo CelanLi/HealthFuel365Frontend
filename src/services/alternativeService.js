@@ -1,10 +1,10 @@
 import axios from "axios";
 import { backendUrl, alternativeRoute } from "../util/constants";
 
-export const getAlternative = async (junkFoodType: number) => {
+export const getAlternative = async (junkFoodType) => {
 
     try {
-      const result: Response = await axios.get(
+      const result = await axios.get(
         backendUrl + alternativeRoute + "/" + junkFoodType
       );
       const response = result.data;
