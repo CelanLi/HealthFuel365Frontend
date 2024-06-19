@@ -2,6 +2,7 @@
 import React, { useEffect } from 'react'
 import { useState, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
 //import style
 import "./index.css"
@@ -13,6 +14,7 @@ import { logoutUser } from '../../../../services/userService';
 import { getUser, AvatarEdit } from '../../../../services/userService';
 import { getCookie } from '../../../../util/cookie';
 import { decodeBase64ToFile, compressImage } from '../../../../util/avatar';
+import { clearCookie, editAvatar } from '../../../../store/modules/user';
 
 
 function MyNav() {
@@ -20,49 +22,26 @@ function MyNav() {
     const [userAccount,setUserAccount] = useState(null);
     const [isHovered, setIsHovered] = useState(false);
     const avatarRef = useRef(null);
+    const dispatch = useDispatch();
+    const userInfo = useSelector((state) => state.user.userInfo);
 
 
     //initial user account
-    useEffect(() => {
-      setAccount();
-    },[])
+    // useEffect(() => {
+    //   setAccount();
+    // },[])
 
     useEffect(() => {
-      if (userAccount && userAccount.avatar) {
-        if (userAccount.avatar === "default") {
+      if (userInfo && userInfo.avatar) {
+        if (userInfo.avatar === "default") {
           avatarRef.current.src = defaultAvatar;
         } else {
-          const blob = decodeBase64ToFile(userAccount.avatar, 'image/png');
+          const blob = decodeBase64ToFile(userInfo.avatar, 'image/png');
           const blobUrl = URL.createObjectURL(blob);
           avatarRef.current.src = blobUrl;
         }
       }
-    }, [userAccount]);
-  
-    //get account from backend
-    const setAccount = async () => {
-      try{
-        const cookie = getCookie("userLogin")
-        if (cookie) {
-          console.log("getaccount")
-          const userAccount = await (getUser());
-          if (userAccount) {
-            setUserAccount(userAccount)
-          }
-        }
-        else{
-          const userAccount = {
-            username: "guest",
-            email:"guest@gmail.com"
-          }
-          setUserAccount(userAccount);
-        }
-        
-      } catch (error) {
-        console.error("userAccount get error:", error);
-      }
-    }
-
+    }, []);
 
     // navigation
     const navigate = useNavigate();
@@ -78,18 +57,12 @@ function MyNav() {
       if (info.file) {
         if (info.file.type.startsWith("image/")){
           const compressedFile = await compressImage(info.file, compressionOptions);
-          console.log('Upload completed');
-          const successFlag = await AvatarEdit( {avatar: compressedFile} )
-          if (successFlag) {
-            message.success("Avatar upload completed!")
-            await setAccount();
-            const blob = compressedFile;
-            const blobUrl = URL.createObjectURL(blob);
-            avatarRef.current.src = blobUrl;
-          }
-          else{
-            message.error("Avatar upload failed!")
-          }
+          const blob = compressedFile;
+          const blobUrl = URL.createObjectURL(blob);
+          avatarRef.current.src = blobUrl;
+          message.success("Avatar upload completed!")
+
+          dispatch(editAvatar(compressedFile));
         }
         else{
           message.error("Please upload images!");
@@ -101,15 +74,15 @@ function MyNav() {
     const handleLogout = (e) => {
         e.preventDefault();
         navigate('/homepage');
-        logoutUser();
+        dispatch(clearCookie())
     };
 
   return (
     <div className='myaccount-nav-wrap'>
 
-        {userAccount && userAccount.avatar && (
+        {userInfo && userInfo.avatar && (
           <div className="nav-avatar-container">
-            {userAccount && userAccount.avatar && (
+            {userInfo && userInfo.avatar && (
               <div>
                 <img ref={avatarRef} className="avatar-image" alt="Avatar"
                       onMouseEnter={() => setIsHovered(true)}
@@ -141,9 +114,9 @@ function MyNav() {
           </div>
         )}
 
-        {userAccount && (
+        {userInfo && (
             <div className='myaccount-nav-text'>
-              {userAccount.username}
+              {userInfo.username}
             </div>
         )}
 
@@ -154,7 +127,7 @@ function MyNav() {
         </div>
 
         <div className="myaccount-nav-tab">
-            <Link to="/myaccount/myprofile" className="myaccount-nav-title">My Profile</Link>
+            <Link to="/myaccount" className="myaccount-nav-title">My Profile</Link>
         </div>
 
         <div className="myaccount-nav-tab">

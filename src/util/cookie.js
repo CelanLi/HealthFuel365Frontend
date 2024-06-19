@@ -1,4 +1,4 @@
-export function setUserCookie(cname, cvalue) {
+export function setUserCookie(cvalue) {
   const expireDate = new Date();
   // expiration time for the cookie by adding 24 hours
   expireDate.setTime(expireDate.getTime() + 86400000);

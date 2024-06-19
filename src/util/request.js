@@ -1,5 +1,6 @@
 import axios from "axios";
 import { Modal } from "antd";
+import { useNavigate } from "react-router";
 
 // create axios request instance
 const serviceAxios = axios.create({
@@ -20,11 +21,13 @@ serviceAxios.interceptors.request.use(
 );
 
 const showLoginReminder = () => {
+  // navigate = useNavigate();
   Modal.error({
     title: "please log in",
     content: "Sorry, log in is reuired",
     onOk: () => {
       window.location.href = "http://localhost:3000";
+      // navigate("/login");
     },
   });
 };

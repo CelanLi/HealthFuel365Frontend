@@ -3,12 +3,15 @@ import React, { useState, useEffect } from 'react';
 import {loginUser} from '../../../services/userService';
 import {loginAdmin} from '../../../services/adminService';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { fetchUserInfo, fetchUserLogin } from '../../../store/modules/user';
 
 import "./index.css"
 
 function LoginForm({isUser=true}){
   console.log(isUser? "true":"false")
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -23,29 +26,28 @@ function LoginForm({isUser=true}){
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const successFlag = isUser? 
-        await loginUser({
-          username:username,
-          password:password,})
-        :
-        await loginAdmin({
-          adminID:username,
-          password:password,});
-
-      if (successFlag) { isUser? 
-        navigate('/homepage')
-        :
-        navigate("/admin/userManagement");
-      }
-      // empty the form
-      setUsername('');
-      setPassword('');
-    } catch (error) {
-      message.error(`Login failed: ${error.response.data.message}`);
+    let successFlag=false;
+    if (isUser) {
+      successFlag = dispatch(fetchUserLogin({
+        username: username,
+        password: password,
+      }));
+    } else {
+      successFlag = await loginAdmin({
+        adminID: username,
+        password: password,
+      });
     }
 
-    
+    if (successFlag) { 
+      if(isUser){
+        navigate('/homepage');
+      }
+      else{
+        navigate("/admin/userManagement");
+      }
+      
+    }
     //empty the form
     setUsername('');
     setPassword('');

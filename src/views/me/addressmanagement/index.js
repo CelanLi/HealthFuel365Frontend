@@ -70,7 +70,7 @@ function App() {
     }
   return (
     <div className='myaccount-address-wrap'>
-      <MyNav/>
+      {/* <MyNav/> */}
       <div className='myaccount-address-page'>
         <div className='myaccount-address'>
               {/* the title of block */}

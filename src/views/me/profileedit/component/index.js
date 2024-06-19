@@ -251,7 +251,7 @@ function EditProfile({goal, type, nutri, fatContent, saltContent, sugarContent})
                     Submit
                 </button>
             </Form.Item>
-            </Form>
+        </Form>
     </div>
     
   );

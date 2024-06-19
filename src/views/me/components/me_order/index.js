@@ -2,10 +2,12 @@ import React from 'react'
 import "./index.css";
 import OrderProduct from '../me_order_product';
 import Link from 'antd/es/typography/Link';
+import { useNavigate } from 'react-router';
 
 function MyOrder({id,date,totalPrice,status,orderProducts}) {
+    const navigator = useNavigate();
     const handleDetail = (orderID) => {
-        window.location.href = `myorder/orderdetail/orderId=${orderID}`;
+        navigator(`/orderdetail/orderId=${orderID}`)
     }
 
     return(
@@ -25,7 +27,7 @@ function MyOrder({id,date,totalPrice,status,orderProducts}) {
                     <OrderProduct orderProducts={orderProducts}/>
                 </div>
                 <div>
-                    <Link to={'myorder/orderdetail/${id}'}></Link>
+                    {/* <Link to={'myorder/orderdetail/${id}'}></Link> */}
                     <button className='myaccount-edit' onClick={() => handleDetail(id)} value={id}>Details</button>
                 </div>
             </div>

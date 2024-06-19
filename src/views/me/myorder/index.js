@@ -66,8 +66,6 @@ function App() {
 
   return (
     <div className="myaccount-order-wrap">
-      {contextHolder}
-      <MyNav />
       <div className="myaccount-order-page">
         {/* the title of block */}
         <div className="myaccount-title">

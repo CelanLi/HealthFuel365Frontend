@@ -4,7 +4,7 @@
 
 .myaccount-wrap{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
 }
 
 .myaccount-nav{
@@ -109,7 +109,7 @@
   }
 
 .myaccount-content{
-    background-color: #C4D0CB;
+    background-color: red;
     margin-bottom: 20px;
     border-radius: 20px;
     height: 150px;

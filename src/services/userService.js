@@ -25,7 +25,7 @@ export const registerUser = async (data) => {
         avatar: avatar,
       },
     })
-    setUserCookie(data.username,result.token);
+    setUserCookie(result.token);
     return true;
 };
 
@@ -36,12 +36,13 @@ export const loginUser = async (data) => {
       data,
     })
     //when user log in successfully, a token will be stored in his browser.
-    setUserCookie(data.username,result.token)
+    setUserCookie(result.token)
     return true;
 };
 
 export const getUser = async () => {
   if (!document.cookie) {
+    return null;
     throw new Error("Cookie is empty!");
   }
   const result = await serviceAxios({
@@ -52,7 +53,8 @@ export const getUser = async () => {
 };
 
 export const AvatarEdit = async (data) => {
-const avatar = await encodeFileToBase64(data.avatar)
+  console.log("data",data)
+  const avatar = await encodeFileToBase64(data)
   const result = await serviceAxios({
     url: backendUrl + userRoute + "/AvatarEdit",
     method: "put",

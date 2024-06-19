@@ -116,42 +116,65 @@ export const routers = [
         path: "/order", // http://www.healthfuel365.com/order
         element: <Order />,
       },
-
-  {
-    //go to My Account Page
-    path:'myaccount', //http://www.healthfuel365.com/myaccount
-    children: [
       {
-        index: true,
-        element: <MyAccount />
+        // Order Detail Page
+        path: "/orderdetail/:orderId", // http://www.healthfuel365.com/orderdetail
+        element: <OrderDetail />,
       },
       {
-        path:'profileEdit', //http://www.healthfuel365.com/myaccount/profileEdit
-        element: <ProfileEdit />
-      },
-      {
-        path:'addressManagement',
-        element: <AddressManagement />
-      },
-      {
-        path:'myprofile',
-        element: <MyProfile />
-      },
-      {
-        path:'myorder',
-        children: [
+        path:"/myaccount",
+        element: <MyAccount />,
+        children:[
           {
-            path:'',
+            index: true,  //http://www.healthfuel365.com/myaccount
+            element: <ProfileEdit />
+          },
+          {
+            path: "myorder", //http://www.healthfuel365.com/myaccount/myorder
             element: <MyOrder />,
           },
           {
-            path:'orderdetail/:orderId',
-            element: <OrderDetail />
-          }
+            path: "addressManagement",
+            element: <AddressManagement />
+          },
         ]
       },
-    ]
-  },
+
+  // {
+  //   //go to My Account Page
+  //   path:'myaccount', //http://www.healthfuel365.com/myaccount
+  //   children: [
+  //     {
+  //       index: true,
+  //       element: <MyAccount />
+  //     },
+  //     {
+  //       path:'profileEdit', //http://www.healthfuel365.com/myaccount/profileEdit
+  //       element: <ProfileEdit />
+  //     },
+  //     {
+  //       path:'addressManagement',
+  //       element: <AddressManagement />
+  //     },
+  //     {
+  //       path:'myprofile',
+  //       element: <MyProfile />
+  //     },
+  //     {
+  //       path:'myorder',
+  //       children: [
+  //         {
+  //           path:'',
+  //           element: <MyOrder />,
+  //         },
+  //         {
+  //           path:'orderdetail/:orderId',
+  //           element: <OrderDetail />
+  //         }
+  //       ]
+  //     },
+  //   ]
+  // },
     ]
   }
 ]
