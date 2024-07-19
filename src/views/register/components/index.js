@@ -35,7 +35,7 @@ function RegisterForm(){
 
       //only when the registration success, jump to profile edit
       if (successFlag) {
-      navigate('/myaccount/profileEdit');
+      navigate('/myaccount');
       }
 
       getRecommendation();

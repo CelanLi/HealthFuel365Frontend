@@ -81,7 +81,7 @@ function Page() {
       title: "please log in",
       content: "Before adding items to your shopping cart, log in is reuired",
       onOk: () => {
-        window.location.href = "http://localhost:3000";
+        window.location.href = `${window.location.origin}`;
       },
     });
   };

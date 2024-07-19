@@ -96,7 +96,7 @@ function PromoCodeManagement() {
       title: "please log in",
       content: "To access admin panel, log in is reuired",
       onOk: () => {
-        window.location.href = "http://localhost:3000/admin";
+        window.location.href = `${window.location.origin}/admin`;
       },
     });
   };

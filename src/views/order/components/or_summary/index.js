@@ -28,6 +28,9 @@ function OrderSummary({
   const [isPending, setIsPending] = useState(true);
   const [messageApi, contextHolder] = message.useMessage();
 
+  // decide the base path of order page
+  const basePath = "/myaccount/myorder";
+
   const onApprove = (data, actions) => {
     return actions.order.capture().then(function () {
       successPayment({
@@ -39,7 +42,7 @@ function OrderSummary({
             content: res.message,
           });
         }
-        window.location.href = "http://localhost:3000/myaccount/myorder?tips=success";
+        window.location.href = `${window.location.origin}${basePath}?tips=success`;
       });
       console.log("IS PAID");
     });
@@ -57,7 +60,7 @@ function OrderSummary({
           content: res.message,
         });
       }
-      window.location.href = "http://localhost:3000/myaccount/myorder?tips=cancel";
+      window.location.href = `${window.location.origin}${basePath}?tips=cancel`;
     });
     console.log("IS CANCELLED");
   };

@@ -142,7 +142,7 @@ function Page() {
           title: "please log in",
           content: "Sorry, log in is reuired",
           onOk: () => {
-            window.location.href = "http://localhost:3000";
+            window.location.href = `${window.location.origin}`;
           },
         });
       }
